@@ -1,15 +1,10 @@
 /* São — brand site
-   Core: beige + dark blue. Flavour pairs from the moodboard:
-   lime on forest green, coral with beige. */
+   Palette: beige + dark blue only (with one lighter and one deeper tint). */
 :root {
   --beige: #FEFBE4;
   --beige-2: #F6F0C8;
   --blue: #1205AB;
   --blue-deep: #0C0478;
-  --lime: #C9F23C;
-  --forest: #0E4A2B;
-  --coral: #FF6A4D;
-  --coral-deep: #C8361C;
 
   --display: "Anton", "Arial Narrow", sans-serif;
   --text: "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
@@ -37,7 +32,8 @@ img { max-width: 100%; display: block; }
 p { margin: 0; }
 h1, h2, h3 { margin: 0; font-weight: 400; }
 a { color: inherit; }
-:focus-visible { outline: 3px solid var(--coral); outline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+.about :focus-visible, .foot :focus-visible, .card--lime :focus-visible { outline-color: var(--beige); }
 
 .visually-hidden {
   position: absolute; width: 1px; height: 1px; overflow: hidden;
@@ -92,9 +88,9 @@ a { color: inherit; }
 .ticker__track span { padding: 0 20px; }
 .ticker .dot { width: 22px; }
 
-.band { background: var(--coral); color: var(--beige); padding: clamp(14px, 2vw, 22px) 0; }
+.band { background: var(--blue); color: var(--beige); padding: clamp(14px, 2vw, 22px) 0; }
 .band__track span { font: 400 clamp(2.5rem, 6vw, 5rem)/1 var(--display); padding: 0 clamp(18px, 2.5vw, 36px); }
-.band .dot { width: clamp(44px, 5vw, 72px); color: var(--blue); }
+.band .dot { width: clamp(44px, 5vw, 72px); }
 
 @media (prefers-reduced-motion: no-preference) {
   .ticker__track { animation: run 40s linear infinite; }
@@ -127,14 +123,14 @@ a { color: inherit; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
 
 .hero__stage { position: relative; aspect-ratio: 1; width: 100%; max-width: 620px; justify-self: center; }
-.sun { position: absolute; inset: 6%; border-radius: 50%; background: var(--blue); }
+.sun { position: absolute; inset: 6%; border-radius: 50%; background: var(--beige-2); box-shadow: inset 0 0 0 3px var(--blue); }
 .hero__stage .hero__can { position: absolute; width: 27%; top: 9%; }
 .hero__can--a { left: 22%; transform: rotate(-11deg); z-index: 2; }
 .hero__stage .hero__can--b { left: 48%; top: 14%; transform: rotate(9deg); z-index: 1; }
 .sticker { position: absolute; width: 30%; right: -2%; top: -3%; z-index: 3; transform: rotate(-12deg); }
-.sticker__bg { fill: var(--lime); }
-.sticker__text { font: 700 19px var(--text); fill: var(--forest); letter-spacing: 2.4px; }
-.sticker__mid { font: 400 46px var(--display); fill: var(--forest); }
+.sticker__bg { fill: var(--beige); stroke: var(--blue); stroke-width: 4; }
+.sticker__text { font: 700 19px var(--text); fill: var(--blue); letter-spacing: 2.4px; }
+.sticker__mid { font: 400 46px var(--display); fill: var(--blue); }
 @media (prefers-reduced-motion: no-preference) {
   .sticker { animation: spin 22s linear infinite; }
   @keyframes spin { from { transform: rotate(-12deg); } to { transform: rotate(348deg); } }
@@ -146,8 +142,8 @@ a { color: inherit; }
 
 /* Slim can, drawn in CSS */
 .can { aspect-ratio: 1 / 3.25; position: relative; width: 100%; }
-.can--lime { --can: var(--lime); --ink: var(--forest); }
-.can--mara { --can: var(--beige); --ink: var(--coral-deep); }
+.can--lime { --can: var(--blue); --ink: var(--beige); }
+.can--mara { --can: var(--beige); --ink: var(--blue); }
 .can__body {
   position: absolute; inset: 0;
   border-radius: 14% / 4.5%;
@@ -175,13 +171,14 @@ a { color: inherit; }
 .flavours { padding: var(--section) var(--gutter); }
 .flavours__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 2vw, 28px); }
 .card { border-radius: 28px; overflow: hidden; display: flex; flex-direction: column; }
-.card--lime { background: var(--forest); color: var(--lime); }
-.card--mara { background: var(--coral); color: var(--beige); }
+.card--lime { background: var(--blue); color: var(--beige); }
+.card--mara { background: var(--beige-2); color: var(--blue); box-shadow: inset 0 0 0 2px var(--blue); }
 .card__stage {
   display: grid; place-items: center;
   padding: clamp(36px, 5vw, 64px) 0 clamp(28px, 4vw, 48px);
-  background: radial-gradient(circle at 50% 55%, rgba(255,255,255,.14) 0 34%, transparent 34.5%);
+  background: radial-gradient(circle at 50% 55%, rgba(254,251,228,.14) 0 34%, transparent 34.5%);
 }
+.card--mara .card__stage { background: radial-gradient(circle at 50% 55%, var(--blue) 0 34%, transparent 34.5%); }
 .card__stage .can { width: clamp(96px, 11vw, 150px); transform: rotate(-5deg); }
 .card--mara .card__stage .can { transform: rotate(5deg); }
 .card__text { padding: 0 clamp(24px, 3vw, 40px) clamp(28px, 3vw, 40px); }
@@ -214,8 +211,8 @@ a { color: inherit; }
 .place p { max-width: 24rem; }
 .place__soon { margin-top: auto; padding-top: 24px; font-weight: 700; font-size: .9375rem; }
 .place--lisboa { background: var(--blue); color: var(--beige); }
-.place--algarve { background: var(--lime); color: var(--forest); }
-.place--fest { background: var(--coral); color: var(--beige); }
+.place--algarve { background: var(--beige-2); color: var(--blue); box-shadow: inset 0 0 0 2px var(--blue); }
+.place--fest { background: var(--blue-deep); color: var(--beige); }
 
 /* About */
 .about { background: var(--blue); color: var(--beige); padding: var(--section) var(--gutter); }
@@ -246,12 +243,11 @@ a { color: inherit; }
 .tile .can { width: 26%; transform: rotate(-8deg); }
 .tile__word { font: 400 clamp(1.5rem, 2.6vw, 2.5rem)/1 var(--display); text-align: center; padding: 0 8px; }
 .tile--blue { background: var(--blue); color: var(--beige); }
-.tile--lime { background: var(--lime); }
-.tile--lime .can { --can: var(--forest); --ink: var(--lime); }
-.tile--coral { background: var(--coral); color: var(--beige); }
-.tile--beige { background: var(--beige-2); }
-.tile--forest { background: var(--forest); color: var(--lime); }
-.tile--coral2 { background: var(--coral-deep); }
+.tile--lime { background: var(--beige-2); }
+.tile--coral { background: var(--blue-deep); color: var(--beige); }
+.tile--beige { background: var(--blue); }
+.tile--forest { background: var(--beige-2); color: var(--blue); }
+.tile--coral2 { background: var(--blue-deep); }
 .duo { display: flex; gap: 6%; width: 100%; justify-content: center; }
 .duo .can { width: 22%; }
 .duo .can:last-child { transform: rotate(8deg); }

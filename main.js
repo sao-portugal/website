@@ -169,7 +169,7 @@ const gate = document.getElementById("gate");
 if (store.get("sao-age") !== "ok") {
   gate.hidden = false;
   document.body.classList.add("locked");
-  document.getElementById("gate-yes").focus();
+  document.getElementById("gate-yes").focus({ focusVisible: false });
 }
 document.getElementById("gate-yes").addEventListener("click", () => {
   store.set("sao-age", "ok");
