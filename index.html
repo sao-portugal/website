@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>São — Lisbon, soon</title>
-  <meta name="description" content="Something new is coming to Lisbon at the end of 2026. Get on the list.">
+  <meta name="description" content="A new hard seltzer is coming to Lisbon at the end of 2026. Get on the list.">
   <meta name="theme-color" content="#1205AB">
   <meta property="og:title" content="São — Lisbon, soon">
-  <meta property="og:description" content="Something new is coming to Lisbon at the end of 2026. Get on the list.">
+  <meta property="og:description" content="A new hard seltzer is coming to Lisbon at the end of 2026. Get on the list.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://drinksao.com/">
   <meta property="og:image" content="https://drinksao.com/assets/og.png">
@@ -17,10 +17,14 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://drinksao.com/assets/og.png">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Familjen+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="assets/fonts/anton-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <style>
+    @font-face { font-family: "Anton"; font-weight: 400; font-display: swap; src: url("assets/fonts/anton-latin-400-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Familjen Grotesk"; font-weight: 400; font-display: swap; src: url("assets/fonts/familjen-grotesk-latin-400-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Familjen Grotesk"; font-weight: 500; font-display: swap; src: url("assets/fonts/familjen-grotesk-latin-500-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Familjen Grotesk"; font-weight: 700; font-display: swap; src: url("assets/fonts/familjen-grotesk-latin-700-normal.woff2") format("woff2"); }
+    /* Hide the badge Netlify injects on free projects */
+    #nl-badge-frame, #nl-hud-frame { display: none !important; }
     :root {
       --beige: #FEFBE4;
       --blue: #1205AB;
@@ -34,9 +38,25 @@
     body { margin: 0; background: var(--beige); color: var(--blue); font: 400 1.0625rem/1.55 var(--text); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
     [hidden] { display: none !important; }
     p, h1, h2, h3 { margin: 0; font-weight: 400; }
-    a { color: inherit; }
+    a { color: inherit; text-decoration: none; }
+    a:hover { opacity: .7; }
     :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
     .on-blue :focus-visible { outline-color: var(--beige); }
+
+    /* Click burst: short lines fly out from where you click */
+    .burst { position: fixed; left: 0; top: 0; width: 0; height: 0; pointer-events: none; z-index: 50; }
+    .burst i {
+      position: absolute; left: -1.5px; top: -16px; width: 3px; height: 11px; border-radius: 2px;
+      background: var(--c, var(--blue)); transform-origin: 1.5px 16px;
+      transform: rotate(var(--a)) translateY(0) scaleY(.4); opacity: 0;
+      animation: burst .48s cubic-bezier(.2,.7,.3,1) forwards;
+    }
+    @media (pointer: coarse) { .burst { scale: .7; } }
+    @keyframes burst {
+      0%   { opacity: 1; transform: rotate(var(--a)) translateY(2px) scaleY(.4); }
+      45%  { opacity: 1; transform: rotate(var(--a)) translateY(-12px) scaleY(1); }
+      100% { opacity: 0; transform: rotate(var(--a)) translateY(-22px) scaleY(.3); }
+    }
 
     .logo {
       display: block; aspect-ratio: 1836 / 1610; background: currentColor;
@@ -71,6 +91,7 @@
     .tz__top { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
     .tz__coords { font-weight: 500; font-size: .9375rem; letter-spacing: .02em; }
     .tz__clock { margin-left: 14px; font-variant-numeric: tabular-nums; }
+    .tz__age { display: inline-block; margin-left: 14px; padding: 2px 8px; border: 2px solid currentColor; border-radius: 999px; font-weight: 700; font-size: .8125rem; line-height: 1.2; vertical-align: 1px; }
     .tz__clock .colon { animation: blink 2s steps(1) infinite; }
     @keyframes blink { 50% { opacity: 0; } }
     .decode { white-space: nowrap; }
@@ -79,7 +100,8 @@
       margin: 18px 0; padding: 16px 0; border-block: 2px solid currentColor;
     }
     .unlock__label { font-weight: 700; font-size: .9375rem; }
-    .unlock__word { font: 400 clamp(2.5rem, 5vw, 4rem)/1 var(--display); min-height: 1em; }
+    .unlock__word { font: 400 clamp(2.25rem, 4vw, 3.5rem)/1 var(--display); min-height: 1em; white-space: nowrap; }
+    .form__done .redact { background: var(--beige); }
     @media (prefers-reduced-motion: reduce) { .tz__clock .colon { animation: none; } }
     .tz__center { display: grid; place-items: center; align-content: center; gap: clamp(20px, 3vw, 36px); text-align: center; padding: 32px 0; }
     .tz__mark { width: min(78vw, 680px, calc(50svh * 1.14)); }
@@ -101,11 +123,13 @@
       .tz__clues > :nth-child(1) { animation-delay: 1.5s; }
       .tz__clues > :nth-child(2) { animation-delay: 1.65s; }
       .tz__clues > :nth-child(3) { animation-delay: 1.8s; }
+      .tz__clues > :nth-child(4) { animation-delay: 1.95s; }
       .tz__bottom .btn { animation-delay: 2s; }
       @keyframes rise { from { transform: translateY(105%); } }
       @keyframes fade { from { opacity: 0; transform: translateY(8px); } }
       .redact { animation: tube 3.1s linear infinite; }
-      .tz__clues > :nth-child(3) .redact { animation-delay: 2.4s; }
+      .tz__clues > :last-child .redact { animation-delay: 2.4s; }
+      .unlock .redact { animation-duration: 2.6s; animation-delay: 1.6s; }
       @keyframes tube {
         0%   { opacity: 1; }
         3%   { opacity: .15; }
@@ -140,15 +164,16 @@
     }
 
     /* Two ways in */
-    .join { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 2vw, 28px); padding: clamp(48px, 7vw, 104px) var(--gutter); }
-    .card { border: 2px solid var(--blue); border-radius: 28px; padding: clamp(28px, 3.5vw, 52px); }
+    .join { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 2vw, 27px); padding: clamp(46px, 6.4vw, 94px) var(--gutter); }
+    .card { --pad: clamp(27px, 3.3vw, 49px); border: 2px solid var(--blue); border-radius: 27px; padding: var(--pad); }
     .card--blue { background: var(--blue); color: var(--beige); }
-    .card__title { font: 400 clamp(2.5rem, 4.6vw, 4.5rem)/.92 var(--display); max-width: 11ch; margin-bottom: 18px; }
-    .card__body { max-width: 28rem; margin-bottom: 32px; font-size: clamp(1.0625rem, 1.3vw, 1.1875rem); }
+    .card__title { font: 400 clamp(2.4375rem, 4.3vw, 4.25rem)/.92 var(--display); max-width: 14ch; margin-bottom: 16px; }
+    @media (min-width: 901px) { .card:first-child .card__title { max-width: 10ch; } }
+    .card__body { max-width: 30rem; margin-bottom: 30px; font-size: clamp(1.0625rem, 1.2vw, 1.15625rem); }
 
     .card__secret {
-      display: flex; align-items: center; gap: 14px; margin-top: 28px; padding-top: 22px;
-      border-top: 2px solid var(--blue); font: 400 clamp(1.5rem, 2.2vw, 2rem)/1.05 var(--display);
+      display: flex; align-items: center; gap: 13px; margin-top: 26px; padding-top: 20px;
+      border-top: 2px solid var(--blue); font: 400 clamp(1.4375rem, 2.1vw, 1.9rem)/1.05 var(--display);
     }
     .card__lock {
       flex: none; width: 1em; height: 1em; background: currentColor;
@@ -157,16 +182,17 @@
     }
     .done__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; margin-top: 22px; }
     .done__actions .btn--beige:hover { background: transparent; color: var(--beige); }
-    .done__insta { font-weight: 700; color: var(--beige); }
-    .form { display: grid; gap: 18px; }
+    .done__insta { font-weight: 700; color: var(--beige); text-decoration: none; }
+    .done__insta .u { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 2px; }
+    .form { display: grid; gap: 17px; }
     .form__hp { position: absolute; left: -9999px; }
-    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-    .field { display: grid; gap: 8px; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 17px; }
+    .field { display: grid; gap: 7px; }
     .field label { font-weight: 700; font-size: .9375rem; }
     .opt { font-weight: 400; opacity: .7; }
     .field input, .field select {
       width: 100%; font: 400 1rem/1.4 var(--text); color: var(--blue);
-      background: var(--beige); border: 2px solid var(--blue); border-radius: 14px; padding: 13px 16px; appearance: none;
+      background: var(--beige); border: 2px solid var(--blue); border-radius: 13px; padding: 12px 15.5px; appearance: none;
     }
     .card--blue .field input, .card--blue .field select { border-color: var(--beige); }
     .field select {
@@ -175,8 +201,14 @@
     }
     .field input:focus, .field select:focus { outline: none; box-shadow: 0 0 0 3px var(--beige), 0 0 0 5px var(--blue); }
     .card--blue .field input:focus, .card--blue .field select:focus { box-shadow: 0 0 0 3px var(--blue), 0 0 0 5px var(--beige); }
-    .field.is-invalid input, .field.is-invalid select { border-width: 3px; }
-    .check { display: flex; gap: 12px; align-items: flex-start; cursor: pointer; }
+    /* Invalid fields: thicker edge, a soft halo, and a one-line hint */
+    .field.is-invalid input, .field.is-invalid select { border-width: 3px; padding: 11px 14.5px; box-shadow: 0 0 0 4px rgba(18, 5, 171, .14); }
+    .card--blue .field.is-invalid input, .card--blue .field.is-invalid select { border-color: var(--beige); box-shadow: 0 0 0 4px rgba(254, 251, 228, .28); }
+    .field.is-invalid::after, .check.is-invalid::after {
+      content: attr(data-msg); font-weight: 700; font-size: .8125rem; line-height: 1.2;
+    }
+    .check.is-invalid::after { grid-column: 2; }
+    .check { display: grid; grid-template-columns: 24px 1fr; column-gap: 12px; row-gap: 6px; align-items: start; cursor: pointer; }
     .check input {
       appearance: none; flex: none; width: 24px; height: 24px; margin: 1px 0 0; color: inherit; border: 2px solid currentColor;
       border-radius: 6px; background: transparent; cursor: pointer; display: grid; place-items: center;
@@ -184,9 +216,13 @@
     .check input:checked { background: currentColor; }
     .check input:checked::after { content: ""; width: 6px; height: 11px; border: solid var(--beige); border-width: 0 2.5px 2.5px 0; transform: translateY(-1px) rotate(45deg); }
     .card--blue .check input:checked::after { border-color: var(--blue); }
-    .check.is-invalid input { border-width: 3px; }
+    .check.is-invalid input { border-width: 3px; box-shadow: 0 0 0 4px rgba(18, 5, 171, .14); }
+    .card--blue .check.is-invalid input { box-shadow: 0 0 0 4px rgba(254, 251, 228, .28); }
+    .card { display: flex; flex-direction: column; }
+    .card__note { margin-top: auto; margin-bottom: calc(14px - var(--pad)); padding-top: 18px; font-size: .75rem; opacity: .6; }
+    .card__note a { font-weight: 700; white-space: nowrap; }
     .form__error { font-weight: 700; padding: 12px 16px; border: 2px solid currentColor; border-radius: 14px; }
-    .form__submit { justify-self: start; min-height: 58px; }
+    .form__submit { justify-self: start; min-height: 56px; }
     .form__submit:disabled { opacity: .6; cursor: progress; }
     .form__done { padding: clamp(24px, 3vw, 40px); border-radius: 20px; background: var(--blue); color: var(--beige); }
     .card--blue .form__done { background: var(--beige); color: var(--blue); }
@@ -198,14 +234,17 @@
     .foot a { font-weight: 700; }
     .foot__ig { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; transition: background-color .2s, color .2s; }
     .foot__ig:hover { background: var(--blue); color: var(--beige); }
-    .foot p:last-child { margin-left: auto; }
+    .foot__privacy { margin-left: auto; }
 
     @media (max-width: 900px) { .join { grid-template-columns: 1fr; } }
     @media (max-width: 560px) {
       .field-row { grid-template-columns: 1fr; }
       .form__submit, .tz__bottom .btn { width: 100%; }
-      .tz__coords { font-size: .8125rem; }
-      .foot p:last-child { margin-left: 0; }
+      .tz__coords { font-size: .75rem; letter-spacing: 0; white-space: nowrap; }
+      .tz__clock, .tz__age { margin-left: 8px; }
+      .tz__age { padding: 1px 6px; font-size: .6875rem; }
+      .tz__top .lang button { padding: 7px 10px; }
+      .foot__privacy { margin-left: 0; }
     }
   </style>
 </head>
@@ -215,7 +254,7 @@
   <main>
     <section class="tz">
       <div class="tz__top">
-        <span class="tz__coords">38.7223° N, 9.1393° W <span class="tz__clock" id="clock" aria-label="Local time in Lisbon"></span></span>
+        <span class="tz__coords">38.7223° N, 9.1393° W <span class="tz__clock" id="clock" aria-label="Local time in Lisbon"></span><span class="tz__age" title="For adults 18+">18+</span></span>
         <div class="lang" aria-label="Language"><button type="button" data-lang="en">EN</button><button type="button" data-lang="pt">PT</button></div>
       </div>
 
@@ -226,8 +265,8 @@
 
       <div class="tz__bottom">
         <div class="tz__clues">
-          <p><span data-i18n="tz.c1">Two flavours.</span><span class="tz__secret" id="hero-secret" hidden> <span data-i18n="tz.c1b">No. 2:</span> <span class="decode" data-word="Maracujá">Maracujá</span>.</span></p>
-          <p data-i18n="tz.c2">One slim can.</p>
+          <p data-i18n="tz.c0">Hard seltzer.</p>
+          <p data-i18n="tz.c1">Two flavours.</p>
           <p><span data-i18n="tz.c3">The rest is</span> <span class="redact" style="--w: 5.5em" role="img" aria-label="classified"></span></p>
         </div>
         <a class="btn btn--blue" href="#join" data-i18n="tz.cta">Get on the list</a>
@@ -270,13 +309,14 @@
         <div class="form__done" id="updates-done" tabindex="-1" hidden>
           <h3 data-i18n="tz.list.done">You're in.</h3>
           <p data-i18n="tz.unlock.lead">Here's your first secret.</p>
-          <p class="unlock"><span class="unlock__label" data-i18n="tz.unlock.label">Flavour no. 2</span><span class="unlock__word decode" data-word="Maracujá" id="unlock-word"></span></p>
+          <p class="unlock"><span class="unlock__label" data-i18n="tz.unlock.label">Flavour no. 2</span><span class="unlock__word"><span class="decode" data-word="Maracujá" id="unlock-word"></span> &amp; <span class="redact" style="--w: 2.6em" role="img" aria-label="classified"></span></span></p>
           <p data-i18n="tz.unlock.rest">You'll hear the rest before anyone else.</p>
           <div class="done__actions">
             <button class="btn btn--beige" type="button" id="share-btn" data-i18n="tz.share">Send it to a friend</button>
-            <a class="done__insta" href="https://www.instagram.com/drinksao/" target="_blank" rel="noopener" data-i18n="tz.insta">Follow @drinksao</a>
+            <a class="done__insta" href="https://www.instagram.com/drinksao/" target="_blank" rel="noopener" data-i18n="tz.insta">Follow @<span class="u">drinksao</span></a>
           </div>
         </div>
+        <p class="card__note"><span data-i18n="tz.note">We only use your details for this.</span> <a href="privacy.html" target="_blank" rel="noopener" data-i18n="tz.note.link">Privacy statement</a></p>
       </article>
 
       <article class="card card--blue on-blue">
@@ -331,6 +371,7 @@
           <h3 data-i18n="tz.venue.done">Request received.</h3>
           <p data-i18n="tz.venue.done2">We'll be in touch before launch to set up your tasting.</p>
         </div>
+        <p class="card__note"><span data-i18n="tz.note">We only use your details for this.</span> <a href="privacy.html" target="_blank" rel="noopener" data-i18n="tz.note.link">Privacy statement</a></p>
       </article>
     </section>
   </main>
@@ -342,6 +383,7 @@
       <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg>
     </a>
     <p data-i18n="foot.resp">Enjoy responsibly. Not for sale to persons under 18.</p>
+    <a class="foot__privacy" href="privacy.html" data-i18n="foot.privacy">Privacy</a>
     <p>&copy; <span id="year">2026</span> São</p>
   </footer>
 
@@ -349,10 +391,10 @@
     const T = {
       en: {
         "tz.title": "Lisbon, end of 2026.",
-        "tz.c1": "Two flavours.", "tz.c1b": "No. 2:", "tz.c2": "One slim can.", "tz.c3": "The rest is",
+        "tz.c0": "Hard seltzer.", "tz.c1": "Two flavours.", "tz.c2": "One slim can.", "tz.c3": "The rest is",
         "tz.unlock.lead": "Here's your first secret.", "tz.unlock.label": "Flavour no. 2", "tz.unlock.rest": "You'll hear the rest before anyone else.",
         "tz.list.secret": "Sign up and unlock your first secret right away.",
-        "tz.share": "Send it to a friend", "tz.insta": "Follow @drinksao",
+        "tz.share": "Send it to a friend", "tz.insta": "Follow @<span class=\"u\">drinksao</span>",
         "tz.share.text": "Something's coming to Lisbon. Get on the list and unlock a secret:",
         "tz.cta": "Get on the list",
         "tz.b1": "Coming soon", "tz.b2": "End of 2026", "tz.b3": "Don't miss it",
@@ -369,17 +411,17 @@
         "f.t.bar": "Bar", "f.t.club": "Club", "f.t.roof": "Rooftop", "f.t.beach": "Beach club", "f.t.rest": "Restaurant",
         "f.t.hotel": "Hotel", "f.t.fest": "Festival or event", "f.t.other": "Other",
         "f.name": "Your name", "f.phone": "Phone or WhatsApp <span class=\"opt\">(optional)</span>",
-        "f.sending": "Sending…", "f.err.fields": "Please fill in the highlighted fields.",
+        "f.sending": "Sending…", "f.err.fields": "Please fill in the highlighted fields.", "f.req": "Required", "f.req.email": "Enter a valid email address", "f.req.check": "Tick this box to continue",
         "f.err.send": "That didn't go through. Check your connection and try again, or email info@drinksao.com.",
-        "foot.resp": "Enjoy responsibly. Not for sale to persons under 18.",
+        "foot.resp": "Enjoy responsibly. Not for sale to persons under 18.", "foot.privacy": "Privacy", "tz.note": "We only use your details for this.", "tz.note.link": "Privacy statement",
         "title": "São — Lisbon, soon"
       },
       pt: {
         "tz.title": "Lisboa, fim de 2026.",
-        "tz.c1": "Dois sabores.", "tz.c1b": "O n.º 2:", "tz.c2": "Uma lata slim.", "tz.c3": "O resto é",
+        "tz.c0": "Hard seltzer.", "tz.c1": "Dois sabores.", "tz.c2": "Uma lata slim.", "tz.c3": "O resto é",
         "tz.unlock.lead": "Aqui está o seu primeiro segredo.", "tz.unlock.label": "Sabor n.º 2", "tz.unlock.rest": "O resto, vai saber antes de toda a gente.",
         "tz.list.secret": "Inscreva-se e desbloqueie já o seu primeiro segredo.",
-        "tz.share": "Enviar a um amigo", "tz.insta": "Seguir @drinksao",
+        "tz.share": "Enviar a um amigo", "tz.insta": "Seguir @<span class=\"u\">drinksao</span>",
         "tz.share.text": "Vem aí uma coisa nova para Lisboa. Entra na lista e desbloqueia um segredo:",
         "tz.cta": "Entrar na lista",
         "tz.b1": "Brevemente", "tz.b2": "Fim de 2026", "tz.b3": "Não perca",
@@ -396,9 +438,9 @@
         "f.t.bar": "Bar", "f.t.club": "Discoteca", "f.t.roof": "Rooftop", "f.t.beach": "Beach club", "f.t.rest": "Restaurante",
         "f.t.hotel": "Hotel", "f.t.fest": "Festival ou evento", "f.t.other": "Outro",
         "f.name": "O seu nome", "f.phone": "Telefone ou WhatsApp <span class=\"opt\">(opcional)</span>",
-        "f.sending": "A enviar…", "f.err.fields": "Preencha os campos assinalados.",
+        "f.sending": "A enviar…", "f.err.fields": "Preencha os campos assinalados.", "f.req": "Obrigatório", "f.req.email": "Indique um email válido", "f.req.check": "Assinale para continuar",
         "f.err.send": "Não foi enviado. Verifique a ligação e tente de novo, ou escreva para info@drinksao.com.",
-        "foot.resp": "Seja responsável. Beba com moderação. Venda proibida a menores de 18 anos.",
+        "foot.resp": "Seja responsável. Beba com moderação. Venda proibida a menores de 18 anos.", "foot.privacy": "Privacidade", "tz.note": "Só usamos os seus dados para isto.", "tz.note.link": "Política de privacidade",
         "title": "São — Lisboa, em breve"
       }
     };
@@ -416,12 +458,28 @@
       document.querySelectorAll('input[name="language"]').forEach(i => { i.value = lang; });
       document.title = d.title;
       store.set("sao-lang", lang);
+      if (typeof alignCards === "function") alignCards();
     }
     document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.lang)));
     document.querySelectorAll(".band__track").forEach(t => { t.innerHTML = t.innerHTML.repeat(2); t.innerHTML += t.innerHTML; });
     setLang(store.get("sao-lang") || "en");
 
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Keep the two form cards' titles and intros the same height so the fields line up
+    function alignCards() {
+      ["card__title", "card__body"].forEach(c => {
+        const els = [...document.querySelectorAll(".join ." + c)];
+        els.forEach(el => { el.style.minHeight = ""; });
+        if (window.innerWidth <= 900) return;
+        const h = Math.max(...els.map(el => el.getBoundingClientRect().height));
+        els.forEach(el => { el.style.minHeight = h + "px"; });
+      });
+    }
+    window.addEventListener("resize", alignCards);
+    document.fonts && document.fonts.ready.then(alignCards);
+    alignCards();
+
 
     // Lisbon local time next to the coordinates
     const clock = document.getElementById("clock");
@@ -447,17 +505,31 @@
       }, delay || 0);
     }
 
-    // Reward for signing up: reveal one flavour, remembered on this device
-    function unlock(fresh) {
-      store.set("sao-unlocked", "1");
+    // Reward for signing up: half-reveal flavour no. 2
+    function unlock() {
       const sec = document.querySelector(".card__secret"); if (sec) sec.hidden = true;
-      const hero = document.getElementById("hero-secret");
-      hero.hidden = false;
-      const heroWord = hero.querySelector(".decode");
-      if (fresh) { decode(document.getElementById("unlock-word"), 400); decode(heroWord, 400); }
-      else heroWord.textContent = heroWord.dataset.word;
+      decode(document.getElementById("unlock-word"), 400);
     }
-    if (store.get("sao-unlocked") === "1") unlock(false);
+
+    // Click burst (skipped for text fields and when reduced motion is on)
+    // "click" fires only for a real tap or click, never when a finger starts a scroll
+    if (!reduce) document.addEventListener("click", e => {
+      if (!e.clientX && !e.clientY) return; // keyboard-triggered clicks have no position
+      if (e.target.closest("input:not([type=checkbox]), select, textarea")) return;
+      const onBlue = e.target.closest(".card--blue, .band, .btn--blue, .form__done:not(.card--blue .form__done)");
+      const b = document.createElement("span");
+      b.className = "burst";
+      b.style.left = e.clientX + "px"; b.style.top = e.clientY + "px";
+      if (onBlue) b.style.setProperty("--c", "var(--beige)");
+      const n = 8, turn = Math.random() * 45;
+      for (let i = 0; i < n; i++) {
+        const l = document.createElement("i");
+        l.style.setProperty("--a", (turn + i * 360 / n) + "deg");
+        b.appendChild(l);
+      }
+      document.body.appendChild(b);
+      setTimeout(() => b.remove(), 550);
+    });
 
     // Share after signing up: native share sheet on phones, WhatsApp/copy fallback
     document.getElementById("share-btn").addEventListener("click", async e => {
@@ -478,15 +550,19 @@
         form.querySelectorAll(".is-invalid").forEach(el => el.classList.remove("is-invalid"));
         const bad = [...form.querySelectorAll("[required]")].filter(el => !el.checkValidity());
         if (bad.length) {
-          bad.forEach(el => (el.closest(".field, .check") || el).classList.add("is-invalid"));
-          err.textContent = T[lang]["f.err.fields"]; err.hidden = false; bad[0].focus(); return;
+          bad.forEach(el => {
+            const box = el.closest(".field, .check") || el;
+            box.dataset.msg = T[lang][el.type === "checkbox" ? "f.req.check" : (el.type === "email" && el.value ? "f.req.email" : "f.req")];
+            box.classList.add("is-invalid");
+          });
+          bad[0].focus(); return;
         }
         const label = btn.innerHTML; btn.disabled = true; btn.textContent = T[lang]["f.sending"];
         try {
           const res = await fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(new FormData(form)).toString() });
           if (!res.ok) throw new Error(res.status);
           form.hidden = true; done.hidden = false; done.focus();
-          if (form.getAttribute("name") === "updates") unlock(true);
+          if (form.getAttribute("name") === "updates") unlock();
         } catch (x) {
           err.textContent = T[lang]["f.err.send"]; err.hidden = false; btn.disabled = false; btn.innerHTML = label;
         }
