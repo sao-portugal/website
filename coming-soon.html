@@ -146,9 +146,12 @@
     .card__title { font: 400 clamp(2.5rem, 4.6vw, 4.5rem)/.92 var(--display); max-width: 11ch; margin-bottom: 18px; }
     .card__body { max-width: 28rem; margin-bottom: 32px; font-size: clamp(1.0625rem, 1.3vw, 1.1875rem); }
 
-    .card__secret { display: flex; align-items: center; gap: 10px; margin: -14px 0 28px; font-weight: 700; }
+    .card__secret {
+      display: flex; align-items: center; gap: 14px; margin-top: 28px; padding-top: 22px;
+      border-top: 2px solid var(--blue); font: 400 clamp(1.5rem, 2.2vw, 2rem)/1.05 var(--display);
+    }
     .card__lock {
-      flex: none; width: 18px; height: 18px; background: currentColor;
+      flex: none; width: 1em; height: 1em; background: currentColor;
       -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 10V7a5 5 0 0 1 10 0v3h1.5A1.5 1.5 0 0 1 20 11.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 20.5v-9A1.5 1.5 0 0 1 5.5 10H7zm2.5 0h5V7a2.5 2.5 0 0 0-5 0v3z'/%3E%3C/svg%3E") center / contain no-repeat;
               mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 10V7a5 5 0 0 1 10 0v3h1.5A1.5 1.5 0 0 1 20 11.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 20.5v-9A1.5 1.5 0 0 1 5.5 10H7zm2.5 0h5V7a2.5 2.5 0 0 0-5 0v3z'/%3E%3C/svg%3E") center / contain no-repeat;
     }
@@ -244,7 +247,6 @@
       <article class="card">
         <h2 class="card__title" data-i18n="tz.list.title">The list is open.</h2>
         <p class="card__body" data-i18n="tz.list.body">Be the first to hear the date, the first venues and everything we can't say yet. An email when it matters.</p>
-        <p class="card__secret"><span class="card__lock" aria-hidden="true"></span><span data-i18n="tz.list.secret">Sign up and unlock your first secret right away.</span></p>
         <form class="form" name="updates" method="POST" data-netlify="true" netlify-honeypot="company_website" data-done="updates-done" novalidate>
           <input type="hidden" name="form-name" value="updates">
           <input type="hidden" name="language" value="en">
@@ -264,6 +266,7 @@
           <p class="form__error" role="alert" hidden></p>
           <button class="btn btn--blue form__submit" type="submit" data-i18n="tz.list.submit">Put me on the list</button>
         </form>
+        <p class="card__secret"><span class="card__lock" aria-hidden="true"></span><span data-i18n="tz.list.secret">Sign up and unlock your first secret right away.</span></p>
         <div class="form__done" id="updates-done" tabindex="-1" hidden>
           <h3 data-i18n="tz.list.done">You're in.</h3>
           <p data-i18n="tz.unlock.lead">Here's your first secret.</p>
