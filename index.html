@@ -33,24 +33,10 @@
     </div>
   </div>
 
-  <!-- Announcement bar -->
-  <div class="ticker" aria-label="Announcement">
-    <div class="ticker__track" aria-hidden="true">
-      <span data-i18n="ticker">Coming soon to Lisbon and the Algarve</span><i class="logo dot"></i>
-      <span data-i18n="ticker">Coming soon to Lisbon and the Algarve</span><i class="logo dot"></i>
-      <span data-i18n="ticker">Coming soon to Lisbon and the Algarve</span><i class="logo dot"></i>
-      <span data-i18n="ticker">Coming soon to Lisbon and the Algarve</span><i class="logo dot"></i>
-      <span data-i18n="ticker">Coming soon to Lisbon and the Algarve</span><i class="logo dot"></i>
-      <span data-i18n="ticker">Coming soon to Lisbon and the Algarve</span><i class="logo dot"></i>
-    </div>
-    <span class="visually-hidden" data-i18n="ticker">Coming soon to Lisbon and the Algarve</span>
-  </div>
-
   <header class="top">
     <a class="top__logo" href="#top" aria-label="São — home"><span class="logo" aria-hidden="true"></span></a>
     <nav class="top__nav" aria-label="Main">
       <a href="#flavours" data-i18n="nav.flavours">Flavours</a>
-      <a href="#where" data-i18n="nav.where">Find us</a>
       <a href="#about" data-i18n="nav.about">Our story</a>
       <a href="#venues" data-i18n="nav.venues">For venues</a>
     </nav>
@@ -64,39 +50,23 @@
     <!-- Hero -->
     <section class="hero">
       <div class="hero__copy">
-        <p class="hero__kicker" data-i18n="hero.kicker">Hard seltzer from Portugal</p>
         <h1 class="hero__title" data-i18n="hero.title">Light. Dry.<br>Out late.</h1>
         <p class="hero__line" data-i18n="hero.line">Lime and maracujá hard seltzer in a slim, ice-cold can. Made for rooftops, dance floors and the beach at sunrise.</p>
-        <div class="hero__actions">
-          <a class="btn btn--blue" href="#flavours" data-i18n="hero.cta">See the flavours</a>
-          <a class="btn btn--outline" href="#venues" data-i18n="hero.cta2">Stock São</a>
-        </div>
+        <a class="btn btn--blue" href="#flavours" data-i18n="hero.cta">See the flavours</a>
       </div>
-
       <div class="hero__stage" aria-hidden="true">
-        <div class="sun"></div>
         <div class="can can--lime hero__can hero__can--a">
           <div class="can__body"><span class="logo can__word"></span><span class="can__flav" data-i18n="lime.name">Lime</span></div>
         </div>
         <div class="can can--mara hero__can hero__can--b">
           <div class="can__body"><span class="logo can__word"></span><span class="can__flav" data-i18n="mara.name">Maracujá</span></div>
         </div>
-        <svg class="sticker" viewBox="0 0 200 200">
-          <defs><path id="ring" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"/></defs>
-          <circle cx="100" cy="100" r="98" class="sticker__bg"/>
-          <text class="sticker__text"><textPath href="#ring" data-i18n="sticker">new hard seltzer — new hard seltzer — </textPath></text>
-          <text x="100" y="116" text-anchor="middle" class="sticker__mid">18+</text>
-        </svg>
       </div>
     </section>
 
-    <!-- Big band -->
+    <!-- One running line -->
     <div class="band" aria-hidden="true">
       <div class="band__track">
-        <span data-i18n="band.1">Ice cold</span><i class="logo dot"></i>
-        <span data-i18n="band.2">Light and bubbly</span><i class="logo dot"></i>
-        <span>Lisboa</span><i class="logo dot"></i>
-        <span>Algarve</span><i class="logo dot"></i>
         <span data-i18n="band.1">Ice cold</span><i class="logo dot"></i>
         <span data-i18n="band.2">Light and bubbly</span><i class="logo dot"></i>
         <span>Lisboa</span><i class="logo dot"></i>
@@ -104,96 +74,33 @@
       </div>
     </div>
 
-    <!-- Flavours -->
+    <!-- Flavours: two full-bleed halves -->
     <section class="flavours" id="flavours" aria-labelledby="flavours-title">
-      <div class="section-head">
-        <h2 id="flavours-title" data-i18n="flavours.title">Two flavours. Pick a side.</h2>
-        <p data-i18n="flavours.intro">Both come in a slim 250 ml can. Both are best straight from the ice bucket.</p>
-      </div>
+      <h2 class="visually-hidden" id="flavours-title" data-i18n="nav.flavours">Flavours</h2>
 
-      <div class="flavours__grid">
-        <article class="card card--lime">
-          <div class="card__stage">
-            <div class="can can--lime">
-              <div class="can__body"><span class="logo can__word"></span><span class="can__flav" data-i18n="lime.name">Lime</span></div>
-            </div>
+      <article class="flavour flavour--lime">
+        <div class="flavour__stage">
+          <div class="can can--lime">
+            <div class="can__body"><span class="logo can__word"></span><span class="can__flav" data-i18n="lime.name">Lime</span></div>
           </div>
-          <div class="card__text">
-            <h3 class="card__name" data-i18n="lime.name">Lime</h3>
-            <p data-i18n="lime.body">Sharp, clean and cold. Fresh lime over sparkling water, with nothing sticky left behind.</p>
-            <ul class="tags">
-              <li data-i18n="tag.zesty">Zesty</li><li data-i18n="tag.crisp">Crisp</li><li>250 ml</li>
-            </ul>
-          </div>
-        </article>
+        </div>
+        <div class="flavour__text">
+          <h3 class="flavour__name" data-i18n="lime.name">Lime</h3>
+          <p data-i18n="lime.body">Sharp, clean and cold. Fresh lime over sparkling water, with nothing sticky left behind.</p>
+        </div>
+      </article>
 
-        <article class="card card--mara">
-          <div class="card__stage">
-            <div class="can can--mara">
-              <div class="can__body"><span class="logo can__word"></span><span class="can__flav" data-i18n="mara.name">Maracujá</span></div>
-            </div>
+      <article class="flavour flavour--mara">
+        <div class="flavour__stage">
+          <div class="can can--mara">
+            <div class="can__body"><span class="logo can__word"></span><span class="can__flav" data-i18n="mara.name">Maracujá</span></div>
           </div>
-          <div class="card__text">
-            <h3 class="card__name" data-i18n="mara.name">Maracujá</h3>
-            <p data-i18n="mara.body">Tart passion fruit with a soft, sunny finish. The one you order a second round of.</p>
-            <ul class="tags">
-              <li data-i18n="tag.tropical">Tropical</li><li data-i18n="tag.tart">Tart</li><li>250 ml</li>
-            </ul>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- What it is -->
-    <section class="facts" aria-labelledby="facts-title">
-      <h2 class="visually-hidden" id="facts-title" data-i18n="facts.title">What São is</h2>
-      <ul class="facts__list">
-        <li>
-          <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="16" y="4" width="16" height="40" rx="4"/><path d="M16 10h16M16 38h16"/></svg>
-          <h3 data-i18n="f1.t">Slim 250 ml can</h3>
-          <p data-i18n="f1.p">Easy to hold on a crowded dance floor. Easy to finish while it's still cold.</p>
-        </li>
-        <li>
-          <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="18"/><path d="M24 6v36M6 24h36M11 11l26 26M37 11 11 37"/></svg>
-          <h3 data-i18n="f2.t">Real fruit flavours</h3>
-          <p data-i18n="f2.p">Lime and maracujá, two tastes that already belong to a Portuguese summer.</p>
-        </li>
-        <li>
-          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4v40M7 14l34 20M41 14 7 34"/><path d="M19 7l5 5 5-5M19 41l5-5 5 5"/></svg>
-          <h3 data-i18n="f3.t">Best ice cold</h3>
-          <p data-i18n="f3.p">Light and bubbly, made for hot nights rather than heavy cocktails.</p>
-        </li>
-        <li>
-          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 40c6-10 10-22 16-32 6 10 10 22 16 32"/><path d="M4 40h40"/><circle cx="36" cy="10" r="4"/></svg>
-          <h3 data-i18n="f4.t">Born for Portugal</h3>
-          <p data-i18n="f4.p">A brand built for Lisbon's bars and the Algarve's beach clubs, not imported from somewhere else.</p>
-        </li>
-      </ul>
-    </section>
-
-    <!-- Where -->
-    <section class="where" id="where" aria-labelledby="where-title">
-      <div class="section-head">
-        <h2 id="where-title" data-i18n="where.title">Find us this summer</h2>
-        <p data-i18n="where.intro">Our first venues will be listed here as they sign on.</p>
-      </div>
-      <div class="where__grid">
-        <article class="place place--lisboa">
-          <h3>Lisboa</h3>
-          <p data-i18n="where.lis">Rooftop bars, late-night clubs and the city's running crowd.</p>
-          <span class="place__soon" data-i18n="where.soon">Venues coming soon</span>
-        </article>
-        <article class="place place--algarve">
-          <h3>Algarve</h3>
-          <p data-i18n="where.alg">Beach clubs, pool parties and long nights on the strip.</p>
-          <span class="place__soon" data-i18n="where.soon">Venues coming soon</span>
-        </article>
-        <article class="place place--fest">
-          <h3 data-i18n="where.fest.t">Festivals</h3>
-          <p data-i18n="where.fest">Look for the São bar at summer festivals across Portugal.</p>
-          <span class="place__soon" data-i18n="where.soon">Venues coming soon</span>
-        </article>
-      </div>
+        </div>
+        <div class="flavour__text">
+          <h3 class="flavour__name" data-i18n="mara.name">Maracujá</h3>
+          <p data-i18n="mara.body">Tart passion fruit with a soft, sunny finish. The one you order a second round of.</p>
+        </div>
+      </article>
     </section>
 
     <!-- About -->
@@ -205,51 +112,27 @@
       </div>
     </section>
 
-    <!-- Venues -->
+    <!-- Venues + where -->
     <section class="venues" id="venues" aria-labelledby="venues-title">
       <div class="venues__head">
         <h2 id="venues-title" data-i18n="venues.title">Pour São at your venue</h2>
         <p data-i18n="venues.body">We're launching in Lisbon and the Algarve. Run a bar, club, beach club or festival? Let's talk about getting São on your menu.</p>
         <a class="btn btn--blue" id="contact-link" href="#" data-i18n="venues.cta">Email us</a>
       </div>
-      <ul class="venues__list">
-        <li data-i18n="venues.l1">Bars</li>
-        <li data-i18n="venues.l2">Clubs</li>
-        <li data-i18n="venues.l3">Beach clubs</li>
-        <li data-i18n="venues.l4">Festivals</li>
+      <ul class="places">
+        <li><span class="places__name">Lisboa</span><span data-i18n="where.lis.s">Rooftops and clubs</span></li>
+        <li><span class="places__name">Algarve</span><span data-i18n="where.alg.s">Beach clubs</span></li>
+        <li><span class="places__name" data-i18n="where.fest.t">Festivals</span><span data-i18n="where.fest.s">All summer</span></li>
       </ul>
-    </section>
-
-    <!-- Social -->
-    <section class="social" aria-labelledby="social-title">
-      <div class="social__head">
-        <h2 id="social-title" data-i18n="social.title">Follow the night</h2>
-        <a class="btn btn--outline" id="insta-link" href="#" data-i18n="social.cta">Follow on Instagram</a>
-      </div>
-      <div class="social__grid" aria-hidden="true">
-        <div class="tile tile--blue"><span class="logo"></span></div>
-        <div class="tile tile--lime"><div class="can can--lime"><div class="can__body"><span class="logo can__word"></span></div></div></div>
-        <div class="tile tile--coral"><span class="tile__word" data-i18n="band.1">Ice cold</span></div>
-        <div class="tile tile--beige"><div class="can can--mara"><div class="can__body"><span class="logo can__word"></span></div></div></div>
-        <div class="tile tile--forest"><span class="tile__word">Lisboa</span></div>
-        <div class="tile tile--coral2"><div class="duo"><div class="can can--lime"><div class="can__body"><span class="logo can__word"></span></div></div><div class="can can--mara"><div class="can__body"><span class="logo can__word"></span></div></div></div></div>
-      </div>
     </section>
 
   </main>
 
   <footer class="foot">
-    <div class="foot__top">
-      <span class="logo foot__logo" role="img" aria-label="São"></span>
-      <nav class="foot__nav" aria-label="Footer">
-        <a href="#flavours" data-i18n="nav.flavours">Flavours</a>
-        <a href="#where" data-i18n="nav.where">Find us</a>
-        <a href="#about" data-i18n="nav.about">Our story</a>
-        <a href="#venues" data-i18n="nav.venues">For venues</a>
-      </nav>
-    </div>
+    <span class="logo foot__logo" role="img" aria-label="São"></span>
     <div class="foot__row">
       <p data-i18n="foot.resp">Enjoy responsibly. Not for sale to persons under 18.</p>
+      <a id="insta-link" href="#" data-i18n="social.cta">Follow on Instagram</a>
       <p>&copy; <span id="year">2026</span> São</p>
     </div>
   </footer>

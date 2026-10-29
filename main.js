@@ -36,6 +36,9 @@ const T = {
     "where.fest.t": "Festivals",
     "where.fest": "Look for the São bar at summer festivals across Portugal.",
     "where.soon": "Venues coming soon",
+    "where.lis.s": "Rooftops and clubs",
+    "where.alg.s": "Beach clubs",
+    "where.fest.s": "All summer",
     "social.title": "Follow the night",
     "social.cta": "Follow on Instagram",
     "gate.q": "Are you 18 or older?",
@@ -94,6 +97,9 @@ const T = {
     "where.fest.t": "Festivais",
     "where.fest": "Procure o bar São nos festivais de verão por todo o país.",
     "where.soon": "Espaços em breve",
+    "where.lis.s": "Rooftops e discotecas",
+    "where.alg.s": "Beach clubs",
+    "where.fest.s": "Todo o verão",
     "social.title": "Siga a noite",
     "social.cta": "Siga no Instagram",
     "gate.q": "Tem 18 anos ou mais?",
@@ -149,7 +155,8 @@ document.querySelectorAll(".lang button").forEach(b => {
 });
 
 // Running bars: repeat the content once so the loop is seamless.
-document.querySelectorAll(".ticker__track, .band__track").forEach(t => {
+document.querySelectorAll(".band__track").forEach(t => {
+  t.innerHTML = t.innerHTML.repeat(2);
   t.innerHTML += t.innerHTML;
 });
 
