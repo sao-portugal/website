@@ -193,6 +193,8 @@
     .foot { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 32px; padding: 28px var(--gutter); border-top: 2px solid var(--blue); font-size: .9375rem; }
     .foot__logo { width: 56px; }
     .foot a { font-weight: 700; }
+    .foot__ig { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; transition: background-color .2s, color .2s; }
+    .foot__ig:hover { background: var(--blue); color: var(--beige); }
     .foot p:last-child { margin-left: auto; }
 
     @media (max-width: 900px) { .join { grid-template-columns: 1fr; } }
@@ -335,7 +337,9 @@
   <footer class="foot">
     <span class="logo foot__logo" aria-hidden="true"></span>
     <a href="mailto:info@drinksao.com">info@drinksao.com</a>
-    <a href="https://www.instagram.com/drinksao/" target="_blank" rel="noopener">@drinksao</a>
+    <a class="foot__ig" href="https://www.instagram.com/drinksao/" target="_blank" rel="noopener" aria-label="São on Instagram (@drinksao)">
+      <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg>
+    </a>
     <p data-i18n="foot.resp">Enjoy responsibly. Not for sale to persons under 18.</p>
     <p>&copy; <span id="year">2026</span> São</p>
   </footer>
