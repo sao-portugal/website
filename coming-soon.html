@@ -157,7 +157,7 @@
     .field.is-invalid input, .field.is-invalid select { border-width: 3px; }
     .check { display: flex; gap: 12px; align-items: flex-start; cursor: pointer; }
     .check input {
-      appearance: none; flex: none; width: 24px; height: 24px; margin: 1px 0 0; border: 2px solid currentColor;
+      appearance: none; flex: none; width: 24px; height: 24px; margin: 1px 0 0; color: inherit; border: 2px solid currentColor;
       border-radius: 6px; background: transparent; cursor: pointer; display: grid; place-items: center;
     }
     .check input:checked { background: currentColor; }
@@ -236,14 +236,20 @@
     <section class="join" id="join">
       <article class="card">
         <h2 class="card__title" data-i18n="tz.list.title">The list is open.</h2>
-        <p class="card__body" data-i18n="tz.list.body">Be the first to hear the date, the first venues and everything we can't say yet. One email when it matters.</p>
+        <p class="card__body" data-i18n="tz.list.body">Be the first to hear the date, the first venues and everything we can't say yet. An email when it matters.</p>
         <form class="form" name="updates" method="POST" data-netlify="true" netlify-honeypot="company_website" data-done="updates-done" novalidate>
           <input type="hidden" name="form-name" value="updates">
           <input type="hidden" name="language" value="en">
           <p class="form__hp" aria-hidden="true"><label>Leave this empty <input name="company_website" tabindex="-1" autocomplete="off"></label></p>
-          <div class="field">
-            <label for="u-email" data-i18n="f.email">Email</label>
-            <input id="u-email" name="email" type="email" required autocomplete="email">
+          <div class="field-row">
+            <div class="field">
+              <label for="u-name" data-i18n="f.first">First name</label>
+              <input id="u-name" name="name" type="text" required autocomplete="given-name">
+            </div>
+            <div class="field">
+              <label for="u-email" data-i18n="f.email">Email</label>
+              <input id="u-email" name="email" type="email" required autocomplete="email">
+            </div>
           </div>
           <label class="check">
             <input type="checkbox" name="consent" value="yes" required>
@@ -332,7 +338,7 @@
         "tz.cta": "Get on the list",
         "tz.b1": "Coming soon", "tz.b2": "End of 2026", "tz.b3": "Don't miss it",
         "tz.list.title": "The list is open.",
-        "tz.list.body": "Be the first to hear the date, the first venues and everything we can't say yet. One email when it matters.",
+        "tz.list.body": "Be the first to hear the date, the first venues and everything we can't say yet. An email when it matters.",
         "tz.list.consent": "I'm 18 or older and I'd like to receive news from São by email.",
         "tz.list.submit": "Put me on the list", "tz.list.done": "You're in.", "tz.list.done2": "You'll hear from us before anyone else.",
         "tz.venue.title": "Run a venue? Taste it first.",
@@ -340,7 +346,7 @@
         "tz.venue.consent": "I'm 18 or older, I represent this venue and São may contact me about a tasting.",
         "tz.venue.submit": "Request a tasting", "tz.venue.done": "Request received.",
         "tz.venue.done2": "We'll be in touch before launch to set up your tasting.",
-        "f.email": "Email", "f.venue": "Venue name", "f.type": "Type of venue", "f.choose": "Choose one",
+        "f.email": "Email", "f.first": "First name", "f.venue": "Venue name", "f.type": "Type of venue", "f.choose": "Choose one",
         "f.t.bar": "Bar", "f.t.club": "Club", "f.t.roof": "Rooftop", "f.t.beach": "Beach club", "f.t.rest": "Restaurant",
         "f.t.hotel": "Hotel", "f.t.fest": "Festival or event", "f.t.other": "Other",
         "f.name": "Your name", "f.phone": "Phone or WhatsApp <span class=\"opt\">(optional)</span>",
@@ -358,7 +364,7 @@
         "tz.cta": "Entrar na lista",
         "tz.b1": "Brevemente", "tz.b2": "Fim de 2026", "tz.b3": "Não perca",
         "tz.list.title": "A lista está aberta.",
-        "tz.list.body": "Seja o primeiro a saber a data, os primeiros espaços e tudo o que ainda não podemos dizer. Um email só quando importa.",
+        "tz.list.body": "Seja o primeiro a saber a data, os primeiros espaços e tudo o que ainda não podemos dizer. Um email sempre que importar.",
         "tz.list.consent": "Tenho 18 anos ou mais e quero receber novidades da São por email.",
         "tz.list.submit": "Pôr-me na lista", "tz.list.done": "Está dentro.", "tz.list.done2": "Vai saber antes de toda a gente.",
         "tz.venue.title": "Tem um espaço? Prove primeiro.",
@@ -366,7 +372,7 @@
         "tz.venue.consent": "Tenho 18 anos ou mais, represento este espaço e a São pode contactar-me sobre uma prova.",
         "tz.venue.submit": "Pedir uma prova", "tz.venue.done": "Pedido recebido.",
         "tz.venue.done2": "Entraremos em contacto antes do lançamento para combinar a sua prova.",
-        "f.email": "Email", "f.venue": "Nome do espaço", "f.type": "Tipo de espaço", "f.choose": "Escolha uma opção",
+        "f.email": "Email", "f.first": "Nome próprio", "f.venue": "Nome do espaço", "f.type": "Tipo de espaço", "f.choose": "Escolha uma opção",
         "f.t.bar": "Bar", "f.t.club": "Discoteca", "f.t.roof": "Rooftop", "f.t.beach": "Beach club", "f.t.rest": "Restaurante",
         "f.t.hotel": "Hotel", "f.t.fest": "Festival ou evento", "f.t.other": "Outro",
         "f.name": "O seu nome", "f.phone": "Telefone ou WhatsApp <span class=\"opt\">(opcional)</span>",
