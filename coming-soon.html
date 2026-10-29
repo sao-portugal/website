@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>São — Lisbon, soon</title>
+  <meta name="description" content="A new hard seltzer is coming to Lisbon at the end of 2026. Sign up to be the first to know.">
+  <meta name="theme-color" content="#1205AB">
+  <meta property="og:title" content="São — Lisbon, soon">
+  <meta property="og:description" content="A new hard seltzer is coming to Lisbon at the end of 2026.">
+  <meta property="og:image" content="assets/video/hero-poster.jpg">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Familjen+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="teaser">
+
+  <!-- Age check -->
+  <div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-q" hidden>
+    <div class="gate__inner">
+      <span class="logo gate__logo" role="img" aria-label="São"></span>
+      <p class="gate__q" id="gate-q" data-i18n="gate.q">Are you 18 or older?</p>
+      <div class="gate__actions" id="gate-actions">
+        <button class="btn btn--blue" id="gate-yes" data-i18n="gate.yes">Yes, I'm 18+</button>
+        <button class="btn btn--outline" id="gate-no" data-i18n="gate.no">No</button>
+      </div>
+      <p class="gate__denied" id="gate-denied" hidden data-i18n="gate.denied">You need to be 18 or older to visit this site. See you later.</p>
+      <div class="lang" aria-label="Language">
+        <button type="button" data-lang="en">EN</button><button type="button" data-lang="pt">PT</button>
+      </div>
+      <p class="gate__small" data-i18n="gate.small">By entering you agree to enjoy São responsibly.</p>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- Full-screen teaser -->
+    <section class="tz">
+      <video class="tz__video" autoplay muted loop playsinline preload="metadata" poster="assets/video/hero-poster.jpg" aria-hidden="true">
+        <source src="assets/video/hero.mp4" type="video/mp4">
+      </video>
+      <div class="tz__top">
+        <span class="tz__coords">38.7223° N, 9.1393° W</span>
+        <div class="lang" aria-label="Language">
+          <button type="button" data-lang="en">EN</button><button type="button" data-lang="pt">PT</button>
+        </div>
+      </div>
+      <div class="tz__center">
+        <h1 class="tz__mark"><span class="logo" role="img" aria-label="São"></span></h1>
+        <p class="tz__title" data-i18n="tz.title">Lisbon, soon.</p>
+      </div>
+      <div class="tz__bottom">
+        <p class="tz__line" data-i18n="tz.line">A new hard seltzer is landing on Lisbon's rooftops, bars and clubs at the end of 2026. That's all we can say. For now.</p>
+        <a class="btn btn--beige" href="#join" data-i18n="tz.cta">Be the first to know</a>
+      </div>
+    </section>
+
+    <!-- Running line -->
+    <div class="band band--blue" aria-hidden="true">
+      <div class="band__track">
+        <span data-i18n="tz.band1">Coming soon</span><i class="sep"></i>
+        <span>Lisboa</span><i class="sep"></i>
+        <span data-i18n="tz.band2">End of 2026</span><i class="sep"></i>
+        <span>Saúde</span><i class="sep"></i>
+      </div>
+    </div>
+
+    <!-- Two ways in -->
+    <section class="join" id="join">
+
+      <article class="join__card">
+        <h2 class="join__title" data-i18n="tz.list.title">Be the first to know.</h2>
+        <p class="join__body" data-i18n="tz.list.body">The launch date and the first places to find us, straight to your inbox. No spam.</p>
+
+        <form class="form form--tight" name="updates" method="POST" data-netlify="true" netlify-honeypot="company_website" data-done="updates-done" novalidate>
+          <input type="hidden" name="form-name" value="updates">
+          <input type="hidden" name="language" value="en">
+          <p class="form__hp" aria-hidden="true"><label>Leave this empty <input name="company_website" tabindex="-1" autocomplete="off"></label></p>
+          <div class="field">
+            <label for="u-email" data-i18n="form.email">Email</label>
+            <input id="u-email" name="email" type="email" required autocomplete="email">
+          </div>
+          <label class="check">
+            <input type="checkbox" name="consent" value="yes" required>
+            <span data-i18n="tz.list.consent">I'm 18 or older and I'd like to receive news from São by email.</span>
+          </label>
+          <p class="form__error" role="alert" hidden></p>
+          <button class="btn btn--blue form__submit" type="submit" data-i18n="tz.list.submit">Keep me posted</button>
+        </form>
+        <div class="form__done" id="updates-done" tabindex="-1" hidden>
+          <h3 data-i18n="tz.list.done">You're on the list.</h3>
+          <p data-i18n="tz.list.done2">We'll let you know the moment São lands in Lisbon.</p>
+        </div>
+      </article>
+
+      <article class="join__card join__card--blue">
+        <h2 class="join__title" data-i18n="tz.venue.title">Run a venue? Taste it first.</h2>
+        <p class="join__body" data-i18n="tz.venue.body">Bars, clubs and beach clubs in Lisbon get a free tasting kit before launch. No obligation.</p>
+
+        <form class="form form--tight" name="venue-early-access" method="POST" data-netlify="true" netlify-honeypot="company_website" data-done="venue-done" novalidate>
+          <input type="hidden" name="form-name" value="venue-early-access">
+          <input type="hidden" name="language" value="en">
+          <p class="form__hp" aria-hidden="true"><label>Leave this empty <input name="company_website" tabindex="-1" autocomplete="off"></label></p>
+          <div class="field-row">
+            <div class="field">
+              <label for="v-venue" data-i18n="form.venue">Venue name</label>
+              <input id="v-venue" name="venue" type="text" required autocomplete="organization">
+            </div>
+            <div class="field">
+              <label for="v-type" data-i18n="form.type">Type of venue</label>
+              <select id="v-type" name="venue_type" required>
+                <option value="" data-i18n="form.choose">Choose one</option>
+                <option value="Bar" data-i18n="form.t.bar">Bar</option>
+                <option value="Club" data-i18n="form.t.club">Club</option>
+                <option value="Beach club" data-i18n="form.t.beach">Beach club</option>
+                <option value="Restaurant" data-i18n="form.t.rest">Restaurant</option>
+                <option value="Hotel" data-i18n="form.t.hotel">Hotel</option>
+                <option value="Festival or event" data-i18n="form.t.fest">Festival or event</option>
+                <option value="Other" data-i18n="form.t.other">Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="v-name" data-i18n="form.name">Your name</label>
+              <input id="v-name" name="name" type="text" required autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="v-email" data-i18n="form.email">Email</label>
+              <input id="v-email" name="email" type="email" required autocomplete="email">
+            </div>
+          </div>
+          <div class="field">
+            <label for="v-phone" data-i18n="form.phone">Phone or WhatsApp <span class="opt">(optional)</span></label>
+            <input id="v-phone" name="phone" type="tel" autocomplete="tel">
+          </div>
+          <label class="check">
+            <input type="checkbox" name="consent" value="yes" required>
+            <span data-i18n="tz.venue.consent">I'm 18 or older, I represent this venue and São may contact me about a tasting kit.</span>
+          </label>
+          <p class="form__error" role="alert" hidden></p>
+          <button class="btn btn--beige form__submit" type="submit" data-i18n="tz.venue.submit">Request a tasting kit</button>
+        </form>
+        <div class="form__done" id="venue-done" tabindex="-1" hidden>
+          <h3 data-i18n="done.title">Request sent. Obrigado!</h3>
+          <p data-i18n="tz.venue.done2">We'll be in touch before launch to arrange your tasting kit.</p>
+        </div>
+      </article>
+
+    </section>
+
+  </main>
+
+  <footer class="tz-foot">
+    <span class="logo tz-foot__logo" aria-hidden="true"></span>
+    <a href="mailto:info@drinksao.com">info@drinksao.com</a>
+    <p data-i18n="foot.resp">Enjoy responsibly. Not for sale to persons under 18.</p>
+    <p>&copy; <span id="year">2026</span> São</p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

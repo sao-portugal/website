@@ -7,6 +7,23 @@ const INSTAGRAM_URL = "";
 
 const T = {
   en: {
+    "tz.title": "Lisbon, soon.",
+    "tz.line": "A new hard seltzer is landing on Lisbon's rooftops, bars and clubs at the end of 2026. That's all we can say. For now.",
+    "tz.cta": "Be the first to know",
+    "tz.band1": "Coming soon",
+    "tz.band2": "End of 2026",
+    "tz.list.title": "Be the first to know.",
+    "tz.list.body": "The launch date and the first places to find us, straight to your inbox. No spam.",
+    "tz.list.consent": "I'm 18 or older and I'd like to receive news from São by email.",
+    "tz.list.submit": "Keep me posted",
+    "tz.list.done": "You're on the list.",
+    "tz.list.done2": "We'll let you know the moment São lands in Lisbon.",
+    "tz.venue.title": "Run a venue? Taste it first.",
+    "tz.venue.body": "Bars, clubs and beach clubs in Lisbon get a free tasting kit before launch. No obligation.",
+    "tz.venue.consent": "I'm 18 or older, I represent this venue and São may contact me about a tasting kit.",
+    "tz.venue.submit": "Request a tasting kit",
+    "tz.venue.done2": "We'll be in touch before launch to arrange your tasting kit.",
+    "title.teaser": "São — Lisbon, soon",
     "kit.title": "Taste it first.<br>It's on us.",
     "kit.line": "Run a bar, club, beach club or festival in Portugal? Request a free tasting kit with both flavours. No obligation, no sales pitch you didn't ask for.",
     "kit.cta": "Request your kit",
@@ -124,6 +141,23 @@ const T = {
     "title": "São — Hard seltzer from Portugal"
   },
   pt: {
+    "tz.title": "Lisboa, em breve.",
+    "tz.line": "Um novo hard seltzer está a chegar aos rooftops, bares e discotecas de Lisboa no fim de 2026. Por agora, é tudo o que podemos dizer.",
+    "tz.cta": "Quero saber primeiro",
+    "tz.band1": "Brevemente",
+    "tz.band2": "Fim de 2026",
+    "tz.list.title": "Saiba primeiro.",
+    "tz.list.body": "A data de lançamento e os primeiros sítios onde nos encontrar, diretamente no seu email. Sem spam.",
+    "tz.list.consent": "Tenho 18 anos ou mais e quero receber novidades da São por email.",
+    "tz.list.submit": "Quero saber",
+    "tz.list.done": "Já está na lista.",
+    "tz.list.done2": "Avisamos assim que a São chegar a Lisboa.",
+    "tz.venue.title": "Tem um espaço? Prove primeiro.",
+    "tz.venue.body": "Bares, discotecas e beach clubs em Lisboa recebem um kit de degustação gratuito antes do lançamento. Sem compromisso.",
+    "tz.venue.consent": "Tenho 18 anos ou mais, represento este espaço e a São pode contactar-me sobre um kit de degustação.",
+    "tz.venue.submit": "Pedir um kit de degustação",
+    "tz.venue.done2": "Entraremos em contacto antes do lançamento para combinar o seu kit.",
+    "title.teaser": "São — Lisboa, em breve",
     "kit.title": "Prove primeiro.<br>Nós oferecemos.",
     "kit.line": "Tem um bar, discoteca, beach club ou festival em Portugal? Peça um kit de degustação gratuito com os dois sabores. Sem compromisso.",
     "kit.cta": "Pedir o kit",
@@ -261,8 +295,7 @@ function setLang(lang) {
   });
   const page = document.body.dataset.page;
   document.title = (page && dict["title." + page]) || dict.title;
-  const fl = document.getElementById("form-lang");
-  if (fl) fl.value = lang;
+  document.querySelectorAll('input[name="language"]').forEach(i => { i.value = lang; });
   document.querySelectorAll(".lang button").forEach(b => {
     b.setAttribute("aria-pressed", String(b.dataset.lang === lang));
   });
@@ -372,12 +405,10 @@ const VENUES = [
   });
 })();
 
-// Tasting kit form (Netlify Forms)
-(function () {
-  const form = document.getElementById("kit-form");
-  if (!form) return;
-  const err = document.getElementById("form-error");
-  const done = document.getElementById("form-done");
+// Netlify forms: any <form data-netlify> with a [data-done] panel and a .form__error line
+document.querySelectorAll("form[data-netlify]").forEach(form => {
+  const err = form.querySelector(".form__error");
+  const done = document.getElementById(form.dataset.done);
   const btn = form.querySelector(".form__submit");
   const t = k => T[document.documentElement.lang === "pt-PT" ? "pt" : "en"][k];
 
@@ -417,4 +448,4 @@ const VENUES = [
     const f = e.target.closest(".field, .check");
     if (f && e.target.checkValidity()) f.classList.remove("is-invalid");
   });
-})();
+});
