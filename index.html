@@ -8,6 +8,14 @@
   <meta name="theme-color" content="#1205AB">
   <meta property="og:title" content="São — Lisbon, soon">
   <meta property="og:description" content="Something new is coming to Lisbon at the end of 2026. Get on the list.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://drinksao.com/">
+  <meta property="og:image" content="https://drinksao.com/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="São. Lisbon, end of 2026.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://drinksao.com/assets/og.png">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,6 +70,17 @@
     }
     .tz__top { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
     .tz__coords { font-weight: 500; font-size: .9375rem; letter-spacing: .02em; }
+    .tz__clock { margin-left: 14px; font-variant-numeric: tabular-nums; }
+    .tz__clock .colon { animation: blink 2s steps(1) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+    .decode { white-space: nowrap; }
+    .unlock {
+      display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px;
+      margin: 18px 0; padding: 16px 0; border-block: 2px solid currentColor;
+    }
+    .unlock__label { font-weight: 700; font-size: .9375rem; }
+    .unlock__word { font: 400 clamp(2.5rem, 5vw, 4rem)/1 var(--display); min-height: 1em; }
+    @media (prefers-reduced-motion: reduce) { .tz__clock .colon { animation: none; } }
     .tz__center { display: grid; place-items: center; align-content: center; gap: clamp(20px, 3vw, 36px); text-align: center; padding: 32px 0; }
     .tz__mark { width: min(78vw, 680px, calc(50svh * 1.14)); }
     .tz__mark .logo { width: 100%; }
@@ -127,6 +146,18 @@
     .card__title { font: 400 clamp(2.5rem, 4.6vw, 4.5rem)/.92 var(--display); max-width: 11ch; margin-bottom: 18px; }
     .card__body { max-width: 28rem; margin-bottom: 32px; font-size: clamp(1.0625rem, 1.3vw, 1.1875rem); }
 
+    .card__secret {
+      display: flex; align-items: center; gap: 14px; margin-top: 28px; padding-top: 22px;
+      border-top: 2px solid var(--blue); font: 400 clamp(1.5rem, 2.2vw, 2rem)/1.05 var(--display);
+    }
+    .card__lock {
+      flex: none; width: 1em; height: 1em; background: currentColor;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 10V7a5 5 0 0 1 10 0v3h1.5A1.5 1.5 0 0 1 20 11.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 20.5v-9A1.5 1.5 0 0 1 5.5 10H7zm2.5 0h5V7a2.5 2.5 0 0 0-5 0v3z'/%3E%3C/svg%3E") center / contain no-repeat;
+              mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 10V7a5 5 0 0 1 10 0v3h1.5A1.5 1.5 0 0 1 20 11.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 20.5v-9A1.5 1.5 0 0 1 5.5 10H7zm2.5 0h5V7a2.5 2.5 0 0 0-5 0v3z'/%3E%3C/svg%3E") center / contain no-repeat;
+    }
+    .done__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; margin-top: 22px; }
+    .done__actions .btn--beige:hover { background: transparent; color: var(--beige); }
+    .done__insta { font-weight: 700; color: var(--beige); }
     .form { display: grid; gap: 18px; }
     .form__hp { position: absolute; left: -9999px; }
     .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
@@ -165,6 +196,8 @@
     .foot { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 32px; padding: 28px var(--gutter); border-top: 2px solid var(--blue); font-size: .9375rem; }
     .foot__logo { width: 56px; }
     .foot a { font-weight: 700; }
+    .foot__ig { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; transition: background-color .2s, color .2s; }
+    .foot__ig:hover { background: var(--blue); color: var(--beige); }
     .foot p:last-child { margin-left: auto; }
 
     @media (max-width: 900px) { .join { grid-template-columns: 1fr; } }
@@ -182,7 +215,7 @@
   <main>
     <section class="tz">
       <div class="tz__top">
-        <span class="tz__coords">38.7223° N, 9.1393° W</span>
+        <span class="tz__coords">38.7223° N, 9.1393° W <span class="tz__clock" id="clock" aria-label="Local time in Lisbon"></span></span>
         <div class="lang" aria-label="Language"><button type="button" data-lang="en">EN</button><button type="button" data-lang="pt">PT</button></div>
       </div>
 
@@ -193,7 +226,7 @@
 
       <div class="tz__bottom">
         <div class="tz__clues">
-          <p data-i18n="tz.c1">Two flavours.</p>
+          <p><span data-i18n="tz.c1">Two flavours.</span><span class="tz__secret" id="hero-secret" hidden> <span data-i18n="tz.c1b">No. 2:</span> <span class="decode" data-word="Maracujá">Maracujá</span>.</span></p>
           <p data-i18n="tz.c2">One slim can.</p>
           <p><span data-i18n="tz.c3">The rest is</span> <span class="redact" style="--w: 5.5em" role="img" aria-label="classified"></span></p>
         </div>
@@ -218,15 +251,13 @@
           <input type="hidden" name="form-name" value="updates">
           <input type="hidden" name="language" value="en">
           <p class="form__hp" aria-hidden="true"><label>Leave this empty <input name="company_website" tabindex="-1" autocomplete="off"></label></p>
-          <div class="field-row">
-            <div class="field">
-              <label for="u-name" data-i18n="f.first">First name</label>
-              <input id="u-name" name="name" type="text" required autocomplete="given-name">
-            </div>
-            <div class="field">
-              <label for="u-email" data-i18n="f.email">Email</label>
-              <input id="u-email" name="email" type="email" required autocomplete="email">
-            </div>
+          <div class="field">
+            <label for="u-name" data-i18n="f.first">First name</label>
+            <input id="u-name" name="name" type="text" required autocomplete="given-name">
+          </div>
+          <div class="field">
+            <label for="u-email" data-i18n="f.email">Email</label>
+            <input id="u-email" name="email" type="email" required autocomplete="email">
           </div>
           <label class="check">
             <input type="checkbox" name="consent" value="yes" required>
@@ -235,9 +266,16 @@
           <p class="form__error" role="alert" hidden></p>
           <button class="btn btn--blue form__submit" type="submit" data-i18n="tz.list.submit">Put me on the list</button>
         </form>
+        <p class="card__secret"><span class="card__lock" aria-hidden="true"></span><span data-i18n="tz.list.secret">Sign up and unlock your first secret right away.</span></p>
         <div class="form__done" id="updates-done" tabindex="-1" hidden>
           <h3 data-i18n="tz.list.done">You're in.</h3>
-          <p data-i18n="tz.list.done2">You'll hear from us before anyone else.</p>
+          <p data-i18n="tz.unlock.lead">Here's your first secret.</p>
+          <p class="unlock"><span class="unlock__label" data-i18n="tz.unlock.label">Flavour no. 2</span><span class="unlock__word decode" data-word="Maracujá" id="unlock-word"></span></p>
+          <p data-i18n="tz.unlock.rest">You'll hear the rest before anyone else.</p>
+          <div class="done__actions">
+            <button class="btn btn--beige" type="button" id="share-btn" data-i18n="tz.share">Send it to a friend</button>
+            <a class="done__insta" href="https://www.instagram.com/drinksao/" target="_blank" rel="noopener" data-i18n="tz.insta">Follow @drinksao</a>
+          </div>
         </div>
       </article>
 
@@ -300,6 +338,9 @@
   <footer class="foot">
     <span class="logo foot__logo" aria-hidden="true"></span>
     <a href="mailto:info@drinksao.com">info@drinksao.com</a>
+    <a class="foot__ig" href="https://www.instagram.com/drinksao/" target="_blank" rel="noopener" aria-label="São on Instagram (@drinksao)">
+      <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg>
+    </a>
     <p data-i18n="foot.resp">Enjoy responsibly. Not for sale to persons under 18.</p>
     <p>&copy; <span id="year">2026</span> São</p>
   </footer>
@@ -308,7 +349,11 @@
     const T = {
       en: {
         "tz.title": "Lisbon, end of 2026.",
-        "tz.c1": "Two flavours.", "tz.c2": "One slim can.", "tz.c3": "The rest is",
+        "tz.c1": "Two flavours.", "tz.c1b": "No. 2:", "tz.c2": "One slim can.", "tz.c3": "The rest is",
+        "tz.unlock.lead": "Here's your first secret.", "tz.unlock.label": "Flavour no. 2", "tz.unlock.rest": "You'll hear the rest before anyone else.",
+        "tz.list.secret": "Sign up and unlock your first secret right away.",
+        "tz.share": "Send it to a friend", "tz.insta": "Follow @drinksao",
+        "tz.share.text": "Something's coming to Lisbon. Get on the list and unlock a secret:",
         "tz.cta": "Get on the list",
         "tz.b1": "Coming soon", "tz.b2": "End of 2026", "tz.b3": "Don't miss it",
         "tz.list.title": "The list is open.",
@@ -331,7 +376,11 @@
       },
       pt: {
         "tz.title": "Lisboa, fim de 2026.",
-        "tz.c1": "Dois sabores.", "tz.c2": "Uma lata slim.", "tz.c3": "O resto é",
+        "tz.c1": "Dois sabores.", "tz.c1b": "O n.º 2:", "tz.c2": "Uma lata slim.", "tz.c3": "O resto é",
+        "tz.unlock.lead": "Aqui está o seu primeiro segredo.", "tz.unlock.label": "Sabor n.º 2", "tz.unlock.rest": "O resto, vai saber antes de toda a gente.",
+        "tz.list.secret": "Inscreva-se e desbloqueie já o seu primeiro segredo.",
+        "tz.share": "Enviar a um amigo", "tz.insta": "Seguir @drinksao",
+        "tz.share.text": "Vem aí uma coisa nova para Lisboa. Entra na lista e desbloqueia um segredo:",
         "tz.cta": "Entrar na lista",
         "tz.b1": "Brevemente", "tz.b2": "Fim de 2026", "tz.b3": "Não perca",
         "tz.list.title": "A lista está aberta.",
@@ -374,6 +423,52 @@
 
     document.getElementById("year").textContent = new Date().getFullYear();
 
+    // Lisbon local time next to the coordinates
+    const clock = document.getElementById("clock");
+    const fmt = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Lisbon", hour: "2-digit", minute: "2-digit", hour12: false });
+    function tick() {
+      const [h, m] = fmt.format(new Date()).split(":");
+      clock.innerHTML = h + '<span class="colon">:</span>' + m;
+    }
+    tick(); setInterval(tick, 15000);
+
+    // Decoder effect: scramble letters, then settle on the real word
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function decode(el, delay) {
+      const word = el.dataset.word, chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZáãç#%&*";
+      if (reduce) { el.textContent = word; return; }
+      let frame = 0; const total = 26;
+      setTimeout(function step() {
+        frame++;
+        el.textContent = [...word].map((c, i) =>
+          i < Math.floor(frame / total * word.length) ? c : chars[Math.floor(Math.random() * chars.length)]
+        ).join("");
+        if (frame < total) setTimeout(step, 45); else el.textContent = word;
+      }, delay || 0);
+    }
+
+    // Reward for signing up: reveal one flavour, remembered on this device
+    function unlock(fresh) {
+      store.set("sao-unlocked", "1");
+      const sec = document.querySelector(".card__secret"); if (sec) sec.hidden = true;
+      const hero = document.getElementById("hero-secret");
+      hero.hidden = false;
+      const heroWord = hero.querySelector(".decode");
+      if (fresh) { decode(document.getElementById("unlock-word"), 400); decode(heroWord, 400); }
+      else heroWord.textContent = heroWord.dataset.word;
+    }
+    if (store.get("sao-unlocked") === "1") unlock(false);
+
+    // Share after signing up: native share sheet on phones, WhatsApp/copy fallback
+    document.getElementById("share-btn").addEventListener("click", async e => {
+      const url = "https://drinksao.com/", text = T[lang]["tz.share.text"];
+      if (navigator.share) {
+        try { await navigator.share({ title: "São", text, url }); } catch (x) {}
+        return;
+      }
+      window.open("https://wa.me/?text=" + encodeURIComponent(text + " " + url), "_blank", "noopener");
+    });
+
     document.querySelectorAll("form[data-netlify]").forEach(form => {
       const err = form.querySelector(".form__error"), btn = form.querySelector(".form__submit");
       const done = document.getElementById(form.dataset.done);
@@ -391,6 +486,7 @@
           const res = await fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(new FormData(form)).toString() });
           if (!res.ok) throw new Error(res.status);
           form.hidden = true; done.hidden = false; done.focus();
+          if (form.getAttribute("name") === "updates") unlock(true);
         } catch (x) {
           err.textContent = T[lang]["f.err.send"]; err.hidden = false; btn.disabled = false; btn.innerHTML = label;
         }
