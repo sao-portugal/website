@@ -150,7 +150,7 @@
 
     /* Two ways in */
     .join { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 2vw, 27px); padding: clamp(46px, 6.4vw, 94px) var(--gutter); }
-    .card { border: 2px solid var(--blue); border-radius: 27px; padding: clamp(27px, 3.3vw, 49px); }
+    .card { --pad: clamp(27px, 3.3vw, 49px); border: 2px solid var(--blue); border-radius: 27px; padding: var(--pad); }
     .card--blue { background: var(--blue); color: var(--beige); }
     .card__title { font: 400 clamp(2.4375rem, 4.3vw, 4.25rem)/.92 var(--display); max-width: 14ch; margin-bottom: 16px; }
     @media (min-width: 901px) { .card:first-child .card__title { max-width: 10ch; } }
@@ -197,7 +197,7 @@
     .card--blue .check input:checked::after { border-color: var(--blue); }
     .check.is-invalid input { border-width: 3px; }
     .card { display: flex; flex-direction: column; }
-    .card__note { margin-top: auto; padding-top: 14px; font-size: .8125rem; opacity: .75; }
+    .card__note { margin-top: auto; margin-bottom: calc(14px - var(--pad)); padding-top: 18px; font-size: .75rem; opacity: .6; }
     .card__note a { font-weight: 700; white-space: nowrap; }
     .form__error { font-weight: 700; padding: 12px 16px; border: 2px solid currentColor; border-radius: 14px; }
     .form__submit { justify-self: start; min-height: 56px; }
