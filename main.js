@@ -2,18 +2,49 @@
 
 // Set this to your contact address to show the "Email us" button.
 const CONTACT_EMAIL = "";
+// Set this to your Instagram URL to show the "Follow on Instagram" button.
+const INSTAGRAM_URL = "";
 
 const T = {
   en: {
+    "ticker": "Coming soon to Lisbon and the Algarve",
+    "nav.where": "Find us",
+    "nav.about": "Our story",
+    "hero.kicker": "Hard seltzer from Portugal",
+    "hero.title": "Light. Dry.<br>Out late.",
+    "hero.line": "Lime and maracujá hard seltzer in a slim, ice-cold can. Made for rooftops, dance floors and the beach at sunrise.",
+    "hero.cta2": "Stock São",
+    "sticker": "new hard seltzer — new hard seltzer — ",
+    "band.1": "Ice cold",
+    "band.2": "Light and bubbly",
+    "flavours.title": "Two flavours. Pick a side.",
+    "flavours.intro": "Both come in a slim 250 ml can. Both are best straight from the ice bucket.",
+    "tag.zesty": "Zesty", "tag.crisp": "Crisp", "tag.tropical": "Tropical", "tag.tart": "Tart",
+    "facts.title": "What São is",
+    "f1.t": "Slim 250 ml can",
+    "f1.p": "Easy to hold on a crowded dance floor. Easy to finish while it's still cold.",
+    "f2.t": "Real fruit flavours",
+    "f2.p": "Lime and maracujá, two tastes that already belong to a Portuguese summer.",
+    "f3.t": "Best ice cold",
+    "f3.p": "Light and bubbly, made for hot nights rather than heavy cocktails.",
+    "f4.t": "Born for Portugal",
+    "f4.p": "A brand built for Lisbon's bars and the Algarve's beach clubs, not imported from somewhere else.",
+    "where.title": "Find us this summer",
+    "where.intro": "Our first venues will be listed here as they sign on.",
+    "where.lis": "Rooftop bars, late-night clubs and the city's running crowd.",
+    "where.alg": "Beach clubs, pool parties and long nights on the strip.",
+    "where.fest.t": "Festivals",
+    "where.fest": "Look for the São bar at summer festivals across Portugal.",
+    "where.soon": "Venues coming soon",
+    "social.title": "Follow the night",
+    "social.cta": "Follow on Instagram",
     "gate.q": "Are you 18 or older?",
     "gate.yes": "Yes, I'm 18+",
     "gate.no": "No",
     "gate.denied": "You need to be 18 or older to visit this site. See you later.",
     "gate.small": "By entering you agree to enjoy São responsibly.",
     "nav.flavours": "Flavours",
-    "nav.about": "About",
     "nav.venues": "For venues",
-    "hero.line": "Hard seltzer from Portugal.<br>Light, dry and made for long nights.",
     "hero.cta": "See the flavours",
     "lime.name": "Lime",
     "lime.body": "Sharp, clean and cold. Fresh lime over sparkling water, with nothing sticky left behind.",
@@ -34,15 +65,44 @@ const T = {
     "title": "São — Hard seltzer from Portugal"
   },
   pt: {
+    "ticker": "Brevemente em Lisboa e no Algarve",
+    "nav.where": "Onde estamos",
+    "nav.about": "A nossa história",
+    "hero.kicker": "Hard seltzer de Portugal",
+    "hero.title": "Leve. Seco.<br>Até tarde.",
+    "hero.line": "Hard seltzer de lima e maracujá numa lata slim, bem gelada. Feito para rooftops, pistas de dança e a praia ao nascer do sol.",
+    "hero.cta2": "Venda São",
+    "sticker": "novo hard seltzer — novo hard seltzer — ",
+    "band.1": "Bem gelado",
+    "band.2": "Leve e com gás",
+    "flavours.title": "Dois sabores. Escolha o seu.",
+    "flavours.intro": "Ambos numa lata slim de 250 ml. Ambos melhores diretamente do balde de gelo.",
+    "tag.zesty": "Cítrico", "tag.crisp": "Fresco", "tag.tropical": "Tropical", "tag.tart": "Ácido",
+    "facts.title": "O que é São",
+    "f1.t": "Lata slim de 250 ml",
+    "f1.p": "Fácil de segurar numa pista cheia. Fácil de acabar enquanto ainda está fresca.",
+    "f2.t": "Sabores de fruta",
+    "f2.p": "Lima e maracujá, dois sabores que já fazem parte do verão português.",
+    "f3.t": "Melhor bem gelado",
+    "f3.p": "Leve e com gás, feito para noites quentes em vez de cocktails pesados.",
+    "f4.t": "Feito para Portugal",
+    "f4.p": "Uma marca pensada para os bares de Lisboa e os beach clubs do Algarve, não importada de outro lado.",
+    "where.title": "Encontre-nos este verão",
+    "where.intro": "Os primeiros espaços aparecem aqui assim que se juntarem.",
+    "where.lis": "Rooftops, discotecas até tarde e a comunidade de corrida da cidade.",
+    "where.alg": "Beach clubs, pool parties e noites longas na strip.",
+    "where.fest.t": "Festivais",
+    "where.fest": "Procure o bar São nos festivais de verão por todo o país.",
+    "where.soon": "Espaços em breve",
+    "social.title": "Siga a noite",
+    "social.cta": "Siga no Instagram",
     "gate.q": "Tem 18 anos ou mais?",
     "gate.yes": "Sim, tenho 18+",
     "gate.no": "Não",
     "gate.denied": "Precisa de ter 18 anos ou mais para visitar este site. Até breve.",
     "gate.small": "Ao entrar, compromete-se a beber São com moderação.",
     "nav.flavours": "Sabores",
-    "nav.about": "Sobre nós",
     "nav.venues": "Para espaços",
-    "hero.line": "Hard seltzer de Portugal.<br>Leve, seco e feito para noites longas.",
     "hero.cta": "Ver os sabores",
     "lime.name": "Lima",
     "lime.body": "Fresco, limpo e bem gelado. Lima fresca com água com gás, sem nada pegajoso no fim.",
@@ -88,6 +148,11 @@ document.querySelectorAll(".lang button").forEach(b => {
   b.addEventListener("click", () => setLang(b.dataset.lang));
 });
 
+// Running bars: repeat the content once so the loop is seamless.
+document.querySelectorAll(".ticker__track, .band__track").forEach(t => {
+  t.innerHTML += t.innerHTML;
+});
+
 // Default English; remember the visitor's choice.
 setLang(store.get("sao-lang") || "en");
 
@@ -95,6 +160,9 @@ setLang(store.get("sao-lang") || "en");
 const contact = document.getElementById("contact-link");
 if (CONTACT_EMAIL) contact.href = "mailto:" + CONTACT_EMAIL;
 else contact.hidden = true;
+const insta = document.getElementById("insta-link");
+if (INSTAGRAM_URL) { insta.href = INSTAGRAM_URL; insta.target = "_blank"; insta.rel = "noopener"; }
+else insta.hidden = true;
 
 // Age check
 const gate = document.getElementById("gate");
