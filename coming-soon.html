@@ -8,6 +8,14 @@
   <meta name="theme-color" content="#1205AB">
   <meta property="og:title" content="São — Lisbon, soon">
   <meta property="og:description" content="Something new is coming to Lisbon at the end of 2026. Get on the list.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://drinksao.com/">
+  <meta property="og:image" content="https://drinksao.com/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="São. Lisbon, end of 2026.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://drinksao.com/assets/og.png">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -138,6 +146,15 @@
     .card__title { font: 400 clamp(2.5rem, 4.6vw, 4.5rem)/.92 var(--display); max-width: 11ch; margin-bottom: 18px; }
     .card__body { max-width: 28rem; margin-bottom: 32px; font-size: clamp(1.0625rem, 1.3vw, 1.1875rem); }
 
+    .card__secret { display: flex; align-items: center; gap: 10px; margin: -14px 0 28px; font-weight: 700; }
+    .card__lock {
+      flex: none; width: 18px; height: 18px; background: currentColor;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 10V7a5 5 0 0 1 10 0v3h1.5A1.5 1.5 0 0 1 20 11.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 20.5v-9A1.5 1.5 0 0 1 5.5 10H7zm2.5 0h5V7a2.5 2.5 0 0 0-5 0v3z'/%3E%3C/svg%3E") center / contain no-repeat;
+              mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 10V7a5 5 0 0 1 10 0v3h1.5A1.5 1.5 0 0 1 20 11.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 20.5v-9A1.5 1.5 0 0 1 5.5 10H7zm2.5 0h5V7a2.5 2.5 0 0 0-5 0v3z'/%3E%3C/svg%3E") center / contain no-repeat;
+    }
+    .done__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; margin-top: 22px; }
+    .done__actions .btn--beige:hover { background: transparent; color: var(--beige); }
+    .done__insta { font-weight: 700; color: var(--beige); }
     .form { display: grid; gap: 18px; }
     .form__hp { position: absolute; left: -9999px; }
     .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
@@ -225,6 +242,7 @@
       <article class="card">
         <h2 class="card__title" data-i18n="tz.list.title">The list is open.</h2>
         <p class="card__body" data-i18n="tz.list.body">Be the first to hear the date, the first venues and everything we can't say yet. An email when it matters.</p>
+        <p class="card__secret"><span class="card__lock" aria-hidden="true"></span><span data-i18n="tz.list.secret">Sign up and unlock your first secret right away.</span></p>
         <form class="form" name="updates" method="POST" data-netlify="true" netlify-honeypot="company_website" data-done="updates-done" novalidate>
           <input type="hidden" name="form-name" value="updates">
           <input type="hidden" name="language" value="en">
@@ -251,6 +269,10 @@
           <p data-i18n="tz.unlock.lead">Here's your first secret.</p>
           <p class="unlock"><span class="unlock__label" data-i18n="tz.unlock.label">Flavour no. 2</span><span class="unlock__word decode" data-word="Maracujá" id="unlock-word"></span></p>
           <p data-i18n="tz.unlock.rest">You'll hear the rest before anyone else.</p>
+          <div class="done__actions">
+            <button class="btn btn--beige" type="button" id="share-btn" data-i18n="tz.share">Send it to a friend</button>
+            <a class="done__insta" href="https://www.instagram.com/drinksao/" target="_blank" rel="noopener" data-i18n="tz.insta">Follow @drinksao</a>
+          </div>
         </div>
       </article>
 
@@ -313,6 +335,7 @@
   <footer class="foot">
     <span class="logo foot__logo" aria-hidden="true"></span>
     <a href="mailto:info@drinksao.com">info@drinksao.com</a>
+    <a href="https://www.instagram.com/drinksao/" target="_blank" rel="noopener">@drinksao</a>
     <p data-i18n="foot.resp">Enjoy responsibly. Not for sale to persons under 18.</p>
     <p>&copy; <span id="year">2026</span> São</p>
   </footer>
@@ -323,6 +346,9 @@
         "tz.title": "Lisbon, end of 2026.",
         "tz.c1": "Two flavours.", "tz.c1b": "No. 2:", "tz.c2": "One slim can.", "tz.c3": "The rest is",
         "tz.unlock.lead": "Here's your first secret.", "tz.unlock.label": "Flavour no. 2", "tz.unlock.rest": "You'll hear the rest before anyone else.",
+        "tz.list.secret": "Sign up and unlock your first secret right away.",
+        "tz.share": "Send it to a friend", "tz.insta": "Follow @drinksao",
+        "tz.share.text": "Something's coming to Lisbon. Get on the list and unlock a secret:",
         "tz.cta": "Get on the list",
         "tz.b1": "Coming soon", "tz.b2": "End of 2026", "tz.b3": "Don't miss it",
         "tz.list.title": "The list is open.",
@@ -347,6 +373,9 @@
         "tz.title": "Lisboa, fim de 2026.",
         "tz.c1": "Dois sabores.", "tz.c1b": "O n.º 2:", "tz.c2": "Uma lata slim.", "tz.c3": "O resto é",
         "tz.unlock.lead": "Aqui está o seu primeiro segredo.", "tz.unlock.label": "Sabor n.º 2", "tz.unlock.rest": "O resto, vai saber antes de toda a gente.",
+        "tz.list.secret": "Inscreva-se e desbloqueie já o seu primeiro segredo.",
+        "tz.share": "Enviar a um amigo", "tz.insta": "Seguir @drinksao",
+        "tz.share.text": "Vem aí uma coisa nova para Lisboa. Entra na lista e desbloqueia um segredo:",
         "tz.cta": "Entrar na lista",
         "tz.b1": "Brevemente", "tz.b2": "Fim de 2026", "tz.b3": "Não perca",
         "tz.list.title": "A lista está aberta.",
@@ -416,6 +445,7 @@
     // Reward for signing up: reveal one flavour, remembered on this device
     function unlock(fresh) {
       store.set("sao-unlocked", "1");
+      const sec = document.querySelector(".card__secret"); if (sec) sec.hidden = true;
       const hero = document.getElementById("hero-secret");
       hero.hidden = false;
       const heroWord = hero.querySelector(".decode");
@@ -423,6 +453,16 @@
       else heroWord.textContent = heroWord.dataset.word;
     }
     if (store.get("sao-unlocked") === "1") unlock(false);
+
+    // Share after signing up: native share sheet on phones, WhatsApp/copy fallback
+    document.getElementById("share-btn").addEventListener("click", async e => {
+      const url = "https://drinksao.com/", text = T[lang]["tz.share.text"];
+      if (navigator.share) {
+        try { await navigator.share({ title: "São", text, url }); } catch (x) {}
+        return;
+      }
+      window.open("https://wa.me/?text=" + encodeURIComponent(text + " " + url), "_blank", "noopener");
+    });
 
     document.querySelectorAll("form[data-netlify]").forEach(form => {
       const err = form.querySelector(".form__error"), btn = form.querySelector(".form__submit");
