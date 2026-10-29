@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>São after dark — Club takeovers &amp; afterworks in Lisbon</title>
+  <meta name="description" content="São club takeovers and afterworks across Lisbon. Guest list only. Get on the list and hear about every night first.">
+  <meta name="theme-color" content="#1205AB">
+  <!-- Pre-launch: keep out of search engines until launch -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta property="og:title" content="São after dark">
+  <meta property="og:description" content="Club takeovers and afterworks across Lisbon. Guest list only.">
+  <meta property="og:image" content="https://drinksao.com/assets/og.png">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preload" href="assets/fonts/anton-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/img/events/club.jpg" as="image">
+  <style>
+    @font-face { font-family: "Anton"; font-weight: 400; font-display: swap; src: url("assets/fonts/anton-latin-400-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Familjen Grotesk"; font-weight: 400; font-display: swap; src: url("assets/fonts/familjen-grotesk-latin-400-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Familjen Grotesk"; font-weight: 500; font-display: swap; src: url("assets/fonts/familjen-grotesk-latin-500-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Familjen Grotesk"; font-weight: 700; font-display: swap; src: url("assets/fonts/familjen-grotesk-latin-700-normal.woff2") format("woff2"); }
+    #nl-badge-frame, #nl-hud-frame { display: none !important; }
+
+    :root {
+      --beige: #FEFBE4; --beige-2: #F6F0C8; --blue: #1205AB; --blue-deep: #0C0478;
+      --display: "Anton", "Arial Narrow", sans-serif;
+      --text: "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
+      --gutter: clamp(20px, 5vw, 72px);
+      --section: clamp(72px, 9vw, 136px);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body { margin: 0; background: var(--beige); color: var(--blue); font: 400 1.0625rem/1.55 var(--text); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    [hidden] { display: none !important; }
+    p, h1, h2, h3, ul, ol { margin: 0; font-weight: 400; }
+    ul, ol { padding: 0; list-style: none; }
+    a { color: inherit; text-decoration: none; }
+    a:hover { opacity: .75; }
+    img { display: block; max-width: 100%; }
+    :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+    .on-blue :focus-visible { outline-color: var(--beige); }
+
+    .logo { display: block; aspect-ratio: 1836 / 1610; background: currentColor;
+      -webkit-mask: url("assets/logo.svg") center / contain no-repeat; mask: url("assets/logo.svg") center / contain no-repeat; }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 56px; padding: 0 32px;
+      border-radius: 999px; border: 2px solid currentColor; font: 700 1rem/1 var(--text); cursor: pointer;
+      background: transparent; color: inherit; transition: background-color .2s, color .2s, transform .2s; }
+    .btn:hover { opacity: 1; transform: translateY(-2px); }
+    .btn--blue { background: var(--blue); border-color: var(--blue); color: var(--beige); }
+    .btn--beige { background: var(--beige); border-color: var(--beige); color: var(--blue); }
+    .btn--sm { min-height: 44px; padding: 0 22px; font-size: .9375rem; }
+
+    .lang { display: inline-flex; border: 2px solid currentColor; border-radius: 999px; padding: 3px; }
+    .lang button { appearance: none; border: 0; background: transparent; color: inherit; font: 700 .875rem/1 var(--text); padding: 8px 12px; border-radius: 999px; cursor: pointer; }
+    .lang button[aria-pressed="true"] { background: var(--blue); color: var(--beige); }
+
+    .kicker { display: inline-flex; gap: 8px; flex-wrap: wrap; }
+    .pill { display: inline-block; padding: 5px 12px; border: 2px solid currentColor; border-radius: 999px; font-weight: 700; font-size: .875rem; line-height: 1.2; }
+    h2.big { font: 400 clamp(3rem, 7.5vw, 7rem)/1.05 var(--display); }
+    .lead { font-size: clamp(1.125rem, 1.5vw, 1.3125rem); line-height: 1.45; max-width: 34rem; }
+    .head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 20px 48px; margin-bottom: clamp(36px, 5vw, 64px); }
+
+    /* Tube flicker, same as the teaser's redacted bar */
+    @keyframes tube { 0%, 100% { opacity: 1; } 3% { opacity: .25; } 5% { opacity: 1; } 7% { opacity: .4; } 9% { opacity: 1; } 52% { opacity: 1; } 53% { opacity: .3; } 54.5% { opacity: 1; } }
+    .redact { display: inline-block; vertical-align: middle; width: var(--w, 6em); height: .95em; border-radius: 3px; background: currentColor; }
+    @media (prefers-reduced-motion: no-preference) { .redact, .flicker { animation: tube 4.2s steps(1) infinite; } .redact:nth-of-type(2n) { animation-delay: -1.7s; } }
+
+    /* Top bar */
+    .top { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 20px; padding: 14px var(--gutter); background: var(--beige); }
+    .top__logo { width: 58px; }
+    .top__right { margin-left: auto; display: flex; align-items: center; gap: 14px; }
+
+    /* Hero: blue night with a spotlight that reveals the crowd */
+    .hero { position: relative; overflow: hidden; background: var(--blue); color: var(--beige); isolation: isolate;
+      min-height: calc(100svh - var(--top-h, 76px) - var(--band-h, 80px)); display: grid; align-items: end;
+      padding: clamp(28px, 5svh, 64px) var(--gutter); --x: 70%; --y: 40%; --r: clamp(150px, 20vw, 300px); }
+    .hero__photo { position: absolute; inset: 0; z-index: -2; background: url("assets/img/events/club.jpg") center / cover; transform: scale(1.06); }
+    .hero__dark { position: absolute; inset: 0; z-index: -1; background: var(--blue);
+      -webkit-mask: radial-gradient(circle at var(--x) var(--y), transparent 0, transparent calc(var(--r) * .55), rgba(0,0,0,.94) var(--r));
+              mask: radial-gradient(circle at var(--x) var(--y), transparent 0, transparent calc(var(--r) * .55), rgba(0,0,0,.94) var(--r)); }
+    .hero__flash { position: absolute; inset: 0; z-index: 3; background: var(--beige); opacity: 0; pointer-events: none; }
+    .hero__flash.go { animation: flash .5s ease-out; }
+    @keyframes flash { 0% { opacity: .85; } 100% { opacity: 0; } }
+    .hero__now { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; font-weight: 700; font-size: .9375rem; }
+    .hero__now .dot { width: 10px; height: 10px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 0 rgba(254,251,228,.6); }
+    @media (prefers-reduced-motion: no-preference) { .hero__now .dot { animation: pulse 1.6s infinite; } @keyframes pulse { 70% { box-shadow: 0 0 0 10px rgba(254,251,228,0); } 100% { box-shadow: 0 0 0 0 rgba(254,251,228,0); } } }
+    .hero__title { font: 400 clamp(4.5rem, min(14vw, 21svh), 15rem)/.98 var(--display); margin: clamp(10px, 2svh, 20px) 0 clamp(16px, 3svh, 28px); }
+    .hero__title .flicker { display: inline-block; }
+    .hero__row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 24px 48px; }
+    .hero__lead { font-size: clamp(1.125rem, 1.6vw, 1.375rem); line-height: 1.45; max-width: 31rem; }
+    .hero__actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .hero .btn:not(.btn--beige) { color: var(--beige); }
+    .hero__hint { position: absolute; right: var(--gutter); top: clamp(24px, 4svh, 48px); font-weight: 700; font-size: .8125rem; opacity: .7; }
+    @media (pointer: coarse) { .hero__hint { display: none; } }
+
+    /* Running band */
+    .band { overflow: hidden; white-space: nowrap; background: var(--beige); color: var(--blue); padding: clamp(14px, 1.8vw, 20px) 0; border-bottom: 2px solid var(--blue); }
+    .band__track { display: inline-flex; align-items: center; width: max-content; }
+    .band__track span { font: 400 clamp(1.625rem, 3vw, 2.75rem)/1 var(--display); padding: 0 clamp(24px, 3vw, 48px); }
+    .band .sep { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: currentColor; flex: none; }
+    @media (prefers-reduced-motion: no-preference) { .band__track { animation: run 45s linear infinite; } @keyframes run { to { transform: translateX(-50%); } } }
+
+    /* Two formats */
+    .formats { padding: var(--section) var(--gutter); }
+    .formats__grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 2vw, 28px); }
+    .format { position: relative; border-radius: 28px; overflow: hidden; border: 2px solid var(--blue); display: grid; grid-template-rows: auto 1fr; }
+    .format--blue { background: var(--blue); color: var(--beige); }
+    .format__pic { position: relative; aspect-ratio: 16 / 10; overflow: hidden; }
+    .format__pic img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s cubic-bezier(.2,.8,.2,1); }
+    .format:hover .format__pic img { transform: scale(1.06); }
+    .format__when { position: absolute; left: 18px; top: 18px; padding: 8px 14px; border-radius: 999px; background: var(--beige); color: var(--blue); font: 700 .9375rem/1 var(--text); }
+    .format__body { padding: clamp(24px, 3vw, 40px); display: flex; flex-direction: column; gap: 16px; }
+    .format__no { font-weight: 700; font-size: .875rem; opacity: .75; }
+    .format h3 { font: 400 clamp(3rem, 5.5vw, 5.25rem)/1.05 var(--display); }
+    .format__tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 8px; }
+    .format__tags li { padding: 7px 14px; border: 2px solid currentColor; border-radius: 999px; font-weight: 700; font-size: .875rem; }
+
+    /* Upcoming nights as tickets */
+    .nights { background: var(--blue); color: var(--beige); padding: var(--section) var(--gutter); }
+    .nights__list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2vw, 28px); }
+    .ticket { position: relative; display: grid; grid-template-columns: 1fr auto; background: var(--beige); color: var(--blue); border-radius: 20px;
+      transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+    .ticket:hover { transform: translateY(-6px) rotate(-1.2deg); }
+    .ticket__main { padding: 24px 22px 22px 26px; display: grid; gap: 14px; }
+    .ticket__no { display: flex; justify-content: space-between; font-weight: 700; font-size: .875rem; }
+    .ticket h3 { font: 400 clamp(2.25rem, 3.4vw, 3.25rem)/1.05 var(--display); }
+    .ticket dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 8px 14px; font-size: .9375rem; }
+    .ticket dt { font-weight: 700; opacity: .7; }
+    .ticket dd { margin: 0; font-weight: 700; }
+    .ticket__stub { position: relative; width: 74px; border-left: 3px dashed rgba(18, 5, 171, .35); display: grid; place-items: center; }
+    .ticket__stub::before, .ticket__stub::after { content: ""; position: absolute; left: -15px; width: 28px; height: 28px; border-radius: 50%; background: var(--blue); }
+    .ticket__stub::before { top: -15px; } .ticket__stub::after { bottom: -15px; }
+    .barcode { width: 34px; height: 78%; background: repeating-linear-gradient(to bottom, var(--blue) 0 3px, transparent 3px 5px, var(--blue) 5px 6px, transparent 6px 9px, var(--blue) 9px 13px, transparent 13px 15px); }
+    .ticket__vert { position: absolute; writing-mode: vertical-rl; transform: rotate(180deg); font: 400 .9375rem/1 var(--display); letter-spacing: .04em; right: 6px; opacity: 0; }
+    .ticket--mystery { background: transparent; color: var(--beige); border: 2px dashed rgba(254, 251, 228, .6); }
+    .ticket--mystery .ticket__stub { border-left-color: rgba(254, 251, 228, .35); }
+    .ticket--mystery .ticket__stub::before, .ticket--mystery .ticket__stub::after { display: none; }
+    .ticket--mystery .barcode { background: repeating-linear-gradient(to bottom, var(--beige) 0 3px, transparent 3px 5px, var(--beige) 5px 6px, transparent 6px 9px, var(--beige) 9px 13px, transparent 13px 15px); opacity: .5; }
+    .nights__note { margin-top: 28px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+    .nights__note .lock { width: 1.1em; height: 1.1em; background: currentColor; flex: none;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 10V7a5 5 0 0 1 10 0v3h1.5A1.5 1.5 0 0 1 20 11.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 20.5v-9A1.5 1.5 0 0 1 5.5 10H7zm2.5 0h5V7a2.5 2.5 0 0 0-5 0v3z'/%3E%3C/svg%3E") center / contain no-repeat;
+              mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 10V7a5 5 0 0 1 10 0v3h1.5A1.5 1.5 0 0 1 20 11.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 20.5v-9A1.5 1.5 0 0 1 5.5 10H7zm2.5 0h5V7a2.5 2.5 0 0 0-5 0v3z'/%3E%3C/svg%3E") center / contain no-repeat; }
+
+    /* Film strip */
+    .strip { overflow: hidden; padding: clamp(56px, 7vw, 96px) 0; }
+    .strip__track { display: flex; gap: 22px; width: max-content; padding: 20px 0; }
+    .strip figure { margin: 0; flex: none; width: clamp(200px, 22vw, 300px); background: var(--beige); padding: 10px 10px 40px; border: 2px solid var(--blue); border-radius: 6px; position: relative;
+      box-shadow: 0 24px 40px -26px rgba(12, 4, 120, .55); transform: rotate(var(--t, -3deg)); transition: transform .3s; }
+    .strip figure:nth-child(2n) { --t: 3deg; } .strip figure:nth-child(3n) { --t: -1deg; }
+    .strip figure:hover { transform: rotate(0) scale(1.05); z-index: 2; }
+    .strip img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 2px; }
+    .strip figcaption { position: absolute; left: 12px; bottom: 9px; font: 400 1.25rem/1 var(--display); }
+    @media (prefers-reduced-motion: no-preference) { .strip__track { animation: run 60s linear infinite; } .strip:hover .strip__track { animation-play-state: paused; } }
+
+    /* Door policy */
+    .door { padding: 0 var(--gutter) var(--section); display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(32px, 5vw, 80px); align-items: start; }
+    .door__list li { display: grid; grid-template-columns: 64px 1fr; gap: 16px; align-items: center; padding: 18px 0; border-top: 2px solid var(--blue); }
+    .door__list li:last-child { border-bottom: 2px solid var(--blue); }
+    .door__list b { font: 400 clamp(1.5rem, 2.2vw, 2rem)/1.1 var(--display); display: block; }
+    .door__ico { width: 56px; height: 56px; border-radius: 50%; border: 2px solid var(--blue); display: grid; place-items: center; font: 400 1.25rem/1 var(--display); transition: background-color .2s, color .2s, transform .3s; }
+    .door__list li:hover .door__ico { background: var(--blue); color: var(--beige); transform: rotate(-12deg); }
+    .door__ico svg { width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* Guest list */
+    .list { background: var(--blue); color: var(--beige); padding: var(--section) var(--gutter); display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(32px, 5vw, 88px); align-items: start; }
+    .list__aside { position: sticky; top: 110px; }
+    .list__aside .lead { margin-top: 22px; }
+
+    .band-preview { margin-top: clamp(32px, 4vw, 56px); perspective: 900px; }
+    .wristband { position: relative; display: flex; align-items: center; gap: 16px; height: 86px; padding: 0 22px 0 28px; border-radius: 18px;
+      background: var(--beige); color: var(--blue); transform: rotate(-4deg); box-shadow: 0 24px 40px -22px rgba(0,0,0,.5); max-width: 520px; overflow: hidden; }
+    .wristband::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 14px; background: repeating-linear-gradient(to bottom, var(--blue) 0 6px, transparent 6px 12px); opacity: .35; }
+    .wristband__logo { width: 52px; flex: none; }
+    .wristband__txt { display: grid; min-width: 0; }
+    .wristband__lbl { font-weight: 700; font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; opacity: .7; }
+    .wristband__name { font: 400 clamp(1.625rem, 2.6vw, 2.25rem)/1.1 var(--display); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .wristband__name .caret { display: inline-block; width: 3px; height: .9em; margin-left: 3px; vertical-align: -.05em; background: currentColor; }
+    @media (prefers-reduced-motion: no-preference) { .wristband__name .caret { animation: blink 1s steps(1) infinite; } @keyframes blink { 50% { opacity: 0; } } }
+    .wristband__no { margin-left: auto; font: 700 .875rem/1 var(--text); white-space: nowrap; }
+    .wristband__snap { flex: none; width: 22px; height: 22px; border-radius: 50%; border: 3px solid currentColor; }
+    .stamp { position: absolute; right: 18%; top: 50%; padding: 6px 14px; border: 3px solid var(--blue); border-radius: 10px; font: 400 1.5rem/1 var(--display); color: var(--blue);
+      transform: translateY(-50%) rotate(-12deg) scale(2.4); opacity: 0; background: rgba(254,251,228,.85); pointer-events: none; }
+    .wristband.is-in .wristband__no, .wristband.is-in .wristband__snap { opacity: 0; }
+    .wristband.is-in .stamp { animation: stamp .45s cubic-bezier(.2,1.4,.4,1) forwards; }
+    @keyframes stamp { to { opacity: 1; transform: translateY(-50%) rotate(-12deg) scale(1); } }
+
+    .form { display: grid; gap: 18px; background: var(--beige); color: var(--blue); border-radius: 28px; padding: clamp(24px, 3.4vw, 48px); }
+    .form__hp { position: absolute; left: -9999px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field { display: grid; gap: 7px; }
+    .field label, .field .label { font-weight: 700; font-size: .9375rem; }
+    .opt { font-weight: 400; opacity: .7; }
+    .field input { width: 100%; font: 400 1rem/1.4 var(--text); color: var(--blue); background: var(--beige); border: 2px solid var(--blue); border-radius: 13px; padding: 12px 15px; appearance: none; scroll-margin-top: 120px; }
+    .field input:focus { outline: none; box-shadow: 0 0 0 3px var(--beige), 0 0 0 5px var(--blue); }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { position: relative; }
+    .chip input { position: absolute; left: 0; top: 0; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+    .chip span { display: inline-block; padding: 9px 16px; border: 2px solid var(--blue); border-radius: 999px; font-weight: 700; font-size: .9375rem; cursor: pointer; transition: background-color .15s, color .15s; }
+    .chip input:checked + span { background: var(--blue); color: var(--beige); }
+    .chip input:focus-visible + span { outline: 3px solid var(--blue); outline-offset: 2px; }
+    .check { display: grid; grid-template-columns: 24px 1fr; column-gap: 12px; row-gap: 6px; align-items: start; cursor: pointer; }
+    .check input { appearance: none; width: 24px; height: 24px; margin: 1px 0 0; color: inherit; border: 2px solid currentColor; border-radius: 6px; background: transparent; cursor: pointer; display: grid; place-items: center; scroll-margin-top: 120px; }
+    .check input:checked { background: currentColor; }
+    .check input:checked::after { content: ""; width: 6px; height: 11px; border: solid var(--beige); border-width: 0 2.5px 2.5px 0; transform: translateY(-1px) rotate(45deg); }
+    .field.is-invalid input { border-width: 3px; padding: 11px 14px; box-shadow: 0 0 0 4px rgba(18, 5, 171, .14); }
+    .field.is-invalid::after, .check.is-invalid::after { content: attr(data-msg); font-weight: 700; font-size: .8125rem; line-height: 1.2; }
+    .check.is-invalid::after { grid-column: 2; }
+    .check.is-invalid input { border-width: 3px; box-shadow: 0 0 0 4px rgba(18, 5, 171, .14); }
+    .form__error { font-weight: 700; padding: 12px 16px; border: 2px solid currentColor; border-radius: 14px; }
+    .form__submit { justify-self: start; min-height: 58px; padding: 0 38px; font-size: 1.0625rem; }
+    .form__submit:disabled { opacity: .6; cursor: progress; }
+    .form__note { font-size: .75rem; opacity: .6; }
+    .form__note a { font-weight: 700; }
+    .done { background: var(--beige); color: var(--blue); border-radius: 28px; padding: clamp(28px, 3.4vw, 48px); scroll-margin-top: 120px; }
+    .done:focus { outline: none; }
+    .done h3 { font: 400 clamp(2.5rem, 4.5vw, 4rem)/1.05 var(--display); margin-bottom: 14px; }
+    .done p { max-width: 32rem; margin-bottom: 12px; }
+    .done__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
+
+    /* Host a night */
+    .host { margin: var(--section) var(--gutter); border: 2px solid var(--blue); border-radius: 28px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); overflow: hidden; }
+    .host__pic { min-height: 320px; background: url("assets/img/events/dj.jpg") center / cover; }
+    .host__body { padding: clamp(28px, 4vw, 56px); display: flex; flex-direction: column; gap: 18px; align-items: start; justify-content: center; }
+    .host h2 { font: 400 clamp(2.5rem, 4.4vw, 4.25rem)/1.05 var(--display); }
+
+    .foot { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 32px; padding: 28px var(--gutter); font-size: .9375rem; border-top: 2px solid var(--blue); }
+    .foot__logo { width: 56px; }
+    .foot a { font-weight: 700; }
+    .foot__ig { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; }
+    .foot__ig:hover { background: var(--blue); color: var(--beige); opacity: 1; }
+    .foot__privacy { margin-left: auto; }
+
+    /* Click burst */
+    .burst { position: fixed; width: 0; height: 0; pointer-events: none; z-index: 50; }
+    .burst i { position: absolute; left: -1.5px; top: -16px; width: 3px; height: 11px; border-radius: 2px; background: var(--c, var(--blue));
+      transform-origin: 1.5px 16px; opacity: 0; animation: burst .48s cubic-bezier(.2,.7,.3,1) forwards; }
+    @media (pointer: coarse) { .burst { scale: .7; } }
+    @keyframes burst { 0% { opacity: 1; transform: rotate(var(--a)) translateY(2px) scaleY(.4); } 45% { opacity: 1; transform: rotate(var(--a)) translateY(-12px) scaleY(1); } 100% { opacity: 0; transform: rotate(var(--a)) translateY(-22px) scaleY(.3); } }
+
+    @media (max-width: 1080px) {
+      .nights__list { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 900px) {
+      .formats__grid, .door, .list, .host { grid-template-columns: 1fr; }
+      .list__aside { position: static; }
+      .host__pic { min-height: 240px; }
+    }
+    @media (max-width: 640px) {
+      .top__right .btn { display: none; }
+      .nights__list, .row { grid-template-columns: 1fr; }
+      .hero__actions, .hero__actions .btn, .form__submit { width: 100%; }
+      .foot__privacy { margin-left: 0; }
+      .wristband { height: 74px; padding: 0 16px 0 24px; gap: 12px; }
+      .wristband__logo { width: 40px; }
+      .wristband__no { display: none; }
+      .stamp { right: 10%; font-size: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="top">
+    <a class="top__logo" href="/" data-home aria-label="São — home"><span class="logo" aria-hidden="true"></span></a>
+    <div class="top__right">
+      <div class="lang" aria-label="Language"><button type="button" data-lang="en">EN</button><button type="button" data-lang="pt">PT</button></div>
+      <a class="btn btn--blue btn--sm" href="#list" data-i18n="nav.cta">Get on the list</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero on-blue" id="hero">
+      <div class="hero__photo" aria-hidden="true"></div>
+      <div class="hero__dark" aria-hidden="true"></div>
+      <div class="hero__flash" aria-hidden="true"></div>
+      <p class="hero__hint" aria-hidden="true" data-i18n="hero.hint">Move around. Find the party.</p>
+      <div>
+        <p class="hero__now"><span class="dot" aria-hidden="true"></span><span><span data-i18n="hero.now">Lisbon right now</span> · <span id="clock">23:00</span></span><span class="pill" id="mood">The night is young</span></p>
+        <h1 class="hero__title"><span data-i18n="hero.t1">São</span> <span class="flicker" data-i18n="hero.t2">after dark.</span></h1>
+        <div class="hero__row">
+          <p class="hero__lead" data-i18n="hero.lead">Club takeovers and afterworks across Lisbon. Good music, good people, São at the bar. Guest list only.</p>
+          <div class="hero__actions">
+            <a class="btn btn--beige" href="#list" data-i18n="hero.cta">Get on the list</a>
+            <a class="btn" href="#nights" data-i18n="hero.cta2">See the nights</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="band" aria-hidden="true">
+      <div class="band__track">
+        <span data-i18n="band.1">Club takeovers</span><i class="sep"></i>
+        <span data-i18n="band.2">Afterworks</span><i class="sep"></i>
+        <span data-i18n="band.3">Guest list only</span><i class="sep"></i>
+        <span>Lisboa</span><i class="sep"></i>
+        <span>18+</span><i class="sep"></i>
+      </div>
+    </div>
+
+    <!-- Formats -->
+    <section class="formats" aria-labelledby="formats-title">
+      <div class="head">
+        <h2 class="big" id="formats-title" data-i18n="formats.title">Two ways<br>to go out.</h2>
+        <p class="lead" data-i18n="formats.lead">One for when the laptop closes, one for when the lights go down. Pick your night, or do both.</p>
+      </div>
+      <div class="formats__grid">
+        <article class="format">
+          <div class="format__pic"><img src="assets/img/events/rooftop.jpg" alt="" loading="lazy"><span class="format__when" data-i18n="f1.when">Thursdays · 18:00 → 21:00</span></div>
+          <div class="format__body">
+            <p class="format__no" data-i18n="f1.no">Format 01</p>
+            <h3 data-i18n="f1.t">The Afterwork</h3>
+            <p data-i18n="f1.p">Laptop closed, terrace open. After-work drinks on Lisbon's best rooftops and bars, with a DJ warming up and something to snack on. Come straight from the office, leave whenever you like.</p>
+            <ul class="format__tags"><li data-i18n="f1.a">Rooftops &amp; terraces</li><li data-i18n="f1.b">Sundown DJ</li><li data-i18n="f1.c">Bites</li></ul>
+          </div>
+        </article>
+        <article class="format format--blue on-blue">
+          <div class="format__pic"><img src="assets/img/events/lasers.jpg" alt="" loading="lazy"><span class="format__when" data-i18n="f2.when">Fri &amp; Sat · 23:00 → late</span></div>
+          <div class="format__body">
+            <p class="format__no" data-i18n="f2.no">Format 02</p>
+            <h3 data-i18n="f2.t">The Takeover</h3>
+            <p data-i18n="f2.p">We take over one of Lisbon's clubs for a night. Our DJs, our crowd, São behind the bar. The guest list gets in first.</p>
+            <ul class="format__tags"><li data-i18n="f2.a">Club nights</li><li data-i18n="f2.b">Guest DJs</li><li data-i18n="f2.c">Guest list entry</li></ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Upcoming nights -->
+    <section class="nights on-blue" id="nights" aria-labelledby="nights-title">
+      <div class="head">
+        <h2 class="big" id="nights-title" data-i18n="nights.title">Coming up.</h2>
+        <p class="lead" data-i18n="nights.lead">The first nights land at the end of 2026. Dates and venues go to the guest list first, 48 hours before anyone else.</p>
+      </div>
+      <div class="nights__list">
+        <article class="ticket">
+          <div class="ticket__main">
+            <p class="ticket__no"><span><span data-i18n="n.night">Night</span> 01</span><span>Lisboa</span></p>
+            <h3 data-i18n="n1.t">Launch Takeover</h3>
+            <dl>
+              <dt data-i18n="n.date">Date</dt><dd><span class="redact" style="--w:5.5em"></span></dd>
+              <dt data-i18n="n.venue">Venue</dt><dd><span class="redact" style="--w:7em"></span></dd>
+              <dt data-i18n="n.doors">Doors</dt><dd>23:00</dd>
+            </dl>
+          </div>
+          <div class="ticket__stub" aria-hidden="true"><span class="barcode"></span></div>
+        </article>
+        <article class="ticket">
+          <div class="ticket__main">
+            <p class="ticket__no"><span><span data-i18n="n.night">Night</span> 02</span><span>Lisboa</span></p>
+            <h3 data-i18n="n2.t">First Afterwork</h3>
+            <dl>
+              <dt data-i18n="n.date">Date</dt><dd><span class="redact" style="--w:5em"></span></dd>
+              <dt data-i18n="n.venue">Venue</dt><dd><span class="redact" style="--w:6em"></span></dd>
+              <dt data-i18n="n.doors">Doors</dt><dd>18:00</dd>
+            </dl>
+          </div>
+          <div class="ticket__stub" aria-hidden="true"><span class="barcode"></span></div>
+        </article>
+        <article class="ticket ticket--mystery">
+          <div class="ticket__main">
+            <p class="ticket__no"><span><span data-i18n="n.night">Night</span> 03</span><span>???</span></p>
+            <h3 data-i18n="n3.t">Not telling yet</h3>
+            <dl>
+              <dt data-i18n="n.date">Date</dt><dd><span class="redact" style="--w:4.5em"></span></dd>
+              <dt data-i18n="n.venue">Venue</dt><dd><span class="redact" style="--w:6.5em"></span></dd>
+              <dt data-i18n="n.doors">Doors</dt><dd><span class="redact" style="--w:3em"></span></dd>
+            </dl>
+          </div>
+          <div class="ticket__stub" aria-hidden="true"><span class="barcode"></span></div>
+        </article>
+      </div>
+      <p class="nights__note"><span class="lock" aria-hidden="true"></span><span data-i18n="nights.note">Unlocked for the guest list first.</span></p>
+    </section>
+
+    <!-- Film strip -->
+    <div class="strip" aria-hidden="true">
+      <div class="strip__track">
+        <figure><img src="assets/img/events/cheers.jpg" alt="" loading="lazy"><figcaption data-i18n="s.1">Golden hour</figcaption></figure>
+        <figure><img src="assets/img/events/dj.jpg" alt="" loading="lazy"><figcaption data-i18n="s.2">On the decks</figcaption></figure>
+        <figure><img src="assets/img/events/rooftop.jpg" alt="" loading="lazy"><figcaption data-i18n="s.3">Afterwork</figcaption></figure>
+        <figure><img src="assets/img/events/dance.jpg" alt="" loading="lazy"><figcaption data-i18n="s.4">2 AM</figcaption></figure>
+        <figure><img src="assets/img/events/clink.jpg" alt="" loading="lazy"><figcaption data-i18n="s.5">Saúde</figcaption></figure>
+        <figure><img src="assets/img/events/tunnel.jpg" alt="" loading="lazy"><figcaption data-i18n="s.6">Doors open</figcaption></figure>
+        <figure><img src="assets/img/events/confetti.jpg" alt="" loading="lazy"><figcaption data-i18n="s.7">Takeover</figcaption></figure>
+        <figure><img src="assets/img/events/glasses.jpg" alt="" loading="lazy"><figcaption data-i18n="s.8">The crew</figcaption></figure>
+      </div>
+    </div>
+
+    <!-- Door policy -->
+    <section class="door" aria-labelledby="door-title">
+      <h2 class="big" id="door-title" data-i18n="door.title">Door<br>policy.</h2>
+      <ul class="door__list">
+        <li><span class="door__ico" aria-hidden="true">18+</span><p><b data-i18n="d1.t">18+, ID at the door</b><span data-i18n="d1.p">No exceptions. Bring a valid ID.</span></p></li>
+        <li><span class="door__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3l-5 3 2 4 2-1v12h10V9l2 1 2-4-5-3c-.5 2-2 3-4 3S8.5 5 8 3z"/></svg></span><p><b data-i18n="d2.t">Dress code: effortless</b><span data-i18n="d2.p">Look like you didn't try too hard. You did, we know.</span></p></li>
+        <li><span class="door__ico" aria-hidden="true">+1</span><p><b data-i18n="d3.t">Plus-ones when there's room</b><span data-i18n="d3.p">Guest list members get first dibs on bringing a friend.</span></p></li>
+        <li><span class="door__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></span><p><b data-i18n="d4.t">Water's free. Pace yourself.</b><span data-i18n="d4.p">The best nights are the ones you remember.</span></p></li>
+        <li><span class="door__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span><p><b data-i18n="d5.t">Be good to each other</b><span data-i18n="d5.p">Zero tolerance for anything that ruins someone's night.</span></p></li>
+      </ul>
+    </section>
+
+    <!-- Guest list -->
+    <section class="list on-blue" id="list" aria-labelledby="list-title">
+      <div class="list__aside">
+        <h2 class="big" id="list-title" data-i18n="list.title">Get on<br>the list.</h2>
+        <p class="lead" data-i18n="list.lead">Be the first to know where and when. Guest list members hear about every night 48 hours early and skip the line.</p>
+        <div class="band-preview" aria-hidden="true">
+          <div class="wristband" id="wristband">
+            <span class="logo wristband__logo"></span>
+            <span class="wristband__txt"><span class="wristband__lbl" data-i18n="wb.lbl">Guest list</span><span class="wristband__name"><span id="wb-name">Your name</span><span class="caret"></span></span></span>
+            <span class="wristband__no" id="wb-no">Nº 0000</span>
+            <span class="wristband__snap"></span>
+            <span class="stamp" data-i18n="wb.stamp">You're in</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <form class="form" name="events" method="POST" data-netlify="true" netlify-honeypot="company_website" data-done="events-done" novalidate>
+          <input type="hidden" name="form-name" value="events">
+          <input type="hidden" name="language" value="en">
+          <p class="form__hp" aria-hidden="true"><label>Leave this empty <input name="company_website" tabindex="-1" autocomplete="off"></label></p>
+          <div class="row">
+            <div class="field"><label for="e-first" data-i18n="f.first">First name</label><input id="e-first" name="first_name" required autocomplete="given-name"></div>
+            <div class="field"><label for="e-last" data-i18n="f.last">Last name</label><input id="e-last" name="last_name" required autocomplete="family-name"></div>
+          </div>
+          <div class="field"><label for="e-email" data-i18n="f.email">Email</label><input id="e-email" name="email" type="email" required autocomplete="email"></div>
+          <div class="field"><label for="e-phone" data-i18n="f.phone">WhatsApp <span class="opt">(optional, for last-minute drops)</span></label><input id="e-phone" name="phone" type="tel" autocomplete="tel"></div>
+          <div class="field">
+            <span class="label" data-i18n="f.nights">Which nights are you in for? <span class="opt">(pick any)</span></span>
+            <div class="chips">
+              <label class="chip"><input type="checkbox" name="nights" value="Afterwork" checked><span data-i18n="c.1">The Afterwork</span></label>
+              <label class="chip"><input type="checkbox" name="nights" value="Takeover" checked><span data-i18n="c.2">The Takeover</span></label>
+            </div>
+          </div>
+          <label class="check"><input type="checkbox" name="confirm_18" value="yes" required><span data-i18n="f.c1">I'm 18 or older.</span></label>
+          <label class="check"><input type="checkbox" name="consent_contact" value="yes" required><span data-i18n="f.c2">I'd like São to email me about events. I can unsubscribe anytime.</span></label>
+          <p class="form__error" role="alert" hidden></p>
+          <button class="btn btn--blue form__submit" type="submit" data-i18n="f.submit">Put me on the list</button>
+          <p class="form__note"><span data-i18n="f.note">We only use your details for São events.</span> <a href="privacy.html" target="_blank" rel="noopener" data-i18n="f.privacy">Privacy statement</a></p>
+        </form>
+
+        <div class="done" id="events-done" tabindex="-1" hidden>
+          <h3 data-i18n="done.t">You're on<br>the list.</h3>
+          <p data-i18n="done.p1">We'll tell you where and when 48 hours before anyone else. Keep an eye on your inbox.</p>
+          <p data-i18n="done.p2">Know someone who should be there? Send them this page.</p>
+          <div class="done__actions">
+            <button class="btn btn--blue" type="button" id="share" data-i18n="done.share">Invite a friend</button>
+            <a class="btn" href="https://www.instagram.com/drinksao/" target="_blank" rel="noopener" data-i18n="done.ig">Follow @drinksao</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Host a night -->
+    <section class="host" aria-labelledby="host-title">
+      <div class="host__pic" role="img" aria-label=""></div>
+      <div class="host__body">
+        <p class="pill" data-i18n="host.pill">For clubs &amp; bars</p>
+        <h2 id="host-title" data-i18n="host.title">Host a São night.</h2>
+        <p class="lead" data-i18n="host.lead">Run a club, rooftop or bar in Lisbon? We bring the crowd, the DJs and the drinks. Let's talk about a takeover or an afterwork at yours.</p>
+        <a class="btn btn--blue" href="mailto:info@drinksao.com?subject=Host%20a%20S%C3%A3o%20night" data-i18n="host.cta">Email us</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span class="logo foot__logo" aria-hidden="true"></span>
+    <a href="mailto:info@drinksao.com">info@drinksao.com</a>
+    <a class="foot__ig" href="https://www.instagram.com/drinksao/" target="_blank" rel="noopener" aria-label="São on Instagram (@drinksao)">
+      <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg>
+    </a>
+    <p data-i18n="foot.resp">Enjoy responsibly. Not for sale to persons under 18.</p>
+    <a class="foot__privacy" href="privacy.html" data-i18n="foot.privacy">Privacy</a>
+    <p>&copy; <span id="year">2026</span> São</p>
+  </footer>
+
+  <script>
+    const PT = {
+      "nav.cta": "Entrar na lista", "hero.hint": "Mexe o rato. Encontra a festa.", "hero.now": "Lisboa agora",
+      "hero.t1": "São", "hero.t2": "à noite.",
+      "hero.lead": "Takeovers em clubes e afterworks por Lisboa. Boa música, boa gente, São no bar. Só com guest list.",
+      "hero.cta": "Entrar na lista", "hero.cta2": "Ver as noites",
+      "band.1": "Club takeovers", "band.2": "Afterworks", "band.3": "Só com guest list",
+      "formats.title": "Duas formas<br>de sair.", "formats.lead": "Uma para quando o portátil fecha, outra para quando as luzes se apagam. Escolhe a tua noite, ou faz as duas.",
+      "f1.when": "Quintas · 18:00 → 21:00", "f1.no": "Formato 01", "f1.t": "The Afterwork",
+      "f1.p": "Portátil fechado, esplanada aberta. Drinks depois do trabalho nos melhores rooftops e bares de Lisboa, com um DJ a aquecer e algo para petiscar. Vem direto do escritório, sai quando quiseres.",
+      "f1.a": "Rooftops e esplanadas", "f1.b": "DJ ao pôr do sol", "f1.c": "Petiscos",
+      "f2.when": "Sex e Sáb · 23:00 → tarde", "f2.no": "Formato 02", "f2.t": "The Takeover",
+      "f2.p": "Ficamos com um clube de Lisboa por uma noite. Os nossos DJs, a nossa gente, São atrás do bar. Quem está na guest list entra primeiro.",
+      "f2.a": "Noites de clube", "f2.b": "DJs convidados", "f2.c": "Entrada com guest list",
+      "nights.title": "Em breve.", "nights.lead": "As primeiras noites chegam no fim de 2026. Datas e locais vão primeiro para a guest list, 48 horas antes de toda a gente.",
+      "n.night": "Noite", "n.date": "Data", "n.venue": "Local", "n.doors": "Portas",
+      "n1.t": "Takeover de lançamento", "n2.t": "Primeiro Afterwork", "n3.t": "Ainda não contamos",
+      "nights.note": "Desbloqueado primeiro para a guest list.",
+      "s.1": "Golden hour", "s.2": "Nos pratos", "s.3": "Afterwork", "s.4": "2 da manhã", "s.5": "Saúde", "s.6": "Portas abertas", "s.7": "Takeover", "s.8": "A crew",
+      "door.title": "Regras<br>da porta.",
+      "d1.t": "18+, identificação à porta", "d1.p": "Sem exceções. Traz um documento válido.",
+      "d2.t": "Dress code: sem esforço", "d2.p": "Parece que não te esforçaste muito. Nós sabemos que sim.",
+      "d3.t": "+1 quando houver espaço", "d3.p": "Quem está na guest list tem prioridade para trazer alguém.",
+      "d4.t": "A água é grátis. Vai com calma.", "d4.p": "As melhores noites são as que te lembras.",
+      "d5.t": "Respeito acima de tudo", "d5.p": "Tolerância zero para quem estraga a noite de alguém.",
+      "list.title": "Entra<br>na lista.", "list.lead": "Sê o primeiro a saber onde e quando. Quem está na guest list sabe de cada noite 48 horas antes e não fica na fila.",
+      "wb.lbl": "Guest list", "wb.name": "O teu nome", "wb.stamp": "Estás dentro",
+      "f.first": "Nome", "f.last": "Apelido", "f.email": "Email", "f.phone": "WhatsApp <span class=\"opt\">(opcional, para novidades de última hora)</span>",
+      "f.nights": "Para que noites contas? <span class=\"opt\">(escolhe à vontade)</span>", "c.1": "The Afterwork", "c.2": "The Takeover",
+      "f.c1": "Tenho 18 anos ou mais.", "f.c2": "Quero receber emails da São sobre eventos. Posso cancelar a qualquer momento.",
+      "f.submit": "Pôr-me na lista", "f.note": "Só usamos os teus dados para eventos São.", "f.privacy": "Política de privacidade",
+      "done.t": "Estás na<br>lista.", "done.p1": "Dizemos-te onde e quando 48 horas antes de toda a gente. Fica atento ao teu email.",
+      "done.p2": "Conheces alguém que devia lá estar? Envia-lhe esta página.", "done.share": "Convidar um amigo", "done.ig": "Seguir @drinksao",
+      "host.pill": "Para clubes e bares", "host.title": "Recebe uma noite São.",
+      "host.lead": "Tens um clube, rooftop ou bar em Lisboa? Nós trazemos a gente, os DJs e as bebidas. Vamos falar de um takeover ou de um afterwork no teu espaço.",
+      "host.cta": "Envia-nos um email",
+      "foot.resp": "Seja responsável. Beba com moderação. Venda proibida a menores de 18 anos.", "foot.privacy": "Privacidade",
+      "title": "São à noite — Takeovers e afterworks em Lisboa"
+    };
+    const MOOD = {
+      en: { warm: "Lisbon is warming up", after: "Afterwork o'clock", night: "The night is young", late: "Still going", sleep: "Sleeping it off" },
+      pt: { warm: "Lisboa está a aquecer", after: "Hora do afterwork", night: "A noite é uma criança", late: "Ainda a dar", sleep: "A recuperar" }
+    };
+    const MSG = {
+      en: { req: "Required", email: "Enter a valid email address", check: "Tick this box to continue", sending: "Sending…", name: "Your name",
+            send: "That didn't go through. Check your connection and try again, or email info@drinksao.com.",
+            share: "São is throwing club takeovers and afterworks in Lisbon. Get on the guest list:" },
+      pt: { req: "Obrigatório", email: "Indica um email válido", check: "Assinala para continuar", sending: "A enviar…", name: "O teu nome",
+            send: "Não foi enviado. Verifica a ligação e tenta de novo, ou escreve para info@drinksao.com.",
+            share: "A São vai fazer takeovers em clubes e afterworks em Lisboa. Entra na guest list:" }
+    };
+    const EN = {};
+    document.querySelectorAll("[data-i18n]").forEach(el => { EN[el.dataset.i18n] = el.innerHTML; });
+    EN.title = document.title;
+    const store = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
+    let lang = "en";
+    function setLang(l) {
+      lang = l === "pt" ? "pt" : "en";
+      const d = lang === "pt" ? PT : EN;
+      document.documentElement.lang = lang === "pt" ? "pt-PT" : "en";
+      document.querySelectorAll("[data-i18n]").forEach(el => { const v = d[el.dataset.i18n] ?? EN[el.dataset.i18n]; if (v != null) el.innerHTML = v; });
+      document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
+      document.querySelectorAll('input[name="language"]').forEach(i => { i.value = lang; });
+      document.title = d.title;
+      store.set("sao-lang", lang);
+      tick(); renderBand();
+    }
+
+    // Live Lisbon clock + mood
+    const clock = document.getElementById("clock"), mood = document.getElementById("mood");
+    const fmt = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Lisbon", hour: "2-digit", minute: "2-digit", hour12: false });
+    function tick() {
+      const t = fmt.format(new Date()); clock.textContent = t;
+      const h = +t.slice(0, 2), m = MOOD[lang];
+      mood.textContent = h >= 18 && h < 21 ? m.after : h >= 21 || h < 2 ? m.night : h < 6 ? m.late : h < 12 ? m.sleep : m.warm;
+    }
+    setInterval(tick, 15000);
+
+    // Wristband preview mirrors the form
+    const wb = document.getElementById("wristband"), wbName = document.getElementById("wb-name");
+    document.getElementById("wb-no").textContent = "Nº " + String(Math.floor(Math.random() * 9000) + 1000);
+    function renderBand() {
+      const f = document.getElementById("e-first").value.trim(), l = document.getElementById("e-last").value.trim();
+      wbName.textContent = (f || l) ? (f + " " + (l ? l[0].toUpperCase() + "." : "")).trim() : MSG[lang].name;
+    }
+    ["e-first", "e-last"].forEach(id => document.getElementById(id).addEventListener("input", renderBand));
+
+    document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.lang)));
+    document.querySelectorAll(".band__track, .strip__track").forEach(t => { t.innerHTML += t.innerHTML; });
+    document.querySelectorAll(".band__track").forEach(t => { t.innerHTML += t.innerHTML; });
+    setLang(store.get("sao-lang") || "en");
+    document.getElementById("year").textContent = new Date().getFullYear();
+    if (location.hostname.startsWith("concept--")) document.querySelectorAll("[data-home]").forEach(a => { a.href = "coming-soon.html"; });
+
+    const sizes = () => { const r = document.documentElement.style; r.setProperty("--top-h", document.querySelector(".top").offsetHeight + "px"); r.setProperty("--band-h", document.querySelector(".band").offsetHeight + "px"); };
+    sizes(); window.addEventListener("resize", sizes); document.fonts.ready.then(sizes);
+
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // Spotlight follows the pointer; on touch it drifts by itself
+    const hero = document.getElementById("hero");
+    let target = { x: 70, y: 40 }, pos = { x: 70, y: 40 }, user = false;
+    hero.addEventListener("pointermove", e => {
+      if (e.pointerType === "touch") return;
+      const r = hero.getBoundingClientRect(); user = true;
+      target = { x: (e.clientX - r.left) / r.width * 100, y: (e.clientY - r.top) / r.height * 100 };
+    });
+    hero.addEventListener("pointerleave", () => { user = false; });
+    if (!reduce) (function loop(t) {
+      if (!user) { target = { x: 55 + Math.sin(t / 2600) * 30, y: 40 + Math.sin(t / 1900) * 22 }; }
+      pos.x += (target.x - pos.x) * .08; pos.y += (target.y - pos.y) * .08;
+      hero.style.setProperty("--x", pos.x.toFixed(2) + "%"); hero.style.setProperty("--y", pos.y.toFixed(2) + "%");
+      requestAnimationFrame(loop);
+    })(0);
+
+    // Camera flash: tap the hero (or it fires now and then)
+    const flash = hero.querySelector(".hero__flash");
+    function pop() { if (reduce) return; flash.classList.remove("go"); void flash.offsetWidth; flash.classList.add("go"); }
+    hero.addEventListener("click", e => { if (!e.target.closest("a, button")) pop(); });
+    if (!reduce) setInterval(() => { if (document.visibilityState === "visible" && hero.getBoundingClientRect().bottom > 0 && Math.random() < .5) pop(); }, 6000);
+
+    // Click burst
+    if (!reduce) document.addEventListener("click", e => {
+      if (!e.clientX && !e.clientY) return;
+      if (e.target.closest("input:not([type=checkbox]), select, textarea")) return;
+      const onBlue = e.target.closest(".on-blue, .btn--blue") && !e.target.closest(".form, .ticket:not(.ticket--mystery), .done, .btn--beige, .format__when");
+      const b = document.createElement("span"); b.className = "burst";
+      b.style.left = e.clientX + "px"; b.style.top = e.clientY + "px";
+      if (onBlue) b.style.setProperty("--c", "var(--beige)");
+      const turn = Math.random() * 45;
+      for (let i = 0; i < 8; i++) { const l = document.createElement("i"); l.style.setProperty("--a", (turn + i * 45) + "deg"); b.appendChild(l); }
+      document.body.appendChild(b); setTimeout(() => b.remove(), 550);
+    });
+
+    // Share
+    document.getElementById("share").addEventListener("click", async () => {
+      const url = location.origin + location.pathname, text = MSG[lang].share;
+      if (navigator.share) { try { await navigator.share({ title: "São", text, url }); } catch (e) {} }
+      else window.open("https://wa.me/?text=" + encodeURIComponent(text + " " + url), "_blank", "noopener");
+    });
+
+    // Guest list form (Netlify Forms)
+    document.querySelectorAll("form[data-done]").forEach(form => {
+      const err = form.querySelector(".form__error"), btn = form.querySelector(".form__submit");
+      const done = document.getElementById(form.dataset.done);
+      form.addEventListener("submit", async e => {
+        e.preventDefault();
+        err.hidden = true;
+        form.querySelectorAll(".is-invalid").forEach(el => el.classList.remove("is-invalid"));
+        const bad = [...form.querySelectorAll("[required]")].filter(el => !el.checkValidity());
+        if (bad.length) {
+          bad.forEach(el => {
+            const box = el.closest(".field, .check") || el;
+            box.dataset.msg = el.type === "checkbox" ? MSG[lang].check : (el.type === "email" && el.value ? MSG[lang].email : MSG[lang].req);
+            box.classList.add("is-invalid");
+          });
+          bad[0].focus(); return;
+        }
+        const label = btn.innerHTML; btn.disabled = true; btn.textContent = MSG[lang].sending;
+        try {
+          const res = await fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(new FormData(form)).toString() });
+          if (!res.ok) throw new Error(res.status);
+          form.hidden = true; done.hidden = false; done.focus();
+          wb.classList.add("is-in"); wb.querySelector(".caret").hidden = true;
+        } catch (x) {
+          err.textContent = MSG[lang].send; err.hidden = false; btn.disabled = false; btn.innerHTML = label;
+        }
+      });
+      form.addEventListener("input", e => {
+        const f = e.target.closest(".field, .check");
+        if (f && e.target.checkValidity()) f.classList.remove("is-invalid");
+      });
+    });
+  </script>
+</body>
+</html>
