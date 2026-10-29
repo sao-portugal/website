@@ -517,7 +517,7 @@
       const onBlue = e.target.closest(".card--blue, .band, .btn--blue, .form__done:not(.card--blue .form__done)");
       const b = document.createElement("span");
       b.className = "burst";
-      b.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+      b.style.left = e.clientX + "px"; b.style.top = e.clientY + "px";
       if (onBlue) b.style.setProperty("--c", "var(--beige)");
       const n = 8, turn = Math.random() * 45;
       for (let i = 0; i < n; i++) {
