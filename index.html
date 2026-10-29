@@ -47,19 +47,16 @@
 
   <main id="top">
 
-    <!-- Hero -->
+    <!-- Hero: full-bleed video -->
     <section class="hero">
+      <video class="hero__video" autoplay muted loop playsinline preload="metadata" poster="assets/video/hero-poster.jpg" aria-hidden="true">
+        <source src="assets/video/hero.mp4" type="video/mp4">
+      </video>
       <div class="hero__copy">
         <h1 class="hero__title" data-i18n="hero.title">Light. Fresh.<br>Out late.</h1>
-        <p class="hero__line" data-i18n="hero.line">Lime and maracujá hard seltzer in a slim, ice-cold can. Made for rooftops, dance floors and the beach at sunrise.</p>
-        <a class="btn btn--blue" href="#flavours" data-i18n="hero.cta">See the flavours</a>
-      </div>
-      <div class="hero__stage" aria-hidden="true">
-        <div class="can can--lime hero__can hero__can--a">
-          <div class="can__body"><span class="logo can__word"></span><span class="can__flav" data-i18n="lime.name">Lime</span></div>
-        </div>
-        <div class="can can--mara hero__can hero__can--b">
-          <div class="can__body"><span class="logo can__word"></span><span class="can__flav" data-i18n="mara.name">Maracujá</span></div>
+        <div class="hero__foot">
+          <p class="hero__line" data-i18n="hero.line">Lime and maracujá hard seltzer in a slim, ice-cold can. Made for rooftops, dance floors and the beach at sunrise.</p>
+          <a class="btn btn--beige" href="#flavours" data-i18n="hero.cta">See the flavours</a>
         </div>
       </div>
     </section>
@@ -103,9 +100,28 @@
       </article>
     </section>
 
-    <!-- About -->
+    <!-- Vibe -->
+    <section class="vibe" aria-labelledby="vibe-title">
+      <h2 class="vibe__title" id="vibe-title" data-i18n="vibe.title">Rooftops. Beach clubs. Long summer nights.</h2>
+      <div class="vibe__grid">
+        <img class="v1" src="assets/img/lisboa-festa.jpg" alt="" loading="lazy">
+        <img class="v2" src="assets/img/festival.jpg" alt="" loading="lazy">
+        <img class="v3" src="assets/img/pool.jpg" alt="" loading="lazy">
+        <img class="v4" src="assets/img/picnic.jpg" alt="" loading="lazy">
+        <img class="v5" src="assets/img/rooftop.jpg" alt="" loading="lazy">
+        <img class="v6" src="assets/img/tennis.jpg" alt="" loading="lazy">
+      </div>
+    </section>
+
+    <!-- About: duotone video -->
     <section class="about" id="about" aria-labelledby="about-title">
-      <h2 class="about__title" id="about-title" data-i18n="about.title">Made for the Portuguese night.</h2>
+      <div class="about__media">
+        <video autoplay muted loop playsinline preload="none" poster="assets/video/toast-poster.jpg" aria-hidden="true">
+          <source src="assets/video/toast.mp4" type="video/mp4">
+        </video>
+        <div class="about__shade" aria-hidden="true"></div>
+        <h2 class="about__title" id="about-title" data-i18n="about.title">Made for the Portuguese night.</h2>
+      </div>
       <div class="about__cols">
         <p data-i18n="about.p1">Portugal knows how to stay out late. From rooftop bars in Lisbon to beach clubs in the Algarve, the night runs long and the sun comes up warm. São is the drink for all of it: light enough for one more, cold enough for the heat.</p>
         <p data-i18n="about.p2">Our name means healthy, whole, sound. It is also the word in front of every saint Lisbon parties for in June. Both feel right to us.</p>
@@ -120,9 +136,9 @@
         <a class="btn btn--blue" id="contact-link" href="#" data-i18n="venues.cta">Email us</a>
       </div>
       <ul class="places">
-        <li><span class="places__name">Lisboa</span><span data-i18n="where.lis.s">Rooftops and clubs</span></li>
-        <li><span class="places__name">Algarve</span><span data-i18n="where.alg.s">Beach clubs</span></li>
-        <li><span class="places__name" data-i18n="where.fest.t">Festivals</span><span data-i18n="where.fest.s">All summer</span></li>
+        <li><img src="assets/img/lisboa-stairs.jpg" alt="" loading="lazy"><span class="places__name">Lisboa</span><span data-i18n="where.lis.s">Rooftops and clubs</span></li>
+        <li><img src="assets/img/algarve.jpg" alt="" loading="lazy"><span class="places__name">Algarve</span><span data-i18n="where.alg.s">Beach clubs</span></li>
+        <li><img src="assets/img/riverside.jpg" alt="" loading="lazy"><span class="places__name" data-i18n="where.fest.t">Festivals</span><span data-i18n="where.fest.s">All summer</span></li>
       </ul>
     </section>
 
