@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Free tasting kit for venues — São</title>
+  <meta name="description" content="Run a bar, club, beach club or festival in Portugal? Request a free São tasting kit with both flavours. No obligation.">
+  <meta name="theme-color" content="#1205AB">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Familjen+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="venues">
+
+  <!-- Age check -->
+  <div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-q" hidden>
+    <div class="gate__inner">
+      <span class="logo gate__logo" role="img" aria-label="São"></span>
+      <p class="gate__q" id="gate-q" data-i18n="gate.q">Are you 18 or older?</p>
+      <div class="gate__actions" id="gate-actions">
+        <button class="btn btn--blue" id="gate-yes" data-i18n="gate.yes">Yes, I'm 18+</button>
+        <button class="btn btn--outline" id="gate-no" data-i18n="gate.no">No</button>
+      </div>
+      <p class="gate__denied" id="gate-denied" hidden data-i18n="gate.denied">You need to be 18 or older to visit this site. See you later.</p>
+      <div class="lang" aria-label="Language">
+        <button type="button" data-lang="en">EN</button><button type="button" data-lang="pt">PT</button>
+      </div>
+      <p class="gate__small" data-i18n="gate.small">By entering you agree to enjoy São responsibly.</p>
+    </div>
+  </div>
+
+  <header class="top">
+    <a class="top__logo" href="index.html" aria-label="São — home"><span class="logo" aria-hidden="true"></span></a>
+    <nav class="top__nav" aria-label="Main">
+      <a href="index.html#flavours" data-i18n="nav.flavours">Flavours</a>
+      <a href="index.html#where" data-i18n="nav.where">Find us</a>
+      <a href="index.html#about" data-i18n="nav.about">Our story</a>
+      <a href="venues.html" aria-current="page" data-i18n="nav.venues">For venues</a>
+    </nav>
+    <div class="lang" aria-label="Language">
+      <button type="button" data-lang="en">EN</button><button type="button" data-lang="pt">PT</button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Intro -->
+    <section class="kit-hero">
+      <div class="kit-hero__copy">
+        <h1 class="kit-hero__title" data-i18n="kit.title">Taste it first.<br>It's on us.</h1>
+        <p class="kit-hero__line" data-i18n="kit.line">Run a bar, club, beach club or festival in Portugal? Request a free tasting kit with both flavours. No obligation, no sales pitch you didn't ask for.</p>
+        <a class="btn btn--beige" href="#request" data-i18n="kit.cta">Request your kit</a>
+      </div>
+      <div class="kit-hero__stage" aria-hidden="true">
+        <div class="can can--mara kit-can kit-can--a">
+          <div class="can__body"><span class="logo can__word"></span><span class="can__flav" data-i18n="lime.name">Lime</span></div>
+        </div>
+        <div class="can can--mara kit-can kit-can--b">
+          <div class="can__body"><span class="logo can__word"></span><span class="can__flav" data-i18n="mara.name">Maracujá</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works: a real sequence -->
+    <section class="steps" aria-labelledby="steps-title">
+      <h2 class="visually-hidden" id="steps-title" data-i18n="steps.title">How it works</h2>
+      <ol class="steps__list">
+        <li>
+          <span class="steps__n">1</span>
+          <h3 data-i18n="steps.1.t">Request a kit</h3>
+          <p data-i18n="steps.1.p">Tell us about your venue. It takes two minutes.</p>
+        </li>
+        <li>
+          <span class="steps__n">2</span>
+          <h3 data-i18n="steps.2.t">We bring it over</h3>
+          <p data-i18n="steps.2.p">We get in touch to set a time and drop off Lime and Maracujá for you and your team.</p>
+        </li>
+        <li>
+          <span class="steps__n">3</span>
+          <h3 data-i18n="steps.3.t">You decide</h3>
+          <p data-i18n="steps.3.p">Like it? We'll talk pricing and delivery. Not for you? No hard feelings.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Form -->
+    <section class="request" id="request" aria-labelledby="request-title">
+      <div class="request__aside">
+        <h2 class="request__title" id="request-title" data-i18n="form.title">Request your free tasting kit</h2>
+        <ul class="request__facts">
+          <li data-i18n="form.f1">Both flavours: Lime and Maracujá</li>
+          <li data-i18n="form.f2">Delivered in Lisbon and the Algarve</li>
+          <li data-i18n="form.f3">Free and without obligation</li>
+        </ul>
+      </div>
+
+      <div class="request__body">
+        <form class="form" id="kit-form" name="tasting-kit" method="POST" data-netlify="true" netlify-honeypot="company_website" novalidate>
+          <input type="hidden" name="form-name" value="tasting-kit">
+          <input type="hidden" name="language" id="form-lang" value="en">
+          <p class="form__hp" aria-hidden="true"><label>Leave this empty <input name="company_website" tabindex="-1" autocomplete="off"></label></p>
+
+          <fieldset class="form__group">
+            <legend data-i18n="form.g1">Your venue</legend>
+            <div class="field">
+              <label for="f-venue" data-i18n="form.venue">Venue name</label>
+              <input id="f-venue" name="venue" type="text" required autocomplete="organization">
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="f-type" data-i18n="form.type">Type of venue</label>
+                <select id="f-type" name="venue_type" required>
+                  <option value="" data-i18n="form.choose">Choose one</option>
+                  <option value="Bar" data-i18n="form.t.bar">Bar</option>
+                  <option value="Club" data-i18n="form.t.club">Club</option>
+                  <option value="Beach club" data-i18n="form.t.beach">Beach club</option>
+                  <option value="Restaurant" data-i18n="form.t.rest">Restaurant</option>
+                  <option value="Hotel" data-i18n="form.t.hotel">Hotel</option>
+                  <option value="Festival or event" data-i18n="form.t.fest">Festival or event</option>
+                  <option value="Other" data-i18n="form.t.other">Other</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="f-region" data-i18n="form.region">Region</label>
+                <select id="f-region" name="region" required>
+                  <option value="" data-i18n="form.choose">Choose one</option>
+                  <option value="Lisboa">Lisboa</option>
+                  <option value="Algarve">Algarve</option>
+                  <option value="Porto">Porto</option>
+                  <option value="Other" data-i18n="form.r.other">Elsewhere in Portugal</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="f-address" data-i18n="form.address">Venue address</label>
+              <input id="f-address" name="address" type="text" required autocomplete="street-address">
+            </div>
+          </fieldset>
+
+          <fieldset class="form__group">
+            <legend data-i18n="form.g2">You</legend>
+            <div class="field-row">
+              <div class="field">
+                <label for="f-name" data-i18n="form.name">Your name</label>
+                <input id="f-name" name="name" type="text" required autocomplete="name">
+              </div>
+              <div class="field">
+                <label for="f-role" data-i18n="form.role">Your role <span class="opt">(optional)</span></label>
+                <input id="f-role" name="role" type="text" autocomplete="organization-title" data-i18n-ph="form.role.ph" placeholder="Owner, bar manager, buyer…">
+              </div>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="f-email" data-i18n="form.email">Email</label>
+                <input id="f-email" name="email" type="email" required autocomplete="email">
+              </div>
+              <div class="field">
+                <label for="f-phone" data-i18n="form.phone">Phone or WhatsApp <span class="opt">(optional)</span></label>
+                <input id="f-phone" name="phone" type="tel" autocomplete="tel">
+              </div>
+            </div>
+            <div class="field">
+              <label for="f-msg" data-i18n="form.msg">Anything we should know? <span class="opt">(optional)</span></label>
+              <textarea id="f-msg" name="message" rows="4" data-i18n-ph="form.msg.ph" placeholder="Opening hours, best time to drop by, what you serve now…"></textarea>
+            </div>
+          </fieldset>
+
+          <div class="form__checks">
+            <label class="check">
+              <input type="checkbox" name="confirm_age_business" value="yes" required>
+              <span data-i18n="form.c1">I'm 18 or older and I represent this business.</span>
+            </label>
+            <label class="check">
+              <input type="checkbox" name="consent_contact" value="yes" required>
+              <span data-i18n="form.c2">São may contact me about this request. We only use your details for this.</span>
+            </label>
+          </div>
+
+          <p class="form__error" id="form-error" role="alert" hidden></p>
+          <button class="btn btn--blue form__submit" type="submit" data-i18n="form.submit">Request my free kit</button>
+        </form>
+
+        <div class="form__done" id="form-done" tabindex="-1" hidden>
+          <h3 data-i18n="done.title">Request sent. Obrigado!</h3>
+          <p data-i18n="done.body">We'll be in touch within a few days to arrange your tasting kit.</p>
+          <a class="btn btn--outline" href="index.html" data-i18n="done.back">Back to the homepage</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    <span class="logo foot__logo" role="img" aria-label="São"></span>
+    <div class="foot__row">
+      <p data-i18n="foot.resp">Enjoy responsibly. Not for sale to persons under 18.</p>
+      <a id="insta-link" href="#" data-i18n="social.cta">Follow on Instagram</a>
+      <p>&copy; <span id="year">2026</span> São</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

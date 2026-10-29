@@ -7,6 +7,53 @@ const INSTAGRAM_URL = "";
 
 const T = {
   en: {
+    "kit.title": "Taste it first.<br>It's on us.",
+    "kit.line": "Run a bar, club, beach club or festival in Portugal? Request a free tasting kit with both flavours. No obligation, no sales pitch you didn't ask for.",
+    "kit.cta": "Request your kit",
+    "steps.title": "How it works",
+    "steps.1.t": "Request a kit",
+    "steps.1.p": "Tell us about your venue. It takes two minutes.",
+    "steps.2.t": "We bring it over",
+    "steps.2.p": "We get in touch to set a time and drop off Lime and Maracujá for you and your team.",
+    "steps.3.t": "You decide",
+    "steps.3.p": "Like it? We'll talk pricing and delivery. Not for you? No hard feelings.",
+    "form.title": "Request your free tasting kit",
+    "form.f1": "Both flavours: Lime and Maracujá",
+    "form.f2": "Delivered in Lisbon and the Algarve",
+    "form.f3": "Free and without obligation",
+    "form.g1": "Your venue",
+    "form.venue": "Venue name",
+    "form.type": "Type of venue",
+    "form.choose": "Choose one",
+    "form.t.bar": "Bar",
+    "form.t.club": "Club",
+    "form.t.beach": "Beach club",
+    "form.t.rest": "Restaurant",
+    "form.t.hotel": "Hotel",
+    "form.t.fest": "Festival or event",
+    "form.t.other": "Other",
+    "form.region": "Region",
+    "form.r.other": "Elsewhere in Portugal",
+    "form.address": "Venue address",
+    "form.g2": "You",
+    "form.name": "Your name",
+    "form.role": "Your role <span class=\"opt\">(optional)</span>",
+    "form.role.ph": "Owner, bar manager, buyer…",
+    "form.email": "Email",
+    "form.phone": "Phone or WhatsApp <span class=\"opt\">(optional)</span>",
+    "form.msg": "Anything we should know? <span class=\"opt\">(optional)</span>",
+    "form.msg.ph": "Opening hours, best time to drop by, what you serve now…",
+    "form.c1": "I'm 18 or older and I represent this business.",
+    "form.c2": "São may contact me about this request. We only use your details for this.",
+    "form.submit": "Request my free kit",
+    "form.sending": "Sending…",
+    "form.err.fields": "Please fill in the highlighted fields.",
+    "form.err.send": "Your request didn't go through. Check your connection and try again, or email us.",
+    "done.title": "Request sent. Obrigado!",
+    "done.body": "We'll be in touch within a few days to arrange your tasting kit.",
+    "done.back": "Back to the homepage",
+    "venues.kit": "Request a free tasting kit",
+    "title.venues": "Free tasting kit for venues — São",
     "ticker": "Coming soon to Lisbon and the Algarve",
     "nav.where": "Find us",
     "nav.about": "Our story",
@@ -76,6 +123,53 @@ const T = {
     "title": "São — Hard seltzer from Portugal"
   },
   pt: {
+    "kit.title": "Prove primeiro.<br>Nós oferecemos.",
+    "kit.line": "Tem um bar, discoteca, beach club ou festival em Portugal? Peça um kit de degustação gratuito com os dois sabores. Sem compromisso.",
+    "kit.cta": "Pedir o kit",
+    "steps.title": "Como funciona",
+    "steps.1.t": "Peça um kit",
+    "steps.1.p": "Fale-nos do seu espaço. Demora dois minutos.",
+    "steps.2.t": "Nós levamos",
+    "steps.2.p": "Entramos em contacto para combinar a hora e deixamos Lima e Maracujá para si e para a sua equipa.",
+    "steps.3.t": "Decida",
+    "steps.3.p": "Gostou? Falamos de preços e entregas. Não é para si? Sem problema.",
+    "form.title": "Peça o seu kit de degustação gratuito",
+    "form.f1": "Os dois sabores: Lima e Maracujá",
+    "form.f2": "Entrega em Lisboa e no Algarve",
+    "form.f3": "Gratuito e sem compromisso",
+    "form.g1": "O seu espaço",
+    "form.venue": "Nome do espaço",
+    "form.type": "Tipo de espaço",
+    "form.choose": "Escolha uma opção",
+    "form.t.bar": "Bar",
+    "form.t.club": "Discoteca",
+    "form.t.beach": "Beach club",
+    "form.t.rest": "Restaurante",
+    "form.t.hotel": "Hotel",
+    "form.t.fest": "Festival ou evento",
+    "form.t.other": "Outro",
+    "form.region": "Região",
+    "form.r.other": "Outro sítio em Portugal",
+    "form.address": "Morada do espaço",
+    "form.g2": "Os seus dados",
+    "form.name": "O seu nome",
+    "form.role": "A sua função <span class=\"opt\">(opcional)</span>",
+    "form.role.ph": "Proprietário, gerente de bar, comprador…",
+    "form.email": "Email",
+    "form.phone": "Telefone ou WhatsApp <span class=\"opt\">(opcional)</span>",
+    "form.msg": "Algo que devamos saber? <span class=\"opt\">(opcional)</span>",
+    "form.msg.ph": "Horário, melhor altura para passarmos, o que serve agora…",
+    "form.c1": "Tenho 18 anos ou mais e represento este negócio.",
+    "form.c2": "A São pode contactar-me sobre este pedido. Só usamos os seus dados para isso.",
+    "form.submit": "Pedir o meu kit gratuito",
+    "form.sending": "A enviar…",
+    "form.err.fields": "Preencha os campos assinalados.",
+    "form.err.send": "O pedido não foi enviado. Verifique a ligação e tente de novo, ou envie-nos um email.",
+    "done.title": "Pedido enviado. Obrigado!",
+    "done.body": "Entraremos em contacto nos próximos dias para combinar o seu kit de degustação.",
+    "done.back": "Voltar à página inicial",
+    "venues.kit": "Pedir um kit de degustação gratuito",
+    "title.venues": "Kit de degustação gratuito para espaços — São",
     "ticker": "Brevemente em Lisboa e no Algarve",
     "nav.where": "Onde estamos",
     "nav.about": "A nossa história",
@@ -159,7 +253,14 @@ function setLang(lang) {
     const v = dict[el.dataset.i18n];
     if (v != null) el.innerHTML = v;
   });
-  document.title = dict.title;
+  document.querySelectorAll("[data-i18n-ph]").forEach(el => {
+    const v = dict[el.dataset.i18nPh];
+    if (v != null) el.placeholder = v;
+  });
+  const page = document.body.dataset.page;
+  document.title = (page && dict["title." + page]) || dict.title;
+  const fl = document.getElementById("form-lang");
+  if (fl) fl.value = lang;
   document.querySelectorAll(".lang button").forEach(b => {
     b.setAttribute("aria-pressed", String(b.dataset.lang === lang));
   });
@@ -181,11 +282,15 @@ setLang(store.get("sao-lang") || "en");
 
 // Contact button
 const contact = document.getElementById("contact-link");
-if (CONTACT_EMAIL) contact.href = "mailto:" + CONTACT_EMAIL;
-else contact.hidden = true;
+if (contact) {
+  if (CONTACT_EMAIL) contact.href = "mailto:" + CONTACT_EMAIL;
+  else contact.hidden = true;
+}
 const insta = document.getElementById("insta-link");
-if (INSTAGRAM_URL) { insta.href = INSTAGRAM_URL; insta.target = "_blank"; insta.rel = "noopener"; }
-else insta.hidden = true;
+if (insta) {
+  if (INSTAGRAM_URL) { insta.href = INSTAGRAM_URL; insta.target = "_blank"; insta.rel = "noopener"; }
+  else insta.hidden = true;
+}
 
 // Age check
 const gate = document.getElementById("gate");
@@ -262,5 +367,52 @@ const VENUES = [
   document.querySelectorAll(".pin").forEach(p => {
     p.addEventListener("mouseenter", () => set(p.dataset.place));
     p.addEventListener("mouseleave", () => set(""));
+  });
+})();
+
+// Tasting kit form (Netlify Forms)
+(function () {
+  const form = document.getElementById("kit-form");
+  if (!form) return;
+  const err = document.getElementById("form-error");
+  const done = document.getElementById("form-done");
+  const btn = form.querySelector(".form__submit");
+  const t = k => T[document.documentElement.lang === "pt-PT" ? "pt" : "en"][k];
+
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    err.hidden = true;
+    form.querySelectorAll(".is-invalid").forEach(el => el.classList.remove("is-invalid"));
+    const invalid = [...form.querySelectorAll("[required]")].filter(el => !el.checkValidity());
+    if (invalid.length) {
+      invalid.forEach(el => (el.closest(".field, .check") || el).classList.add("is-invalid"));
+      err.textContent = t("form.err.fields");
+      err.hidden = false;
+      invalid[0].focus();
+      return;
+    }
+    const label = btn.innerHTML;
+    btn.disabled = true;
+    btn.textContent = t("form.sending");
+    try {
+      const res = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(new FormData(form)).toString()
+      });
+      if (!res.ok) throw new Error(res.status);
+      form.hidden = true;
+      done.hidden = false;
+      done.focus();
+    } catch (x) {
+      err.textContent = t("form.err.send");
+      err.hidden = false;
+      btn.disabled = false;
+      btn.innerHTML = label;
+    }
+  });
+  form.addEventListener("input", e => {
+    const f = e.target.closest(".field, .check");
+    if (f && e.target.checkValidity()) f.classList.remove("is-invalid");
   });
 })();
