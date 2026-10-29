@@ -24,7 +24,6 @@
     *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
     body { margin: 0; background: var(--beige); color: var(--blue); font: 400 1.0625rem/1.55 var(--text); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-    body.locked { overflow: hidden; }
     [hidden] { display: none !important; }
     p, h1, h2, h3 { margin: 0; font-weight: 400; }
     a { color: inherit; }
@@ -54,15 +53,6 @@
     .lang button[aria-pressed="true"] { background: var(--blue); color: var(--beige); }
     .on-blue .lang button[aria-pressed="true"] { background: var(--beige); color: var(--blue); }
 
-    /* Age check */
-    .gate { position: fixed; inset: 0; z-index: 100; background: var(--beige); display: grid; place-items: center; padding: var(--gutter); overflow-y: auto; }
-    .gate__inner { width: min(100%, 560px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 28px; }
-    .gate__logo { width: min(70vw, 300px); }
-    .gate__q { font: 400 clamp(2rem, 5vw, 3rem)/1 var(--display); }
-    .gate__actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
-    .gate__small { font-size: .875rem; opacity: .8; }
-    .gate.leaving { animation: out .5s ease forwards; }
-    @keyframes out { to { opacity: 0; visibility: hidden; } }
 
     /* Teaser: type only */
     .tz {
@@ -188,19 +178,6 @@
 </head>
 <body>
 
-  <div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-q" hidden>
-    <div class="gate__inner">
-      <span class="logo gate__logo" role="img" aria-label="São"></span>
-      <p class="gate__q" id="gate-q" data-i18n="gate.q">Are you 18 or older?</p>
-      <div class="gate__actions" id="gate-actions">
-        <button class="btn btn--blue" id="gate-yes" data-i18n="gate.yes">Yes, I'm 18+</button>
-        <button class="btn btn--outline" id="gate-no" data-i18n="gate.no">No</button>
-      </div>
-      <p class="gate__denied" id="gate-denied" hidden data-i18n="gate.denied">You need to be 18 or older to visit this site. See you later.</p>
-      <div class="lang" aria-label="Language"><button type="button" data-lang="en">EN</button><button type="button" data-lang="pt">PT</button></div>
-      <p class="gate__small" data-i18n="gate.small">By entering you agree to enjoy São responsibly.</p>
-    </div>
-  </div>
 
   <main>
     <section class="tz">
@@ -330,9 +307,6 @@
   <script>
     const T = {
       en: {
-        "gate.q": "Are you 18 or older?", "gate.yes": "Yes, I'm 18+", "gate.no": "No",
-        "gate.denied": "You need to be 18 or older to visit this site. See you later.",
-        "gate.small": "By entering you agree to enjoy São responsibly.",
         "tz.title": "Lisbon, end of 2026.",
         "tz.c1": "Two flavours.", "tz.c2": "One slim can.", "tz.c3": "The rest is",
         "tz.cta": "Get on the list",
@@ -356,9 +330,6 @@
         "title": "São — Lisbon, soon"
       },
       pt: {
-        "gate.q": "Tem 18 anos ou mais?", "gate.yes": "Sim, tenho 18+", "gate.no": "Não",
-        "gate.denied": "Precisa de ter 18 anos ou mais para visitar este site. Até breve.",
-        "gate.small": "Ao entrar, compromete-se a beber São com moderação.",
         "tz.title": "Lisboa, fim de 2026.",
         "tz.c1": "Dois sabores.", "tz.c2": "Uma lata slim.", "tz.c3": "O resto é",
         "tz.cta": "Entrar na lista",
@@ -401,15 +372,6 @@
     document.querySelectorAll(".band__track").forEach(t => { t.innerHTML = t.innerHTML.repeat(2); t.innerHTML += t.innerHTML; });
     setLang(store.get("sao-lang") || "en");
 
-    const gate = document.getElementById("gate");
-    if (store.get("sao-age") !== "ok") { gate.hidden = false; document.body.classList.add("locked"); }
-    document.getElementById("gate-yes").addEventListener("click", () => {
-      store.set("sao-age", "ok"); document.body.classList.remove("locked");
-      gate.classList.add("leaving"); setTimeout(() => { gate.hidden = true; }, 520);
-    });
-    document.getElementById("gate-no").addEventListener("click", () => {
-      document.getElementById("gate-actions").hidden = true; document.getElementById("gate-denied").hidden = false;
-    });
     document.getElementById("year").textContent = new Date().getFullYear();
 
     document.querySelectorAll("form[data-netlify]").forEach(form => {
