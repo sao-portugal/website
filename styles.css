@@ -247,22 +247,58 @@ a { color: inherit; }
   font-size: clamp(1.0625rem, 1.35vw, 1.1875rem);
 }
 
+/* Where to find us: branded map */
+.where {
+  background: var(--blue); color: var(--beige);
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(40px, 6vw, 112px); align-items: center;
+  padding: var(--section) var(--gutter);
+}
+.where__title { font: 400 clamp(3rem, 7.5vw, 7.5rem)/.9 var(--display); max-width: 9ch; margin-bottom: 28px; }
+.where__intro { max-width: 26rem; font-size: clamp(1.0625rem, 1.35vw, 1.1875rem); margin-bottom: clamp(36px, 5vw, 64px); }
+.where__list { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--beige); }
+.where__list li {
+  display: grid; grid-template-columns: 1fr auto; gap: 4px 16px;
+  padding: 18px 0 16px; border-bottom: 2px solid var(--beige); cursor: default;
+  transition: padding-left .25s ease;
+}
+.where__list li:focus-visible { outline-color: var(--beige); }
+.where__list li.is-active { padding-left: 14px; }
+.where__city { font: 400 clamp(2.25rem, 4.5vw, 4rem)/1 var(--display); grid-row: span 2; align-self: center; }
+.where__kind { font-weight: 700; text-align: right; }
+.where__venues { font-size: .9375rem; opacity: .75; text-align: right; }
+
+.map { position: relative; margin: 0; justify-self: center; width: min(100%, 520px); }
+.map__svg { display: block; width: 100%; height: auto; overflow: hidden; }
+.map__es { fill: none; stroke: var(--beige); stroke-width: 1.5; stroke-dasharray: 4 6; opacity: .45; }
+.map__pt { fill: var(--beige); }
+.map__sea { font: 700 15px var(--text); fill: var(--beige); opacity: .6; letter-spacing: 6px; text-transform: none; }
+.map__venue { fill: var(--blue); stroke: var(--beige); stroke-width: 3; }
+.pin { cursor: default; }
+.pin__dot { fill: var(--blue); transition: transform .25s ease; }
+.pin__core { fill: var(--beige); }
+.pin__pulse { fill: none; stroke: var(--blue); stroke-width: 3; opacity: .5; transform-box: fill-box; transform-origin: center; }
+.pin__label { font: 400 44px var(--display); fill: var(--blue); }
+.map[data-active="lisboa"] .pin[data-place="lisboa"] .pin__dot,
+.map[data-active="algarve"] .pin[data-place="algarve"] .pin__dot { transform: scale(1.35); }
+.map[data-active="lisboa"] .pin:not([data-place="lisboa"]),
+.map[data-active="algarve"] .pin:not([data-place="algarve"]) { opacity: .35; }
+.map__logo { position: absolute; right: 4%; bottom: 3%; width: clamp(64px, 8vw, 104px); color: var(--beige); }
+@media (prefers-reduced-motion: no-preference) {
+  .pin__pulse { animation: pulse 2.4s ease-out infinite; }
+  .pin[data-place="algarve"] .pin__pulse { animation-delay: 1.2s; }
+  @keyframes pulse { from { transform: scale(.6); opacity: .7; } to { transform: scale(1.8); opacity: 0; } }
+}
+
 /* Venues */
+.venues__img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; max-height: 640px; }
 .venues {
   display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
   gap: clamp(48px, 7vw, 120px); align-items: start;
-  padding: 0 var(--gutter) var(--section);
+  padding: var(--section) var(--gutter);
 }
 .venues__head h2 { margin-bottom: 28px; font: 400 clamp(2.75rem, 5.5vw, 5.5rem)/.92 var(--display); max-width: 9ch; }
 .venues__head p { max-width: 28rem; margin-bottom: 36px; font-size: clamp(1.0625rem, 1.35vw, 1.1875rem); }
-.places { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--blue); }
-.places li {
-  display: grid; grid-template-columns: clamp(64px, 7vw, 104px) 1fr auto; align-items: center; gap: clamp(16px, 2vw, 28px);
-  padding: 16px 0; border-bottom: 2px solid var(--blue);
-}
-.places img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
-.places__name { font: 400 clamp(2.5rem, 5.5vw, 5rem)/1 var(--display); }
-.places li > span:last-child { font-weight: 500; text-align: right; }
 
 /* Footer */
 .foot { background: var(--blue); color: var(--beige); padding: clamp(72px, 10vw, 140px) var(--gutter) 28px; }
@@ -297,7 +333,8 @@ a { color: inherit; }
 
 /* Tablet */
 @media (max-width: 900px) {
-  .about__cols, .venues { grid-template-columns: 1fr; }
+  .about__cols, .venues, .where { grid-template-columns: 1fr; }
+  .top__nav a[href="#where"] { display: none; }
   .about__cols { margin: 48px var(--gutter) 0; width: auto; padding-left: 0; }
 }
 

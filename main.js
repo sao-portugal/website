@@ -39,6 +39,9 @@ const T = {
     "where.lis.s": "Rooftops and clubs",
     "vibe.title": "Rooftops. Beach clubs. Long summer nights.",
     "badge.ring": "slim can — slim can — slim can — ",
+    "where.title2": "Where to find us",
+    "where.intro2": "We're starting in Lisbon and the Algarve. Venues appear on the map as they sign on.",
+    "where.fest.l": "Dates announced soon",
     "where.alg.s": "Beach clubs",
     "where.fest.s": "All summer",
     "social.title": "Follow the night",
@@ -102,6 +105,9 @@ const T = {
     "where.lis.s": "Rooftops e discotecas",
     "vibe.title": "Rooftops. Beach clubs. Longas noites de verão.",
     "badge.ring": "lata slim — lata slim — lata slim — ",
+    "where.title2": "Onde nos encontrar",
+    "where.intro2": "Começamos em Lisboa e no Algarve. Os espaços aparecem no mapa assim que se juntarem.",
+    "where.fest.l": "Datas em breve",
     "where.alg.s": "Beach clubs",
     "where.fest.s": "Todo o verão",
     "social.title": "Siga a noite",
@@ -212,4 +218,43 @@ document.getElementById("year").textContent = new Date().getFullYear();
   window.addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
   window.addEventListener("resize", update);
   update();
+})();
+
+// Map: venues (add real venues here as they sign on) and list <-> pin highlighting
+const VENUES = [
+  // { name: "Bar name", city: "lisboa", lat: 38.711, lon: -9.143 },
+];
+(function () {
+  const map = document.querySelector(".map");
+  if (!map) return;
+  // Same projection as the map drawing
+  const lon0 = -10.2, lon1 = -5.6, lat0 = 36.7, lat1 = 42.3, W = 600, H = 947;
+  const proj = (lon, lat) => [(lon - lon0) / (lon1 - lon0) * W, (lat1 - lat) / (lat1 - lat0) * H];
+  const g = document.getElementById("map-venues");
+  VENUES.forEach(v => {
+    const [x, y] = proj(v.lon, v.lat);
+    const c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    c.setAttribute("cx", x.toFixed(1)); c.setAttribute("cy", y.toFixed(1)); c.setAttribute("r", "6");
+    c.setAttribute("class", "map__venue");
+    const t = document.createElementNS("http://www.w3.org/2000/svg", "title"); t.textContent = v.name; c.appendChild(t);
+    g.appendChild(c);
+  });
+  ["lisboa", "algarve"].forEach(city => {
+    const names = VENUES.filter(v => v.city === city).map(v => v.name);
+    const el = document.querySelector('.where__venues[data-city="' + city + '"]');
+    if (el && names.length) { el.removeAttribute("data-i18n"); el.textContent = names.join(", "); }
+  });
+  const items = document.querySelectorAll("#where-list li");
+  const set = place => {
+    map.dataset.active = place || "";
+    items.forEach(li => li.classList.toggle("is-active", li.dataset.place === place));
+  };
+  items.forEach(li => {
+    ["mouseenter", "focus"].forEach(ev => li.addEventListener(ev, () => set(li.dataset.place)));
+    ["mouseleave", "blur"].forEach(ev => li.addEventListener(ev, () => set("")));
+  });
+  document.querySelectorAll(".pin").forEach(p => {
+    p.addEventListener("mouseenter", () => set(p.dataset.place));
+    p.addEventListener("mouseleave", () => set(""));
+  });
 })();
