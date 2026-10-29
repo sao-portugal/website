@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>São — Lisbon, soon</title>
   <meta name="description" content="Something new is coming to Lisbon at the end of 2026. Get on the list.">
   <meta name="theme-color" content="#1205AB">
@@ -56,18 +56,18 @@
 
     /* Teaser: type only */
     .tz {
-      min-height: 100svh; display: grid; grid-template-rows: auto 1fr auto auto;
-      padding: clamp(18px, 3vw, 32px) var(--gutter) 0;
+      min-height: 100svh; display: grid; grid-template-rows: auto 1fr auto;
+      padding: clamp(18px, 3vw, 32px) var(--gutter) clamp(28px, 4vw, 48px);
       background: var(--beige); color: var(--blue);
     }
     .tz__top { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
     .tz__coords { font-weight: 500; font-size: .9375rem; letter-spacing: .02em; }
-    .tz__center { display: grid; place-items: center; align-content: center; gap: clamp(14px, 2.5vh, 32px); text-align: center; padding: clamp(12px, 3vh, 32px) 0; }
-    .tz__mark { width: min(74vw, 640px, calc(40svh * 1.14)); }
+    .tz__center { display: grid; place-items: center; align-content: center; gap: clamp(20px, 3vw, 36px); text-align: center; padding: 32px 0; }
+    .tz__mark { width: min(78vw, 680px, calc(50svh * 1.14)); }
     .tz__mark .logo { width: 100%; }
-    .tz__title { font: 400 clamp(1.875rem, 5vw, 4.5rem)/1 var(--display); }
-    .tz__bottom { padding-bottom: clamp(24px, 4vw, 44px); display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px 40px; }
-    .tz__clues { display: grid; gap: 4px; font: 400 clamp(1.25rem, 2.2vw, 2rem)/1.15 var(--display); }
+    .tz__title { font: 400 clamp(2.25rem, 5vw, 4.5rem)/1 var(--display); }
+    .tz__bottom { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px 40px; }
+    .tz__clues { display: grid; gap: 6px; font: 400 clamp(1.375rem, 2.2vw, 2rem)/1.15 var(--display); }
     .redact {
       display: inline-block; vertical-align: -.08em; height: .82em; border-radius: 3px;
       background: var(--blue); width: var(--w, 6ch);
@@ -111,7 +111,7 @@
     }
 
     /* Running line */
-    .band { overflow: hidden; white-space: nowrap; background: var(--blue); color: var(--beige); margin: 0 calc(-1 * var(--gutter)); padding: clamp(14px, 1.8vw, 22px) 0 calc(clamp(14px, 1.8vw, 22px) + env(safe-area-inset-bottom, 0px)); }
+    .band { overflow: hidden; white-space: nowrap; background: var(--blue); color: var(--beige); padding: clamp(14px, 1.8vw, 22px) 0; }
     .band__track { display: inline-flex; align-items: center; width: max-content; }
     .band__track span { font: 400 clamp(1.75rem, 3.4vw, 3rem)/1 var(--display); padding: 0 clamp(28px, 3.5vw, 56px); }
     .band .sep { display: inline-block; flex: none; width: 10px; height: 10px; border-radius: 50%; background: currentColor; }
@@ -171,7 +171,6 @@
     @media (max-width: 560px) {
       .field-row { grid-template-columns: 1fr; }
       .form__submit, .tz__bottom .btn { width: 100%; }
-      .tz__bottom { gap: 18px; }
       .tz__coords { font-size: .8125rem; }
       .foot p:last-child { margin-left: 0; }
     }
@@ -200,16 +199,16 @@
         </div>
         <a class="btn btn--blue" href="#join" data-i18n="tz.cta">Get on the list</a>
       </div>
-      <div class="band" aria-hidden="true">
-        <div class="band__track">
-          <span data-i18n="tz.b1">Coming soon</span><i class="sep"></i>
-          <span>Lisboa</span><i class="sep"></i>
-          <span data-i18n="tz.b2">End of 2026</span><i class="sep"></i>
-          <span data-i18n="tz.b3">Don't miss it</span><i class="sep"></i>
-        </div>
-      </div>
     </section>
 
+    <div class="band" aria-hidden="true">
+      <div class="band__track">
+        <span data-i18n="tz.b1">Coming soon</span><i class="sep"></i>
+        <span>Lisboa</span><i class="sep"></i>
+        <span data-i18n="tz.b2">End of 2026</span><i class="sep"></i>
+        <span data-i18n="tz.b3">Don't miss it</span><i class="sep"></i>
+      </div>
+    </div>
 
     <section class="join" id="join">
       <article class="card">
