@@ -469,7 +469,7 @@
       window.open("https://wa.me/?text=" + encodeURIComponent(text + " " + url), "_blank", "noopener");
     });
 
-    document.querySelectorAll("form[data-netlify]").forEach(form => {
+    document.querySelectorAll("form[data-done]").forEach(form => {
       const err = form.querySelector(".form__error"), btn = form.querySelector(".form__submit");
       const done = document.getElementById(form.dataset.done);
       form.addEventListener("submit", async e => {
