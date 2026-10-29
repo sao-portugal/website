@@ -228,8 +228,8 @@ const VENUES = [
   const map = document.querySelector(".map");
   if (!map) return;
   // Same projection as the map drawing
-  const lon0 = -10.2, lon1 = -5.6, lat0 = 36.7, lat1 = 42.3, W = 600, H = 947;
-  const proj = (lon, lat) => [(lon - lon0) / (lon1 - lon0) * W, (lat1 - lat) / (lat1 - lat0) * H];
+  const K = 0.771625, MINX = -7.328945, MAXY = 42.143375, PAD = 0.05, SC = 151.8849;
+  const proj = (lon, lat) => [(lon * K - MINX + PAD) * SC, (MAXY - lat + PAD) * SC];
   const g = document.getElementById("map-venues");
   VENUES.forEach(v => {
     const [x, y] = proj(v.lon, v.lat);
