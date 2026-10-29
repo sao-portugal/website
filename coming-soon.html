@@ -4,20 +4,170 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>São — Lisbon, soon</title>
-  <meta name="description" content="A new hard seltzer is coming to Lisbon at the end of 2026. Sign up to be the first to know.">
+  <meta name="description" content="Something new is coming to Lisbon at the end of 2026. Get on the list.">
   <meta name="theme-color" content="#1205AB">
   <meta property="og:title" content="São — Lisbon, soon">
-  <meta property="og:description" content="A new hard seltzer is coming to Lisbon at the end of 2026.">
-  <meta property="og:image" content="assets/video/hero-poster.jpg">
+  <meta property="og:description" content="Something new is coming to Lisbon at the end of 2026. Get on the list.">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Familjen+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body data-page="teaser">
+  <style>
+    :root {
+      --beige: #FEFBE4;
+      --blue: #1205AB;
+      --blue-deep: #0C0478;
+      --display: "Anton", "Arial Narrow", sans-serif;
+      --text: "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
+      --gutter: clamp(20px, 5vw, 72px);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body { margin: 0; background: var(--beige); color: var(--blue); font: 400 1.0625rem/1.55 var(--text); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    body.locked { overflow: hidden; }
+    [hidden] { display: none !important; }
+    p, h1, h2, h3 { margin: 0; font-weight: 400; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+    .on-blue :focus-visible { outline-color: var(--beige); }
 
-  <!-- Age check -->
+    .logo {
+      display: block; aspect-ratio: 1836 / 1610; background: currentColor;
+      -webkit-mask: url("assets/logo.svg") center / contain no-repeat;
+              mask: url("assets/logo.svg") center / contain no-repeat;
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 54px; padding: 0 32px; border-radius: 999px; border: 2px solid currentColor;
+      font: 700 1rem/1 var(--text); text-decoration: none; cursor: pointer;
+      background: transparent; color: inherit; transition: background-color .2s, color .2s;
+    }
+    .btn--blue { background: var(--blue); border-color: var(--blue); color: var(--beige); }
+    .btn--blue:hover { background: var(--blue-deep); border-color: var(--blue-deep); }
+    .btn--beige { background: var(--beige); border-color: var(--beige); color: var(--blue); }
+    .btn--beige:hover { background: transparent; color: var(--beige); }
+    .btn--outline:hover { background: var(--blue); color: var(--beige); border-color: var(--blue); }
+
+    .lang { display: inline-flex; border: 2px solid currentColor; border-radius: 999px; padding: 3px; }
+    .lang button { appearance: none; border: 0; background: transparent; color: inherit; font: 700 .875rem/1 var(--text); padding: 8px 12px; border-radius: 999px; cursor: pointer; }
+    .lang button[aria-pressed="true"] { background: var(--blue); color: var(--beige); }
+    .on-blue .lang button[aria-pressed="true"] { background: var(--beige); color: var(--blue); }
+
+    /* Age check */
+    .gate { position: fixed; inset: 0; z-index: 100; background: var(--beige); display: grid; place-items: center; padding: var(--gutter); overflow-y: auto; }
+    .gate__inner { width: min(100%, 560px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 28px; }
+    .gate__logo { width: min(70vw, 300px); }
+    .gate__q { font: 400 clamp(2rem, 5vw, 3rem)/1 var(--display); }
+    .gate__actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+    .gate__small { font-size: .875rem; opacity: .8; }
+    .gate.leaving { animation: out .5s ease forwards; }
+    @keyframes out { to { opacity: 0; visibility: hidden; } }
+
+    /* Teaser: type only */
+    .tz {
+      min-height: 100svh; display: grid; grid-template-rows: auto 1fr auto;
+      padding: clamp(18px, 3vw, 32px) var(--gutter) clamp(28px, 4vw, 48px);
+      background: var(--blue); color: var(--beige);
+    }
+    .tz__top { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    .tz__coords { font-weight: 500; font-size: .9375rem; letter-spacing: .02em; }
+    .tz__center { display: grid; place-items: center; align-content: center; gap: clamp(20px, 3vw, 36px); text-align: center; padding: 32px 0; }
+    .tz__mark { width: min(78vw, 680px, calc(50svh * 1.14)); }
+    .tz__mark .logo { width: 100%; }
+    .tz__title { font: 400 clamp(2.25rem, 5vw, 4.5rem)/1 var(--display); }
+    .tz__bottom { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px 40px; }
+    .tz__clues { display: grid; gap: 6px; font: 400 clamp(1.375rem, 2.2vw, 2rem)/1.15 var(--display); }
+    .redact {
+      display: inline-block; vertical-align: -.08em; height: .82em; border-radius: 3px;
+      background: var(--beige); width: var(--w, 6ch);
+    }
+
+    /* Load moment: the wordmark rises out of a mask, the rest follows */
+    @media (prefers-reduced-motion: no-preference) {
+      .tz__mark { overflow: hidden; }
+      .tz__mark .logo { animation: rise 1.4s cubic-bezier(.16,1,.3,1) .2s both; }
+      .tz__title, .tz__clues > *, .tz__bottom .btn { animation: fade .9s ease both; }
+      .tz__title { animation-delay: 1.2s; }
+      .tz__clues > :nth-child(1) { animation-delay: 1.5s; }
+      .tz__clues > :nth-child(2) { animation-delay: 1.65s; }
+      .tz__clues > :nth-child(3) { animation-delay: 1.8s; }
+      .tz__bottom .btn { animation-delay: 2s; }
+      @keyframes rise { from { transform: translateY(105%); } }
+      @keyframes fade { from { opacity: 0; transform: translateY(8px); } }
+      .redact { animation: flicker 5s steps(1) 3s infinite; }
+      .tz__clues > :nth-child(2) .redact { animation-delay: 4.3s; }
+      @keyframes flicker { 0%, 100% { opacity: 1; } 2% { opacity: .35; } 4% { opacity: 1; } 6% { opacity: .5; } 8% { opacity: 1; } }
+    }
+
+    /* Running line */
+    .band { overflow: hidden; white-space: nowrap; background: var(--beige); border-bottom: 2px solid var(--blue); padding: clamp(14px, 1.8vw, 22px) 0; }
+    .band__track { display: inline-flex; align-items: center; width: max-content; }
+    .band__track span { font: 400 clamp(1.75rem, 3.4vw, 3rem)/1 var(--display); padding: 0 clamp(28px, 3.5vw, 56px); }
+    .band .sep { display: inline-block; flex: none; width: 10px; height: 10px; border-radius: 50%; background: currentColor; }
+    @media (prefers-reduced-motion: no-preference) {
+      .band__track { animation: run 50s linear infinite; }
+      @keyframes run { to { transform: translateX(-50%); } }
+    }
+
+    /* Two ways in */
+    .join { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 2vw, 28px); padding: clamp(48px, 7vw, 104px) var(--gutter); }
+    .card { border: 2px solid var(--blue); border-radius: 28px; padding: clamp(28px, 3.5vw, 52px); }
+    .card--blue { background: var(--blue); color: var(--beige); }
+    .card__title { font: 400 clamp(2.5rem, 4.6vw, 4.5rem)/.92 var(--display); max-width: 11ch; margin-bottom: 18px; }
+    .card__body { max-width: 28rem; margin-bottom: 32px; font-size: clamp(1.0625rem, 1.3vw, 1.1875rem); }
+
+    .form { display: grid; gap: 18px; }
+    .form__hp { position: absolute; left: -9999px; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .field { display: grid; gap: 8px; }
+    .field label { font-weight: 700; font-size: .9375rem; }
+    .opt { font-weight: 400; opacity: .7; }
+    .field input, .field select {
+      width: 100%; font: 400 1rem/1.4 var(--text); color: var(--blue);
+      background: var(--beige); border: 2px solid var(--blue); border-radius: 14px; padding: 13px 16px; appearance: none;
+    }
+    .card--blue .field input, .card--blue .field select { border-color: var(--beige); }
+    .field select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%231205AB' stroke-width='2.5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 16px center; padding-right: 44px;
+    }
+    .field input:focus, .field select:focus { outline: none; box-shadow: 0 0 0 3px var(--beige), 0 0 0 5px var(--blue); }
+    .card--blue .field input:focus, .card--blue .field select:focus { box-shadow: 0 0 0 3px var(--blue), 0 0 0 5px var(--beige); }
+    .field.is-invalid input, .field.is-invalid select { border-width: 3px; }
+    .check { display: flex; gap: 12px; align-items: flex-start; cursor: pointer; }
+    .check input {
+      appearance: none; flex: none; width: 24px; height: 24px; margin: 1px 0 0; border: 2px solid currentColor;
+      border-radius: 6px; background: transparent; cursor: pointer; display: grid; place-items: center;
+    }
+    .check input:checked { background: currentColor; }
+    .check input:checked::after { content: ""; width: 6px; height: 11px; border: solid var(--beige); border-width: 0 2.5px 2.5px 0; transform: translateY(-1px) rotate(45deg); }
+    .card--blue .check input:checked::after { border-color: var(--blue); }
+    .check.is-invalid input { border-width: 3px; }
+    .form__error { font-weight: 700; padding: 12px 16px; border: 2px solid currentColor; border-radius: 14px; }
+    .form__submit { justify-self: start; min-height: 58px; }
+    .form__submit:disabled { opacity: .6; cursor: progress; }
+    .form__done { padding: clamp(24px, 3vw, 40px); border-radius: 20px; background: var(--blue); color: var(--beige); }
+    .card--blue .form__done { background: var(--beige); color: var(--blue); }
+    .form__done:focus { outline: none; }
+    .form__done h3 { font: 400 clamp(2rem, 3.5vw, 3rem)/.95 var(--display); margin-bottom: 10px; }
+
+    .foot { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 32px; padding: 28px var(--gutter); border-top: 2px solid var(--blue); font-size: .9375rem; }
+    .foot__logo { width: 56px; }
+    .foot a { font-weight: 700; }
+    .foot p:last-child { margin-left: auto; }
+
+    @media (max-width: 900px) { .join { grid-template-columns: 1fr; } }
+    @media (max-width: 560px) {
+      .field-row { grid-template-columns: 1fr; }
+      .form__submit, .tz__bottom .btn { width: 100%; }
+      .tz__coords { font-size: .8125rem; }
+      .foot p:last-child { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
   <div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-q" hidden>
     <div class="gate__inner">
       <span class="logo gate__logo" role="img" aria-label="São"></span>
@@ -27,59 +177,52 @@
         <button class="btn btn--outline" id="gate-no" data-i18n="gate.no">No</button>
       </div>
       <p class="gate__denied" id="gate-denied" hidden data-i18n="gate.denied">You need to be 18 or older to visit this site. See you later.</p>
-      <div class="lang" aria-label="Language">
-        <button type="button" data-lang="en">EN</button><button type="button" data-lang="pt">PT</button>
-      </div>
+      <div class="lang" aria-label="Language"><button type="button" data-lang="en">EN</button><button type="button" data-lang="pt">PT</button></div>
       <p class="gate__small" data-i18n="gate.small">By entering you agree to enjoy São responsibly.</p>
     </div>
   </div>
 
   <main>
-
-    <!-- Full-screen teaser -->
-    <section class="tz">
-      <video class="tz__video" autoplay muted loop playsinline preload="metadata" poster="assets/video/hero-poster.jpg" aria-hidden="true">
-        <source src="assets/video/hero.mp4" type="video/mp4">
-      </video>
+    <section class="tz on-blue">
       <div class="tz__top">
         <span class="tz__coords">38.7223° N, 9.1393° W</span>
-        <div class="lang" aria-label="Language">
-          <button type="button" data-lang="en">EN</button><button type="button" data-lang="pt">PT</button>
-        </div>
+        <div class="lang" aria-label="Language"><button type="button" data-lang="en">EN</button><button type="button" data-lang="pt">PT</button></div>
       </div>
+
       <div class="tz__center">
         <h1 class="tz__mark"><span class="logo" role="img" aria-label="São"></span></h1>
-        <p class="tz__title" data-i18n="tz.title">Lisbon, soon.</p>
+        <p class="tz__title" data-i18n="tz.title">Lisbon, end of 2026.</p>
       </div>
+
       <div class="tz__bottom">
-        <p class="tz__line" data-i18n="tz.line">A new hard seltzer is landing on Lisbon's rooftops, bars and clubs at the end of 2026. That's all we can say. For now.</p>
-        <a class="btn btn--beige" href="#join" data-i18n="tz.cta">Be the first to know</a>
+        <div class="tz__clues">
+          <p data-i18n="tz.c1">Two flavours.</p>
+          <p data-i18n="tz.c2">One slim can.</p>
+          <p><span data-i18n="tz.c3">The rest is</span> <span class="redact" style="--w: 5.5em" role="img" aria-label="classified"></span></p>
+        </div>
+        <a class="btn btn--beige" href="#join" data-i18n="tz.cta">Get on the list</a>
       </div>
     </section>
 
-    <!-- Running line -->
-    <div class="band band--blue" aria-hidden="true">
+    <div class="band" aria-hidden="true">
       <div class="band__track">
-        <span data-i18n="tz.band1">Coming soon</span><i class="sep"></i>
+        <span data-i18n="tz.b1">Coming soon</span><i class="sep"></i>
         <span>Lisboa</span><i class="sep"></i>
-        <span data-i18n="tz.band2">End of 2026</span><i class="sep"></i>
-        <span>Saúde</span><i class="sep"></i>
+        <span data-i18n="tz.b2">End of 2026</span><i class="sep"></i>
+        <span data-i18n="tz.b3">Don't miss it</span><i class="sep"></i>
       </div>
     </div>
 
-    <!-- Two ways in -->
     <section class="join" id="join">
-
-      <article class="join__card">
-        <h2 class="join__title" data-i18n="tz.list.title">Be the first to know.</h2>
-        <p class="join__body" data-i18n="tz.list.body">The launch date and the first places to find us, straight to your inbox. No spam.</p>
-
-        <form class="form form--tight" name="updates" method="POST" data-netlify="true" netlify-honeypot="company_website" data-done="updates-done" novalidate>
+      <article class="card">
+        <h2 class="card__title" data-i18n="tz.list.title">The list is open.</h2>
+        <p class="card__body" data-i18n="tz.list.body">Be the first to hear the date, the first venues and everything we can't say yet. One email when it matters.</p>
+        <form class="form" name="updates" method="POST" data-netlify="true" netlify-honeypot="company_website" data-done="updates-done" novalidate>
           <input type="hidden" name="form-name" value="updates">
           <input type="hidden" name="language" value="en">
           <p class="form__hp" aria-hidden="true"><label>Leave this empty <input name="company_website" tabindex="-1" autocomplete="off"></label></p>
           <div class="field">
-            <label for="u-email" data-i18n="form.email">Email</label>
+            <label for="u-email" data-i18n="f.email">Email</label>
             <input id="u-email" name="email" type="email" required autocomplete="email">
           </div>
           <label class="check">
@@ -87,79 +230,185 @@
             <span data-i18n="tz.list.consent">I'm 18 or older and I'd like to receive news from São by email.</span>
           </label>
           <p class="form__error" role="alert" hidden></p>
-          <button class="btn btn--blue form__submit" type="submit" data-i18n="tz.list.submit">Keep me posted</button>
+          <button class="btn btn--blue form__submit" type="submit" data-i18n="tz.list.submit">Put me on the list</button>
         </form>
         <div class="form__done" id="updates-done" tabindex="-1" hidden>
-          <h3 data-i18n="tz.list.done">You're on the list.</h3>
-          <p data-i18n="tz.list.done2">We'll let you know the moment São lands in Lisbon.</p>
+          <h3 data-i18n="tz.list.done">You're in.</h3>
+          <p data-i18n="tz.list.done2">You'll hear from us before anyone else.</p>
         </div>
       </article>
 
-      <article class="join__card join__card--blue">
-        <h2 class="join__title" data-i18n="tz.venue.title">Run a venue? Taste it first.</h2>
-        <p class="join__body" data-i18n="tz.venue.body">Bars, clubs and beach clubs in Lisbon get a free tasting kit before launch. No obligation.</p>
-
-        <form class="form form--tight" name="venue-early-access" method="POST" data-netlify="true" netlify-honeypot="company_website" data-done="venue-done" novalidate>
+      <article class="card card--blue on-blue">
+        <h2 class="card__title" data-i18n="tz.venue.title">Run a venue? Taste it first.</h2>
+        <p class="card__body" data-i18n="tz.venue.body">A handful of Lisbon bars, clubs and rooftops get to try it before launch. Free, no obligation.</p>
+        <form class="form" name="venue-early-access" method="POST" data-netlify="true" netlify-honeypot="company_website" data-done="venue-done" novalidate>
           <input type="hidden" name="form-name" value="venue-early-access">
           <input type="hidden" name="language" value="en">
           <p class="form__hp" aria-hidden="true"><label>Leave this empty <input name="company_website" tabindex="-1" autocomplete="off"></label></p>
           <div class="field-row">
             <div class="field">
-              <label for="v-venue" data-i18n="form.venue">Venue name</label>
+              <label for="v-venue" data-i18n="f.venue">Venue name</label>
               <input id="v-venue" name="venue" type="text" required autocomplete="organization">
             </div>
             <div class="field">
-              <label for="v-type" data-i18n="form.type">Type of venue</label>
+              <label for="v-type" data-i18n="f.type">Type of venue</label>
               <select id="v-type" name="venue_type" required>
-                <option value="" data-i18n="form.choose">Choose one</option>
-                <option value="Bar" data-i18n="form.t.bar">Bar</option>
-                <option value="Club" data-i18n="form.t.club">Club</option>
-                <option value="Beach club" data-i18n="form.t.beach">Beach club</option>
-                <option value="Restaurant" data-i18n="form.t.rest">Restaurant</option>
-                <option value="Hotel" data-i18n="form.t.hotel">Hotel</option>
-                <option value="Festival or event" data-i18n="form.t.fest">Festival or event</option>
-                <option value="Other" data-i18n="form.t.other">Other</option>
+                <option value="" data-i18n="f.choose">Choose one</option>
+                <option value="Bar" data-i18n="f.t.bar">Bar</option>
+                <option value="Club" data-i18n="f.t.club">Club</option>
+                <option value="Rooftop" data-i18n="f.t.roof">Rooftop</option>
+                <option value="Beach club" data-i18n="f.t.beach">Beach club</option>
+                <option value="Restaurant" data-i18n="f.t.rest">Restaurant</option>
+                <option value="Hotel" data-i18n="f.t.hotel">Hotel</option>
+                <option value="Festival or event" data-i18n="f.t.fest">Festival or event</option>
+                <option value="Other" data-i18n="f.t.other">Other</option>
               </select>
             </div>
           </div>
           <div class="field-row">
             <div class="field">
-              <label for="v-name" data-i18n="form.name">Your name</label>
+              <label for="v-name" data-i18n="f.name">Your name</label>
               <input id="v-name" name="name" type="text" required autocomplete="name">
             </div>
             <div class="field">
-              <label for="v-email" data-i18n="form.email">Email</label>
+              <label for="v-email" data-i18n="f.email">Email</label>
               <input id="v-email" name="email" type="email" required autocomplete="email">
             </div>
           </div>
           <div class="field">
-            <label for="v-phone" data-i18n="form.phone">Phone or WhatsApp <span class="opt">(optional)</span></label>
+            <label for="v-phone" data-i18n="f.phone">Phone or WhatsApp <span class="opt">(optional)</span></label>
             <input id="v-phone" name="phone" type="tel" autocomplete="tel">
           </div>
           <label class="check">
             <input type="checkbox" name="consent" value="yes" required>
-            <span data-i18n="tz.venue.consent">I'm 18 or older, I represent this venue and São may contact me about a tasting kit.</span>
+            <span data-i18n="tz.venue.consent">I'm 18 or older, I represent this venue and São may contact me about a tasting.</span>
           </label>
           <p class="form__error" role="alert" hidden></p>
-          <button class="btn btn--beige form__submit" type="submit" data-i18n="tz.venue.submit">Request a tasting kit</button>
+          <button class="btn btn--beige form__submit" type="submit" data-i18n="tz.venue.submit">Request a tasting</button>
         </form>
         <div class="form__done" id="venue-done" tabindex="-1" hidden>
-          <h3 data-i18n="done.title">Request sent. Obrigado!</h3>
-          <p data-i18n="tz.venue.done2">We'll be in touch before launch to arrange your tasting kit.</p>
+          <h3 data-i18n="tz.venue.done">Request received.</h3>
+          <p data-i18n="tz.venue.done2">We'll be in touch before launch to set up your tasting.</p>
         </div>
       </article>
-
     </section>
-
   </main>
 
-  <footer class="tz-foot">
-    <span class="logo tz-foot__logo" aria-hidden="true"></span>
+  <footer class="foot">
+    <span class="logo foot__logo" aria-hidden="true"></span>
     <a href="mailto:info@drinksao.com">info@drinksao.com</a>
     <p data-i18n="foot.resp">Enjoy responsibly. Not for sale to persons under 18.</p>
     <p>&copy; <span id="year">2026</span> São</p>
   </footer>
 
-  <script src="main.js"></script>
+  <script>
+    const T = {
+      en: {
+        "gate.q": "Are you 18 or older?", "gate.yes": "Yes, I'm 18+", "gate.no": "No",
+        "gate.denied": "You need to be 18 or older to visit this site. See you later.",
+        "gate.small": "By entering you agree to enjoy São responsibly.",
+        "tz.title": "Lisbon, end of 2026.",
+        "tz.c1": "Two flavours.", "tz.c2": "One slim can.", "tz.c3": "The rest is",
+        "tz.cta": "Get on the list",
+        "tz.b1": "Coming soon", "tz.b2": "End of 2026", "tz.b3": "Don't miss it",
+        "tz.list.title": "The list is open.",
+        "tz.list.body": "Be the first to hear the date, the first venues and everything we can't say yet. One email when it matters.",
+        "tz.list.consent": "I'm 18 or older and I'd like to receive news from São by email.",
+        "tz.list.submit": "Put me on the list", "tz.list.done": "You're in.", "tz.list.done2": "You'll hear from us before anyone else.",
+        "tz.venue.title": "Run a venue? Taste it first.",
+        "tz.venue.body": "A handful of Lisbon bars, clubs and rooftops get to try it before launch. Free, no obligation.",
+        "tz.venue.consent": "I'm 18 or older, I represent this venue and São may contact me about a tasting.",
+        "tz.venue.submit": "Request a tasting", "tz.venue.done": "Request received.",
+        "tz.venue.done2": "We'll be in touch before launch to set up your tasting.",
+        "f.email": "Email", "f.venue": "Venue name", "f.type": "Type of venue", "f.choose": "Choose one",
+        "f.t.bar": "Bar", "f.t.club": "Club", "f.t.roof": "Rooftop", "f.t.beach": "Beach club", "f.t.rest": "Restaurant",
+        "f.t.hotel": "Hotel", "f.t.fest": "Festival or event", "f.t.other": "Other",
+        "f.name": "Your name", "f.phone": "Phone or WhatsApp <span class=\"opt\">(optional)</span>",
+        "f.sending": "Sending…", "f.err.fields": "Please fill in the highlighted fields.",
+        "f.err.send": "That didn't go through. Check your connection and try again, or email info@drinksao.com.",
+        "foot.resp": "Enjoy responsibly. Not for sale to persons under 18.",
+        "title": "São — Lisbon, soon"
+      },
+      pt: {
+        "gate.q": "Tem 18 anos ou mais?", "gate.yes": "Sim, tenho 18+", "gate.no": "Não",
+        "gate.denied": "Precisa de ter 18 anos ou mais para visitar este site. Até breve.",
+        "gate.small": "Ao entrar, compromete-se a beber São com moderação.",
+        "tz.title": "Lisboa, fim de 2026.",
+        "tz.c1": "Dois sabores.", "tz.c2": "Uma lata slim.", "tz.c3": "O resto é",
+        "tz.cta": "Entrar na lista",
+        "tz.b1": "Brevemente", "tz.b2": "Fim de 2026", "tz.b3": "Não perca",
+        "tz.list.title": "A lista está aberta.",
+        "tz.list.body": "Seja o primeiro a saber a data, os primeiros espaços e tudo o que ainda não podemos dizer. Um email só quando importa.",
+        "tz.list.consent": "Tenho 18 anos ou mais e quero receber novidades da São por email.",
+        "tz.list.submit": "Pôr-me na lista", "tz.list.done": "Está dentro.", "tz.list.done2": "Vai saber antes de toda a gente.",
+        "tz.venue.title": "Tem um espaço? Prove primeiro.",
+        "tz.venue.body": "Alguns bares, discotecas e rooftops de Lisboa vão provar antes do lançamento. Grátis, sem compromisso.",
+        "tz.venue.consent": "Tenho 18 anos ou mais, represento este espaço e a São pode contactar-me sobre uma prova.",
+        "tz.venue.submit": "Pedir uma prova", "tz.venue.done": "Pedido recebido.",
+        "tz.venue.done2": "Entraremos em contacto antes do lançamento para combinar a sua prova.",
+        "f.email": "Email", "f.venue": "Nome do espaço", "f.type": "Tipo de espaço", "f.choose": "Escolha uma opção",
+        "f.t.bar": "Bar", "f.t.club": "Discoteca", "f.t.roof": "Rooftop", "f.t.beach": "Beach club", "f.t.rest": "Restaurante",
+        "f.t.hotel": "Hotel", "f.t.fest": "Festival ou evento", "f.t.other": "Outro",
+        "f.name": "O seu nome", "f.phone": "Telefone ou WhatsApp <span class=\"opt\">(opcional)</span>",
+        "f.sending": "A enviar…", "f.err.fields": "Preencha os campos assinalados.",
+        "f.err.send": "Não foi enviado. Verifique a ligação e tente de novo, ou escreva para info@drinksao.com.",
+        "foot.resp": "Seja responsável. Beba com moderação. Venda proibida a menores de 18 anos.",
+        "title": "São — Lisboa, em breve"
+      }
+    };
+    const store = {
+      get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+      set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+    };
+    let lang = "en";
+    function setLang(l) {
+      lang = T[l] ? l : "en";
+      const d = T[lang];
+      document.documentElement.lang = lang === "pt" ? "pt-PT" : "en";
+      document.querySelectorAll("[data-i18n]").forEach(el => { const v = d[el.dataset.i18n]; if (v != null) el.innerHTML = v; });
+      document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
+      document.querySelectorAll('input[name="language"]').forEach(i => { i.value = lang; });
+      document.title = d.title;
+      store.set("sao-lang", lang);
+    }
+    document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.lang)));
+    document.querySelectorAll(".band__track").forEach(t => { t.innerHTML = t.innerHTML.repeat(2); t.innerHTML += t.innerHTML; });
+    setLang(store.get("sao-lang") || "en");
+
+    const gate = document.getElementById("gate");
+    if (store.get("sao-age") !== "ok") { gate.hidden = false; document.body.classList.add("locked"); }
+    document.getElementById("gate-yes").addEventListener("click", () => {
+      store.set("sao-age", "ok"); document.body.classList.remove("locked");
+      gate.classList.add("leaving"); setTimeout(() => { gate.hidden = true; }, 520);
+    });
+    document.getElementById("gate-no").addEventListener("click", () => {
+      document.getElementById("gate-actions").hidden = true; document.getElementById("gate-denied").hidden = false;
+    });
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    document.querySelectorAll("form[data-netlify]").forEach(form => {
+      const err = form.querySelector(".form__error"), btn = form.querySelector(".form__submit");
+      const done = document.getElementById(form.dataset.done);
+      form.addEventListener("submit", async e => {
+        e.preventDefault();
+        err.hidden = true;
+        form.querySelectorAll(".is-invalid").forEach(el => el.classList.remove("is-invalid"));
+        const bad = [...form.querySelectorAll("[required]")].filter(el => !el.checkValidity());
+        if (bad.length) {
+          bad.forEach(el => (el.closest(".field, .check") || el).classList.add("is-invalid"));
+          err.textContent = T[lang]["f.err.fields"]; err.hidden = false; bad[0].focus(); return;
+        }
+        const label = btn.innerHTML; btn.disabled = true; btn.textContent = T[lang]["f.sending"];
+        try {
+          const res = await fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(new FormData(form)).toString() });
+          if (!res.ok) throw new Error(res.status);
+          form.hidden = true; done.hidden = false; done.focus();
+        } catch (x) {
+          err.textContent = T[lang]["f.err.send"]; err.hidden = false; btn.disabled = false; btn.innerHTML = label;
+        }
+      });
+      form.addEventListener("input", e => { const f = e.target.closest(".field, .check"); if (f && e.target.checkValidity()) f.classList.remove("is-invalid"); });
+    });
+  </script>
 </body>
 </html>
