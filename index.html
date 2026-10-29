@@ -3,257 +3,400 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>São — Hard seltzer from Portugal</title>
-  <meta name="description" content="São is a hard seltzer made for Portugal's bars, clubs, beach clubs and festivals. Lime and maracujá, in slim 250 ml cans.">
+  <title>São — Lisbon, soon</title>
+  <meta name="description" content="Something new is coming to Lisbon at the end of 2026. Get on the list.">
   <meta name="theme-color" content="#1205AB">
-  <meta property="og:title" content="São — Hard seltzer from Portugal">
-  <meta property="og:description" content="Lime and maracujá hard seltzer, made for the Portuguese night.">
+  <meta property="og:title" content="São — Lisbon, soon">
+  <meta property="og:description" content="Something new is coming to Lisbon at the end of 2026. Get on the list.">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Familjen+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    :root {
+      --beige: #FEFBE4;
+      --blue: #1205AB;
+      --blue-deep: #0C0478;
+      --display: "Anton", "Arial Narrow", sans-serif;
+      --text: "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
+      --gutter: clamp(20px, 5vw, 72px);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body { margin: 0; background: var(--beige); color: var(--blue); font: 400 1.0625rem/1.55 var(--text); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    [hidden] { display: none !important; }
+    p, h1, h2, h3 { margin: 0; font-weight: 400; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+    .on-blue :focus-visible { outline-color: var(--beige); }
+
+    .logo {
+      display: block; aspect-ratio: 1836 / 1610; background: currentColor;
+      -webkit-mask: url("assets/logo.svg") center / contain no-repeat;
+              mask: url("assets/logo.svg") center / contain no-repeat;
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 54px; padding: 0 32px; border-radius: 999px; border: 2px solid currentColor;
+      font: 700 1rem/1 var(--text); text-decoration: none; cursor: pointer;
+      background: transparent; color: inherit; transition: background-color .2s, color .2s;
+    }
+    .btn--blue { background: var(--blue); border-color: var(--blue); color: var(--beige); }
+    .btn--blue:hover { background: var(--blue-deep); border-color: var(--blue-deep); }
+    .btn--beige { background: var(--beige); border-color: var(--beige); color: var(--blue); }
+    .btn--beige:hover { background: transparent; color: var(--beige); }
+    .btn--outline:hover { background: var(--blue); color: var(--beige); border-color: var(--blue); }
+
+    .lang { display: inline-flex; border: 2px solid currentColor; border-radius: 999px; padding: 3px; }
+    .lang button { appearance: none; border: 0; background: transparent; color: inherit; font: 700 .875rem/1 var(--text); padding: 8px 12px; border-radius: 999px; cursor: pointer; }
+    .lang button[aria-pressed="true"] { background: var(--blue); color: var(--beige); }
+    .on-blue .lang button[aria-pressed="true"] { background: var(--beige); color: var(--blue); }
+
+
+    /* Teaser: type only */
+    .tz {
+      min-height: 100svh; display: grid; grid-template-rows: auto 1fr auto;
+      padding: clamp(18px, 3vw, 32px) var(--gutter) clamp(28px, 4vw, 48px);
+      background: var(--beige); color: var(--blue);
+    }
+    .tz__top { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    .tz__coords { font-weight: 500; font-size: .9375rem; letter-spacing: .02em; }
+    .tz__center { display: grid; place-items: center; align-content: center; gap: clamp(20px, 3vw, 36px); text-align: center; padding: 32px 0; }
+    .tz__mark { width: min(78vw, 680px, calc(50svh * 1.14)); }
+    .tz__mark .logo { width: 100%; }
+    .tz__title { font: 400 clamp(2.25rem, 5vw, 4.5rem)/1 var(--display); }
+    .tz__bottom { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px 40px; }
+    .tz__clues { display: grid; gap: 6px; font: 400 clamp(1.375rem, 2.2vw, 2rem)/1.15 var(--display); }
+    .redact {
+      display: inline-block; vertical-align: -.08em; height: .82em; border-radius: 3px;
+      background: var(--blue); width: var(--w, 6ch);
+    }
+
+    /* Load moment: the wordmark rises out of a mask, the rest follows */
+    @media (prefers-reduced-motion: no-preference) {
+      .tz__mark { overflow: hidden; }
+      .tz__mark .logo { animation: rise 1.4s cubic-bezier(.16,1,.3,1) .2s both; }
+      .tz__title, .tz__clues > *, .tz__bottom .btn { animation: fade .9s ease both; }
+      .tz__title { animation-delay: 1.2s; }
+      .tz__clues > :nth-child(1) { animation-delay: 1.5s; }
+      .tz__clues > :nth-child(2) { animation-delay: 1.65s; }
+      .tz__clues > :nth-child(3) { animation-delay: 1.8s; }
+      .tz__bottom .btn { animation-delay: 2s; }
+      @keyframes rise { from { transform: translateY(105%); } }
+      @keyframes fade { from { opacity: 0; transform: translateY(8px); } }
+      .redact { animation: tube 3.1s linear infinite; }
+      .tz__clues > :nth-child(3) .redact { animation-delay: 2.4s; }
+      @keyframes tube {
+        0%   { opacity: 1; }
+        3%   { opacity: .15; }
+        4%   { opacity: .9; }
+        5%   { opacity: .1; }
+        7%   { opacity: 1; }
+        38%  { opacity: 1; }
+        39%  { opacity: .4; }
+        40%  { opacity: 1; }
+        61%  { opacity: 1; }
+        62%  { opacity: 0; }
+        64%  { opacity: .8; }
+        65%  { opacity: .05; }
+        66%  { opacity: .6; }
+        67%  { opacity: 0; }
+        70%  { opacity: 1; }
+        88%  { opacity: 1; }
+        89%  { opacity: .3; }
+        90%  { opacity: 1; }
+        100% { opacity: 1; }
+      }
+    }
+
+    /* Running line */
+    .band { overflow: hidden; white-space: nowrap; background: var(--blue); color: var(--beige); padding: clamp(14px, 1.8vw, 22px) 0; }
+    .band__track { display: inline-flex; align-items: center; width: max-content; }
+    .band__track span { font: 400 clamp(1.75rem, 3.4vw, 3rem)/1 var(--display); padding: 0 clamp(28px, 3.5vw, 56px); }
+    .band .sep { display: inline-block; flex: none; width: 10px; height: 10px; border-radius: 50%; background: currentColor; }
+    @media (prefers-reduced-motion: no-preference) {
+      .band__track { animation: run 50s linear infinite; }
+      @keyframes run { to { transform: translateX(-50%); } }
+    }
+
+    /* Two ways in */
+    .join { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 2vw, 28px); padding: clamp(48px, 7vw, 104px) var(--gutter); }
+    .card { border: 2px solid var(--blue); border-radius: 28px; padding: clamp(28px, 3.5vw, 52px); }
+    .card--blue { background: var(--blue); color: var(--beige); }
+    .card__title { font: 400 clamp(2.5rem, 4.6vw, 4.5rem)/.92 var(--display); max-width: 11ch; margin-bottom: 18px; }
+    .card__body { max-width: 28rem; margin-bottom: 32px; font-size: clamp(1.0625rem, 1.3vw, 1.1875rem); }
+
+    .form { display: grid; gap: 18px; }
+    .form__hp { position: absolute; left: -9999px; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .field { display: grid; gap: 8px; }
+    .field label { font-weight: 700; font-size: .9375rem; }
+    .opt { font-weight: 400; opacity: .7; }
+    .field input, .field select {
+      width: 100%; font: 400 1rem/1.4 var(--text); color: var(--blue);
+      background: var(--beige); border: 2px solid var(--blue); border-radius: 14px; padding: 13px 16px; appearance: none;
+    }
+    .card--blue .field input, .card--blue .field select { border-color: var(--beige); }
+    .field select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%231205AB' stroke-width='2.5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 16px center; padding-right: 44px;
+    }
+    .field input:focus, .field select:focus { outline: none; box-shadow: 0 0 0 3px var(--beige), 0 0 0 5px var(--blue); }
+    .card--blue .field input:focus, .card--blue .field select:focus { box-shadow: 0 0 0 3px var(--blue), 0 0 0 5px var(--beige); }
+    .field.is-invalid input, .field.is-invalid select { border-width: 3px; }
+    .check { display: flex; gap: 12px; align-items: flex-start; cursor: pointer; }
+    .check input {
+      appearance: none; flex: none; width: 24px; height: 24px; margin: 1px 0 0; color: inherit; border: 2px solid currentColor;
+      border-radius: 6px; background: transparent; cursor: pointer; display: grid; place-items: center;
+    }
+    .check input:checked { background: currentColor; }
+    .check input:checked::after { content: ""; width: 6px; height: 11px; border: solid var(--beige); border-width: 0 2.5px 2.5px 0; transform: translateY(-1px) rotate(45deg); }
+    .card--blue .check input:checked::after { border-color: var(--blue); }
+    .check.is-invalid input { border-width: 3px; }
+    .form__error { font-weight: 700; padding: 12px 16px; border: 2px solid currentColor; border-radius: 14px; }
+    .form__submit { justify-self: start; min-height: 58px; }
+    .form__submit:disabled { opacity: .6; cursor: progress; }
+    .form__done { padding: clamp(24px, 3vw, 40px); border-radius: 20px; background: var(--blue); color: var(--beige); }
+    .card--blue .form__done { background: var(--beige); color: var(--blue); }
+    .form__done:focus { outline: none; }
+    .form__done h3 { font: 400 clamp(2rem, 3.5vw, 3rem)/.95 var(--display); margin-bottom: 10px; }
+
+    .foot { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 32px; padding: 28px var(--gutter); border-top: 2px solid var(--blue); font-size: .9375rem; }
+    .foot__logo { width: 56px; }
+    .foot a { font-weight: 700; }
+    .foot p:last-child { margin-left: auto; }
+
+    @media (max-width: 900px) { .join { grid-template-columns: 1fr; } }
+    @media (max-width: 560px) {
+      .field-row { grid-template-columns: 1fr; }
+      .form__submit, .tz__bottom .btn { width: 100%; }
+      .tz__coords { font-size: .8125rem; }
+      .foot p:last-child { margin-left: 0; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Age check -->
-  <div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-q" hidden>
-    <div class="gate__inner">
-      <span class="logo gate__logo" role="img" aria-label="São"></span>
-      <p class="gate__q" id="gate-q" data-i18n="gate.q">Are you 18 or older?</p>
-      <div class="gate__actions" id="gate-actions">
-        <button class="btn btn--blue" id="gate-yes" data-i18n="gate.yes">Yes, I'm 18+</button>
-        <button class="btn btn--outline" id="gate-no" data-i18n="gate.no">No</button>
-      </div>
-      <p class="gate__denied" id="gate-denied" hidden data-i18n="gate.denied">You need to be 18 or older to visit this site. See you later.</p>
-      <div class="lang" aria-label="Language">
-        <button type="button" data-lang="en">EN</button><button type="button" data-lang="pt">PT</button>
-      </div>
-      <p class="gate__small" data-i18n="gate.small">By entering you agree to enjoy São responsibly.</p>
-    </div>
-  </div>
 
-  <!-- Announcement bar -->
-  <div class="ticker" aria-label="Announcement">
-    <div class="ticker__track" aria-hidden="true">
-      <span data-i18n="ticker">Coming soon to Lisbon and the Algarve</span><i class="logo dot"></i>
-      <span data-i18n="ticker">Coming soon to Lisbon and the Algarve</span><i class="logo dot"></i>
-      <span data-i18n="ticker">Coming soon to Lisbon and the Algarve</span><i class="logo dot"></i>
-      <span data-i18n="ticker">Coming soon to Lisbon and the Algarve</span><i class="logo dot"></i>
-      <span data-i18n="ticker">Coming soon to Lisbon and the Algarve</span><i class="logo dot"></i>
-      <span data-i18n="ticker">Coming soon to Lisbon and the Algarve</span><i class="logo dot"></i>
-    </div>
-    <span class="visually-hidden" data-i18n="ticker">Coming soon to Lisbon and the Algarve</span>
-  </div>
-
-  <header class="top">
-    <a class="top__logo" href="#top" aria-label="São — home"><span class="logo" aria-hidden="true"></span></a>
-    <nav class="top__nav" aria-label="Main">
-      <a href="#flavours" data-i18n="nav.flavours">Flavours</a>
-      <a href="#where" data-i18n="nav.where">Find us</a>
-      <a href="#about" data-i18n="nav.about">Our story</a>
-      <a href="#venues" data-i18n="nav.venues">For venues</a>
-    </nav>
-    <div class="lang" aria-label="Language">
-      <button type="button" data-lang="en">EN</button><button type="button" data-lang="pt">PT</button>
-    </div>
-  </header>
-
-  <main id="top">
-
-    <!-- Hero -->
-    <section class="hero">
-      <div class="hero__copy">
-        <p class="hero__kicker" data-i18n="hero.kicker">Hard seltzer from Portugal</p>
-        <h1 class="hero__title" data-i18n="hero.title">Light. Dry.<br>Out late.</h1>
-        <p class="hero__line" data-i18n="hero.line">Lime and maracujá hard seltzer in a slim, ice-cold can. Made for rooftops, dance floors and the beach at sunrise.</p>
-        <div class="hero__actions">
-          <a class="btn btn--blue" href="#flavours" data-i18n="hero.cta">See the flavours</a>
-          <a class="btn btn--outline" href="#venues" data-i18n="hero.cta2">Stock São</a>
-        </div>
+  <main>
+    <section class="tz">
+      <div class="tz__top">
+        <span class="tz__coords">38.7223° N, 9.1393° W</span>
+        <div class="lang" aria-label="Language"><button type="button" data-lang="en">EN</button><button type="button" data-lang="pt">PT</button></div>
       </div>
 
-      <div class="hero__stage" aria-hidden="true">
-        <div class="sun"></div>
-        <div class="can can--lime hero__can hero__can--a">
-          <div class="can__body"><span class="logo can__word"></span><span class="can__flav" data-i18n="lime.name">Lime</span></div>
+      <div class="tz__center">
+        <h1 class="tz__mark"><span class="logo" role="img" aria-label="São"></span></h1>
+        <p class="tz__title" data-i18n="tz.title">Lisbon, end of 2026.</p>
+      </div>
+
+      <div class="tz__bottom">
+        <div class="tz__clues">
+          <p data-i18n="tz.c1">Two flavours.</p>
+          <p data-i18n="tz.c2">One slim can.</p>
+          <p><span data-i18n="tz.c3">The rest is</span> <span class="redact" style="--w: 5.5em" role="img" aria-label="classified"></span></p>
         </div>
-        <div class="can can--mara hero__can hero__can--b">
-          <div class="can__body"><span class="logo can__word"></span><span class="can__flav" data-i18n="mara.name">Maracujá</span></div>
-        </div>
-        <svg class="sticker" viewBox="0 0 200 200">
-          <defs><path id="ring" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"/></defs>
-          <circle cx="100" cy="100" r="98" class="sticker__bg"/>
-          <text class="sticker__text"><textPath href="#ring" data-i18n="sticker">new hard seltzer — new hard seltzer — </textPath></text>
-          <text x="100" y="116" text-anchor="middle" class="sticker__mid">18+</text>
-        </svg>
+        <a class="btn btn--blue" href="#join" data-i18n="tz.cta">Get on the list</a>
       </div>
     </section>
 
-    <!-- Big band -->
     <div class="band" aria-hidden="true">
       <div class="band__track">
-        <span data-i18n="band.1">Ice cold</span><i class="logo dot"></i>
-        <span data-i18n="band.2">Light and bubbly</span><i class="logo dot"></i>
-        <span>Lisboa</span><i class="logo dot"></i>
-        <span>Algarve</span><i class="logo dot"></i>
-        <span data-i18n="band.1">Ice cold</span><i class="logo dot"></i>
-        <span data-i18n="band.2">Light and bubbly</span><i class="logo dot"></i>
-        <span>Lisboa</span><i class="logo dot"></i>
-        <span>Algarve</span><i class="logo dot"></i>
+        <span data-i18n="tz.b1">Coming soon</span><i class="sep"></i>
+        <span>Lisboa</span><i class="sep"></i>
+        <span data-i18n="tz.b2">End of 2026</span><i class="sep"></i>
+        <span data-i18n="tz.b3">Don't miss it</span><i class="sep"></i>
       </div>
     </div>
 
-    <!-- Flavours -->
-    <section class="flavours" id="flavours" aria-labelledby="flavours-title">
-      <div class="section-head">
-        <h2 id="flavours-title" data-i18n="flavours.title">Two flavours. Pick a side.</h2>
-        <p data-i18n="flavours.intro">Both come in a slim 250 ml can. Both are best straight from the ice bucket.</p>
-      </div>
-
-      <div class="flavours__grid">
-        <article class="card card--lime">
-          <div class="card__stage">
-            <div class="can can--lime">
-              <div class="can__body"><span class="logo can__word"></span><span class="can__flav" data-i18n="lime.name">Lime</span></div>
+    <section class="join" id="join">
+      <article class="card">
+        <h2 class="card__title" data-i18n="tz.list.title">The list is open.</h2>
+        <p class="card__body" data-i18n="tz.list.body">Be the first to hear the date, the first venues and everything we can't say yet. An email when it matters.</p>
+        <form class="form" name="updates" method="POST" data-netlify="true" netlify-honeypot="company_website" data-done="updates-done" novalidate>
+          <input type="hidden" name="form-name" value="updates">
+          <input type="hidden" name="language" value="en">
+          <p class="form__hp" aria-hidden="true"><label>Leave this empty <input name="company_website" tabindex="-1" autocomplete="off"></label></p>
+          <div class="field-row">
+            <div class="field">
+              <label for="u-name" data-i18n="f.first">First name</label>
+              <input id="u-name" name="name" type="text" required autocomplete="given-name">
+            </div>
+            <div class="field">
+              <label for="u-email" data-i18n="f.email">Email</label>
+              <input id="u-email" name="email" type="email" required autocomplete="email">
             </div>
           </div>
-          <div class="card__text">
-            <h3 class="card__name" data-i18n="lime.name">Lime</h3>
-            <p data-i18n="lime.body">Sharp, clean and cold. Fresh lime over sparkling water, with nothing sticky left behind.</p>
-            <ul class="tags">
-              <li data-i18n="tag.zesty">Zesty</li><li data-i18n="tag.crisp">Crisp</li><li>250 ml</li>
-            </ul>
-          </div>
-        </article>
+          <label class="check">
+            <input type="checkbox" name="consent" value="yes" required>
+            <span data-i18n="tz.list.consent">I'm 18 or older and I'd like to receive news from São by email.</span>
+          </label>
+          <p class="form__error" role="alert" hidden></p>
+          <button class="btn btn--blue form__submit" type="submit" data-i18n="tz.list.submit">Put me on the list</button>
+        </form>
+        <div class="form__done" id="updates-done" tabindex="-1" hidden>
+          <h3 data-i18n="tz.list.done">You're in.</h3>
+          <p data-i18n="tz.list.done2">You'll hear from us before anyone else.</p>
+        </div>
+      </article>
 
-        <article class="card card--mara">
-          <div class="card__stage">
-            <div class="can can--mara">
-              <div class="can__body"><span class="logo can__word"></span><span class="can__flav" data-i18n="mara.name">Maracujá</span></div>
+      <article class="card card--blue on-blue">
+        <h2 class="card__title" data-i18n="tz.venue.title">Run a venue? Taste it first.</h2>
+        <p class="card__body" data-i18n="tz.venue.body">A handful of Lisbon bars, clubs and rooftops get to try it before launch. Free, no obligation.</p>
+        <form class="form" name="venue-early-access" method="POST" data-netlify="true" netlify-honeypot="company_website" data-done="venue-done" novalidate>
+          <input type="hidden" name="form-name" value="venue-early-access">
+          <input type="hidden" name="language" value="en">
+          <p class="form__hp" aria-hidden="true"><label>Leave this empty <input name="company_website" tabindex="-1" autocomplete="off"></label></p>
+          <div class="field-row">
+            <div class="field">
+              <label for="v-venue" data-i18n="f.venue">Venue name</label>
+              <input id="v-venue" name="venue" type="text" required autocomplete="organization">
+            </div>
+            <div class="field">
+              <label for="v-type" data-i18n="f.type">Type of venue</label>
+              <select id="v-type" name="venue_type" required>
+                <option value="" data-i18n="f.choose">Choose one</option>
+                <option value="Bar" data-i18n="f.t.bar">Bar</option>
+                <option value="Club" data-i18n="f.t.club">Club</option>
+                <option value="Rooftop" data-i18n="f.t.roof">Rooftop</option>
+                <option value="Beach club" data-i18n="f.t.beach">Beach club</option>
+                <option value="Restaurant" data-i18n="f.t.rest">Restaurant</option>
+                <option value="Hotel" data-i18n="f.t.hotel">Hotel</option>
+                <option value="Festival or event" data-i18n="f.t.fest">Festival or event</option>
+                <option value="Other" data-i18n="f.t.other">Other</option>
+              </select>
             </div>
           </div>
-          <div class="card__text">
-            <h3 class="card__name" data-i18n="mara.name">Maracujá</h3>
-            <p data-i18n="mara.body">Tart passion fruit with a soft, sunny finish. The one you order a second round of.</p>
-            <ul class="tags">
-              <li data-i18n="tag.tropical">Tropical</li><li data-i18n="tag.tart">Tart</li><li>250 ml</li>
-            </ul>
+          <div class="field-row">
+            <div class="field">
+              <label for="v-name" data-i18n="f.name">Your name</label>
+              <input id="v-name" name="name" type="text" required autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="v-email" data-i18n="f.email">Email</label>
+              <input id="v-email" name="email" type="email" required autocomplete="email">
+            </div>
           </div>
-        </article>
-      </div>
+          <div class="field">
+            <label for="v-phone" data-i18n="f.phone">Phone or WhatsApp <span class="opt">(optional)</span></label>
+            <input id="v-phone" name="phone" type="tel" autocomplete="tel">
+          </div>
+          <label class="check">
+            <input type="checkbox" name="consent" value="yes" required>
+            <span data-i18n="tz.venue.consent">I'm 18 or older, I represent this venue and São may contact me about a tasting.</span>
+          </label>
+          <p class="form__error" role="alert" hidden></p>
+          <button class="btn btn--beige form__submit" type="submit" data-i18n="tz.venue.submit">Request a tasting</button>
+        </form>
+        <div class="form__done" id="venue-done" tabindex="-1" hidden>
+          <h3 data-i18n="tz.venue.done">Request received.</h3>
+          <p data-i18n="tz.venue.done2">We'll be in touch before launch to set up your tasting.</p>
+        </div>
+      </article>
     </section>
-
-    <!-- What it is -->
-    <section class="facts" aria-labelledby="facts-title">
-      <h2 class="visually-hidden" id="facts-title" data-i18n="facts.title">What São is</h2>
-      <ul class="facts__list">
-        <li>
-          <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="16" y="4" width="16" height="40" rx="4"/><path d="M16 10h16M16 38h16"/></svg>
-          <h3 data-i18n="f1.t">Slim 250 ml can</h3>
-          <p data-i18n="f1.p">Easy to hold on a crowded dance floor. Easy to finish while it's still cold.</p>
-        </li>
-        <li>
-          <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="18"/><path d="M24 6v36M6 24h36M11 11l26 26M37 11 11 37"/></svg>
-          <h3 data-i18n="f2.t">Real fruit flavours</h3>
-          <p data-i18n="f2.p">Lime and maracujá, two tastes that already belong to a Portuguese summer.</p>
-        </li>
-        <li>
-          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4v40M7 14l34 20M41 14 7 34"/><path d="M19 7l5 5 5-5M19 41l5-5 5 5"/></svg>
-          <h3 data-i18n="f3.t">Best ice cold</h3>
-          <p data-i18n="f3.p">Light and bubbly, made for hot nights rather than heavy cocktails.</p>
-        </li>
-        <li>
-          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 40c6-10 10-22 16-32 6 10 10 22 16 32"/><path d="M4 40h40"/><circle cx="36" cy="10" r="4"/></svg>
-          <h3 data-i18n="f4.t">Born for Portugal</h3>
-          <p data-i18n="f4.p">A brand built for Lisbon's bars and the Algarve's beach clubs, not imported from somewhere else.</p>
-        </li>
-      </ul>
-    </section>
-
-    <!-- Where -->
-    <section class="where" id="where" aria-labelledby="where-title">
-      <div class="section-head">
-        <h2 id="where-title" data-i18n="where.title">Find us this summer</h2>
-        <p data-i18n="where.intro">Our first venues will be listed here as they sign on.</p>
-      </div>
-      <div class="where__grid">
-        <article class="place place--lisboa">
-          <h3>Lisboa</h3>
-          <p data-i18n="where.lis">Rooftop bars, late-night clubs and the city's running crowd.</p>
-          <span class="place__soon" data-i18n="where.soon">Venues coming soon</span>
-        </article>
-        <article class="place place--algarve">
-          <h3>Algarve</h3>
-          <p data-i18n="where.alg">Beach clubs, pool parties and long nights on the strip.</p>
-          <span class="place__soon" data-i18n="where.soon">Venues coming soon</span>
-        </article>
-        <article class="place place--fest">
-          <h3 data-i18n="where.fest.t">Festivals</h3>
-          <p data-i18n="where.fest">Look for the São bar at summer festivals across Portugal.</p>
-          <span class="place__soon" data-i18n="where.soon">Venues coming soon</span>
-        </article>
-      </div>
-    </section>
-
-    <!-- About -->
-    <section class="about" id="about" aria-labelledby="about-title">
-      <h2 class="about__title" id="about-title" data-i18n="about.title">Made for the Portuguese night.</h2>
-      <div class="about__cols">
-        <p data-i18n="about.p1">Portugal knows how to stay out late. From rooftop bars in Lisbon to beach clubs in the Algarve, the night runs long and the sun comes up warm. São is the drink for all of it: light enough for one more, cold enough for the heat.</p>
-        <p data-i18n="about.p2">Our name means healthy, whole, sound. It is also the word in front of every saint Lisbon parties for in June. Both feel right to us.</p>
-      </div>
-    </section>
-
-    <!-- Venues -->
-    <section class="venues" id="venues" aria-labelledby="venues-title">
-      <div class="venues__head">
-        <h2 id="venues-title" data-i18n="venues.title">Pour São at your venue</h2>
-        <p data-i18n="venues.body">We're launching in Lisbon and the Algarve. Run a bar, club, beach club or festival? Let's talk about getting São on your menu.</p>
-        <a class="btn btn--blue" id="contact-link" href="#" data-i18n="venues.cta">Email us</a>
-      </div>
-      <ul class="venues__list">
-        <li data-i18n="venues.l1">Bars</li>
-        <li data-i18n="venues.l2">Clubs</li>
-        <li data-i18n="venues.l3">Beach clubs</li>
-        <li data-i18n="venues.l4">Festivals</li>
-      </ul>
-    </section>
-
-    <!-- Social -->
-    <section class="social" aria-labelledby="social-title">
-      <div class="social__head">
-        <h2 id="social-title" data-i18n="social.title">Follow the night</h2>
-        <a class="btn btn--outline" id="insta-link" href="#" data-i18n="social.cta">Follow on Instagram</a>
-      </div>
-      <div class="social__grid" aria-hidden="true">
-        <div class="tile tile--blue"><span class="logo"></span></div>
-        <div class="tile tile--lime"><div class="can can--lime"><div class="can__body"><span class="logo can__word"></span></div></div></div>
-        <div class="tile tile--coral"><span class="tile__word" data-i18n="band.1">Ice cold</span></div>
-        <div class="tile tile--beige"><div class="can can--mara"><div class="can__body"><span class="logo can__word"></span></div></div></div>
-        <div class="tile tile--forest"><span class="tile__word">Lisboa</span></div>
-        <div class="tile tile--coral2"><div class="duo"><div class="can can--lime"><div class="can__body"><span class="logo can__word"></span></div></div><div class="can can--mara"><div class="can__body"><span class="logo can__word"></span></div></div></div></div>
-      </div>
-    </section>
-
   </main>
 
   <footer class="foot">
-    <div class="foot__top">
-      <span class="logo foot__logo" role="img" aria-label="São"></span>
-      <nav class="foot__nav" aria-label="Footer">
-        <a href="#flavours" data-i18n="nav.flavours">Flavours</a>
-        <a href="#where" data-i18n="nav.where">Find us</a>
-        <a href="#about" data-i18n="nav.about">Our story</a>
-        <a href="#venues" data-i18n="nav.venues">For venues</a>
-      </nav>
-    </div>
-    <div class="foot__row">
-      <p data-i18n="foot.resp">Enjoy responsibly. Not for sale to persons under 18.</p>
-      <p>&copy; <span id="year">2026</span> São</p>
-    </div>
+    <span class="logo foot__logo" aria-hidden="true"></span>
+    <a href="mailto:info@drinksao.com">info@drinksao.com</a>
+    <p data-i18n="foot.resp">Enjoy responsibly. Not for sale to persons under 18.</p>
+    <p>&copy; <span id="year">2026</span> São</p>
   </footer>
 
-  <script src="main.js"></script>
+  <script>
+    const T = {
+      en: {
+        "tz.title": "Lisbon, end of 2026.",
+        "tz.c1": "Two flavours.", "tz.c2": "One slim can.", "tz.c3": "The rest is",
+        "tz.cta": "Get on the list",
+        "tz.b1": "Coming soon", "tz.b2": "End of 2026", "tz.b3": "Don't miss it",
+        "tz.list.title": "The list is open.",
+        "tz.list.body": "Be the first to hear the date, the first venues and everything we can't say yet. An email when it matters.",
+        "tz.list.consent": "I'm 18 or older and I'd like to receive news from São by email.",
+        "tz.list.submit": "Put me on the list", "tz.list.done": "You're in.", "tz.list.done2": "You'll hear from us before anyone else.",
+        "tz.venue.title": "Run a venue? Taste it first.",
+        "tz.venue.body": "A handful of Lisbon bars, clubs and rooftops get to try it before launch. Free, no obligation.",
+        "tz.venue.consent": "I'm 18 or older, I represent this venue and São may contact me about a tasting.",
+        "tz.venue.submit": "Request a tasting", "tz.venue.done": "Request received.",
+        "tz.venue.done2": "We'll be in touch before launch to set up your tasting.",
+        "f.email": "Email", "f.first": "First name", "f.venue": "Venue name", "f.type": "Type of venue", "f.choose": "Choose one",
+        "f.t.bar": "Bar", "f.t.club": "Club", "f.t.roof": "Rooftop", "f.t.beach": "Beach club", "f.t.rest": "Restaurant",
+        "f.t.hotel": "Hotel", "f.t.fest": "Festival or event", "f.t.other": "Other",
+        "f.name": "Your name", "f.phone": "Phone or WhatsApp <span class=\"opt\">(optional)</span>",
+        "f.sending": "Sending…", "f.err.fields": "Please fill in the highlighted fields.",
+        "f.err.send": "That didn't go through. Check your connection and try again, or email info@drinksao.com.",
+        "foot.resp": "Enjoy responsibly. Not for sale to persons under 18.",
+        "title": "São — Lisbon, soon"
+      },
+      pt: {
+        "tz.title": "Lisboa, fim de 2026.",
+        "tz.c1": "Dois sabores.", "tz.c2": "Uma lata slim.", "tz.c3": "O resto é",
+        "tz.cta": "Entrar na lista",
+        "tz.b1": "Brevemente", "tz.b2": "Fim de 2026", "tz.b3": "Não perca",
+        "tz.list.title": "A lista está aberta.",
+        "tz.list.body": "Seja o primeiro a saber a data, os primeiros espaços e tudo o que ainda não podemos dizer. Um email sempre que importar.",
+        "tz.list.consent": "Tenho 18 anos ou mais e quero receber novidades da São por email.",
+        "tz.list.submit": "Pôr-me na lista", "tz.list.done": "Está dentro.", "tz.list.done2": "Vai saber antes de toda a gente.",
+        "tz.venue.title": "Tem um espaço? Prove primeiro.",
+        "tz.venue.body": "Alguns bares, discotecas e rooftops de Lisboa vão provar antes do lançamento. Grátis, sem compromisso.",
+        "tz.venue.consent": "Tenho 18 anos ou mais, represento este espaço e a São pode contactar-me sobre uma prova.",
+        "tz.venue.submit": "Pedir uma prova", "tz.venue.done": "Pedido recebido.",
+        "tz.venue.done2": "Entraremos em contacto antes do lançamento para combinar a sua prova.",
+        "f.email": "Email", "f.first": "Nome próprio", "f.venue": "Nome do espaço", "f.type": "Tipo de espaço", "f.choose": "Escolha uma opção",
+        "f.t.bar": "Bar", "f.t.club": "Discoteca", "f.t.roof": "Rooftop", "f.t.beach": "Beach club", "f.t.rest": "Restaurante",
+        "f.t.hotel": "Hotel", "f.t.fest": "Festival ou evento", "f.t.other": "Outro",
+        "f.name": "O seu nome", "f.phone": "Telefone ou WhatsApp <span class=\"opt\">(opcional)</span>",
+        "f.sending": "A enviar…", "f.err.fields": "Preencha os campos assinalados.",
+        "f.err.send": "Não foi enviado. Verifique a ligação e tente de novo, ou escreva para info@drinksao.com.",
+        "foot.resp": "Seja responsável. Beba com moderação. Venda proibida a menores de 18 anos.",
+        "title": "São — Lisboa, em breve"
+      }
+    };
+    const store = {
+      get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+      set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+    };
+    let lang = "en";
+    function setLang(l) {
+      lang = T[l] ? l : "en";
+      const d = T[lang];
+      document.documentElement.lang = lang === "pt" ? "pt-PT" : "en";
+      document.querySelectorAll("[data-i18n]").forEach(el => { const v = d[el.dataset.i18n]; if (v != null) el.innerHTML = v; });
+      document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
+      document.querySelectorAll('input[name="language"]').forEach(i => { i.value = lang; });
+      document.title = d.title;
+      store.set("sao-lang", lang);
+    }
+    document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.lang)));
+    document.querySelectorAll(".band__track").forEach(t => { t.innerHTML = t.innerHTML.repeat(2); t.innerHTML += t.innerHTML; });
+    setLang(store.get("sao-lang") || "en");
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    document.querySelectorAll("form[data-netlify]").forEach(form => {
+      const err = form.querySelector(".form__error"), btn = form.querySelector(".form__submit");
+      const done = document.getElementById(form.dataset.done);
+      form.addEventListener("submit", async e => {
+        e.preventDefault();
+        err.hidden = true;
+        form.querySelectorAll(".is-invalid").forEach(el => el.classList.remove("is-invalid"));
+        const bad = [...form.querySelectorAll("[required]")].filter(el => !el.checkValidity());
+        if (bad.length) {
+          bad.forEach(el => (el.closest(".field, .check") || el).classList.add("is-invalid"));
+          err.textContent = T[lang]["f.err.fields"]; err.hidden = false; bad[0].focus(); return;
+        }
+        const label = btn.innerHTML; btn.disabled = true; btn.textContent = T[lang]["f.sending"];
+        try {
+          const res = await fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(new FormData(form)).toString() });
+          if (!res.ok) throw new Error(res.status);
+          form.hidden = true; done.hidden = false; done.focus();
+        } catch (x) {
+          err.textContent = T[lang]["f.err.send"]; err.hidden = false; btn.disabled = false; btn.innerHTML = label;
+        }
+      });
+      form.addEventListener("input", e => { const f = e.target.closest(".field, .check"); if (f && e.target.checkValidity()) f.classList.remove("is-invalid"); });
+    });
+  </script>
 </body>
 </html>
