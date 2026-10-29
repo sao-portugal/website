@@ -62,6 +62,17 @@
     }
     .tz__top { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
     .tz__coords { font-weight: 500; font-size: .9375rem; letter-spacing: .02em; }
+    .tz__clock { margin-left: 14px; font-variant-numeric: tabular-nums; }
+    .tz__clock .colon { animation: blink 2s steps(1) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+    .decode { white-space: nowrap; }
+    .unlock {
+      display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px;
+      margin: 18px 0; padding: 16px 0; border-block: 2px solid currentColor;
+    }
+    .unlock__label { font-weight: 700; font-size: .9375rem; }
+    .unlock__word { font: 400 clamp(2.5rem, 5vw, 4rem)/1 var(--display); min-height: 1em; }
+    @media (prefers-reduced-motion: reduce) { .tz__clock .colon { animation: none; } }
     .tz__center { display: grid; place-items: center; align-content: center; gap: clamp(20px, 3vw, 36px); text-align: center; padding: 32px 0; }
     .tz__mark { width: min(78vw, 680px, calc(50svh * 1.14)); }
     .tz__mark .logo { width: 100%; }
@@ -182,7 +193,7 @@
   <main>
     <section class="tz">
       <div class="tz__top">
-        <span class="tz__coords">38.7223° N, 9.1393° W</span>
+        <span class="tz__coords">38.7223° N, 9.1393° W <span class="tz__clock" id="clock" aria-label="Local time in Lisbon"></span></span>
         <div class="lang" aria-label="Language"><button type="button" data-lang="en">EN</button><button type="button" data-lang="pt">PT</button></div>
       </div>
 
@@ -193,7 +204,7 @@
 
       <div class="tz__bottom">
         <div class="tz__clues">
-          <p data-i18n="tz.c1">Two flavours.</p>
+          <p><span data-i18n="tz.c1">Two flavours.</span><span class="tz__secret" id="hero-secret" hidden> <span data-i18n="tz.c1b">One of them:</span> <span class="decode" data-word="Maracujá">Maracujá</span>.</span></p>
           <p data-i18n="tz.c2">One slim can.</p>
           <p><span data-i18n="tz.c3">The rest is</span> <span class="redact" style="--w: 5.5em" role="img" aria-label="classified"></span></p>
         </div>
@@ -237,7 +248,9 @@
         </form>
         <div class="form__done" id="updates-done" tabindex="-1" hidden>
           <h3 data-i18n="tz.list.done">You're in.</h3>
-          <p data-i18n="tz.list.done2">You'll hear from us before anyone else.</p>
+          <p data-i18n="tz.unlock.lead">Here's your first secret.</p>
+          <p class="unlock"><span class="unlock__label" data-i18n="tz.unlock.label">Flavour no. 1</span><span class="unlock__word decode" data-word="Maracujá" id="unlock-word"></span></p>
+          <p data-i18n="tz.unlock.rest">You'll hear the rest before anyone else.</p>
         </div>
       </article>
 
@@ -308,7 +321,8 @@
     const T = {
       en: {
         "tz.title": "Lisbon, end of 2026.",
-        "tz.c1": "Two flavours.", "tz.c2": "One slim can.", "tz.c3": "The rest is",
+        "tz.c1": "Two flavours.", "tz.c1b": "One of them:", "tz.c2": "One slim can.", "tz.c3": "The rest is",
+        "tz.unlock.lead": "Here's your first secret.", "tz.unlock.label": "Flavour no. 1", "tz.unlock.rest": "You'll hear the rest before anyone else.",
         "tz.cta": "Get on the list",
         "tz.b1": "Coming soon", "tz.b2": "End of 2026", "tz.b3": "Don't miss it",
         "tz.list.title": "The list is open.",
@@ -331,7 +345,8 @@
       },
       pt: {
         "tz.title": "Lisboa, fim de 2026.",
-        "tz.c1": "Dois sabores.", "tz.c2": "Uma lata slim.", "tz.c3": "O resto é",
+        "tz.c1": "Dois sabores.", "tz.c1b": "Um deles:", "tz.c2": "Uma lata slim.", "tz.c3": "O resto é",
+        "tz.unlock.lead": "Aqui está o seu primeiro segredo.", "tz.unlock.label": "Sabor n.º 1", "tz.unlock.rest": "O resto, vai saber antes de toda a gente.",
         "tz.cta": "Entrar na lista",
         "tz.b1": "Brevemente", "tz.b2": "Fim de 2026", "tz.b3": "Não perca",
         "tz.list.title": "A lista está aberta.",
@@ -374,6 +389,41 @@
 
     document.getElementById("year").textContent = new Date().getFullYear();
 
+    // Lisbon local time next to the coordinates
+    const clock = document.getElementById("clock");
+    const fmt = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Lisbon", hour: "2-digit", minute: "2-digit", hour12: false });
+    function tick() {
+      const [h, m] = fmt.format(new Date()).split(":");
+      clock.innerHTML = h + '<span class="colon">:</span>' + m;
+    }
+    tick(); setInterval(tick, 15000);
+
+    // Decoder effect: scramble letters, then settle on the real word
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function decode(el, delay) {
+      const word = el.dataset.word, chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZáãç#%&*";
+      if (reduce) { el.textContent = word; return; }
+      let frame = 0; const total = 26;
+      setTimeout(function step() {
+        frame++;
+        el.textContent = [...word].map((c, i) =>
+          i < Math.floor(frame / total * word.length) ? c : chars[Math.floor(Math.random() * chars.length)]
+        ).join("");
+        if (frame < total) setTimeout(step, 45); else el.textContent = word;
+      }, delay || 0);
+    }
+
+    // Reward for signing up: reveal one flavour, remembered on this device
+    function unlock(fresh) {
+      store.set("sao-unlocked", "1");
+      const hero = document.getElementById("hero-secret");
+      hero.hidden = false;
+      const heroWord = hero.querySelector(".decode");
+      if (fresh) { decode(document.getElementById("unlock-word"), 400); decode(heroWord, 400); }
+      else heroWord.textContent = heroWord.dataset.word;
+    }
+    if (store.get("sao-unlocked") === "1") unlock(false);
+
     document.querySelectorAll("form[data-netlify]").forEach(form => {
       const err = form.querySelector(".form__error"), btn = form.querySelector(".form__submit");
       const done = document.getElementById(form.dataset.done);
@@ -391,6 +441,7 @@
           const res = await fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(new FormData(form)).toString() });
           if (!res.ok) throw new Error(res.status);
           form.hidden = true; done.hidden = false; done.focus();
+          if (form.getAttribute("name") === "updates") unlock(true);
         } catch (x) {
           err.textContent = T[lang]["f.err.send"]; err.hidden = false; btn.disabled = false; btn.innerHTML = label;
         }
