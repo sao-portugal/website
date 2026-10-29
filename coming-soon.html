@@ -196,7 +196,9 @@
     .check input:checked::after { content: ""; width: 6px; height: 11px; border: solid var(--beige); border-width: 0 2.5px 2.5px 0; transform: translateY(-1px) rotate(45deg); }
     .card--blue .check input:checked::after { border-color: var(--blue); }
     .check.is-invalid input { border-width: 3px; }
-    .check a { font-weight: 700; white-space: nowrap; }
+    .card { display: flex; flex-direction: column; }
+    .card__note { margin-top: auto; padding-top: 14px; font-size: .8125rem; opacity: .75; }
+    .card__note a { font-weight: 700; white-space: nowrap; }
     .form__error { font-weight: 700; padding: 12px 16px; border: 2px solid currentColor; border-radius: 14px; }
     .form__submit { justify-self: start; min-height: 56px; }
     .form__submit:disabled { opacity: .6; cursor: progress; }
@@ -292,6 +294,7 @@
             <a class="done__insta" href="https://www.instagram.com/drinksao/" target="_blank" rel="noopener" data-i18n="tz.insta">Follow @<span class="u">drinksao</span></a>
           </div>
         </div>
+        <p class="card__note"><span data-i18n="tz.note">We only use your details for this.</span> <a href="privacy.html" target="_blank" rel="noopener" data-i18n="tz.note.link">Privacy statement</a></p>
       </article>
 
       <article class="card card--blue on-blue">
@@ -346,6 +349,7 @@
           <h3 data-i18n="tz.venue.done">Request received.</h3>
           <p data-i18n="tz.venue.done2">We'll be in touch before launch to set up your tasting.</p>
         </div>
+        <p class="card__note"><span data-i18n="tz.note">We only use your details for this.</span> <a href="privacy.html" target="_blank" rel="noopener" data-i18n="tz.note.link">Privacy statement</a></p>
       </article>
     </section>
   </main>
@@ -374,11 +378,11 @@
         "tz.b1": "Coming soon", "tz.b2": "End of 2026", "tz.b3": "Don't miss it",
         "tz.list.title": "The list is open.",
         "tz.list.body": "Be the first to hear the date, the first venues and everything we can't say yet. An email when it matters.",
-        "tz.list.consent": "I'm 18 or older and I'd like to receive news from São by email. <a href=\"privacy.html\" target=\"_blank\" rel=\"noopener\">Privacy statement</a>",
+        "tz.list.consent": "I'm 18 or older and I'd like to receive news from São by email.",
         "tz.list.submit": "Put me on the list", "tz.list.done": "You're in.", "tz.list.done2": "You'll hear from us before anyone else.",
         "tz.venue.title": "Run a venue? Taste it first.",
         "tz.venue.body": "A handful of Lisbon bars, clubs and rooftops get to try it before launch. Free, no obligation.",
-        "tz.venue.consent": "I'm 18 or older, I represent this venue and São may contact me about a tasting. <a href=\"privacy.html\" target=\"_blank\" rel=\"noopener\">Privacy statement</a>",
+        "tz.venue.consent": "I'm 18 or older, I represent this venue and São may contact me about a tasting.",
         "tz.venue.submit": "Request a tasting", "tz.venue.done": "Request received.",
         "tz.venue.done2": "We'll be in touch before launch to set up your tasting.",
         "f.email": "Email", "f.first": "First name", "f.venue": "Venue name", "f.type": "Type of venue", "f.choose": "Choose one",
@@ -387,7 +391,7 @@
         "f.name": "Your name", "f.phone": "Phone or WhatsApp <span class=\"opt\">(optional)</span>",
         "f.sending": "Sending…", "f.err.fields": "Please fill in the highlighted fields.",
         "f.err.send": "That didn't go through. Check your connection and try again, or email info@drinksao.com.",
-        "foot.resp": "Enjoy responsibly. Not for sale to persons under 18.", "foot.privacy": "Privacy",
+        "foot.resp": "Enjoy responsibly. Not for sale to persons under 18.", "foot.privacy": "Privacy", "tz.note": "We only use your details for this.", "tz.note.link": "Privacy statement",
         "title": "São — Lisbon, soon"
       },
       pt: {
@@ -401,11 +405,11 @@
         "tz.b1": "Brevemente", "tz.b2": "Fim de 2026", "tz.b3": "Não perca",
         "tz.list.title": "A lista está aberta.",
         "tz.list.body": "Seja o primeiro a saber a data, os primeiros espaços e tudo o que ainda não podemos dizer. Um email sempre que importar.",
-        "tz.list.consent": "Tenho 18 anos ou mais e quero receber novidades da São por email. <a href=\"privacy.html\" target=\"_blank\" rel=\"noopener\">Política de privacidade</a>",
+        "tz.list.consent": "Tenho 18 anos ou mais e quero receber novidades da São por email.",
         "tz.list.submit": "Pôr-me na lista", "tz.list.done": "Está dentro.", "tz.list.done2": "Vai saber antes de toda a gente.",
         "tz.venue.title": "Tem um espaço? Prove primeiro.",
         "tz.venue.body": "Alguns bares, discotecas e rooftops de Lisboa vão provar antes do lançamento. Grátis, sem compromisso.",
-        "tz.venue.consent": "Tenho 18 anos ou mais, represento este espaço e a São pode contactar-me sobre uma prova. <a href=\"privacy.html\" target=\"_blank\" rel=\"noopener\">Política de privacidade</a>",
+        "tz.venue.consent": "Tenho 18 anos ou mais, represento este espaço e a São pode contactar-me sobre uma prova.",
         "tz.venue.submit": "Pedir uma prova", "tz.venue.done": "Pedido recebido.",
         "tz.venue.done2": "Entraremos em contacto antes do lançamento para combinar a sua prova.",
         "f.email": "Email", "f.first": "Nome próprio", "f.venue": "Nome do espaço", "f.type": "Tipo de espaço", "f.choose": "Escolha uma opção",
@@ -414,7 +418,7 @@
         "f.name": "O seu nome", "f.phone": "Telefone ou WhatsApp <span class=\"opt\">(opcional)</span>",
         "f.sending": "A enviar…", "f.err.fields": "Preencha os campos assinalados.",
         "f.err.send": "Não foi enviado. Verifique a ligação e tente de novo, ou escreva para info@drinksao.com.",
-        "foot.resp": "Seja responsável. Beba com moderação. Venda proibida a menores de 18 anos.", "foot.privacy": "Privacidade",
+        "foot.resp": "Seja responsável. Beba com moderação. Venda proibida a menores de 18 anos.", "foot.privacy": "Privacidade", "tz.note": "Só usamos os seus dados para isto.", "tz.note.link": "Política de privacidade",
         "title": "São — Lisboa, em breve"
       }
     };
