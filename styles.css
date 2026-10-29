@@ -206,6 +206,17 @@ a { color: inherit; }
 .fl--mara .badge__ring, .fl--mara .badge__mid, .fl--mara .badge__unit { fill: var(--blue); }
 .fl--mara :focus-visible { outline-color: var(--beige); }
 
+/* Facts strip */
+.facts { border-bottom: 2px solid var(--blue); }
+.facts__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.facts__list li {
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px;
+  padding: clamp(28px, 4vw, 56px) 16px;
+}
+.facts__list li + li { border-left: 2px solid var(--blue); }
+.facts__num { font: 400 clamp(3rem, 7vw, 6.5rem)/.9 var(--display); }
+.facts__label { margin-top: 6px; font-weight: 700; font-size: clamp(.9375rem, 1.2vw, 1.125rem); }
+
 /* Vibe collage */
 .vibe { padding: var(--section) var(--gutter); }
 .vibe__title { font: 400 clamp(3rem, 8vw, 8rem)/.9 var(--display); max-width: 13ch; margin-bottom: clamp(40px, 6vw, 88px); }
@@ -346,6 +357,11 @@ a { color: inherit; }
   .v4 { grid-column: 7 / 13; grid-row: 8 / 11; }
   .about__media { min-height: 70svh; }
   .map { width: min(100%, 300px); }
+}
+@media (max-width: 520px) {
+  .facts__list li { padding: 24px 6px; }
+  .facts__num { font-size: 2.25rem; }
+  .facts__label { font-size: .8125rem; }
 }
 @media (max-width: 420px) {
   .top__nav a[href="#flavours"] { display: none; }
