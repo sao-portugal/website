@@ -186,7 +186,7 @@
     }
     .field input:focus, .field select:focus { outline: none; box-shadow: 0 0 0 3px var(--beige), 0 0 0 5px var(--blue); }
     .card--blue .field input:focus, .card--blue .field select:focus { box-shadow: 0 0 0 3px var(--blue), 0 0 0 5px var(--beige); }
-    /* Invalid fields: thicker edge, a soft halo, a short tube-light flicker and a one-line hint */
+    /* Invalid fields: thicker edge, a soft halo, and a one-line hint */
     .field.is-invalid input, .field.is-invalid select { border-width: 3px; padding: 11px 14.5px; box-shadow: 0 0 0 4px rgba(18, 5, 171, .14); }
     .card--blue .field.is-invalid input, .card--blue .field.is-invalid select { border-color: var(--beige); box-shadow: 0 0 0 4px rgba(254, 251, 228, .28); }
     .field.is-invalid::after, .check.is-invalid::after {
@@ -203,10 +203,6 @@
     .card--blue .check input:checked::after { border-color: var(--blue); }
     .check.is-invalid input { border-width: 3px; box-shadow: 0 0 0 4px rgba(18, 5, 171, .14); }
     .card--blue .check.is-invalid input { box-shadow: 0 0 0 4px rgba(254, 251, 228, .28); }
-    @media (prefers-reduced-motion: no-preference) {
-      .field.is-invalid input, .field.is-invalid select, .check.is-invalid input { animation: nudge .7s linear 1; }
-      @keyframes nudge { 0%,100% { opacity: 1; } 12% { opacity: .25; } 18% { opacity: 1; } 30% { opacity: .4; } 36% { opacity: 1; } 52% { opacity: .2; } 60% { opacity: 1; } }
-    }
     .card { display: flex; flex-direction: column; }
     .card__note { margin-top: auto; margin-bottom: calc(14px - var(--pad)); padding-top: 18px; font-size: .75rem; opacity: .6; }
     .card__note a { font-weight: 700; white-space: nowrap; }
