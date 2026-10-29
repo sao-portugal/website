@@ -70,31 +70,78 @@
       </div>
     </div>
 
-    <!-- Flavours: two full-bleed halves -->
+    <!-- Flavours: one bold panel per flavour -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <symbol id="i-lime" viewBox="0 0 100 100">
+        <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round">
+          <circle cx="50" cy="50" r="45"/><circle cx="50" cy="50" r="37"/>
+          <path d="M50 50V15M50 50 74.7 25.3M50 50H85M50 50 74.7 74.7M50 50V85M50 50 25.3 74.7M50 50H15M50 50 25.3 25.3"/>
+        </g>
+      </symbol>
+      <symbol id="i-passion" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="5"/>
+        <circle cx="50" cy="50" r="34" fill="none" stroke="currentColor" stroke-width="3"/>
+        <g fill="currentColor">
+          <ellipse cx="50" cy="33" rx="4" ry="5.5"/><ellipse cx="36" cy="42" rx="4" ry="5.5" transform="rotate(-30 36 42)"/>
+          <ellipse cx="64" cy="42" rx="4" ry="5.5" transform="rotate(30 64 42)"/><ellipse cx="42" cy="58" rx="4" ry="5.5" transform="rotate(20 42 58)"/>
+          <ellipse cx="59" cy="60" rx="4" ry="5.5" transform="rotate(-20 59 60)"/><ellipse cx="50" cy="70" rx="4" ry="5.5"/>
+          <ellipse cx="50" cy="50" rx="3.5" ry="4.5"/>
+        </g>
+      </symbol>
+      <symbol id="i-spark" viewBox="0 0 100 100">
+        <path fill="currentColor" d="M50 2C53 36 64 47 98 50 64 53 53 64 50 98 47 64 36 53 2 50 36 47 47 36 50 2Z"/>
+      </symbol>
+      <symbol id="i-bubbles" viewBox="0 0 100 100">
+        <g fill="none" stroke="currentColor" stroke-width="4"><circle cx="30" cy="70" r="16"/><circle cx="66" cy="38" r="11"/><circle cx="80" cy="78" r="6"/></g>
+      </symbol>
+    </svg>
+
     <section class="flavours" id="flavours" aria-labelledby="flavours-title">
       <h2 class="visually-hidden" id="flavours-title" data-i18n="nav.flavours">Flavours</h2>
 
-      <article class="flavour flavour--lime">
-        <div class="flavour__stage">
-          <div class="can can--lime">
+      <article class="fl fl--lime">
+        <h3 class="fl__word" data-i18n="lime.name">Lime</h3>
+        <div class="fl__stage" aria-hidden="true">
+          <svg class="deco d1"><use href="#i-lime"/></svg>
+          <svg class="deco d2"><use href="#i-lime"/></svg>
+          <svg class="deco d3"><use href="#i-spark"/></svg>
+          <svg class="deco d4"><use href="#i-bubbles"/></svg>
+          <div class="can can--lime fl__can">
             <div class="can__body"><span class="logo can__word"></span><span class="can__flav" data-i18n="lime.name">Lime</span></div>
           </div>
         </div>
-        <div class="flavour__text">
-          <h3 class="flavour__name" data-i18n="lime.name">Lime</h3>
+        <div class="fl__info">
           <p data-i18n="lime.body">Sharp, clean and cold. Fresh lime over sparkling water, with nothing sticky left behind.</p>
+          <svg class="badge" viewBox="0 0 200 200" aria-hidden="true">
+            <defs><path id="ring-lime" d="M100,100 m-72,0 a72,72 0 1,1 144,0 a72,72 0 1,1 -144,0"/></defs>
+            <circle cx="100" cy="100" r="96" class="badge__bg"/>
+            <text class="badge__ring"><textPath href="#ring-lime" data-i18n="badge.ring">slim can — slim can — slim can — </textPath></text>
+            <text x="100" y="104" text-anchor="middle" class="badge__mid">250</text>
+            <text x="100" y="130" text-anchor="middle" class="badge__unit">ml</text>
+          </svg>
         </div>
       </article>
 
-      <article class="flavour flavour--mara">
-        <div class="flavour__stage">
-          <div class="can can--mara">
+      <article class="fl fl--mara">
+        <h3 class="fl__word" data-i18n="mara.name">Maracujá</h3>
+        <div class="fl__stage" aria-hidden="true">
+          <svg class="deco d1"><use href="#i-passion"/></svg>
+          <svg class="deco d2"><use href="#i-passion"/></svg>
+          <svg class="deco d3"><use href="#i-spark"/></svg>
+          <svg class="deco d4"><use href="#i-bubbles"/></svg>
+          <div class="can can--mara fl__can">
             <div class="can__body"><span class="logo can__word"></span><span class="can__flav" data-i18n="mara.name">Maracujá</span></div>
           </div>
         </div>
-        <div class="flavour__text">
-          <h3 class="flavour__name" data-i18n="mara.name">Maracujá</h3>
+        <div class="fl__info">
           <p data-i18n="mara.body">Tart passion fruit with a soft, sunny finish. The one you order a second round of.</p>
+          <svg class="badge" viewBox="0 0 200 200" aria-hidden="true">
+            <defs><path id="ring-mara" d="M100,100 m-72,0 a72,72 0 1,1 144,0 a72,72 0 1,1 -144,0"/></defs>
+            <circle cx="100" cy="100" r="96" class="badge__bg"/>
+            <text class="badge__ring"><textPath href="#ring-mara" data-i18n="badge.ring">slim can — slim can — slim can — </textPath></text>
+            <text x="100" y="104" text-anchor="middle" class="badge__mid">250</text>
+            <text x="100" y="130" text-anchor="middle" class="badge__unit">ml</text>
+          </svg>
         </div>
       </article>
     </section>

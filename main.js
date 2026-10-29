@@ -38,6 +38,7 @@ const T = {
     "where.soon": "Venues coming soon",
     "where.lis.s": "Rooftops and clubs",
     "vibe.title": "Rooftops. Beach clubs. Long summer nights.",
+    "badge.ring": "slim can — slim can — slim can — ",
     "where.alg.s": "Beach clubs",
     "where.fest.s": "All summer",
     "social.title": "Follow the night",
@@ -100,6 +101,7 @@ const T = {
     "where.soon": "Espaços em breve",
     "where.lis.s": "Rooftops e discotecas",
     "vibe.title": "Rooftops. Beach clubs. Longas noites de verão.",
+    "badge.ring": "lata slim — lata slim — lata slim — ",
     "where.alg.s": "Beach clubs",
     "where.fest.s": "Todo o verão",
     "social.title": "Siga a noite",
@@ -192,3 +194,22 @@ document.getElementById("gate-no").addEventListener("click", () => {
 });
 
 document.getElementById("year").textContent = new Date().getFullYear();
+
+// Flavour panels: gentle scroll movement (skipped when reduced motion is on)
+(function () {
+  const panels = document.querySelectorAll(".fl");
+  if (!panels.length || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  let ticking = false;
+  function update() {
+    const vh = window.innerHeight;
+    panels.forEach(p => {
+      const r = p.getBoundingClientRect();
+      const t = ((r.top + r.height / 2) - vh / 2) / vh; // 0 when centred
+      p.style.setProperty("--p", Math.max(-1, Math.min(1, t)).toFixed(3));
+    });
+    ticking = false;
+  }
+  window.addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  window.addEventListener("resize", update);
+  update();
+})();
