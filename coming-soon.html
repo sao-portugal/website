@@ -207,14 +207,14 @@
     .foot a { font-weight: 700; }
     .foot__ig { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; transition: background-color .2s, color .2s; }
     .foot__ig:hover { background: var(--blue); color: var(--beige); }
-    .foot p:last-child { margin-left: auto; }
+    .foot__privacy { margin-left: auto; }
 
     @media (max-width: 900px) { .join { grid-template-columns: 1fr; } }
     @media (max-width: 560px) {
       .field-row { grid-template-columns: 1fr; }
       .form__submit, .tz__bottom .btn { width: 100%; }
       .tz__coords { font-size: .8125rem; }
-      .foot p:last-child { margin-left: 0; }
+      .foot__privacy { margin-left: 0; }
     }
   </style>
 </head>
@@ -350,8 +350,8 @@
     <a class="foot__ig" href="https://www.instagram.com/drinksao/" target="_blank" rel="noopener" aria-label="São on Instagram (@drinksao)">
       <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg>
     </a>
-    <a href="privacy.html" data-i18n="foot.privacy">Privacy</a>
     <p data-i18n="foot.resp">Enjoy responsibly. Not for sale to persons under 18.</p>
+    <a class="foot__privacy" href="privacy.html" data-i18n="foot.privacy">Privacy</a>
     <p>&copy; <span id="year">2026</span> São</p>
   </footer>
 
