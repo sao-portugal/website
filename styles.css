@@ -139,8 +139,8 @@ a { color: inherit; }
   padding: clamp(14px, 1.8vw, 22px) 0;
 }
 .band__track { display: inline-flex; align-items: center; width: max-content; }
-.band__track span { font: 400 clamp(1.75rem, 3.4vw, 3rem)/1 var(--display); padding: 0 clamp(20px, 2.6vw, 40px); }
-.band .dot { display: inline-block; flex: none; width: clamp(30px, 3vw, 44px); }
+.band__track span { font: 400 clamp(1.75rem, 3.4vw, 3rem)/1 var(--display); padding: 0 clamp(28px, 3.5vw, 56px); }
+.band .sep { display: inline-block; flex: none; width: 10px; height: 10px; border-radius: 50%; background: currentColor; }
 @media (prefers-reduced-motion: no-preference) {
   .band__track { animation: run 60s linear infinite; }
   @keyframes run { to { transform: translateX(-50%); } }
