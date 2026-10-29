@@ -43,11 +43,18 @@
     :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
     .on-blue :focus-visible { outline-color: var(--beige); }
 
-    /* Brand cursor: a blue dot (bigger over anything clickable). Desktop mice only; text fields keep the normal text cursor. */
-    @media (hover: hover) and (pointer: fine) {
-      html, body { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='7' fill='%231205AB' stroke='%23FEFBE4' stroke-width='2'/%3E%3C/svg%3E") 10 10, auto; }
-      :is(a, button, select, label.check, .check input, .lang button, .btn, .tz__top .lang button) { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='%231205AB' stroke='%23FEFBE4' stroke-width='2'/%3E%3C/svg%3E") 16 16, pointer; }
-      input[type="text"], input[type="email"], input[type="tel"] { cursor: text; }
+    /* Click burst: short lines fly out from where you click */
+    .burst { position: fixed; left: 0; top: 0; width: 0; height: 0; pointer-events: none; z-index: 50; }
+    .burst i {
+      position: absolute; left: -1.5px; top: -16px; width: 3px; height: 11px; border-radius: 2px;
+      background: var(--c, var(--blue)); transform-origin: 1.5px 16px;
+      transform: rotate(var(--a)) translateY(0) scaleY(.4); opacity: 0;
+      animation: burst .48s cubic-bezier(.2,.7,.3,1) forwards;
+    }
+    @keyframes burst {
+      0%   { opacity: 1; transform: rotate(var(--a)) translateY(2px) scaleY(.4); }
+      45%  { opacity: 1; transform: rotate(var(--a)) translateY(-12px) scaleY(1); }
+      100% { opacity: 0; transform: rotate(var(--a)) translateY(-22px) scaleY(.3); }
     }
 
     .logo {
@@ -502,6 +509,24 @@
       const sec = document.querySelector(".card__secret"); if (sec) sec.hidden = true;
       decode(document.getElementById("unlock-word"), 400);
     }
+
+    // Click burst (skipped for text fields and when reduced motion is on)
+    if (!reduce) document.addEventListener("pointerdown", e => {
+      if (e.target.closest("input:not([type=checkbox]), select, textarea")) return;
+      const onBlue = e.target.closest(".card--blue, .band, .btn--blue, .form__done:not(.card--blue .form__done)");
+      const b = document.createElement("span");
+      b.className = "burst";
+      b.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+      if (onBlue) b.style.setProperty("--c", "var(--beige)");
+      const n = 8, turn = Math.random() * 45;
+      for (let i = 0; i < n; i++) {
+        const l = document.createElement("i");
+        l.style.setProperty("--a", (turn + i * 360 / n) + "deg");
+        b.appendChild(l);
+      }
+      document.body.appendChild(b);
+      setTimeout(() => b.remove(), 550);
+    });
 
     // Share after signing up: native share sheet on phones, WhatsApp/copy fallback
     document.getElementById("share-btn").addEventListener("click", async e => {
