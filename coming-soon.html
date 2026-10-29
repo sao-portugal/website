@@ -51,6 +51,7 @@
       transform: rotate(var(--a)) translateY(0) scaleY(.4); opacity: 0;
       animation: burst .48s cubic-bezier(.2,.7,.3,1) forwards;
     }
+    @media (pointer: coarse) { .burst { scale: .7; } }
     @keyframes burst {
       0%   { opacity: 1; transform: rotate(var(--a)) translateY(2px) scaleY(.4); }
       45%  { opacity: 1; transform: rotate(var(--a)) translateY(-12px) scaleY(1); }
