@@ -35,7 +35,7 @@
 </head>
 <body>
   <header class="top">
-    <a href="/" aria-label="São — home"><span class="logo" aria-hidden="true"></span></a>
+    <a href="/" data-home aria-label="São — home"><span class="logo" aria-hidden="true"></span></a>
     <div class="lang" aria-label="Language"><button type="button" data-lang="en">EN</button><button type="button" data-lang="pt">PT</button></div>
   </header>
 
@@ -45,7 +45,7 @@
       <p class="updated">Last updated: 29 October 2026</p>
 
       <h2>Who we are</h2>
-      <p>São is a drinks brand from Lisbon, run by [COMPANY NAME], Lda., [ADDRESS], Portugal (NIPC [NUMBER]). We are responsible for the personal data you share on this website. Questions? Email <a href="mailto:info@drinksao.com">info@drinksao.com</a>.</p>
+      <p>São is a drinks brand from Lisbon, run by Drink Sao LDA, Portugal. We are responsible for the personal data you share on this website. Questions? Email <a href="mailto:info@drinksao.com">info@drinksao.com</a>.</p>
 
       <h2>What we collect</h2>
       <ul>
@@ -81,7 +81,7 @@
       <p class="updated">Última atualização: 29 de outubro de 2026</p>
 
       <h2>Quem somos</h2>
-      <p>A São é uma marca de bebidas de Lisboa, gerida pela [NOME DA EMPRESA], Lda., [MORADA], Portugal (NIPC [NÚMERO]). Somos responsáveis pelos dados pessoais que partilha neste site. Dúvidas? Escreva para <a href="mailto:info@drinksao.com">info@drinksao.com</a>.</p>
+      <p>A São é uma marca de bebidas de Lisboa, gerida pela Drink Sao LDA, Portugal. Somos responsáveis pelos dados pessoais que partilha neste site. Dúvidas? Escreva para <a href="mailto:info@drinksao.com">info@drinksao.com</a>.</p>
 
       <h2>Que dados recolhemos</h2>
       <ul>
@@ -114,7 +114,7 @@
   </main>
 
   <footer class="foot">
-    <a href="/">Back to drinksao.com</a>
+    <a href="/" data-home>Back to drinksao.com</a>
   </footer>
 
   <script>
@@ -129,6 +129,8 @@
     document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.lang)));
     let saved = null; try { saved = localStorage.getItem("sao-lang"); } catch (e) {}
     setLang(saved || "en");
+    // On the concept preview the teaser lives at /coming-soon.html; on the live site it is the homepage
+    if (location.hostname.startsWith("concept--")) document.querySelectorAll("[data-home]").forEach(a => { a.href = "coming-soon.html"; });
   </script>
 </body>
 </html>
