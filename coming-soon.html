@@ -512,7 +512,9 @@
     }
 
     // Click burst (skipped for text fields and when reduced motion is on)
-    if (!reduce) document.addEventListener("pointerdown", e => {
+    // "click" fires only for a real tap or click, never when a finger starts a scroll
+    if (!reduce) document.addEventListener("click", e => {
+      if (!e.clientX && !e.clientY) return; // keyboard-triggered clicks have no position
       if (e.target.closest("input:not([type=checkbox]), select, textarea")) return;
       const onBlue = e.target.closest(".card--blue, .band, .btn--blue, .form__done:not(.card--blue .form__done)");
       const b = document.createElement("span");
