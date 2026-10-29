@@ -16,7 +16,8 @@
     *, *::before, *::after { box-sizing: border-box; }
     body { margin: 0; background: var(--beige); color: var(--blue); font: 400 1.0625rem/1.6 "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
     [hidden] { display: none !important; }
-    a { color: inherit; font-weight: 700; }
+    a { color: inherit; font-weight: 700; text-decoration: none; }
+    a:hover { opacity: .7; }
     :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
     .logo { display: block; width: 64px; aspect-ratio: 1836 / 1610; background: currentColor;
       -webkit-mask: url("assets/logo.svg") center / contain no-repeat; mask: url("assets/logo.svg") center / contain no-repeat; }
