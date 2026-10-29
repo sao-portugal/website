@@ -7,4 +7,4 @@ Static brand site for São hard seltzer, hosted on GitHub Pages.
 - `main.js` — 18+ age check, EN/PT language switch (all copy for both languages lives here), contact and Instagram settings
 - `assets/` — logo (SVG) and favicon
 
-To show the "Email us" and "Follow on Instagram" buttons, set `CONTACT_EMAIL` and `INSTAGRAM_URL` at the top of `main.js`.
+Contact email is info@drinksao.com (footer, venues page). To show the "Follow on Instagram" link, set `INSTAGRAM_URL` at the top of `main.js`. Tasting kit requests arrive in Netlify under Forms → tasting-kit.

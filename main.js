@@ -1,7 +1,7 @@
 // São — brand site behaviour: age check + EN/PT language switch.
 
 // Set this to your contact address to show the "Email us" button.
-const CONTACT_EMAIL = "";
+const CONTACT_EMAIL = "info@drinksao.com";
 // Set this to your Instagram URL to show the "Follow on Instagram" button.
 const INSTAGRAM_URL = "";
 
@@ -48,11 +48,12 @@ const T = {
     "form.submit": "Request my free kit",
     "form.sending": "Sending…",
     "form.err.fields": "Please fill in the highlighted fields.",
-    "form.err.send": "Your request didn't go through. Check your connection and try again, or email us.",
+    "form.err.send": "Your request didn't go through. Check your connection and try again, or email us at info@drinksao.com.",
     "done.title": "Request sent. Obrigado!",
     "done.body": "We'll be in touch within a few days to arrange your tasting kit.",
     "done.back": "Back to the homepage",
     "venues.kit": "Request a free tasting kit",
+    "form.mail": "Prefer email? Write to <a href=\"mailto:info@drinksao.com\">info@drinksao.com</a>",
     "title.venues": "Free tasting kit for venues — São",
     "ticker": "Coming soon to Lisbon and the Algarve",
     "nav.where": "Find us",
@@ -164,11 +165,12 @@ const T = {
     "form.submit": "Pedir o meu kit gratuito",
     "form.sending": "A enviar…",
     "form.err.fields": "Preencha os campos assinalados.",
-    "form.err.send": "O pedido não foi enviado. Verifique a ligação e tente de novo, ou envie-nos um email.",
+    "form.err.send": "O pedido não foi enviado. Verifique a ligação e tente de novo, ou escreva-nos para info@drinksao.com.",
     "done.title": "Pedido enviado. Obrigado!",
     "done.body": "Entraremos em contacto nos próximos dias para combinar o seu kit de degustação.",
     "done.back": "Voltar à página inicial",
     "venues.kit": "Pedir um kit de degustação gratuito",
+    "form.mail": "Prefere email? Escreva para <a href=\"mailto:info@drinksao.com\">info@drinksao.com</a>",
     "title.venues": "Kit de degustação gratuito para espaços — São",
     "ticker": "Brevemente em Lisboa e no Algarve",
     "nav.where": "Onde estamos",

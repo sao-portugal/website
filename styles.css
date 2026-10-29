@@ -334,6 +334,8 @@ a { color: inherit; }
 .request__title { font: 400 clamp(2.75rem, 5.5vw, 5.25rem)/.92 var(--display); max-width: 10ch; margin-bottom: 32px; }
 .request__facts { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--blue); }
 .request__facts li { padding: 14px 0; border-bottom: 2px solid var(--blue); font-weight: 700; }
+.request__mail { margin-top: 24px; }
+.request__mail a { font-weight: 700; }
 
 .form { display: grid; gap: 36px; }
 .form__hp { position: absolute; left: -9999px; }
