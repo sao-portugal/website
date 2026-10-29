@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Join the São family — Creators</title>
+  <meta name="description" content="Create with São. Free drinks before anyone else, exclusive merch, festival tickets and paid contracts as you level up. Apply to the São creator family.">
+  <meta name="theme-color" content="#1205AB">
+  <!-- Pre-launch: keep out of search engines until launch -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta property="og:title" content="Join the São family">
+  <meta property="og:description" content="Free drinks, merch, festival tickets and paid deals for creators in Portugal.">
+  <meta property="og:image" content="https://drinksao.com/assets/og.png">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preload" href="assets/fonts/anton-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    @font-face { font-family: "Anton"; font-weight: 400; font-display: swap; src: url("assets/fonts/anton-latin-400-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Familjen Grotesk"; font-weight: 400; font-display: swap; src: url("assets/fonts/familjen-grotesk-latin-400-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Familjen Grotesk"; font-weight: 500; font-display: swap; src: url("assets/fonts/familjen-grotesk-latin-500-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Familjen Grotesk"; font-weight: 700; font-display: swap; src: url("assets/fonts/familjen-grotesk-latin-700-normal.woff2") format("woff2"); }
+    #nl-badge-frame, #nl-hud-frame { display: none !important; }
+
+    :root {
+      --beige: #FEFBE4; --beige-2: #F6F0C8; --blue: #1205AB; --blue-deep: #0C0478;
+      --display: "Anton", "Arial Narrow", sans-serif;
+      --text: "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
+      --gutter: clamp(20px, 5vw, 72px);
+      --section: clamp(72px, 9vw, 136px);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body { margin: 0; background: var(--beige); color: var(--blue); font: 400 1.0625rem/1.55 var(--text); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    [hidden] { display: none !important; }
+    p, h1, h2, h3, ul, ol { margin: 0; font-weight: 400; }
+    ul, ol { padding: 0; list-style: none; }
+    a { color: inherit; text-decoration: none; }
+    a:hover { opacity: .75; }
+    img { display: block; max-width: 100%; }
+    :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+    .on-blue :focus-visible { outline-color: var(--beige); }
+
+    .logo { display: block; aspect-ratio: 1836 / 1610; background: currentColor;
+      -webkit-mask: url("assets/logo.svg") center / contain no-repeat; mask: url("assets/logo.svg") center / contain no-repeat; }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 56px; padding: 0 32px;
+      border-radius: 999px; border: 2px solid currentColor; font: 700 1rem/1 var(--text); cursor: pointer;
+      background: transparent; color: inherit; transition: background-color .2s, color .2s, transform .2s; }
+    .btn:hover { opacity: 1; transform: translateY(-2px); }
+    .btn--blue { background: var(--blue); border-color: var(--blue); color: var(--beige); }
+    .btn--beige { background: var(--beige); border-color: var(--beige); color: var(--blue); }
+    .btn--sm { min-height: 44px; padding: 0 22px; font-size: .9375rem; }
+
+    .lang { display: inline-flex; border: 2px solid currentColor; border-radius: 999px; padding: 3px; }
+    .lang button { appearance: none; border: 0; background: transparent; color: inherit; font: 700 .875rem/1 var(--text); padding: 8px 12px; border-radius: 999px; cursor: pointer; }
+    .lang button[aria-pressed="true"] { background: var(--blue); color: var(--beige); }
+
+    .kicker { display: inline-flex; gap: 8px; flex-wrap: wrap; }
+    .pill { display: inline-block; padding: 5px 12px; border: 2px solid currentColor; border-radius: 999px; font-weight: 700; font-size: .875rem; line-height: 1.2; }
+
+    h2.big { font: 400 clamp(3rem, 7.5vw, 7rem)/.95 var(--display); }
+    .lead { font-size: clamp(1.125rem, 1.5vw, 1.3125rem); line-height: 1.45; max-width: 34rem; }
+
+    /* Top bar */
+    .top { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 20px; padding: 14px var(--gutter); background: var(--beige); }
+    .top__logo { width: 58px; }
+    .top__right { margin-left: auto; display: flex; align-items: center; gap: 14px; }
+
+    /* Hero */
+    .hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(32px, 5vw, 80px); align-items: center;
+      padding: clamp(28px, 4vw, 56px) var(--gutter) clamp(56px, 7vw, 104px); }
+    .hero__title { font: 400 clamp(4.25rem, 10.5vw, 10.5rem)/.93 var(--display); margin: 20px 0 26px; }
+    .hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+    .collage { position: relative; aspect-ratio: 1 / 1.02; width: 100%; max-width: 600px; justify-self: center; }
+    .polaroid { position: absolute; background: var(--beige); padding: 10px 10px 38px; border: 2px solid var(--blue); border-radius: 6px;
+      box-shadow: 0 24px 40px -24px rgba(12, 4, 120, .55); transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+    .polaroid img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 2px; }
+    .polaroid figcaption { position: absolute; left: 12px; right: 12px; bottom: 8px; font: 400 1.125rem/1 var(--display); }
+    .polaroid--a { width: 52%; left: 0; top: 8%; transform: rotate(-7deg); z-index: 2; }
+    .polaroid--b { width: 46%; right: 2%; top: 0; transform: rotate(6deg); }
+    .polaroid--c { width: 44%; left: 30%; bottom: 0; transform: rotate(-2deg); z-index: 3; }
+    .polaroid:hover { transform: rotate(0) scale(1.03); z-index: 5; }
+    .sticker { position: absolute; z-index: 6; width: clamp(110px, 12vw, 150px); right: -2%; bottom: 14%; }
+    .sticker__bg { fill: var(--blue); }
+    .sticker__ring { font: 700 17px var(--text); fill: var(--beige); letter-spacing: 2.6px; }
+    .sticker__mid { font: 400 34px var(--display); fill: var(--beige); }
+    .tag { position: absolute; z-index: 6; padding: 8px 14px; background: var(--beige); border: 2px solid var(--blue); border-radius: 999px;
+      font: 400 1.125rem/1 var(--display); box-shadow: 0 10px 20px -12px rgba(12, 4, 120, .5); }
+    .tag--1 { left: -2%; top: 2%; transform: rotate(-8deg); }
+    .tag--2 { right: 8%; top: 46%; transform: rotate(7deg); background: var(--blue); color: var(--beige); }
+    @media (prefers-reduced-motion: no-preference) {
+      .sticker { animation: spin 24s linear infinite; }
+      @keyframes spin { to { transform: rotate(360deg); } }
+      .polaroid--a { animation: in-a 1s cubic-bezier(.2,.8,.2,1) both .1s; }
+      .polaroid--b { animation: in-b 1s cubic-bezier(.2,.8,.2,1) both .25s; }
+      .polaroid--c { animation: in-c 1s cubic-bezier(.2,.8,.2,1) both .4s; }
+      @keyframes in-a { from { opacity: 0; transform: translateY(40px) rotate(-16deg); } }
+      @keyframes in-b { from { opacity: 0; transform: translateY(40px) rotate(14deg); } }
+      @keyframes in-c { from { opacity: 0; transform: translateY(40px) rotate(-10deg); } }
+    }
+
+    /* Running band */
+    .band { overflow: hidden; white-space: nowrap; background: var(--blue); color: var(--beige); padding: clamp(14px, 1.8vw, 20px) 0; }
+    .band__track { display: inline-flex; align-items: center; width: max-content; }
+    .band__track span { font: 400 clamp(1.625rem, 3vw, 2.75rem)/1 var(--display); padding: 0 clamp(24px, 3vw, 48px); }
+    .band .sep { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: currentColor; flex: none; }
+    @media (prefers-reduced-motion: no-preference) { .band__track { animation: run 45s linear infinite; } @keyframes run { to { transform: translateX(-50%); } } }
+
+    /* Perks */
+    .perks { padding: var(--section) var(--gutter); }
+    .head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 20px 48px; margin-bottom: clamp(36px, 5vw, 64px); }
+    .perks__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+    .perk { border: 2px solid var(--blue); border-radius: 22px; padding: clamp(22px, 2.2vw, 30px); display: flex; flex-direction: column; gap: 10px;
+      transition: background-color .25s, color .25s, transform .25s; min-height: 220px; }
+    .perk:hover { background: var(--blue); color: var(--beige); transform: translateY(-4px) rotate(-.6deg); }
+    .perk svg { width: 46px; height: 46px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+    .perk h3 { font: 400 clamp(1.5rem, 2vw, 1.875rem)/1 var(--display); margin-top: 14px; }
+    .perk p { font-size: .9688rem; }
+
+    /* Levels as festival tickets */
+    .levels { background: var(--blue); color: var(--beige); padding: var(--section) var(--gutter); position: relative; overflow: hidden; }
+    .levels .lead { color: var(--beige); }
+    .track { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2vw, 28px); margin-top: clamp(36px, 5vw, 64px); }
+    .ticket { position: relative; background: var(--beige); color: var(--blue); border-radius: 22px; display: flex; flex-direction: column;
+      transition: transform .3s cubic-bezier(.2,.8,.2,1); }
+    .ticket:hover { transform: translateY(-6px) rotate(-1deg); }
+    .ticket--top { background: var(--beige-2); }
+    .ticket__head { padding: 24px 26px 22px; display: flex; justify-content: space-between; align-items: start; gap: 12px; }
+    .ticket__no { font-weight: 700; font-size: .875rem; }
+    .ticket__name { font: 400 clamp(2.75rem, 4.6vw, 4.25rem)/.9 var(--display); margin-top: 8px; }
+    .ticket__stamp { flex: none; padding: 6px 12px; border: 2px solid currentColor; border-radius: 999px; font: 400 1rem/1 var(--display); transform: rotate(6deg); }
+    .ticket--top .ticket__stamp { background: var(--blue); color: var(--beige); border-color: var(--blue); }
+    .ticket__perf { position: relative; height: 0; border-top: 3px dashed rgba(18, 5, 171, .35); margin: 0 18px; }
+    .ticket__perf::before, .ticket__perf::after { content: ""; position: absolute; top: -15px; width: 28px; height: 28px; border-radius: 50%; background: var(--blue); }
+    .ticket__perf::before { left: -33px; } .ticket__perf::after { right: -33px; }
+    .ticket__body { padding: 22px 26px 26px; display: grid; gap: 16px; flex: 1; }
+    .ticket__label { font-weight: 700; font-size: .8125rem; letter-spacing: .02em; opacity: .7; margin-bottom: 6px; }
+    .ticket ul li { position: relative; padding-left: 22px; margin-bottom: 6px; }
+    .ticket ul li::before { content: ""; position: absolute; left: 0; top: .5em; width: 10px; height: 10px; border-radius: 50%; background: var(--blue); }
+    .ticket__up { margin-top: auto; padding-top: 14px; border-top: 2px solid rgba(18, 5, 171, .15); font-size: .9375rem; }
+    .ticket__up strong { display: block; font-size: .8125rem; opacity: .7; margin-bottom: 2px; }
+
+    /* Content we love */
+    .vibe { padding: var(--section) var(--gutter) 0; }
+    .vibe__row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+    .vibe__row figure { margin: 0; position: relative; overflow: hidden; border-radius: 18px; }
+    .vibe__row img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+    .vibe__row figure:hover img { transform: scale(1.06); }
+    .vibe__row figcaption { position: absolute; left: 14px; bottom: 12px; padding: 6px 12px; border-radius: 999px; background: var(--beige); font: 400 1.125rem/1 var(--display); }
+
+    /* Steps */
+    .steps { padding: var(--section) var(--gutter); }
+    .steps__list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 2px solid var(--blue); counter-reset: s; }
+    .steps__list li { padding: 26px 22px 10px 0; border-right: 2px solid var(--blue); counter-increment: s; }
+    .steps__list li + li { padding-left: 22px; }
+    .steps__list li:last-child { border-right: 0; }
+    .steps__list li::before { content: counter(s); display: block; font: 400 clamp(3.5rem, 6vw, 5.5rem)/.9 var(--display); margin-bottom: 14px; }
+    .steps__list h3 { font: 400 1.625rem/1 var(--display); margin-bottom: 8px; }
+
+    /* Fit + rules */
+    .fit { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 2vw, 28px); padding: 0 var(--gutter) var(--section); }
+    .fit__card { border-radius: 26px; padding: clamp(28px, 3.4vw, 48px); border: 2px solid var(--blue); }
+    .fit__card--blue { background: var(--blue); color: var(--beige); border-color: var(--blue); }
+    .fit__card h2 { font: 400 clamp(2.5rem, 4.4vw, 4rem)/.92 var(--display); margin-bottom: 22px; }
+    .fit__card li { position: relative; padding: 12px 0 12px 40px; border-top: 2px solid currentColor; }
+    .fit__card li:last-child { border-bottom: 2px solid currentColor; }
+    .fit__card li::before { position: absolute; left: 4px; top: 10px; font: 400 1.375rem/1 var(--display); }
+    .fit__yes li::before { content: "✓"; }
+    .fit__rules li::before { content: "!"; left: 10px; }
+
+    /* FAQ */
+    .faq { padding: 0 var(--gutter) var(--section); display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(32px, 5vw, 80px); align-items: start; }
+    .faq__list details { border-top: 2px solid var(--blue); }
+    .faq__list details:last-child { border-bottom: 2px solid var(--blue); }
+    .faq__list summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 0; font: 400 clamp(1.375rem, 2vw, 1.75rem)/1.1 var(--display); }
+    .faq__list summary::-webkit-details-marker { display: none; }
+    .faq__list summary::after { content: ""; flex: none; width: 28px; height: 28px; border-radius: 50%; border: 2px solid currentColor;
+      background: linear-gradient(currentColor, currentColor) center / 12px 2px no-repeat, linear-gradient(currentColor, currentColor) center / 2px 12px no-repeat; transition: transform .25s; }
+    .faq__list details[open] summary::after { transform: rotate(45deg); }
+    .faq__list details p { padding: 0 0 20px; max-width: 40rem; }
+
+    /* Apply */
+    .apply { background: var(--blue); color: var(--beige); padding: var(--section) var(--gutter); display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(32px, 5vw, 88px); align-items: start; }
+    .apply__aside { position: sticky; top: 110px; }
+    .apply__aside .lead { margin-top: 22px; }
+    .apply__aside .kicker { margin-top: 28px; }
+    .apply__pic { position: relative; width: min(340px, 78%); margin: 56px 0 0 8%; transform: rotate(-5deg); color: var(--blue); border-color: var(--beige); }
+    .apply__pic:hover { transform: rotate(0) scale(1.03); }
+    .field input, .field select, .field textarea, .check input { scroll-margin-top: 120px; }
+    .form { display: grid; gap: 18px; background: var(--beige); color: var(--blue); border-radius: 28px; padding: clamp(24px, 3.4vw, 48px); }
+    .form h3 { font: 400 1.625rem/1 var(--display); margin-top: 8px; }
+    .form h3:first-of-type { margin-top: 0; }
+    .form__hp { position: absolute; left: -9999px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field { display: grid; gap: 7px; }
+    .field label, .field .label { font-weight: 700; font-size: .9375rem; }
+    .opt { font-weight: 400; opacity: .7; }
+    .field input, .field select, .field textarea { width: 100%; font: 400 1rem/1.4 var(--text); color: var(--blue); background: var(--beige);
+      border: 2px solid var(--blue); border-radius: 13px; padding: 12px 15px; appearance: none; }
+    .field textarea { resize: vertical; min-height: 110px; }
+    .field select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%231205AB' stroke-width='2.5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 16px center; padding-right: 44px; }
+    .field input:focus, .field select:focus, .field textarea:focus { outline: none; box-shadow: 0 0 0 3px var(--beige), 0 0 0 5px var(--blue); }
+    .field input::placeholder, .field textarea::placeholder { color: var(--blue); opacity: .45; }
+    .handle { position: relative; }
+    .handle span { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); font-weight: 700; opacity: .6; pointer-events: none; }
+    .handle input { padding-left: 32px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { position: relative; }
+    .chip input { position: absolute; left: 0; top: 0; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+    .chip span { display: inline-block; padding: 9px 16px; border: 2px solid var(--blue); border-radius: 999px; font-weight: 700; font-size: .9375rem; cursor: pointer; transition: background-color .15s, color .15s; }
+    .chip input:checked + span { background: var(--blue); color: var(--beige); }
+    .chip input:focus-visible + span { outline: 3px solid var(--blue); outline-offset: 2px; }
+    .check { display: grid; grid-template-columns: 24px 1fr; column-gap: 12px; row-gap: 6px; align-items: start; cursor: pointer; }
+    .check input { appearance: none; width: 24px; height: 24px; margin: 1px 0 0; color: inherit; border: 2px solid currentColor; border-radius: 6px; background: transparent; cursor: pointer; display: grid; place-items: center; }
+    .check input:checked { background: currentColor; }
+    .check input:checked::after { content: ""; width: 6px; height: 11px; border: solid var(--beige); border-width: 0 2.5px 2.5px 0; transform: translateY(-1px) rotate(45deg); }
+    .field.is-invalid input, .field.is-invalid select, .field.is-invalid textarea { border-width: 3px; padding: 11px 14px; box-shadow: 0 0 0 4px rgba(18, 5, 171, .14); }
+    .field.is-invalid::after, .check.is-invalid::after { content: attr(data-msg); font-weight: 700; font-size: .8125rem; line-height: 1.2; }
+    .check.is-invalid::after { grid-column: 2; }
+    .check.is-invalid input { border-width: 3px; box-shadow: 0 0 0 4px rgba(18, 5, 171, .14); }
+    .form__error { font-weight: 700; padding: 12px 16px; border: 2px solid currentColor; border-radius: 14px; }
+    .form__submit { justify-self: start; min-height: 58px; padding: 0 38px; font-size: 1.0625rem; }
+    .form__submit:disabled { opacity: .6; cursor: progress; }
+    .form__note { font-size: .75rem; opacity: .6; }
+    .form__note a { font-weight: 700; }
+    .done { background: var(--beige); color: var(--blue); border-radius: 28px; padding: clamp(28px, 3.4vw, 48px); }
+    .done:focus { outline: none; }
+    .done { scroll-margin-top: 120px; }
+    .done h3 { font: 400 clamp(2.5rem, 4.5vw, 4rem)/.92 var(--display); margin-bottom: 14px; }
+    .done p { max-width: 32rem; margin-bottom: 12px; }
+    .done .btn { margin-top: 12px; }
+
+    .foot { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 32px; padding: 28px var(--gutter); font-size: .9375rem; }
+    .foot__logo { width: 56px; }
+    .foot a { font-weight: 700; }
+    .foot__ig { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; }
+    .foot__ig:hover { background: var(--blue); color: var(--beige); opacity: 1; }
+    .foot__privacy { margin-left: auto; }
+
+    /* Click burst */
+    .burst { position: fixed; width: 0; height: 0; pointer-events: none; z-index: 50; }
+    .burst i { position: absolute; left: -1.5px; top: -16px; width: 3px; height: 11px; border-radius: 2px; background: var(--c, var(--blue));
+      transform-origin: 1.5px 16px; opacity: 0; animation: burst .48s cubic-bezier(.2,.7,.3,1) forwards; }
+    @media (pointer: coarse) { .burst { scale: .7; } }
+    @keyframes burst { 0% { opacity: 1; transform: rotate(var(--a)) translateY(2px) scaleY(.4); } 45% { opacity: 1; transform: rotate(var(--a)) translateY(-12px) scaleY(1); } 100% { opacity: 0; transform: rotate(var(--a)) translateY(-22px) scaleY(.3); } }
+
+    /* Responsive */
+    @media (max-width: 1080px) {
+      .perks__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .steps__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .steps__list li:nth-child(2) { border-right: 0; }
+      .steps__list li:nth-child(3) { padding-left: 0; }
+      .steps__list li:nth-child(n+3) { border-top: 2px solid var(--blue); }
+    }
+    @media (max-width: 900px) {
+      .hero, .apply, .faq, .fit { grid-template-columns: 1fr; }
+      .collage { max-width: 460px; }
+      .track { grid-template-columns: 1fr; }
+      .vibe__row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .apply__aside { position: static; }
+      .apply__pic { display: none; }
+    }
+    @media (max-width: 560px) {
+      .top__right .btn { display: none; }
+      .row { grid-template-columns: 1fr; }
+      .perks__grid, .steps__list { grid-template-columns: 1fr; }
+      .steps__list li { border-right: 0; padding-left: 0 !important; border-top: 2px solid var(--blue); }
+      .steps__list li:first-child { border-top: 0; }
+      .perk { min-height: 0; }
+      .form__submit, .hero__actions .btn { width: 100%; }
+      .foot__privacy { margin-left: 0; }
+      .sticker { right: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="top">
+    <a class="top__logo" href="/" data-home aria-label="São — home"><span class="logo" aria-hidden="true"></span></a>
+    <div class="top__right">
+      <div class="lang" aria-label="Language"><button type="button" data-lang="en">EN</button><button type="button" data-lang="pt">PT</button></div>
+      <a class="btn btn--blue btn--sm" href="#apply" data-i18n="nav.apply">Apply now</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div>
+        <div class="kicker">
+          <span class="pill" data-i18n="hero.p1">Now casting</span>
+          <span class="pill" data-i18n="hero.p2">Lisbon first</span>
+          <span class="pill">18+</span>
+        </div>
+        <h1 class="hero__title" data-i18n="hero.title">Join the<br>São family.</h1>
+        <p class="lead" data-i18n="hero.lead">We're building a crew of creators who make Lisbon's nights look as good as they feel. Get São before anyone else, unlock merch, festival tickets and paid deals as you level up.</p>
+        <div class="hero__actions">
+          <a class="btn btn--blue" href="#apply" data-i18n="hero.cta">Apply now</a>
+          <a class="btn" href="#perks" data-i18n="hero.cta2">See what you get</a>
+        </div>
+      </div>
+      <div class="collage" aria-hidden="true">
+        <figure class="polaroid polaroid--a"><img src="assets/img/creators/selfie.jpg" alt=""><figcaption>@you</figcaption></figure>
+        <figure class="polaroid polaroid--b"><img src="assets/img/creators/festival-sunset.jpg" alt=""><figcaption data-i18n="hero.cap2">Festival season</figcaption></figure>
+        <figure class="polaroid polaroid--c"><img src="assets/img/creators/crew.jpg" alt=""><figcaption data-i18n="hero.cap3">The crew</figcaption></figure>
+        <span class="tag tag--1" data-i18n="hero.tag1">Free drinks</span>
+        <span class="tag tag--2" data-i18n="hero.tag2">Paid deals</span>
+        <svg class="sticker" viewBox="0 0 200 200">
+          <defs><path id="ring" d="M100,100 m-72,0 a72,72 0 1,1 144,0 a72,72 0 1,1 -144,0"/></defs>
+          <circle cx="100" cy="100" r="96" class="sticker__bg"/>
+          <text class="sticker__ring"><textPath href="#ring" data-i18n="hero.ring">now casting · lisboa · now casting · lisboa · </textPath></text>
+          <text x="100" y="112" text-anchor="middle" class="sticker__mid">são</text>
+        </svg>
+      </div>
+    </section>
+
+    <div class="band" aria-hidden="true">
+      <div class="band__track">
+        <span data-i18n="band.1">Free drinks</span><i class="sep"></i>
+        <span data-i18n="band.2">Exclusive merch</span><i class="sep"></i>
+        <span data-i18n="band.3">Festival tickets</span><i class="sep"></i>
+        <span data-i18n="band.4">Launch parties</span><i class="sep"></i>
+        <span data-i18n="band.5">Paid contracts</span><i class="sep"></i>
+      </div>
+    </div>
+
+    <!-- Perks -->
+    <section class="perks" id="perks" aria-labelledby="perks-title">
+      <div class="head">
+        <h2 class="big" id="perks-title" data-i18n="perks.title">What's in it<br>for you.</h2>
+        <p class="lead" data-i18n="perks.lead">No follower minimum, no fees, no strings. Just good people making good content, rewarded properly.</p>
+      </div>
+      <ul class="perks__grid">
+        <li class="perk">
+          <svg viewBox="0 0 48 48"><path d="M6 16l18-9 18 9v18l-18 9-18-9z"/><path d="M6 16l18 9 18-9M24 25v18"/><path d="M15 11.5l18 9"/></svg>
+          <h3 data-i18n="perk1.t">The launch box</h3><p data-i18n="perk1.p">Both flavours at your door before São hits a single bar.</p>
+        </li>
+        <li class="perk">
+          <svg viewBox="0 0 48 48"><path d="M17 6l-11 7 5 8 4-2v23h18V19l4 2 5-8-11-7c-1 4-4 6-7 6s-6-2-7-6z"/></svg>
+          <h3 data-i18n="perk2.t">Merch you can't buy</h3><p data-i18n="perk2.p">Limited drops made only for the family.</p>
+        </li>
+        <li class="perk">
+          <svg viewBox="0 0 48 48"><path d="M4 16a4 4 0 0 0 0 8v10h40V24a4 4 0 0 0 0-8V6H4z" transform="translate(0 4)"/><path d="M30 10v30" stroke-dasharray="3 4"/></svg>
+          <h3 data-i18n="perk3.t">Festival tickets</h3><p data-i18n="perk3.p">Passes to the summer festivals where São pours.</p>
+        </li>
+        <li class="perk">
+          <svg viewBox="0 0 48 48"><path d="M8 40c6-12 10-28 16-32 6 4 10 20 16 32"/><path d="M14 30h20"/><circle cx="24" cy="8" r="2"/></svg>
+          <h3 data-i18n="perk4.t">Launch parties</h3><p data-i18n="perk4.p">On the guest list for every São night in Lisbon.</p>
+        </li>
+        <li class="perk">
+          <svg viewBox="0 0 48 48"><path d="M26 6H8v18l18 18 16-16z"/><circle cx="15" cy="13" r="3"/></svg>
+          <h3 data-i18n="perk5.t">Your own code</h3><p data-i18n="perk5.p">A personal discount code for your followers, with commission on every order once the shop opens.</p>
+        </li>
+        <li class="perk">
+          <svg viewBox="0 0 48 48"><rect x="8" y="5" width="32" height="38" rx="3"/><path d="M15 15h18M15 22h18M15 29h10"/><path d="M27 35l3 3 7-7"/></svg>
+          <h3 data-i18n="perk6.t">Paid contracts</h3><p data-i18n="perk6.p">Our top creators get real, paid partnerships.</p>
+        </li>
+        <li class="perk">
+          <svg viewBox="0 0 48 48"><path d="M24 4c1.5 9 5 12.5 14 14-9 1.5-12.5 5-14 14-1.5-9-5-12.5-14-14 9-1.5 12.5-5 14-14z"/><path d="M38 32c.6 3.6 2 5 6 6-4 .6-5.4 2-6 6-.6-4-2-5.4-6-6 4-1 5.4-2.4 6-6z"/></svg>
+          <h3 data-i18n="perk7.t">First taste</h3><p data-i18n="perk7.p">New flavours and secrets before the rest of the world.</p>
+        </li>
+        <li class="perk">
+          <svg viewBox="0 0 48 48"><path d="M6 20v8h8l14 10V10L14 20z"/><path d="M34 17c3 2 3 12 0 14M38 12c6 4 6 20 0 24"/></svg>
+          <h3 data-i18n="perk8.t">Featured on @drinksao</h3><p data-i18n="perk8.p">The best content gets reposted to our audience.</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Levels -->
+    <section class="levels on-blue" id="levels" aria-labelledby="levels-title">
+      <div class="head">
+        <h2 class="big" id="levels-title" data-i18n="levels.title">Three levels.<br>Climb them.</h2>
+        <p class="lead" data-i18n="levels.lead">Everyone starts as a Friend. Create great content, grow with us and you move up. We review every creator every few months.</p>
+      </div>
+      <div class="track" id="track">
+
+        <article class="ticket">
+          <div class="ticket__head">
+            <div><p class="ticket__no" data-i18n="l1.no">Level 1</p><h3 class="ticket__name">Friends</h3></div>
+            <span class="ticket__stamp" data-i18n="l1.stamp">Free</span>
+          </div>
+          <div class="ticket__perf" aria-hidden="true"></div>
+          <div class="ticket__body">
+            <div><p class="ticket__label" data-i18n="you.get">You get</p>
+              <ul><li data-i18n="l1.a">The launch box</li><li data-i18n="l1.b">Your personal code</li><li data-i18n="l1.c">Access to the family group chat</li><li data-i18n="l1.d">Merch drops</li></ul></div>
+            <p class="ticket__up"><strong data-i18n="to.up">To level up</strong><span data-i18n="l1.up">Post regularly, follow the guide, make content we'd want to repost.</span></p>
+          </div>
+        </article>
+
+        <article class="ticket">
+          <div class="ticket__head">
+            <div><p class="ticket__no" data-i18n="l2.no">Level 2</p><h3 class="ticket__name">Crew</h3></div>
+            <span class="ticket__stamp" data-i18n="l2.stamp">Perks+</span>
+          </div>
+          <div class="ticket__perf" aria-hidden="true"></div>
+          <div class="ticket__body">
+            <div><p class="ticket__label" data-i18n="you.get">You get</p>
+              <ul><li data-i18n="l2.a">Everything in Friends</li><li data-i18n="l2.b">Commission on your code</li><li data-i18n="l2.c">Festival and event tickets</li><li data-i18n="l2.d">Guest list at São launch nights</li><li data-i18n="l2.e">Restocks whenever you need them</li></ul></div>
+            <p class="ticket__up"><strong data-i18n="to.up">To level up</strong><span data-i18n="l2.up">Strong reach and engagement, people using your code, and a creative eye.</span></p>
+          </div>
+        </article>
+
+        <article class="ticket ticket--top">
+          <div class="ticket__head">
+            <div><p class="ticket__no" data-i18n="l3.no">Level 3</p><h3 class="ticket__name">Família</h3></div>
+            <span class="ticket__stamp" data-i18n="l3.stamp">Paid</span>
+          </div>
+          <div class="ticket__perf" aria-hidden="true"></div>
+          <div class="ticket__body">
+            <div><p class="ticket__label" data-i18n="you.get">You get</p>
+              <ul><li data-i18n="l3.a">Everything in Crew</li><li data-i18n="l3.b">A paid contract</li><li data-i18n="l3.c">Campaigns and shoots with São</li><li data-i18n="l3.d">Input on new flavours and merch</li></ul></div>
+            <p class="ticket__up"><strong data-i18n="l3.how">How you get here</strong><span data-i18n="l3.up">By invitation, for the creators who make São what it is.</span></p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Content we love -->
+    <section class="vibe" aria-labelledby="vibe-title">
+      <div class="head">
+        <h2 class="big" id="vibe-title" data-i18n="vibe.title">Content<br>we love.</h2>
+        <p class="lead" data-i18n="vibe.lead">Real moments, not ads. Golden hour, good friends, the city at night. Shoot it your way.</p>
+      </div>
+      <div class="vibe__row">
+        <figure><img src="assets/img/creators/lisboa.jpg" alt="" loading="lazy"><figcaption data-i18n="vibe.1">City nights</figcaption></figure>
+        <figure><img src="assets/img/creators/festival.jpg" alt="" loading="lazy"><figcaption data-i18n="vibe.2">Festivals</figcaption></figure>
+        <figure><img src="assets/img/creators/laugh.jpg" alt="" loading="lazy"><figcaption data-i18n="vibe.3">Golden hour</figcaption></figure>
+        <figure><img src="assets/img/creators/pool.jpg" alt="" loading="lazy"><figcaption data-i18n="vibe.4">Slow days</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- Steps -->
+    <section class="steps" aria-labelledby="steps-title">
+      <div class="head"><h2 class="big" id="steps-title" data-i18n="steps.title">How it works.</h2></div>
+      <ol class="steps__list">
+        <li><h3 data-i18n="s1.t">Apply</h3><p data-i18n="s1.p">Two minutes. Tell us who you are and where you post.</p></li>
+        <li><h3 data-i18n="s2.t">We say olá</h3><p data-i18n="s2.p">We look at every application and get back to you, usually within a week.</p></li>
+        <li><h3 data-i18n="s3.t">Get your box</h3><p data-i18n="s3.p">Your launch box arrives with the creator guide and your code.</p></li>
+        <li><h3 data-i18n="s4.t">Create and climb</h3><p data-i18n="s4.p">Post, tag @drinksao, and unlock the next level.</p></li>
+      </ol>
+    </section>
+
+    <!-- Fit + rules -->
+    <section class="fit">
+      <article class="fit__card">
+        <h2 data-i18n="fit.title">You're a fit if</h2>
+        <ul class="fit__yes">
+          <li data-i18n="fit.1">You're 18 or older</li>
+          <li data-i18n="fit.2">You live in or regularly spend time in Portugal</li>
+          <li data-i18n="fit.3">Most of your followers are adults</li>
+          <li data-i18n="fit.4">You post on Instagram or TikTok, any follower count</li>
+          <li data-i18n="fit.5">You have taste: nightlife, lifestyle, food, music, travel or fashion</li>
+        </ul>
+      </article>
+      <article class="fit__card fit__card--blue on-blue">
+        <h2 data-i18n="rules.title">Keep it São</h2>
+        <ul class="fit__rules">
+          <li data-i18n="rules.1">Start every sponsored post with #PUB</li>
+          <li data-i18n="rules.2">Only adults in frame with São</li>
+          <li data-i18n="rules.3">Never with sport, workouts or driving</li>
+          <li data-i18n="rules.4">One good can, not ten. Enjoy responsibly</li>
+          <li data-i18n="rules.5">No health or performance claims</li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" aria-labelledby="faq-title">
+      <h2 class="big" id="faq-title">FAQ.</h2>
+      <div class="faq__list">
+        <details><summary data-i18n="q1">How many followers do I need?</summary><p data-i18n="a1">None in particular. We care more about your style and your audience than the number. Most of your followers should be 18+.</p></details>
+        <details><summary data-i18n="q2">Does it cost anything?</summary><p data-i18n="a2">No. Joining is free, always.</p></details>
+        <details><summary data-i18n="q3">Do I have to post a set amount?</summary><p data-i18n="a3">At level 1 there are no fixed quotas. The more you create, the faster you level up. Paid contracts at level 3 come with clear, agreed deliverables.</p></details>
+        <details><summary data-i18n="q4">When do I get paid?</summary><p data-i18n="a4">Commission on your code starts once our online shop opens. Paid contracts are agreed one-on-one with our top creators.</p></details>
+        <details><summary data-i18n="q5">I don't live in Lisbon. Can I still apply?</summary><p data-i18n="a5">Yes. We start in Lisbon and the Algarve, but creators anywhere in Portugal are welcome to apply.</p></details>
+        <details><summary data-i18n="q6">Can I stop whenever I want?</summary><p data-i18n="a6">Of course. No lock-ins at levels 1 and 2. Just let us know.</p></details>
+      </div>
+    </section>
+
+    <!-- Apply -->
+    <section class="apply on-blue" id="apply" aria-labelledby="apply-title">
+      <div class="apply__aside">
+        <h2 class="big" id="apply-title" data-i18n="apply.title">Apply to<br>the family.</h2>
+        <p class="lead" data-i18n="apply.lead">Spots in the first launch wave are limited. Apply now and be among the first to get São in your hands.</p>
+        <div class="kicker"><span class="pill" data-i18n="apply.p1">2 minutes</span><span class="pill" data-i18n="apply.p2">Free to join</span><span class="pill">18+</span></div>
+        <figure class="polaroid apply__pic" aria-hidden="true"><img src="assets/img/creators/algarve.jpg" alt="" loading="lazy"><figcaption data-i18n="apply.cap">See you this summer</figcaption></figure>
+      </div>
+
+      <div>
+        <form class="form" name="creators" method="POST" data-netlify="true" netlify-honeypot="company_website" data-done="creators-done" novalidate>
+          <input type="hidden" name="form-name" value="creators">
+          <input type="hidden" name="language" value="en">
+          <p class="form__hp" aria-hidden="true"><label>Leave this empty <input name="company_website" tabindex="-1" autocomplete="off"></label></p>
+
+          <h3 data-i18n="f.h1">About you</h3>
+          <div class="row">
+            <div class="field"><label for="c-first" data-i18n="f.first">First name</label><input id="c-first" name="first_name" required autocomplete="given-name"></div>
+            <div class="field"><label for="c-last" data-i18n="f.last">Last name</label><input id="c-last" name="last_name" required autocomplete="family-name"></div>
+          </div>
+          <div class="row">
+            <div class="field"><label for="c-email" data-i18n="f.email">Email</label><input id="c-email" name="email" type="email" required autocomplete="email"></div>
+            <div class="field"><label for="c-phone" data-i18n="f.phone">Phone or WhatsApp <span class="opt">(optional)</span></label><input id="c-phone" name="phone" type="tel" autocomplete="tel"></div>
+          </div>
+          <div class="field">
+            <label for="c-city" data-i18n="f.city">Where are you based?</label>
+            <select id="c-city" name="city" required>
+              <option value="" data-i18n="f.choose">Choose one</option>
+              <option value="Lisboa">Lisboa</option>
+              <option value="Algarve">Algarve</option>
+              <option value="Porto">Porto</option>
+              <option value="Elsewhere in Portugal" data-i18n="f.city.pt">Elsewhere in Portugal</option>
+              <option value="Outside Portugal" data-i18n="f.city.out">Outside Portugal</option>
+            </select>
+          </div>
+
+          <h3 data-i18n="f.h2">Your socials</h3>
+          <div class="row">
+            <div class="field"><label for="c-ig">Instagram</label><div class="handle"><span>@</span><input id="c-ig" name="instagram" data-one-of="social" autocomplete="off"></div></div>
+            <div class="field"><label for="c-tt">TikTok</label><div class="handle"><span>@</span><input id="c-tt" name="tiktok" data-one-of="social" autocomplete="off"></div></div>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label for="c-followers" data-i18n="f.followers">Followers on your biggest account</label>
+              <select id="c-followers" name="followers" required>
+                <option value="" data-i18n="f.choose">Choose one</option>
+                <option value="Under 1k" data-i18n="f.fo1">Under 1k</option>
+                <option value="1k–5k">1k–5k</option>
+                <option value="5k–20k">5k–20k</option>
+                <option value="20k–100k">20k–100k</option>
+                <option value="100k+">100k+</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="c-adult" data-i18n="f.adult">Share of followers aged 18+</label>
+              <select id="c-adult" name="audience_18_plus" required>
+                <option value="" data-i18n="f.choose">Choose one</option>
+                <option value="75% or more" data-i18n="f.ad1">75% or more</option>
+                <option value="50–75%" data-i18n="f.ad2">50–75%</option>
+                <option value="Under 50%" data-i18n="f.ad3">Under 50%</option>
+                <option value="Not sure" data-i18n="f.ad4">Not sure</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <span class="label" data-i18n="f.content">What do you post about? <span class="opt">(pick any)</span></span>
+            <div class="chips">
+              <label class="chip"><input type="checkbox" name="content" value="Nightlife"><span data-i18n="c.1">Nightlife</span></label>
+              <label class="chip"><input type="checkbox" name="content" value="Lifestyle"><span data-i18n="c.2">Lifestyle</span></label>
+              <label class="chip"><input type="checkbox" name="content" value="Food & drinks"><span data-i18n="c.3">Food &amp; drinks</span></label>
+              <label class="chip"><input type="checkbox" name="content" value="Music"><span data-i18n="c.4">Music</span></label>
+              <label class="chip"><input type="checkbox" name="content" value="Travel"><span data-i18n="c.5">Travel</span></label>
+              <label class="chip"><input type="checkbox" name="content" value="Fashion"><span data-i18n="c.6">Fashion</span></label>
+              <label class="chip"><input type="checkbox" name="content" value="Other"><span data-i18n="c.7">Other</span></label>
+            </div>
+          </div>
+          <div class="field">
+            <label for="c-why" data-i18n="f.why">Why São? <span class="opt">(optional)</span></label>
+            <textarea id="c-why" name="why" rows="3" data-i18n-ph="f.why.ph" placeholder="A few words about you and the content you'd make with us."></textarea>
+          </div>
+
+          <label class="check"><input type="checkbox" name="confirm_18" value="yes" required><span data-i18n="f.c1">I'm 18 or older.</span></label>
+          <label class="check"><input type="checkbox" name="consent_contact" value="yes" required><span data-i18n="f.c2">São may contact me about the creator programme.</span></label>
+
+          <p class="form__error" role="alert" hidden></p>
+          <button class="btn btn--blue form__submit" type="submit" data-i18n="f.submit">Send my application</button>
+          <p class="form__note"><span data-i18n="f.note">We only use your details for this application.</span> <a href="privacy.html" target="_blank" rel="noopener" data-i18n="f.privacy">Privacy statement</a></p>
+        </form>
+
+        <div class="done" id="creators-done" tabindex="-1" hidden>
+          <h3 data-i18n="done.t">Application in.<br>Obrigado!</h3>
+          <p data-i18n="done.p1">We'll look at your profile and get back to you, usually within a week.</p>
+          <p data-i18n="done.p2">In the meantime, follow us so you don't miss the first drop.</p>
+          <a class="btn btn--blue" href="https://www.instagram.com/drinksao/" target="_blank" rel="noopener" data-i18n="done.cta">Follow @drinksao</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span class="logo foot__logo" aria-hidden="true"></span>
+    <a href="mailto:info@drinksao.com">info@drinksao.com</a>
+    <a class="foot__ig" href="https://www.instagram.com/drinksao/" target="_blank" rel="noopener" aria-label="São on Instagram (@drinksao)">
+      <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg>
+    </a>
+    <p data-i18n="foot.resp">Enjoy responsibly. Not for sale to persons under 18.</p>
+    <a class="foot__privacy" href="privacy.html" data-i18n="foot.privacy">Privacy</a>
+    <p>&copy; <span id="year">2026</span> São</p>
+  </footer>
+
+  <script>
+    // English is written in the HTML; Portuguese lives here.
+    const PT = {
+      "nav.apply": "Candidatar", "hero.p1": "Casting aberto", "hero.p2": "Primeiro Lisboa",
+      "hero.title": "Junta-te à<br>família São.",
+      "hero.lead": "Estamos a juntar uma crew de criadores que fazem as noites de Lisboa parecer tão boas como são. Recebe a São antes de toda a gente e desbloqueia merch, bilhetes para festivais e parcerias pagas à medida que sobes de nível.",
+      "hero.cta": "Candidatar agora", "hero.cta2": "Ver o que ganhas", "hero.cap2": "Época de festivais", "hero.cap3": "A crew",
+      "hero.tag1": "Bebidas grátis", "hero.tag2": "Parcerias pagas", "hero.ring": "casting aberto · lisboa · casting aberto · lisboa · ",
+      "band.1": "Bebidas grátis", "band.2": "Merch exclusivo", "band.3": "Bilhetes para festivais", "band.4": "Festas de lançamento", "band.5": "Contratos pagos",
+      "perks.title": "O que<br>ganhas.", "perks.lead": "Sem mínimo de seguidores, sem custos, sem compromisso. Só boas pessoas a criar bom conteúdo, bem recompensadas.",
+      "perk1.t": "A caixa de lançamento", "perk1.p": "Os dois sabores à tua porta antes de a São chegar a qualquer bar.",
+      "perk2.t": "Merch que não se compra", "perk2.p": "Edições limitadas feitas só para a família.",
+      "perk3.t": "Bilhetes para festivais", "perk3.p": "Passes para os festivais de verão onde a São está.",
+      "perk4.t": "Festas de lançamento", "perk4.p": "Na guest list de todas as noites São em Lisboa.",
+      "perk5.t": "O teu código", "perk5.p": "Um código de desconto pessoal para os teus seguidores, com comissão em cada encomenda quando a loja abrir.",
+      "perk6.t": "Contratos pagos", "perk6.p": "Os melhores criadores recebem parcerias pagas a sério.",
+      "perk7.t": "Primeiro gole", "perk7.p": "Novos sabores e segredos antes do resto do mundo.",
+      "perk8.t": "Destaque na @drinksao", "perk8.p": "O melhor conteúdo é partilhado com a nossa audiência.",
+      "levels.title": "Três níveis.<br>Sobe-os.", "levels.lead": "Toda a gente começa como Friend. Cria bom conteúdo, cresce connosco e sobes de nível. Revemos cada criador a cada poucos meses.",
+      "l1.no": "Nível 1", "l1.stamp": "Grátis", "you.get": "Recebes", "to.up": "Para subir de nível",
+      "l1.a": "A caixa de lançamento", "l1.b": "O teu código pessoal", "l1.c": "Acesso ao grupo da família", "l1.d": "Merch exclusivo",
+      "l1.up": "Publica com regularidade, segue o guia e faz conteúdo que queremos partilhar.",
+      "l2.no": "Nível 2", "l2.stamp": "Perks+", "l2.a": "Tudo do nível Friends", "l2.b": "Comissão sobre o teu código", "l2.c": "Bilhetes para festivais e eventos", "l2.d": "Guest list nas noites de lançamento São", "l2.e": "Reposição sempre que precisares",
+      "l2.up": "Bom alcance e envolvimento, pessoas a usar o teu código e olho criativo.",
+      "l3.no": "Nível 3", "l3.stamp": "Pago", "l3.a": "Tudo do nível Crew", "l3.b": "Um contrato pago", "l3.c": "Campanhas e sessões com a São", "l3.d": "Voz nos novos sabores e merch",
+      "l3.how": "Como chegas aqui", "l3.up": "Por convite, para os criadores que fazem a São ser o que é.",
+      "vibe.title": "Conteúdo<br>que adoramos.", "vibe.lead": "Momentos reais, não anúncios. Golden hour, bons amigos, a cidade à noite. Filma à tua maneira.",
+      "vibe.1": "Noites na cidade", "vibe.2": "Festivais", "vibe.3": "Golden hour", "vibe.4": "Dias lentos",
+      "steps.title": "Como funciona.",
+      "s1.t": "Candidata-te", "s1.p": "Dois minutos. Diz-nos quem és e onde publicas.",
+      "s2.t": "Dizemos olá", "s2.p": "Vemos todas as candidaturas e respondemos, normalmente numa semana.",
+      "s3.t": "Recebe a caixa", "s3.p": "A tua caixa de lançamento chega com o guia de criador e o teu código.",
+      "s4.t": "Cria e sobe", "s4.p": "Publica, identifica a @drinksao e desbloqueia o próximo nível.",
+      "fit.title": "Encaixas se", "fit.1": "Tens 18 anos ou mais", "fit.2": "Vives ou passas muito tempo em Portugal", "fit.3": "A maioria dos teus seguidores é adulta",
+      "fit.4": "Publicas no Instagram ou TikTok, com qualquer número de seguidores", "fit.5": "Tens bom gosto: noite, lifestyle, comida, música, viagens ou moda",
+      "rules.title": "À maneira São", "rules.1": "Começa cada post patrocinado com #PUB", "rules.2": "Só adultos em imagem com a São", "rules.3": "Nunca com desporto, treinos ou condução",
+      "rules.4": "Uma lata boa, não dez. Bebe com moderação", "rules.5": "Sem alegações de saúde ou desempenho",
+      "q1": "Quantos seguidores preciso de ter?", "a1": "Nenhum número em especial. Importa-nos mais o teu estilo e a tua audiência do que o número. A maioria dos teus seguidores deve ter 18+.",
+      "q2": "Tem algum custo?", "a2": "Não. Juntar-te é grátis, sempre.",
+      "q3": "Tenho de publicar uma quantidade fixa?", "a3": "No nível 1 não há quotas fixas. Quanto mais crias, mais depressa sobes. Os contratos pagos do nível 3 têm entregas claras e acordadas.",
+      "q4": "Quando sou pago?", "a4": "A comissão sobre o teu código começa quando a nossa loja online abrir. Os contratos pagos são acordados individualmente com os melhores criadores.",
+      "q5": "Não vivo em Lisboa. Posso candidatar-me?", "a5": "Sim. Começamos em Lisboa e no Algarve, mas criadores de todo o país são bem-vindos.",
+      "q6": "Posso sair quando quiser?", "a6": "Claro. Sem fidelização nos níveis 1 e 2. É só avisares.",
+      "apply.title": "Candidata-te<br>à família.", "apply.lead": "Os lugares na primeira vaga são limitados. Candidata-te já e sê dos primeiros a ter a São nas mãos.",
+      "apply.p1": "2 minutos", "apply.p2": "Grátis", "apply.cap": "Até ao verão",
+      "f.h1": "Sobre ti", "f.first": "Nome", "f.last": "Apelido", "f.email": "Email", "f.phone": "Telefone ou WhatsApp <span class=\"opt\">(opcional)</span>",
+      "f.city": "Onde estás baseado?", "f.choose": "Escolhe uma opção", "f.city.pt": "Outro sítio em Portugal", "f.city.out": "Fora de Portugal",
+      "f.h2": "As tuas redes", "f.followers": "Seguidores na tua maior conta", "f.fo1": "Menos de 1k", "f.adult": "Parte dos seguidores com 18+",
+      "f.ad1": "75% ou mais", "f.ad2": "50–75%", "f.ad3": "Menos de 50%", "f.ad4": "Não sei",
+      "f.content": "Sobre o que publicas? <span class=\"opt\">(escolhe à vontade)</span>",
+      "c.1": "Noite", "c.2": "Lifestyle", "c.3": "Comida e bebida", "c.4": "Música", "c.5": "Viagens", "c.6": "Moda", "c.7": "Outro",
+      "f.why": "Porquê a São? <span class=\"opt\">(opcional)</span>", "f.why.ph": "Umas palavras sobre ti e o conteúdo que farias connosco.",
+      "f.c1": "Tenho 18 anos ou mais.", "f.c2": "A São pode contactar-me sobre o programa de criadores.",
+      "f.submit": "Enviar candidatura", "f.note": "Só usamos os teus dados para esta candidatura.", "f.privacy": "Política de privacidade",
+      "done.t": "Candidatura enviada.<br>Obrigado!", "done.p1": "Vamos ver o teu perfil e responder, normalmente numa semana.",
+      "done.p2": "Entretanto, segue-nos para não perderes a primeira novidade.", "done.cta": "Seguir @drinksao",
+      "foot.resp": "Seja responsável. Beba com moderação. Venda proibida a menores de 18 anos.", "foot.privacy": "Privacidade",
+      "title": "Junta-te à família São — Criadores"
+    };
+    const MSG = {
+      en: { req: "Required", email: "Enter a valid email address", check: "Tick this box to continue", social: "Add at least one account", sending: "Sending…",
+            send: "That didn't go through. Check your connection and try again, or email info@drinksao.com." },
+      pt: { req: "Obrigatório", email: "Indica um email válido", check: "Assinala para continuar", social: "Indica pelo menos uma conta", sending: "A enviar…",
+            send: "Não foi enviado. Verifica a ligação e tenta de novo, ou escreve para info@drinksao.com." }
+    };
+    const EN = {};
+    document.querySelectorAll("[data-i18n]").forEach(el => { EN[el.dataset.i18n] = el.innerHTML; });
+    document.querySelectorAll("[data-i18n-ph]").forEach(el => { EN[el.dataset.i18nPh] = el.placeholder; });
+    EN.title = document.title;
+    const store = {
+      get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+      set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+    };
+    let lang = "en";
+    function setLang(l) {
+      lang = l === "pt" ? "pt" : "en";
+      const d = lang === "pt" ? PT : EN;
+      document.documentElement.lang = lang === "pt" ? "pt-PT" : "en";
+      document.querySelectorAll("[data-i18n]").forEach(el => { const v = d[el.dataset.i18n] ?? EN[el.dataset.i18n]; if (v != null) el.innerHTML = v; });
+      document.querySelectorAll("[data-i18n-ph]").forEach(el => { el.placeholder = d[el.dataset.i18nPh] ?? EN[el.dataset.i18nPh]; });
+      document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
+      document.querySelectorAll('input[name="language"]').forEach(i => { i.value = lang; });
+      document.title = d.title;
+      store.set("sao-lang", lang);
+    }
+    document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.lang)));
+    document.querySelectorAll(".band__track").forEach(t => { t.innerHTML = t.innerHTML.repeat(2); t.innerHTML += t.innerHTML; });
+    setLang(store.get("sao-lang") || "en");
+    document.getElementById("year").textContent = new Date().getFullYear();
+    if (location.hostname.startsWith("concept--")) document.querySelectorAll("[data-home]").forEach(a => { a.href = "coming-soon.html"; });
+
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+
+    // Click burst
+    if (!reduce) document.addEventListener("click", e => {
+      if (!e.clientX && !e.clientY) return;
+      if (e.target.closest("input:not([type=checkbox]), select, textarea")) return;
+      const onBlue = e.target.closest(".on-blue:not(.form):not(.form *), .band, .btn--blue") && !e.target.closest(".form, .ticket, .done");
+      const b = document.createElement("span"); b.className = "burst";
+      b.style.left = e.clientX + "px"; b.style.top = e.clientY + "px";
+      if (onBlue) b.style.setProperty("--c", "var(--beige)");
+      const turn = Math.random() * 45;
+      for (let i = 0; i < 8; i++) { const l = document.createElement("i"); l.style.setProperty("--a", (turn + i * 45) + "deg"); b.appendChild(l); }
+      document.body.appendChild(b); setTimeout(() => b.remove(), 550);
+    });
+
+    // Application form (Netlify Forms)
+    document.querySelectorAll("form[data-done]").forEach(form => {
+      const err = form.querySelector(".form__error"), btn = form.querySelector(".form__submit");
+      const done = document.getElementById(form.dataset.done);
+      form.addEventListener("submit", async e => {
+        e.preventDefault();
+        err.hidden = true;
+        form.querySelectorAll(".is-invalid").forEach(el => el.classList.remove("is-invalid"));
+        const bad = [...form.querySelectorAll("[required]")].filter(el => !el.checkValidity());
+        const socials = [...form.querySelectorAll('[data-one-of="social"]')];
+        if (!socials.some(i => i.value.trim())) bad.push(...socials);
+        if (bad.length) {
+          bad.forEach(el => {
+            const box = el.closest(".field, .check") || el;
+            box.dataset.msg = el.dataset.oneOf ? MSG[lang].social : el.type === "checkbox" ? MSG[lang].check : (el.type === "email" && el.value ? MSG[lang].email : MSG[lang].req);
+            box.classList.add("is-invalid");
+          });
+          bad[0].focus(); return;
+        }
+        const label = btn.innerHTML; btn.disabled = true; btn.textContent = MSG[lang].sending;
+        try {
+          const res = await fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(new FormData(form)).toString() });
+          if (!res.ok) throw new Error(res.status);
+          form.hidden = true; done.hidden = false; done.focus();
+        } catch (x) {
+          err.textContent = MSG[lang].send; err.hidden = false; btn.disabled = false; btn.innerHTML = label;
+        }
+      });
+      form.addEventListener("input", e => {
+        const f = e.target.closest(".field, .check");
+        if (f && e.target.checkValidity()) f.classList.remove("is-invalid");
+        if (e.target.dataset.oneOf && e.target.value.trim()) form.querySelectorAll('[data-one-of="social"]').forEach(i => i.closest(".field").classList.remove("is-invalid"));
+      });
+    });
+  </script>
+</body>
+</html>
