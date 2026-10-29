@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>São — Hard seltzer from Portugal</title>
+  <meta name="description" content="São is a hard seltzer made for Portugal's bars, clubs, beach clubs and festivals. Lime and maracujá, in slim 250 ml cans.">
+  <meta name="theme-color" content="#1205AB">
+  <meta property="og:title" content="São — Hard seltzer from Portugal">
+  <meta property="og:description" content="Lime and maracujá hard seltzer, made for the Portuguese night.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Familjen+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Age check -->
+  <div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-q" hidden>
+    <div class="gate__inner">
+      <span class="logo gate__logo" role="img" aria-label="São"></span>
+      <p class="gate__q" id="gate-q" data-i18n="gate.q">Are you 18 or older?</p>
+      <div class="gate__actions" id="gate-actions">
+        <button class="btn btn--beige" id="gate-yes" data-i18n="gate.yes">Yes, I'm 18+</button>
+        <button class="btn btn--line" id="gate-no" data-i18n="gate.no">No</button>
+      </div>
+      <p class="gate__denied" id="gate-denied" hidden data-i18n="gate.denied">You need to be 18 or older to visit this site. See you later.</p>
+      <div class="gate__lang lang" aria-label="Language">
+        <button type="button" data-lang="en">EN</button><button type="button" data-lang="pt">PT</button>
+      </div>
+      <p class="gate__small" data-i18n="gate.small">By entering you agree to enjoy São responsibly.</p>
+    </div>
+  </div>
+
+  <header class="top">
+    <a class="top__logo" href="#top" aria-label="São — home"><span class="logo" aria-hidden="true"></span></a>
+    <nav class="top__nav" aria-label="Main">
+      <a href="#flavours" data-i18n="nav.flavours">Flavours</a>
+      <a href="#about" data-i18n="nav.about">About</a>
+      <a href="#venues" data-i18n="nav.venues">For venues</a>
+    </nav>
+    <div class="lang" aria-label="Language">
+      <button type="button" data-lang="en">EN</button><button type="button" data-lang="pt">PT</button>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- Hero: the wordmark is the hero -->
+    <section class="hero">
+      <h1 class="hero__mark"><span class="logo" role="img" aria-label="São"></span></h1>
+      <div class="hero__foot">
+        <p class="hero__line" data-i18n="hero.line">Hard seltzer from Portugal.<br>Light, dry and made for long nights.</p>
+        <a class="btn btn--blue" href="#flavours" data-i18n="hero.cta">See the flavours</a>
+      </div>
+    </section>
+
+    <!-- Flavours -->
+    <section class="flavours" id="flavours" aria-labelledby="flavours-title">
+      <h2 class="visually-hidden" id="flavours-title" data-i18n="nav.flavours">Flavours</h2>
+
+      <article class="flavour flavour--lime">
+        <div class="flavour__text">
+          <h3 class="flavour__name" data-i18n="lime.name">Lime</h3>
+          <p data-i18n="lime.body">Sharp, clean and cold. Fresh lime over sparkling water, with nothing sticky left behind.</p>
+          <p class="flavour__meta" data-i18n="can.meta">Slim can, 250 ml</p>
+        </div>
+        <div class="can" aria-hidden="true">
+          <div class="can__body"><span class="logo can__word"></span><span class="can__flav" data-i18n="lime.name">Lime</span></div>
+        </div>
+      </article>
+
+      <article class="flavour flavour--maracuja">
+        <div class="flavour__text">
+          <h3 class="flavour__name" data-i18n="mara.name">Maracujá</h3>
+          <p data-i18n="mara.body">Tart passion fruit with a soft, sunny finish. The one you order a second round of.</p>
+          <p class="flavour__meta" data-i18n="can.meta">Slim can, 250 ml</p>
+        </div>
+        <div class="can" aria-hidden="true">
+          <div class="can__body"><span class="logo can__word"></span><span class="can__flav" data-i18n="mara.name">Maracujá</span></div>
+        </div>
+      </article>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about" aria-labelledby="about-title">
+      <h2 class="about__title" id="about-title" data-i18n="about.title">Made for the Portuguese night.</h2>
+      <div class="about__cols">
+        <p data-i18n="about.p1">Portugal knows how to stay out late. From rooftop bars in Lisbon to beach clubs in the Algarve, the night runs long and the sun comes up warm. São is the drink for all of it: light enough for one more, cold enough for the heat.</p>
+        <p data-i18n="about.p2">Our name means healthy, whole, sound. It is also the word in front of every saint Lisbon parties for in June. Both feel right to us.</p>
+      </div>
+    </section>
+
+    <!-- Venues -->
+    <section class="venues" id="venues" aria-labelledby="venues-title">
+      <div class="venues__head">
+        <h2 id="venues-title" data-i18n="venues.title">Pour São at your venue</h2>
+        <p data-i18n="venues.body">We're launching in Lisbon and the Algarve. Run a bar, club, beach club or festival? Let's talk about getting São on your menu.</p>
+        <a class="btn btn--blue" id="contact-link" href="#" data-i18n="venues.cta">Email us</a>
+      </div>
+      <ul class="venues__list">
+        <li data-i18n="venues.l1">Bars</li>
+        <li data-i18n="venues.l2">Clubs</li>
+        <li data-i18n="venues.l3">Beach clubs</li>
+        <li data-i18n="venues.l4">Festivals</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    <span class="logo foot__logo" role="img" aria-label="São"></span>
+    <div class="foot__row">
+      <p data-i18n="foot.resp">Enjoy responsibly. Not for sale to persons under 18.</p>
+      <p>&copy; <span id="year">2026</span> São</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
