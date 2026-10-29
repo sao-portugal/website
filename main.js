@@ -406,7 +406,7 @@ const VENUES = [
 })();
 
 // Netlify forms: any <form data-netlify> with a [data-done] panel and a .form__error line
-document.querySelectorAll("form[data-netlify]").forEach(form => {
+document.querySelectorAll("form[data-done]").forEach(form => {
   const err = form.querySelector(".form__error");
   const done = document.getElementById(form.dataset.done);
   const btn = form.querySelector(".form__submit");
