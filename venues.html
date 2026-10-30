@@ -333,8 +333,8 @@
         </div>
         <div class="race__end">
           <div>
-            <p class="race__verdict" id="r-verdict" data-i18n="race.verdict">Same bartender. Same ten minutes. 4 rounds vs 60.</p>
-            <p class="race__note" data-i18n="race.note">Illustration: about 2.5 minutes per mojito, about 10 seconds per São, served straight from the can.</p>
+            <p class="race__verdict" id="r-verdict" data-i18n="race.verdict">Same bartender. Same ten minutes. 4 rounds vs 30.</p>
+            <p class="race__note" data-i18n="race.note">Illustration: about 2.5 minutes per mojito, about 20 seconds per São, served straight from the can.</p>
           </div>
           <button class="race__replay" type="button" id="r-replay" data-i18n="race.replay">Run it again</button>
         </div>
@@ -507,7 +507,7 @@
       "p4.t": "0 g de açúcar. 67 kcal.", "p4.a": "Seca, fresca e leve. A bebida que encaixa numa noite longa, numa tarde quente e em tudo pelo meio.",
       "race.title": "Dez minutos<br>ao balcão.", "race.lead": "Sábado, meia-noite, três filas ao balcão. Um barman, duas bebidas. Vê o que acontece à tua fila.",
       "race.one": "Um barman · hora de ponta", "race.slow": "Esmagar, medir, gelo, completar, decorar", "race.fast": "Frigorífico, abrir, servir", "race.served": "servidos",
-      "race.verdict": "O mesmo barman. Os mesmos dez minutos. 4 rodadas contra 60.", "race.note": "Ilustração: cerca de 2,5 minutos por mojito, cerca de 10 segundos por São, servida diretamente da lata.",
+      "race.verdict": "O mesmo barman. Os mesmos dez minutos. 4 rodadas contra 30.", "race.note": "Ilustração: cerca de 2,5 minutos por mojito, cerca de 20 segundos por São, servida diretamente da lata.",
       "race.replay": "Ver outra vez",
       "perks.title": "Mais do que<br>uma bebida.", "perks.lead": "Uma marca nova só funciona se as pessoas a procurarem. Esse é o nosso trabalho, não o teu.",
       "k1.t": "No mapa São", "k1.p": "O teu espaço no nosso mapa \"Onde encontrar\", onde os clientes procuram primeiro.",
@@ -578,7 +578,7 @@
     // Peak-hour race: 10 minutes compressed into ~9 seconds
     const STEPS = { en: { slow: ["Muddle", "Measure", "Ice", "Top up", "Garnish"], fast: ["Fridge", "Open", "Serve"], done: "Done" },
                     pt: { slow: ["Esmagar", "Medir", "Gelo", "Completar", "Decorar"], fast: ["Frigorífico", "Abrir", "Servir"], done: "Pronto" } };
-    const R = { slowT: 150, fastT: 10, total: 600, ms: 9000 };
+    const R = { slowT: 150, fastT: 20, total: 600, ms: 9000 };
     const el = id => document.getElementById(id);
     let raceRaf, raceRun = false;
     function fmt(sec) { sec = Math.min(R.total, Math.floor(sec)); return Math.floor(sec / 60) + ":" + String(sec % 60).padStart(2, "0"); }
