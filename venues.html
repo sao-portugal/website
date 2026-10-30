@@ -115,20 +115,30 @@
     .flip__back h3 { font: 400 clamp(1.75rem, 2.4vw, 2.25rem)/1.08 var(--display); }
     @media (prefers-reduced-motion: reduce) { .flip__inner { transition: none; } }
 
-    /* Calculator */
-    .calc { background: var(--blue); color: var(--beige); padding: var(--section) var(--gutter); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 88px); align-items: center; }
-    .calc__panel { background: var(--beige); color: var(--blue); border-radius: 28px; padding: clamp(24px, 3.4vw, 48px); display: grid; gap: 26px; }
-    .slider label { display: flex; justify-content: space-between; align-items: baseline; font-weight: 700; margin-bottom: 10px; }
-    .slider output { font: 400 1.75rem/1 var(--display); }
-    .slider input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 8px; border-radius: 99px; outline: none;
-      background: linear-gradient(var(--blue), var(--blue)) 0 / var(--fill, 50%) 100% no-repeat, rgba(18,5,171,.15); }
-    .slider input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 30px; height: 30px; border-radius: 50%; background: var(--blue); border: 4px solid var(--beige); box-shadow: 0 0 0 2px var(--blue); cursor: grab; }
-    .slider input[type=range]::-moz-range-thumb { width: 24px; height: 24px; border-radius: 50%; background: var(--blue); border: 4px solid var(--beige); box-shadow: 0 0 0 2px var(--blue); cursor: grab; }
-    .slider input[type=range]:focus-visible { box-shadow: 0 0 0 3px var(--beige), 0 0 0 5px var(--blue); }
-    .calc__result { border-top: 2px solid var(--blue); padding-top: 22px; }
-    .calc__result p { font-weight: 700; }
-    .calc__num { font: 400 clamp(3.5rem, 7vw, 6rem)/1.02 var(--display); display: block; }
-    .calc__small { font-size: .8125rem; opacity: .7; margin-top: 6px; font-weight: 400 !important; }
+    /* Peak-hour race */
+    .race { background: var(--blue); color: var(--beige); padding: var(--section) var(--gutter); }
+    .race__board { background: var(--beige); color: var(--blue); border-radius: 28px; padding: clamp(22px, 3vw, 44px); display: grid; gap: clamp(18px, 2.4vw, 28px); }
+    .race__top { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; font-weight: 700; }
+    .race__clock { font: 400 clamp(2rem, 3.4vw, 3rem)/1 var(--display); font-variant-numeric: tabular-nums; }
+    .race__clock small { font: 700 .8125rem/1 var(--text); margin-left: 8px; opacity: .7; }
+    .lane { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px 24px; align-items: end; padding-top: clamp(18px, 2.4vw, 28px); border-top: 2px solid var(--blue); }
+    .lane__name { font: 400 clamp(1.75rem, 3vw, 2.75rem)/1.05 var(--display); }
+    .lane__name small { display: block; font: 700 .8125rem/1.3 var(--text); opacity: .7; }
+    .lane__count { grid-row: span 3; align-self: center; text-align: right; font: 400 clamp(4rem, 9vw, 8rem)/1 var(--display); font-variant-numeric: tabular-nums; min-width: 2.2ch; }
+    .lane__count small { display: block; font: 700 .8125rem/1.2 var(--text); opacity: .7; }
+    .lane__step { font-weight: 700; font-size: .9375rem; min-height: 1.5em; }
+    .lane__step span { display: inline-block; padding: 3px 10px; border: 2px solid currentColor; border-radius: 999px; }
+    .lane__bar { height: 12px; border-radius: 99px; background: rgba(18, 5, 171, .12); overflow: hidden; }
+    .lane__bar i { display: block; height: 100%; width: 0; background: var(--blue); border-radius: 99px; }
+    .lane__served { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 5px; min-height: 30px; }
+    .lane__served i { width: 13px; height: 28px; border-radius: 4px; background: var(--blue); animation: pop .3s cubic-bezier(.2,1.6,.4,1) both; }
+    .lane--slow .lane__served i { width: 18px; height: 22px; border-radius: 3px 3px 7px 7px; background: transparent; border: 2px solid var(--blue); }
+    @keyframes pop { from { transform: scale(0); } }
+    .race__end { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; padding-top: clamp(18px, 2.4vw, 28px); border-top: 2px solid var(--blue); }
+    .race__verdict { font: 400 clamp(1.5rem, 2.6vw, 2.25rem)/1.1 var(--display); max-width: 30ch; transition: opacity .4s, transform .4s; }
+    .race__board.is-running .race__verdict { opacity: 0; transform: translateY(8px); }
+    .race__note { font-size: .75rem; opacity: .6; }
+    .race__replay { appearance: none; background: none; border: 2px solid var(--blue); color: var(--blue); border-radius: 999px; padding: 10px 18px; font: 700 .9375rem/1 var(--text); cursor: pointer; }
 
     /* Perks */
     .perks { padding: var(--section) var(--gutter); }
@@ -233,7 +243,7 @@
       .steps__list li:nth-child(n+3) { border-top: 2px solid var(--blue); }
     }
     @media (max-width: 900px) {
-      .hero, .calc, .request, .faq { grid-template-columns: 1fr; }
+      .hero, .request, .faq { grid-template-columns: 1fr; }
       .hero { min-height: 0; }
       .stage { max-width: 440px; }
       .perks__grid { grid-template-columns: 1fr 1fr; }
@@ -269,7 +279,7 @@
         <p class="lead" data-i18n="hero.lead">"Do you have hard seltzer?" If the answer is no, that round goes somewhere else. São is the hard seltzer made for Portugal's bars, clubs and beach clubs: fast to serve, glass-free, and backed by creators and events that bring people in.</p>
         <div class="hero__actions">
           <a class="btn btn--blue" href="#request" data-i18n="hero.cta">Get a free tasting kit</a>
-          <a class="btn" href="#maths" data-i18n="hero.cta2">Do the maths</a>
+          <a class="btn" href="#maths" data-i18n="hero.cta2">See the difference</a>
         </div>
         <p class="hero__trust"><span data-i18n="hero.t1">Free</span><span data-i18n="hero.t2">No obligation</span><span data-i18n="hero.t3">We bring it to you</span></p>
       </div>
@@ -321,20 +331,34 @@
       </div>
     </section>
 
-    <!-- Calculator -->
-    <section class="calc on-blue" id="maths" aria-labelledby="calc-title">
-      <div>
-        <h2 class="big" id="calc-title" data-i18n="calc.title">Do the<br>maths.</h2>
-        <p class="lead" data-i18n="calc.lead" style="margin-top:22px">One fridge shelf, a few cans a night. Slide to your own numbers and see what São could add to your till each month.</p>
+    <!-- Peak-hour race -->
+    <section class="race on-blue" id="maths" aria-labelledby="race-title">
+      <div class="head">
+        <h2 class="big" id="race-title" data-i18n="race.title">Ten minutes<br>at the bar.</h2>
+        <p class="lead" data-i18n="race.lead">Saturday, midnight, three-deep at the bar. One bartender, two drinks. Watch what happens to your queue.</p>
       </div>
-      <div class="calc__panel">
-        <div class="slider"><label for="s-cans"><span data-i18n="calc.cans">Cans sold per night</span><output id="o-cans" for="s-cans">40</output></label><input type="range" id="s-cans" min="10" max="300" step="5" value="40"></div>
-        <div class="slider"><label for="s-price"><span data-i18n="calc.price">Your menu price per can</span><output id="o-price" for="s-price">€6.00</output></label><input type="range" id="s-price" min="3" max="12" step="0.5" value="6"></div>
-        <div class="slider"><label for="s-nights"><span data-i18n="calc.nights">Nights open per week</span><output id="o-nights" for="s-nights">5</output></label><input type="range" id="s-nights" min="1" max="7" step="1" value="5"></div>
-        <div class="calc__result" aria-live="polite">
-          <p data-i18n="calc.res">Extra sales per month</p>
-          <span class="calc__num" id="o-total">€5,196</span>
-          <p class="calc__small" data-i18n="calc.small">Your price, your numbers. Before cost of goods. We'll go through pricing with you during the tasting.</p>
+      <div class="race__board" id="race">
+        <div class="race__top"><span data-i18n="race.one">One bartender · peak hour</span><span class="race__clock"><span id="r-clock">0:00</span><small>/ 10:00</small></span></div>
+        <div class="lane lane--slow">
+          <p class="lane__name">Mojito<small data-i18n="race.slow">Muddle, measure, ice, top up, garnish</small></p>
+          <p class="lane__count"><span id="r-slow">0</span><small data-i18n="race.served">served</small></p>
+          <p class="lane__step"><span id="r-slow-step">—</span></p>
+          <div class="lane__bar"><i id="r-slow-bar"></i></div>
+          <div class="lane__served" id="r-slow-cups" aria-hidden="true"></div>
+        </div>
+        <div class="lane">
+          <p class="lane__name">São<small data-i18n="race.fast">Fridge, open, pour</small></p>
+          <p class="lane__count"><span id="r-fast">0</span><small data-i18n="race.served">served</small></p>
+          <p class="lane__step"><span id="r-fast-step">—</span></p>
+          <div class="lane__bar"><i id="r-fast-bar"></i></div>
+          <div class="lane__served" id="r-fast-cups" aria-hidden="true"></div>
+        </div>
+        <div class="race__end">
+          <div>
+            <p class="race__verdict" id="r-verdict" data-i18n="race.verdict">Same bartender. Same ten minutes. 4 rounds vs 30.</p>
+            <p class="race__note" data-i18n="race.note">Illustration: about 2.5 minutes per mojito, about 20 seconds per São.</p>
+          </div>
+          <button class="race__replay" type="button" id="r-replay" data-i18n="race.replay">Run it again</button>
         </div>
       </div>
     </section>
@@ -490,7 +514,7 @@
       "nav.cta": "Kit de prova grátis", "hero.p1": "Para bares, clubes e beach clubs",
       "hero.title": "Os teus clientes <em>já</em> estão a pedir.",
       "hero.lead": "\"Têm hard seltzer?\" Se a resposta é não, essa rodada vai para outro lado. A São é o hard seltzer feito para os bares, clubes e beach clubs de Portugal: rápido a servir, sem vidro, e com criadores e eventos que trazem gente.",
-      "hero.cta": "Pedir kit de prova grátis", "hero.cta2": "Fazer as contas", "hero.t1": "Grátis", "hero.t2": "Sem compromisso", "hero.t3": "Levamos até ti",
+      "hero.cta": "Pedir kit de prova grátis", "hero.cta2": "Ver a diferença", "hero.t1": "Grátis", "hero.t2": "Sem compromisso", "hero.t3": "Levamos até ti",
       "bubble.who": "Mesa 12, 23:40", "bubble.q": "\"Têm hard seltzer?\"", "docket.h": "PEDIDO BAR · #0412", "docket.t": "SERVIDO EM", "docket.s": "Outra rodada?",
       "band.1": "Kit de prova grátis", "band.2": "Segundos a servir", "band.3": "Sem vidro", "band.4": "Criadores e eventos", "band.5": "No mapa São",
       "prob.title": "Soa<br>familiar?", "prob.lead": "Quatro coisas que ouvimos de donos de bares em Lisboa e no Algarve. Passa o rato ou toca num cartão para ver como a São resolve.",
@@ -503,9 +527,10 @@
       "p3.t": "Latas slim de 250 ml.", "p3.a": "Sem vidro, leves para armazenar, rápidas a gelar e fáceis de vender na areia, na piscina ou no meio da multidão.",
       "p4.q": "\"Algo mais leve?\"", "p4.p": "Cada vez mais clientes querem uma bebida que não seja pesada nem doce, e um refrigerante não é o que vieram procurar.",
       "p4.t": "0 g de açúcar. 67 kcal.", "p4.a": "Seca, fresca e leve. A bebida que encaixa numa noite longa, numa tarde quente e em tudo pelo meio.",
-      "calc.title": "Faz as<br>contas.", "calc.lead": "Uma prateleira do frigorífico, umas latas por noite. Ajusta aos teus números e vê o que a São pode acrescentar à tua caixa por mês.",
-      "calc.cans": "Latas vendidas por noite", "calc.price": "O teu preço por lata", "calc.nights": "Noites abertas por semana",
-      "calc.res": "Vendas extra por mês", "calc.small": "O teu preço, os teus números. Antes do custo do produto. Falamos de preços contigo na prova.",
+      "race.title": "Dez minutos<br>ao balcão.", "race.lead": "Sábado, meia-noite, três filas ao balcão. Um barman, duas bebidas. Vê o que acontece à tua fila.",
+      "race.one": "Um barman · hora de ponta", "race.slow": "Esmagar, medir, gelo, completar, decorar", "race.fast": "Frigorífico, abrir, servir", "race.served": "servidos",
+      "race.verdict": "O mesmo barman. Os mesmos dez minutos. 4 rodadas contra 30.", "race.note": "Ilustração: cerca de 2,5 minutos por mojito, cerca de 20 segundos por São.",
+      "race.replay": "Ver outra vez",
       "perks.title": "Mais do que<br>uma bebida.", "perks.lead": "Uma marca nova só funciona se as pessoas a procurarem. Esse é o nosso trabalho, não o teu.",
       "k1.t": "No mapa São", "k1.p": "O teu espaço no nosso mapa \"Onde encontrar\", onde os clientes procuram primeiro.",
       "k2.t": "Criadores que publicam", "k2.p": "A nossa família de criadores filma onde se serve São. O teu bar nos stories deles, identificado.",
@@ -567,7 +592,7 @@
       document.querySelectorAll('input[name="language"]').forEach(i => { i.value = lang; });
       document.title = d.title;
       store.set("sao-lang", lang);
-      calc(); printDocket();
+      printDocket(); if (typeof drawRace === "function" && !raceRun) drawRace(el("r-clock").textContent === "0:00" ? 0 : R.total);
     }
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -587,22 +612,33 @@
     }
     if (!reduce) setInterval(() => { if (document.visibilityState === "visible" && window.scrollY < innerHeight) printDocket(); }, 9000);
 
-    // Calculator
-    const sC = document.getElementById("s-cans"), sP = document.getElementById("s-price"), sN = document.getElementById("s-nights");
-    const oC = document.getElementById("o-cans"), oP = document.getElementById("o-price"), oN = document.getElementById("o-nights"), oT = document.getElementById("o-total");
-    let shown = 0, anim;
-    function money(v, dec) { return "€" + v.toLocaleString(lang === "pt" ? "pt-PT" : "en-GB", { minimumFractionDigits: dec, maximumFractionDigits: dec }); }
-    function fill(el) { el.style.setProperty("--fill", ((el.value - el.min) / (el.max - el.min) * 100) + "%"); }
-    function calc() {
-      [sC, sP, sN].forEach(fill);
-      oC.textContent = sC.value; oP.textContent = money(+sP.value, 2); oN.textContent = sN.value;
-      const target = Math.round(sC.value * sP.value * sN.value * 52 / 12);
-      cancelAnimationFrame(anim);
-      if (reduce) { shown = target; oT.textContent = money(target, 0); return; }
-      const from = shown, t0 = performance.now();
-      (function step(t) { const k = Math.min(1, (t - t0) / 400); shown = Math.round(from + (target - from) * (1 - Math.pow(1 - k, 3))); oT.textContent = money(shown, 0); if (k < 1) anim = requestAnimationFrame(step); })(t0);
+    // Peak-hour race: 10 minutes compressed into ~9 seconds
+    const STEPS = { en: { slow: ["Muddle", "Measure", "Ice", "Top up", "Garnish"], fast: ["Fridge", "Open", "Pour"], done: "Done" },
+                    pt: { slow: ["Esmagar", "Medir", "Gelo", "Completar", "Decorar"], fast: ["Frigorífico", "Abrir", "Servir"], done: "Pronto" } };
+    const R = { slowT: 150, fastT: 20, total: 600, ms: 9000 };
+    const el = id => document.getElementById(id);
+    let raceRaf, raceRun = false;
+    function fmt(sec) { sec = Math.min(R.total, Math.floor(sec)); return Math.floor(sec / 60) + ":" + String(sec % 60).padStart(2, "0"); }
+    function lane(key, t, per, steps) {
+      const n = Math.floor(t / per), into = (t % per) / per;
+      el("r-" + key).textContent = Math.min(n, Math.floor(R.total / per));
+      el("r-" + key + "-bar").style.width = (t >= R.total ? 100 : into * 100) + "%";
+      el("r-" + key + "-step").textContent = t >= R.total ? STEPS[lang].done : steps[Math.min(steps.length - 1, Math.floor(into * steps.length))];
+      const cups = el("r-" + key + "-cups"); while (cups.children.length < Math.min(n, Math.floor(R.total / per))) cups.appendChild(document.createElement("i"));
     }
-    [sC, sP, sN].forEach(el => el.addEventListener("input", calc));
+    function drawRace(t) { el("r-clock").textContent = fmt(t); lane("slow", t, R.slowT, STEPS[lang].slow); lane("fast", t, R.fastT, STEPS[lang].fast); }
+    function runRace() {
+      cancelAnimationFrame(raceRaf); el("r-slow-cups").innerHTML = ""; el("r-fast-cups").innerHTML = "";
+      if (reduce) { drawRace(R.total); return; }
+      raceRun = true; el("race").classList.add("is-running"); const t0 = performance.now();
+      (function tick(now) { const t = Math.min(R.total, (now - t0) / R.ms * R.total); drawRace(t); if (t < R.total) raceRaf = requestAnimationFrame(tick); else { raceRun = false; el("race").classList.remove("is-running"); } })(t0);
+    }
+    el("r-replay").addEventListener("click", runRace);
+    drawRace(0);
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver(es => { if (es[0].isIntersecting) { runRace(); io.disconnect(); } }, { threshold: .45 });
+      io.observe(el("race"));
+    } else runRace();
 
     // Flip cards: tap on touch, Enter/Space on keyboard
     document.querySelectorAll(".flip").forEach(f => {
@@ -622,7 +658,7 @@
     if (!reduce) document.addEventListener("click", e => {
       if (!e.clientX && !e.clientY) return;
       if (e.target.closest("input:not([type=checkbox]), select, textarea")) return;
-      const onBlue = (e.target.closest(".on-blue, .btn--blue, .band, .flip.is-flipped, .perk:hover") && !e.target.closest(".form, .done, .calc__panel")) || e.target.closest(".btn--blue");
+      const onBlue = (e.target.closest(".on-blue, .btn--blue, .band, .flip.is-flipped, .perk:hover") && !e.target.closest(".form, .done, .race__board")) || e.target.closest(".btn--blue");
       const b = document.createElement("span"); b.className = "burst";
       b.style.left = e.clientX + "px"; b.style.top = e.clientY + "px";
       if (onBlue) b.style.setProperty("--c", "var(--beige)");
