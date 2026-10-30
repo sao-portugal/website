@@ -13,7 +13,7 @@
   <meta property="og:image" content="https://drinksao.com/assets/og.png">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="preload" href="assets/fonts/anton-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/img/events/club.jpg" as="image">
+  <link rel="preload" href="assets/img/events-color/club.jpg" as="image">
   <style>
     @font-face { font-family: "Anton"; font-weight: 400; font-display: swap; src: url("assets/fonts/anton-latin-400-normal.woff2") format("woff2"); }
     @font-face { font-family: "Familjen Grotesk"; font-weight: 400; font-display: swap; src: url("assets/fonts/familjen-grotesk-latin-400-normal.woff2") format("woff2"); }
@@ -75,7 +75,7 @@
     .hero { position: relative; overflow: hidden; background: var(--blue); color: var(--beige); isolation: isolate;
       min-height: calc(100svh - var(--top-h, 76px) - var(--band-h, 80px)); display: grid; align-items: end;
       padding: clamp(28px, 5svh, 64px) var(--gutter); --x: 70%; --y: 40%; --r: clamp(150px, 20vw, 300px); }
-    .hero__photo { position: absolute; inset: 0; z-index: -2; background: url("assets/img/events/club.jpg") center / cover; transform: scale(1.06); }
+    .hero__photo { position: absolute; inset: 0; z-index: -2; background: url("assets/img/events-color/club.jpg") center / cover; transform: scale(1.06); }
     .hero__dark { position: absolute; inset: 0; z-index: -1; background: var(--blue);
       -webkit-mask: radial-gradient(circle at var(--x) var(--y), transparent 0, transparent calc(var(--r) * .55), rgba(0,0,0,.94) var(--r));
               mask: radial-gradient(circle at var(--x) var(--y), transparent 0, transparent calc(var(--r) * .55), rgba(0,0,0,.94) var(--r)); }
@@ -217,7 +217,7 @@
 
     /* Host a night */
     .host { margin: var(--section) var(--gutter); border: 2px solid var(--blue); border-radius: 28px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); overflow: hidden; }
-    .host__pic { min-height: 320px; background: url("assets/img/events/dj.jpg") center / cover; }
+    .host__pic { min-height: 320px; background: url("assets/img/events-color/dj.jpg") center / cover; }
     .host__body { padding: clamp(28px, 4vw, 56px); display: flex; flex-direction: column; gap: 18px; align-items: start; justify-content: center; }
     .host h2 { font: 400 clamp(2.5rem, 4.4vw, 4.25rem)/1.05 var(--display); }
 
@@ -253,20 +253,6 @@
       .wristband__no { display: none; }
       .stamp { right: 10%; font-size: 1.25rem; }
     }
-
-    /* === Accent preview: mango / maracujá === */
-    :root { --accent: #FFB627; }
-    .hero__title .flicker { color: var(--accent); }
-    #mood { background: var(--accent); border-color: var(--accent); color: var(--blue); }
-    .hero__now .dot { background: var(--accent); }
-    .band .sep { background: var(--accent); width: 12px; height: 12px; border: 2px solid var(--blue); }
-    .format--blue .format__when { background: var(--accent); }
-    .ticket--mystery { border-color: var(--accent); color: var(--accent); }
-    .ticket--mystery .redact { background: var(--accent); }
-    .nights__note { color: var(--accent); }
-    .stamp { background: var(--accent); }
-    .door__list li:hover .door__ico { background: var(--accent); color: var(--blue); }
-    .strip figure:nth-child(4n+2) figcaption { background: var(--accent); padding: 4px 10px; border-radius: 999px; bottom: 6px; }
   </style>
 </head>
 <body>
@@ -315,7 +301,7 @@
       </div>
       <div class="formats__grid">
         <article class="format">
-          <div class="format__pic"><img src="assets/img/events/rooftop.jpg" alt="" loading="lazy"><span class="format__when" data-i18n="f1.when">Thursdays · 18:00 → 21:00</span></div>
+          <div class="format__pic"><img src="assets/img/events-color/rooftop.jpg" alt="" loading="lazy"><span class="format__when" data-i18n="f1.when">Thursdays · 18:00 → 21:00</span></div>
           <div class="format__body">
             <p class="format__no" data-i18n="f1.no">Format 01</p>
             <h3 data-i18n="f1.t">The Afterwork</h3>
@@ -324,7 +310,7 @@
           </div>
         </article>
         <article class="format format--blue on-blue">
-          <div class="format__pic"><img src="assets/img/events/lasers.jpg" alt="" loading="lazy"><span class="format__when" data-i18n="f2.when">Fri &amp; Sat · 23:00 → late</span></div>
+          <div class="format__pic"><img src="assets/img/events-color/lasers.jpg" alt="" loading="lazy"><span class="format__when" data-i18n="f2.when">Fri &amp; Sat · 23:00 → late</span></div>
           <div class="format__body">
             <p class="format__no" data-i18n="f2.no">Format 02</p>
             <h3 data-i18n="f2.t">The Takeover</h3>
@@ -385,14 +371,14 @@
     <!-- Film strip -->
     <div class="strip" aria-hidden="true">
       <div class="strip__track">
-        <figure><img src="assets/img/events/cheers.jpg" alt="" loading="lazy"><figcaption data-i18n="s.1">Golden hour</figcaption></figure>
-        <figure><img src="assets/img/events/dj.jpg" alt="" loading="lazy"><figcaption data-i18n="s.2">On the decks</figcaption></figure>
-        <figure><img src="assets/img/events/rooftop.jpg" alt="" loading="lazy"><figcaption data-i18n="s.3">Afterwork</figcaption></figure>
-        <figure><img src="assets/img/events/dance.jpg" alt="" loading="lazy"><figcaption data-i18n="s.4">2 AM</figcaption></figure>
-        <figure><img src="assets/img/events/clink.jpg" alt="" loading="lazy"><figcaption data-i18n="s.5">Saúde</figcaption></figure>
-        <figure><img src="assets/img/events/tunnel.jpg" alt="" loading="lazy"><figcaption data-i18n="s.6">Doors open</figcaption></figure>
-        <figure><img src="assets/img/events/confetti.jpg" alt="" loading="lazy"><figcaption data-i18n="s.7">Takeover</figcaption></figure>
-        <figure><img src="assets/img/events/glasses.jpg" alt="" loading="lazy"><figcaption data-i18n="s.8">The crew</figcaption></figure>
+        <figure><img src="assets/img/events-color/cheers.jpg" alt="" loading="lazy"><figcaption data-i18n="s.1">Golden hour</figcaption></figure>
+        <figure><img src="assets/img/events-color/dj.jpg" alt="" loading="lazy"><figcaption data-i18n="s.2">On the decks</figcaption></figure>
+        <figure><img src="assets/img/events-color/rooftop.jpg" alt="" loading="lazy"><figcaption data-i18n="s.3">Afterwork</figcaption></figure>
+        <figure><img src="assets/img/events-color/dance.jpg" alt="" loading="lazy"><figcaption data-i18n="s.4">2 AM</figcaption></figure>
+        <figure><img src="assets/img/events-color/clink.jpg" alt="" loading="lazy"><figcaption data-i18n="s.5">Saúde</figcaption></figure>
+        <figure><img src="assets/img/events-color/tunnel.jpg" alt="" loading="lazy"><figcaption data-i18n="s.6">Doors open</figcaption></figure>
+        <figure><img src="assets/img/events-color/confetti.jpg" alt="" loading="lazy"><figcaption data-i18n="s.7">Takeover</figcaption></figure>
+        <figure><img src="assets/img/events-color/glasses.jpg" alt="" loading="lazy"><figcaption data-i18n="s.8">The crew</figcaption></figure>
       </div>
     </div>
 
