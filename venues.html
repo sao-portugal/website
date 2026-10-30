@@ -72,31 +72,9 @@
     .hero__trust { margin-top: 18px; font-size: .9375rem; font-weight: 700; display: flex; flex-wrap: wrap; gap: 6px 18px; }
     .hero__trust span::before { content: "✓ "; }
 
-    .stage { position: relative; width: 100%; max-width: min(560px, 62svh); aspect-ratio: 1 / 1.08; justify-self: center; }
-    .stage__photo { position: absolute; right: 0; top: 0; width: 82%; height: 84%; border-radius: 26px; overflow: hidden; border: 2px solid var(--blue); transform: rotate(3deg); }
-    .stage__photo img { width: 100%; height: 100%; object-fit: cover; }
-    .stage__cans { position: absolute; left: 2%; bottom: -2%; z-index: 3; width: 46%; height: 78%; }
-    .can { position: absolute; bottom: 0; aspect-ratio: 1 / 3.25; width: 46%; }
-    .can--lime { --can: var(--blue); --ink: var(--beige); left: 0; transform: rotate(-9deg); z-index: 2; }
-    .can--mara { --can: var(--beige); --ink: var(--blue); left: 54%; bottom: 7%; transform: rotate(7deg); z-index: 3; }
-    .can__body { position: absolute; inset: 0; border-radius: 14% / 4.5%; color: var(--ink); display: flex; align-items: center; justify-content: center; overflow: hidden;
-      background: linear-gradient(90deg, rgba(0,0,0,.18), rgba(255,255,255,.3) 22%, rgba(255,255,255,0) 38%, rgba(0,0,0,0) 70%, rgba(0,0,0,.22)), var(--can);
-      box-shadow: 0 34px 60px -26px rgba(12, 4, 120, .65); }
-    .can--mara .can__body { outline: 2px solid var(--blue); outline-offset: -2px; }
-    .can__body::before, .can__body::after { content: ""; position: absolute; left: 0; right: 0; height: 4.5%; background: linear-gradient(90deg, #8f9196, #e9eaec 30%, #b5b7bb 60%, #7d7f84); }
-    .can__body::before { top: 0; } .can__body::after { bottom: 0; }
-    .can__word { width: 78%; flex: none; margin-bottom: 18%; }
-    .can__flav { position: absolute; bottom: 9%; left: 0; right: 0; text-align: center; font: 700 clamp(.5rem, .75vw, .75rem)/1.2 var(--text); padding: 0 8%; }
-    @media (prefers-reduced-motion: no-preference) {
-      .can--lime { animation: bob 5s ease-in-out infinite; } .can--mara { animation: bob2 5.6s ease-in-out infinite; }
-      @keyframes bob { 50% { transform: rotate(-7deg) translateY(-10px); } }
-      @keyframes bob2 { 50% { transform: rotate(9deg) translateY(-14px); } }
-    }
-    .seal { position: absolute; right: -2%; bottom: 8%; z-index: 4; width: clamp(110px, 11vw, 150px); }
-    .seal__bg { fill: var(--beige); stroke: var(--blue); stroke-width: 3; }
-    .seal__ring { font: 700 14px var(--text); fill: var(--blue); text-transform: uppercase; }
-    .seal__mid { font: 400 46px var(--display); fill: var(--blue); }
-    @media (prefers-reduced-motion: no-preference) { .seal__spin { animation: spin 22s linear infinite; transform-origin: 100px 100px; } @keyframes spin { to { transform: rotate(360deg); } } }
+    .hero__pic { align-self: stretch; margin: calc(-1 * clamp(16px, 3svh, 44px)) calc(-1 * var(--gutter)) calc(-1 * clamp(16px, 3svh, 44px)) 0; position: relative; min-height: 420px; }
+    .hero__pic img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .hero__pic figcaption { position: absolute; left: 0; bottom: 0; padding: 10px 16px; background: var(--beige); font-weight: 700; font-size: .8125rem; }
 
     /* Band */
     .band { overflow: hidden; white-space: nowrap; background: var(--blue); color: var(--beige); padding: clamp(14px, 1.8vw, 20px) 0; }
@@ -252,7 +230,7 @@
     @media (max-width: 900px) {
       .hero, .request, .faq { grid-template-columns: 1fr; }
       .hero { min-height: 0; }
-      .stage { max-width: 440px; }
+      .hero__pic { margin: 0 calc(-1 * var(--gutter)); min-height: 0; aspect-ratio: 4 / 3; }
       .perks__grid { grid-template-columns: 1fr 1fr; }
       .request__aside { position: static; }
     }
@@ -290,19 +268,7 @@
         </div>
         <p class="hero__trust"><span data-i18n="hero.t1">Free</span><span data-i18n="hero.t2">No obligation</span><span data-i18n="hero.t3">We bring it to you</span></p>
       </div>
-      <div class="stage" aria-hidden="true">
-        <div class="stage__photo"><img src="assets/img/events/club.jpg" alt=""></div>
-        <div class="stage__cans">
-          <div class="can can--lime"><div class="can__body"><span class="logo can__word"></span><span class="can__flav" data-i18n="c.lime">Lime &amp; Yuzu</span></div></div>
-          <div class="can can--mara"><div class="can__body"><span class="logo can__word"></span><span class="can__flav" data-i18n="c.mara">Maracujá &amp; Mango</span></div></div>
-        </div>
-        <svg class="seal" viewBox="0 0 200 200">
-          <defs><path id="seal-ring" d="M100,100 m-70,0 a70,70 0 1,1 140,0 a70,70 0 1,1 -140,0"/></defs>
-          <circle cx="100" cy="100" r="96" class="seal__bg"/>
-          <g class="seal__spin"><text class="seal__ring" textLength="432" lengthAdjust="spacing"><textPath href="#seal-ring" data-i18n="seal.ring">free tasting kit · it's on us · </textPath></text></g>
-          <text x="100" y="116" text-anchor="middle" class="seal__mid">0€</text>
-        </svg>
-      </div>
+      <figure class="hero__pic"><img src="assets/img/events/club.jpg" alt=""><figcaption data-i18n="hero.cap">Saturday, 00:40, Lisboa.</figcaption></figure>
     </section>
 
     <div class="band" aria-hidden="true">
@@ -525,7 +491,7 @@
       "hero.title": "Os teus clientes <em>já</em> estão a pedir.",
       "hero.lead": "\"Têm hard seltzer?\" Se a resposta é não, essa rodada vai para outro lado. A São é o hard seltzer feito para os bares, clubes e beach clubs de Portugal: rápido a servir, sem vidro, e com criadores e eventos que trazem gente.",
       "hero.cta": "Pedir kit de prova grátis", "hero.cta2": "Ver a diferença", "hero.t1": "Grátis", "hero.t2": "Sem compromisso", "hero.t3": "Levamos até ti",
-      "c.lime": "Lima & Yuzu", "c.mara": "Maracujá & Manga", "seal.ring": "kit de prova grátis · é por nossa conta · ",
+      "hero.cap": "Sábado, 00:40, Lisboa.",
       "band.1": "Kit de prova grátis", "band.2": "Segundos a servir", "band.3": "Sem vidro", "band.4": "Criadores e eventos", "band.5": "No mapa São",
       "prob.title": "Soa<br>familiar?", "prob.lead": "Quatro coisas que ouvimos de donos de bares em Lisboa e no Algarve. Passa o rato ou toca num cartão para ver como a São resolve.",
       "pr.lbl": "O problema", "pr.hint": "A solução", "fx.lbl": "Com a São",
