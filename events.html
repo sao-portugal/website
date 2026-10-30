@@ -79,9 +79,6 @@
     .hero__dark { position: absolute; inset: 0; z-index: -1; background: var(--blue);
       -webkit-mask: radial-gradient(circle at var(--x) var(--y), transparent 0, transparent calc(var(--r) * .55), rgba(0,0,0,.94) var(--r));
               mask: radial-gradient(circle at var(--x) var(--y), transparent 0, transparent calc(var(--r) * .55), rgba(0,0,0,.94) var(--r)); }
-    .hero__flash { position: absolute; inset: 0; z-index: 3; background: var(--beige); opacity: 0; pointer-events: none; }
-    .hero__flash.go { animation: flash .5s ease-out; }
-    @keyframes flash { 0% { opacity: .85; } 100% { opacity: 0; } }
     .hero__now { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; font-weight: 700; font-size: .9375rem; }
     .hero__now .dot { width: 10px; height: 10px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 0 rgba(254,251,228,.6); }
     @media (prefers-reduced-motion: no-preference) { .hero__now .dot { animation: pulse 1.6s infinite; } @keyframes pulse { 70% { box-shadow: 0 0 0 10px rgba(254,251,228,0); } 100% { box-shadow: 0 0 0 0 rgba(254,251,228,0); } } }
@@ -272,7 +269,6 @@
     <section class="hero on-blue" id="hero">
       <div class="hero__photo" aria-hidden="true"></div>
       <div class="hero__dark" aria-hidden="true"></div>
-      <div class="hero__flash" aria-hidden="true"></div>
       <p class="hero__hint" aria-hidden="true" data-i18n="hero.hint">Move around. Find the party.</p>
       <div>
         <p class="hero__now"><span class="dot" aria-hidden="true"></span><span><span data-i18n="hero.now">Lisbon right now</span> · <span id="clock">23:00</span></span><span class="pill" id="mood">The night is young</span></p>
@@ -589,11 +585,6 @@
       requestAnimationFrame(loop);
     })(0);
 
-    // Camera flash: tap the hero (or it fires now and then)
-    const flash = hero.querySelector(".hero__flash");
-    function pop() { if (reduce) return; flash.classList.remove("go"); void flash.offsetWidth; flash.classList.add("go"); }
-    hero.addEventListener("click", e => { if (!e.target.closest("a, button")) pop(); });
-    if (!reduce) setInterval(() => { if (document.visibilityState === "visible" && hero.getBoundingClientRect().bottom > 0 && Math.random() < .5) pop(); }, 6000);
 
     // Click burst
     if (!reduce) document.addEventListener("click", e => {
