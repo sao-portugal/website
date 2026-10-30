@@ -34,3 +34,6 @@ Creator page (Unsplash License):
 - `events/dancefloor.jpg` — https://unsplash.com/photos/-eqm30LNAlE (a group of people dancing at a party, Jack)
 - `events/afterwork.jpg` — https://unsplash.com/photos/r2fgELU3gxY (three women laughing together at a table, Othniel Dickson)
 - `events/lounge.jpg` — https://unsplash.com/photos/Y8gXPB8Mq98 (a group of people sitting around a table with wine glasses, Frankie Cordoba)
+
+### Venues page (Unsplash License)
+- `street.jpg` — https://unsplash.com/photos/bZ-AHlgtiAg (people sitting at tables in a street, Caroline Roose)
