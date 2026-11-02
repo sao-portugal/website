@@ -237,6 +237,8 @@
   .slide.beige .field { border-color: var(--blue); }
   .slide.beige .btn { border-color: var(--blue); color: var(--blue); }
   .slide.beige .btn.solid { background: var(--blue); color: var(--beige); }
+  .when { align-self: flex-start; padding: 3px 10px; border: 2px dashed currentColor; border-radius: 999px; font: 700 12px/1.3 var(--text); letter-spacing: .06em; text-transform: uppercase; }
+  .when.now { border-style: solid; }
   .signoff { font: 400 clamp(26px, 2.6vw, 40px)/1 var(--display); }
   @media (max-width: 900px) { .dayone { grid-template-columns: minmax(0, 1fr); } }
   @media (max-width: 560px) { .contact.four { grid-template-columns: minmax(0, 1fr); } }
@@ -397,17 +399,17 @@
     <section class="slide blue" aria-label="Marketing support">
       <div class="inner">
         <p class="eyebrow">Marketing support</p>
-        <h2 class="h-l">We don’t just deliver cans. We bring attention.</h2>
+        <h2 class="h-l" style="font-size:clamp(38px,4.8vw,76px)">More than cans. We help people find you.</h2>
         <div class="mk">
           <figure class="photo"><img src="assets/img/events/dancefloor.jpg" alt="A busy dance floor at a São night"></figure>
           <div class="grid g2">
-            <article class="card solid-beige"><h3 class="h-m">São Nights</h3><p>Launch events and after-work drinks at partner venues. Your bar, our crowd.</p></article>
-            <article class="card"><h3 class="h-m">Creator visits</h3><p>Our creator network films at your venue and tags you. Real content, real reach.</p></article>
-            <article class="card"><h3 class="h-m">Find-us map</h3><p>Every partner venue on drinksao.com. The first place São fans look.</p></article>
-            <article class="card"><h3 class="h-m">Social features</h3><p>Your bar in our posts and stories throughout the season.</p></article>
+            <article class="card solid-beige"><span class="when now">From day one</span><h3 class="h-m">Find-us map</h3><p>Every partner venue on drinksao.com, so people who look for São find your bar.</p></article>
+            <article class="card"><span class="when now">From day one</span><h3 class="h-m">On @drinksao</h3><p>We share your bar in our posts and stories when you start serving São.</p></article>
+            <article class="card"><span class="when">As we grow</span><h3 class="h-m">São Nights</h3><p>Launch events and after-work drinks, hosted at partner venues.</p></article>
+            <article class="card"><span class="when">As we grow</span><h3 class="h-m">Creator visits</h3><p>Creators from our network visit, film at your venue and tag you.</p></article>
           </div>
         </div>
-        <p class="foot-note">We’re building São around the venues that believe in it first. São Nights, creator visits and social features roll out as we grow together.</p>
+        <p class="foot-note" style="font-size:15px;opacity:.85">We’re a new brand. The map and our socials start straight away; São Nights and creator visits come as we grow, first at the venues that started with us.</p>
       </div>
     </section>
 
