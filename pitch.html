@@ -224,6 +224,18 @@
     .trio { grid-template-columns: minmax(0, 1fr); }
     .nav button { width: 40px; height: 40px; }
   }
+
+  /* v2 additions */
+  .cover-logo { width: clamp(84px, 9vw, 132px); height: auto; color: var(--beige); }
+  .big-num.sm { font-size: clamp(44px, 5vw, 76px); }
+  .dayone { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(24px, 5vw, 80px); align-items: center; }
+  .aside-note { margin-top: 8px; padding: 16px 20px; border: 2px dashed currentColor; border-radius: 18px; font-size: clamp(15px, 1.2vw, 18px); line-height: 1.45; max-width: 30rem; }
+  .contact.four { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 980px; }
+  .contact.four .v { overflow-wrap: normal; }
+  body.first .chrome.top .logo { opacity: 0; }
+  .signoff { font: 400 clamp(26px, 2.6vw, 40px)/1 var(--display); }
+  @media (max-width: 900px) { .dayone { grid-template-columns: minmax(0, 1fr); } }
+  @media (max-width: 560px) { .contact.four { grid-template-columns: minmax(0, 1fr); } }
 </style>
 </head>
 <body>
@@ -236,10 +248,10 @@
     <section class="slide blue" aria-label="Cover">
       <div class="inner cover">
         <div class="stack">
-          <div class="pills"><span class="pill">Season 2026</span><span class="pill">Lisbon · Albufeira</span></div>
+          <svg class="cover-logo" xmlns="http://www.w3.org/2000/svg" viewBox="57 53 1836 1610" fill="currentColor" role="img" aria-label="São"><path fill-rule="evenodd" d="M278.0 1659.4C258.1 1657.3 250.8 1656.1 233.9 1651.9C222.2 1649.0 211.2 1645.7 206.4 1643.5C202.1 1641.5 194.7 1638.3 190.2 1636.4C163.7 1625.4 140.3 1609.4 119.7 1588.1C95.9 1563.6 79.9 1533.0 74.6 1502.0C71.0 1481.1 70.9 1468.9 71.2 1179.0L71.5 893.5L73.5 890.1C74.6 888.3 77.1 885.9 79.0 884.9L82.5 883.0L202.0 883.0L321.5 883.0L324.7 885.0C326.5 886.0 328.7 888.4 329.7 890.2L331.5 893.5L332.0 1203.5C332.6 1542.0 332.1 1517.8 338.5 1524.8C341.5 1528.1 342.4 1528.5 346.8 1528.5C352.9 1528.5 356.1 1526.0 358.7 1519.1L360.5 1514.5L360.5 1192.0C360.5 921.4 360.3 868.9 359.1 865.6C357.2 860.1 351.8 854.6 345.7 851.9L340.5 849.5L258.0 848.9C170.2 848.3 170.9 848.3 156.0 843.3C122.2 831.9 88.1 792.2 74.6 748.5C71.5 738.3 64.0 708.2 62.5 699.6C60.7 688.8 60.2 573.7 62.0 563.4C63.4 555.9 72.3 527.0 76.6 516.3C92.5 476.8 138.2 433.5 185.0 413.5C193.1 410.0 201.7 406.2 204.0 405.0C209.4 402.3 236.6 394.4 248.4 392.3C260.2 390.1 411.6 389.1 434.0 391.0C480.9 395.1 543.7 424.4 576.5 457.7C585.3 466.5 596.1 479.3 600.6 486.0C612.3 503.4 625.0 534.7 628.6 554.9C631.2 569.7 632.2 602.0 631.8 659.8L631.5 715.5L629.5 719.4C628.4 721.6 626.2 724.3 624.7 725.4L621.9 727.5L498.4 727.8L374.9 728.0L370.6 726.2C367.6 724.8 365.8 723.2 364.4 720.4L362.5 716.5L362.0 623.0L361.5 529.5L359.0 524.5C355.6 517.8 351.3 515.3 346.0 516.9C341.3 518.3 336.5 523.6 334.8 529.2C332.9 535.5 332.9 728.5 334.8 735.0C336.9 742.2 342.0 748.4 348.7 751.6L354.5 754.5L432.0 755.1C516.3 755.7 514.7 755.6 532.9 761.6C541.6 764.5 558.2 773.5 566.0 779.5C576.5 787.6 593.6 807.7 601.2 821.0C612.3 840.2 625.2 880.5 628.6 906.5C631.6 928.8 632.0 964.8 632.0 1201.5C632.0 1447.2 631.7 1470.4 628.1 1487.7C622.7 1513.5 609.2 1543.7 594.4 1563.0C568.5 1596.6 536.8 1619.5 489.5 1638.8C472.3 1645.8 463.8 1648.6 450.5 1651.8C418.8 1659.4 420.1 1659.3 347.0 1659.5C311.0 1659.7 279.9 1659.6 278.0 1659.4ZM791.8 1659.0C767.9 1656.2 739.1 1637.8 717.7 1611.7C701.8 1592.4 683.8 1559.2 678.1 1538.9C676.9 1534.7 674.8 1527.9 673.4 1523.9C656.7 1474.9 651.7 1398.2 660.1 1318.5C662.9 1292.3 665.5 1280.0 677.0 1241.0C693.6 1184.1 730.1 1124.7 777.0 1078.1C806.2 1049.1 842.9 1020.3 880.5 996.7C906.6 980.4 912.5 976.8 923.5 970.7C929.5 967.4 939.2 962.0 945.0 958.8C950.8 955.6 961.3 950.0 968.4 946.4C986.1 937.4 1002.5 927.4 1005.5 923.9C1010.7 917.7 1010.5 923.5 1010.5 760.0C1010.5 585.7 1010.6 587.0 1002.4 578.4C997.3 573.0 989.4 574.3 985.2 581.2C980.4 589.0 980.6 583.8 980.0 737.5L979.5 882.5L977.3 887.2C975.9 890.2 974.0 892.5 971.8 893.7L968.5 895.5L838.0 895.5L707.5 895.5L703.8 893.6C701.7 892.6 699.0 890.1 697.8 888.1L695.5 884.5L695.2 802.0C694.9 717.2 695.2 707.3 699.1 671.5C704.9 618.1 712.6 584.8 727.1 550.5C730.0 543.9 733.7 535.1 735.5 530.9C738.7 523.3 750.1 503.8 759.1 490.4C770.2 473.8 786.5 455.7 802.0 442.5C831.0 418.0 871.8 397.3 902.0 391.8C913.0 389.9 1066.5 389.9 1079.5 391.9C1090.2 393.5 1116.5 401.2 1123.5 404.8C1126.2 406.2 1134.6 410.1 1142.0 413.5C1178.4 430.1 1215.7 461.8 1239.3 496.3C1254.3 518.3 1259.7 528.0 1267.0 546.5C1269.7 553.1 1273.2 561.4 1274.8 565.0C1278.2 572.5 1286.0 601.8 1288.9 617.6C1290.0 623.6 1291.7 637.3 1292.7 648.0L1294.5 667.5L1294.5 1159.0L1294.5 1650.6L1292.7 1653.3C1291.8 1654.8 1289.5 1656.8 1287.7 1657.7L1284.5 1659.5L1154.0 1659.5C1012.1 1659.5 1018.5 1659.8 1013.5 1653.9L1011.0 1650.8L1011.0 1597.2C1010.9 1535.8 1010.0 1512.9 1007.6 1508.2C1003.2 1499.6 996.9 1509.5 990.5 1535.0C986.5 1550.8 977.0 1570.7 964.7 1588.8C938.9 1627.0 896.9 1655.2 860.0 1659.0C848.4 1660.1 802.0 1660.1 791.8 1659.0ZM1498.3 1659.0C1459.3 1655.1 1416.7 1635.7 1387.0 1608.3C1374.1 1596.5 1368.0 1589.1 1358.9 1574.9C1341.9 1548.4 1334.7 1525.7 1332.0 1490.0C1330.6 1470.8 1330.6 571.3 1332.1 552.9C1334.9 517.5 1342.3 495.5 1360.7 468.0C1370.6 453.2 1383.9 439.4 1400.2 426.7C1412.5 417.1 1441.0 402.3 1457.1 397.1C1478.7 390.2 1470.8 390.5 1616.5 390.5L1748.5 390.5L1756.7 392.3C1770.6 395.3 1784.8 400.8 1801.6 409.7C1823.7 421.4 1840.6 434.6 1855.5 451.8C1868.7 467.0 1883.5 494.6 1887.8 512.0L1889.4 518.5L1889.8 1013.5C1890.0 1356.1 1889.8 1512.5 1889.0 1521.6C1887.6 1539.7 1883.0 1552.9 1871.4 1572.2C1862.5 1586.9 1857.7 1593.1 1845.8 1604.9C1819.2 1631.2 1783.7 1649.7 1744.5 1657.7C1737.4 1659.2 1723.4 1659.4 1621.5 1659.6C1558.2 1659.7 1502.8 1659.4 1498.3 1659.0ZM1620.9 1516.1C1622.3 1515.1 1624.3 1513.1 1625.4 1511.6L1627.5 1508.9L1627.8 1025.2L1628.0 541.5L1626.3 538.0C1621.3 528.2 1605.2 528.0 1600.4 537.7L1598.5 541.5L1598.5 1023.5C1598.5 1540.4 1598.2 1510.0 1603.5 1515.0C1607.8 1519.0 1616.0 1519.6 1620.9 1516.1ZM984.2 1435.0C987.1 1435.0 992.6 1429.3 993.8 1425.2C995.8 1418.6 995.5 1152.7 993.5 1137.5C991.3 1120.6 988.5 1115.0 982.5 1115.0C972.6 1115.0 967.4 1130.9 965.0 1168.0C963.4 1193.7 963.7 1422.3 965.4 1426.3C968.0 1432.3 974.9 1436.6 980.5 1435.4C981.6 1435.2 983.3 1435.0 984.2 1435.0ZM1099.5 345.3C1061.0 340.8 1048.2 336.3 1007.5 313.2C1000.1 309.1 972.1 289.8 955.5 277.4C935.9 262.9 915.6 253.0 903.4 252.2C885.2 251.0 872.5 262.8 868.4 284.8C865.2 302.0 864.8 303.1 861.8 306.5C860.1 308.6 857.2 310.4 854.9 311.0C852.4 311.7 832.3 312.0 796.8 311.8L742.5 311.5L739.2 309.7C731.5 305.5 730.5 299.7 732.0 268.8C733.8 232.1 737.5 202.6 742.5 186.0C756.8 137.8 767.6 115.7 786.6 95.1C801.2 79.4 823.3 65.9 843.0 60.9C860.2 56.5 898.1 56.3 918.7 60.6C947.8 66.6 982.0 85.2 1031.5 122.0C1053.0 138.0 1061.3 142.8 1075.7 147.6C1092.7 153.3 1108.9 148.5 1116.5 135.5C1118.2 132.7 1120.0 126.3 1121.9 116.6C1123.7 107.8 1125.7 100.6 1127.0 98.6C1131.1 91.9 1130.7 91.9 1194.2 92.2L1250.9 92.5L1253.7 94.6C1259.3 98.7 1260.2 102.3 1260.1 120.3C1260.0 138.1 1257.9 165.0 1255.6 177.5C1254.8 181.9 1252.8 193.4 1251.0 203.0C1248.0 219.9 1239.3 249.6 1232.3 266.5C1229.2 274.0 1218.6 290.9 1210.2 301.9C1196.8 319.2 1171.4 336.2 1151.5 341.0C1136.1 344.8 1111.7 346.8 1099.5 345.3Z"/></svg>
           <h1>The light drink your bar is missing.</h1>
           <p class="lead">Fast to serve, good margin, no risk to try.</p>
-          <p class="eyebrow muted">São hard seltzer · Venue partner pitch</p>
+          <div class="pills"><span class="pill">Season 2026</span><span class="pill">Lisbon · Albufeira</span></div>
         </div>
         <figure class="photo"><img src="assets/img/events/club.jpg" alt="A packed Lisbon dance floor at night"><figcaption>Saturday, 00:40, Lisboa</figcaption></figure>
       </div>
@@ -253,18 +265,18 @@
         <div class="grid g3">
           <article class="card gap-col">
             <p class="tag">Beer</p>
-            <h3>Heavy.</h3>
-            <ul><li>Filling after the second round</li><li>Same tap as every bar on the street</li><li>No reason to pick your bar</li></ul>
+            <h3>Familiar.</h3>
+            <ul><li>Heavy after the second round</li><li>Low margin per glass</li><li>No reason to pick your bar over the next one</li></ul>
           </article>
           <article class="card gap-col solid-blue hero">
             <p class="tag">São</p>
-            <h3>Light. Ordered all night.</h3>
-            <ul><li>0 g sugar, 67 kcal, 4.5% alc.</li><li>Served in seconds, straight from the fridge</li><li>A reason to come back for round three</li></ul>
+            <h3>Light. Easy.</h3>
+            <ul><li>Zero sugar, 67 kcal</li><li>Ordered all night</li><li>Easy to serve, straight from the fridge</li></ul>
           </article>
           <article class="card gap-col">
             <p class="tag">Cocktail</p>
-            <h3>Good margin. Slow.</h3>
-            <ul><li>Great money per glass</li><li>Minutes behind the shaker</li><li>At 1am, every minute is a lost order</li></ul>
+            <h3>Great margin. Slow.</h3>
+            <ul><li>Good money per glass</li><li>Slow to make at peak time</li><li>Needs skill and time behind the bar</li></ul>
           </article>
         </div>
       </div>
@@ -274,7 +286,7 @@
     <section class="slide blue" aria-label="The product">
       <div class="inner">
         <p class="eyebrow">Meet São</p>
-        <h2 class="h-l">Hard seltzer, made for Portugal’s nights.</h2>
+        <h2 class="h-l">Light, cold and made for a long night.</h2>
         <div class="facts">
           <div><b>0 g</b><span>sugar</span></div>
           <div><b>67</b><span>kcal per can</span></div>
@@ -292,13 +304,13 @@
     <section class="slide beige" aria-label="Proof">
       <div class="inner">
         <p class="eyebrow">Proof</p>
-        <h2 class="h-l">Hard seltzer already sells big in Europe.</h2>
+        <h2 class="h-l">Hard seltzer is already big in Europe. Your guests drink it at home.</h2>
         <div class="stats">
           <div class="stat"><span class="big-num">10M+</span><p>cans sold by Stëlz, a Dutch hard seltzer brand founded in 2020.</p></div>
-          <div class="stat"><span class="big-num">13→18%</span><p>hard seltzer’s share of Dutch RTD sales, 2023 to projected 2028.</p></div>
-          <div class="stat"><span class="big-num">2024</span><p>the year Heineken bought into Stëlz to grow “beyond beer”.</p></div>
+          <div class="stat"><span class="big-num">2024</span><p>the year Heineken invested in Stëlz to grow “beyond beer”.</p></div>
+          <div class="stat"><span class="big-num">Millions</span><p>of Northern European tourists visit Portugal every year. They already know this drink.</p></div>
         </div>
-        <p class="foot-note">Sources: Stëlz / Just Drinks / Drinks Intel (2024). Your UK, Irish and Dutch guests already drink it at home.</p>
+        <p class="foot-note">Sources: Stëlz / Drinks Intel (2024).</p>
       </div>
     </section>
 
@@ -306,12 +318,12 @@
     <section class="slide blue" aria-label="Built for a busy bar">
       <div class="inner">
         <p class="eyebrow">Built for a busy bar</p>
-        <h2 class="h-l">Made for the rush, not the menu photo.</h2>
+        <h2 class="h-l">Designed for speed, not complexity.</h2>
         <div class="grid g4">
-          <article class="card"><span class="big-num" style="font-size:clamp(44px,5vw,76px)">10 s</span><h3 class="h-m">per serve</h3><p>Open, pour over ice or hand over the can. Faster than a pint.</p></article>
-          <article class="card"><span class="big-num" style="font-size:clamp(44px,5vw,76px)">0</span><h3 class="h-m">taps or mixing</h3><p>Nothing to install, nothing to waste, nothing goes flat.</p></article>
-          <article class="card"><span class="big-num" style="font-size:clamp(44px,5vw,76px)">1</span><h3 class="h-m">shelf, one case</h3><p>Slim 250 ml cans fit the fridge you already have.</p></article>
-          <article class="card solid-beige"><span class="big-num" style="font-size:clamp(44px,5vw,76px)">0</span><h3 class="h-m">exclusivity asked</h3><p>São sits beside every brand you already pour.</p></article>
+          <article class="card"><span class="big-num sm">10 s</span><h3 class="h-m">per serve</h3><p>Open, hand over or pour over ice. Faster than a pint.</p></article>
+          <article class="card"><span class="big-num sm">0</span><h3 class="h-m">taps or mixing</h3><p>Nothing to install, nothing goes flat, no skill needed.</p></article>
+          <article class="card"><span class="big-num sm">1</span><h3 class="h-m">shelf, one case</h3><p>The 250 ml slim can fits the fridge you already have.</p></article>
+          <article class="card solid-beige"><span class="big-num sm">0</span><h3 class="h-m">exclusivity</h3><p>São sits beside every brand you already pour.</p></article>
         </div>
       </div>
     </section>
@@ -322,23 +334,23 @@
         <p class="eyebrow">Your margin</p>
         <div class="trio">
           <div class="card"><span class="label">You pay per can</span><span class="big-num">€1.10</span></div>
-          <div class="card"><span class="label">Advised menu price</span><span class="big-num">€4.50</span></div>
-          <div class="card solid-blue"><span class="label">You keep, every can</span><span class="big-num">€2.56</span></div>
+          <div class="card"><span class="label">Advised menu price</span><span class="big-num">€3.99</span></div>
+          <div class="card solid-blue"><span class="label">You keep, every can</span><span class="big-num">€2.14</span></div>
         </div>
         <div class="table-wrap">
           <table>
             <thead><tr><th>Menu price</th><th>Ex IVA (23%)</th><th>Profit per can</th><th>Profit per case (24)</th><th>Margin</th></tr></thead>
             <tbody>
               <tr><td>€3.50</td><td>€2.85</td><td>€1.75</td><td>€42</td><td>61%</td></tr>
-              <tr><td>€4.00</td><td>€3.25</td><td>€2.15</td><td>€52</td><td>66%</td></tr>
-              <tr class="sweet"><td>€4.50 <span class="sweet-tag">✦ Sweet spot</span></td><td>€3.66</td><td>€2.56</td><td>€61</td><td>70%</td></tr>
+              <tr class="sweet"><td>€3.99 <span class="sweet-tag">✦ Advised</span></td><td>€3.24</td><td>€2.14</td><td>€51</td><td>66%</td></tr>
+              <tr><td>€4.50</td><td>€3.66</td><td>€2.56</td><td>€61</td><td>70%</td></tr>
               <tr><td>€5.00 · tourist area</td><td>€4.07</td><td>€2.97</td><td>€71</td><td>73%</td></tr>
             </tbody>
           </table>
         </div>
         <div class="margin-note">
-          <p><b>Horeca benchmark: 60–75% margin on drinks.</b> São sits at the top of that range. Most beers don’t come close.</p>
-          <p><b>Why €4.50.</b> Affordable enough to try, high enough to feel premium, and 70% margin for your venue.</p>
+          <p><b>Horeca benchmark: 60–75% margin on drinks.</b> São sits comfortably in that range.</p>
+          <p><b>Why €3.99.</b> Affordable enough to try, good enough to keep ordering.</p>
         </div>
       </div>
     </section>
@@ -350,14 +362,14 @@
           <p class="eyebrow">Terms</p>
           <span class="big-num">€26.40</span>
           <p class="h-m" style="font-family:var(--display);margin-top:10px">per case of 24 · ex IVA</p>
-          <p class="lead muted" style="margin-top:12px">€1.10 per can. IABA alcohol excise included.</p>
+          <p class="lead muted" style="margin-top:12px">€1.10 per can. Alcohol excise (IABA) included.</p>
         </div>
         <ul class="list-lines">
-          <li><svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/></svg>Minimum order: 2 cases</li>
+          <li><svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/></svg>Minimum 2 cases</li>
           <li><svg viewBox="0 0 24 24"><path d="M2 15V6h12v9M14 10h4.5l3.5 3.5V15h-8"/><circle cx="6" cy="17" r="2"/><circle cx="18" cy="17" r="2"/></svg>Free delivery from 3 cases in Lisbon &amp; Albufeira</li>
-          <li><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Pay 30 days after delivery</li>
+          <li><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Payment 30 days after delivery</li>
           <li><svg viewBox="0 0 24 24"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 21V7M12 7C10 3 7 3 7 5s5 2 5 2zm0 0c2-4 5-4 5-2s-5 2-5 2z"/></svg>Every 11th case free</li>
-          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Delivered within 48 hours</li>
+          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Delivery within 48 hours</li>
           <li><svg viewBox="0 0 24 24"><path d="M7 3h4v18H7zM13 3h4v18h-4z"/></svg>Mix both flavours in one case</li>
         </ul>
       </div>
@@ -370,74 +382,33 @@
         <h2 class="h-l">Saying yes costs you nothing.</h2>
         <div class="grid g4">
           <article class="card solid-blue"><h3 class="h-m">Free tasting kit</h3><p>Cans for you and your team. No order needed.</p></article>
-          <article class="card"><h3 class="h-m">Sale or return</h3><p>First order not sold in 60 days? We take the cans back.</p></article>
+          <article class="card"><h3 class="h-m">Sale or return</h3><p>First order not sold in 60 days? We take it back.</p></article>
           <article class="card"><h3 class="h-m">No contract</h3><p>Order when you want, stop when you want.</p></article>
           <article class="card"><h3 class="h-m">No exclusivity</h3><p>Keep every brand you have. We just add one.</p></article>
         </div>
       </div>
     </section>
 
-    <!-- 9 Partner tiers -->
-    <section class="slide blue" aria-label="Partner tiers">
-      <div class="inner">
-        <p class="eyebrow">Partner tiers</p>
-        <h2 class="h-l">Pour more, get more.</h2>
-        <div class="grid g3" style="align-items:start">
-          <article class="tier">
-            <p class="who">From your first case</p>
-            <h3>Vizinho</h3>
-            <ul><li>Menu inserts, table talkers and bar sticker</li><li>Your venue on the drinksao.com map</li><li>Featured on @drinksao</li><li>15-minute staff tasting &amp; training</li><li>Restock within 48 hours</li></ul>
-          </article>
-          <article class="tier">
-            <p class="who">10+ cases a month</p>
-            <h3>Amigo</h3>
-            <ul><li class="plus">Everything in Vizinho</li><li>Every 11th case free</li><li>One São Night with promo staff</li><li>2 free cases for sampling</li><li>Monthly staff challenge with prizes</li></ul>
-          </article>
-          <article class="tier top">
-            <p class="who">30+ cases a month · ✦</p>
-            <h3>Casa São</h3>
-            <ul><li class="plus">Everything in Amigo</li><li>Branded São fridge on loan</li><li>Price locked for all of 2026</li><li>A São Night or creator visit every month</li><li>First to pour new flavours</li></ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- 10 Marketing -->
-    <section class="slide beige" aria-label="Marketing">
-      <div class="inner">
-        <p class="eyebrow">Marketing</p>
-        <h2 class="h-l">We don’t just deliver cans. We bring people.</h2>
-        <div class="mk">
-          <figure class="photo"><img src="assets/img/events/dancefloor.jpg" alt="A crowded dance floor at a São Night"></figure>
-          <div class="grid g2">
-            <article class="card solid-blue"><h3 class="h-m">São Nights</h3><p>Club takeovers and after-work drinks, hosted at partner venues.</p></article>
-            <article class="card"><h3 class="h-m">Creators</h3><p>Our creator family films at your venue and tags you.</p></article>
-            <article class="card"><h3 class="h-m">Find-us map</h3><p>Every partner on drinksao.com, the first place fans look.</p></article>
-            <article class="card"><h3 class="h-m">Social</h3><p>Your bar in our posts and stories, all season long.</p></article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 11 Founding venues -->
-    <section class="slide blue" aria-label="Founding venues">
-      <div class="inner found">
-        <div class="twenty-five" aria-hidden="true">25</div>
+    <!-- 9 From day one -->
+    <section class="slide blue" aria-label="What you get from day one">
+      <div class="inner dayone">
         <div style="display:flex;flex-direction:column;gap:clamp(16px,2.6vh,26px);min-width:0">
-          <p class="eyebrow">Founding venues</p>
-          <h2 class="h-l">25 founding venues. Then the list closes.</h2>
-          <ul>
-            <li>€26.40 per case, price locked for all of 2026, even if excise or costs go up</li>
-            <li>Branded São fridge and a São Night every month, from day one</li>
-            <li>First mover advantage: your guests discover São through you, before it’s everywhere</li>
-            <li>Your name on the Founding Venues wall on drinksao.com, for good</li>
-          </ul>
-          <div><span class="deadline"><span>Deadline</span><b>15 January 2027</b></span></div>
+          <p class="eyebrow">From day one</p>
+          <h2 class="h-l">Everything you need, from the first case.</h2>
+          <p class="aside-note">The first venues we work with get something the rest won’t. We’ll talk about that when we meet.</p>
         </div>
+        <ul class="list-lines">
+          <li><svg viewBox="0 0 24 24"><path d="M5 3h14v18H5z"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>São on your menu</li>
+          <li><svg viewBox="0 0 24 24"><path d="M8 3h8l-1 6a4 4 0 0 1-6 0z"/><path d="M12 13v6M8 21h8"/></svg>Free tasting kit for your team before you order</li>
+          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Delivery within 48 hours, anywhere in Lisbon or Albufeira</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 21V7M12 7C10 3 7 3 7 5s5 2 5 2zm0 0c2-4 5-4 5-2s-5 2-5 2z"/></svg>Every 11th case free</li>
+          <li><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Your venue on drinksao.com and featured on @drinksao</li>
+          <li><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>A direct line to the founders. We pick up.</li>
+        </ul>
       </div>
     </section>
 
-    <!-- 12 How it works -->
+    <!-- 10 How it works -->
     <section class="slide beige" aria-label="How it works">
       <div class="inner">
         <p class="eyebrow">How it works</p>
@@ -447,21 +418,23 @@
           <span class="arrow" aria-hidden="true"><svg viewBox="0 0 48 24"><path d="M2 12h42M34 3l10 9-10 9"/></svg></span>
           <article class="step"><span class="n">2</span><h3>First order</h3><p>From 2 cases, €52.80 ex IVA. Sale or return if it doesn’t sell in 60 days.</p></article>
           <span class="arrow" aria-hidden="true"><svg viewBox="0 0 48 24"><path d="M2 12h42M34 3l10 9-10 9"/></svg></span>
-          <article class="step go"><span class="n">3</span><h3>Launch night</h3><p>We put São on your menu and bring people to try it.</p></article>
+          <article class="step go"><span class="n">3</span><h3>On the map</h3><p>São goes on your menu. We put your venue on drinksao.com and start posting.</p></article>
         </div>
       </div>
     </section>
 
-    <!-- 13 Contact -->
+    <!-- 11 Contact -->
     <section class="slide blue" aria-label="Contact">
       <div class="inner">
         <p class="eyebrow">Contact</p>
         <h2 class="h-xl">Let’s put São on your menu.</h2>
-        <div class="contact">
+        <div class="contact four">
           <div class="field"><span class="label">WhatsApp · Koen</span><span class="v" id="c-wa">+351 [NUMMER INVULLEN]</span><div class="row"><button class="btn solid" type="button" data-copy="c-wa">Copy number</button></div></div>
           <div class="field"><span class="label">Email</span><span class="v" id="c-mail">info@drinksao.com</span><div class="row"><button class="btn solid" type="button" data-copy="c-mail">Copy email</button></div></div>
-          <div class="field"><span class="label">Follow &amp; find</span><span class="v">@drinksao<br>drinksao.com</span><div class="row"><a class="btn" href="https://www.instagram.com/drinksao/" target="_blank" rel="noopener">Instagram</a><a class="btn" href="https://drinksao.com" target="_blank" rel="noopener">Website</a></div></div>
+          <div class="field"><span class="label">Instagram</span><span class="v">@drinksao</span><div class="row"><a class="btn" href="https://www.instagram.com/drinksao/" target="_blank" rel="noopener">Open Instagram</a></div></div>
+          <div class="field"><span class="label">Website</span><span class="v">drinksao.com</span><div class="row"><a class="btn" href="https://drinksao.com" target="_blank" rel="noopener">Open website</a></div></div>
         </div>
+        <p class="signoff">Obrigado. Saúde.</p>
       </div>
     </section>
 
@@ -470,7 +443,7 @@
 
 <div class="chrome top" aria-hidden="false">
   <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="57 53 1836 1610" fill="currentColor" role="img" aria-label="São"><path fill-rule="evenodd" d="M278.0 1659.4C258.1 1657.3 250.8 1656.1 233.9 1651.9C222.2 1649.0 211.2 1645.7 206.4 1643.5C202.1 1641.5 194.7 1638.3 190.2 1636.4C163.7 1625.4 140.3 1609.4 119.7 1588.1C95.9 1563.6 79.9 1533.0 74.6 1502.0C71.0 1481.1 70.9 1468.9 71.2 1179.0L71.5 893.5L73.5 890.1C74.6 888.3 77.1 885.9 79.0 884.9L82.5 883.0L202.0 883.0L321.5 883.0L324.7 885.0C326.5 886.0 328.7 888.4 329.7 890.2L331.5 893.5L332.0 1203.5C332.6 1542.0 332.1 1517.8 338.5 1524.8C341.5 1528.1 342.4 1528.5 346.8 1528.5C352.9 1528.5 356.1 1526.0 358.7 1519.1L360.5 1514.5L360.5 1192.0C360.5 921.4 360.3 868.9 359.1 865.6C357.2 860.1 351.8 854.6 345.7 851.9L340.5 849.5L258.0 848.9C170.2 848.3 170.9 848.3 156.0 843.3C122.2 831.9 88.1 792.2 74.6 748.5C71.5 738.3 64.0 708.2 62.5 699.6C60.7 688.8 60.2 573.7 62.0 563.4C63.4 555.9 72.3 527.0 76.6 516.3C92.5 476.8 138.2 433.5 185.0 413.5C193.1 410.0 201.7 406.2 204.0 405.0C209.4 402.3 236.6 394.4 248.4 392.3C260.2 390.1 411.6 389.1 434.0 391.0C480.9 395.1 543.7 424.4 576.5 457.7C585.3 466.5 596.1 479.3 600.6 486.0C612.3 503.4 625.0 534.7 628.6 554.9C631.2 569.7 632.2 602.0 631.8 659.8L631.5 715.5L629.5 719.4C628.4 721.6 626.2 724.3 624.7 725.4L621.9 727.5L498.4 727.8L374.9 728.0L370.6 726.2C367.6 724.8 365.8 723.2 364.4 720.4L362.5 716.5L362.0 623.0L361.5 529.5L359.0 524.5C355.6 517.8 351.3 515.3 346.0 516.9C341.3 518.3 336.5 523.6 334.8 529.2C332.9 535.5 332.9 728.5 334.8 735.0C336.9 742.2 342.0 748.4 348.7 751.6L354.5 754.5L432.0 755.1C516.3 755.7 514.7 755.6 532.9 761.6C541.6 764.5 558.2 773.5 566.0 779.5C576.5 787.6 593.6 807.7 601.2 821.0C612.3 840.2 625.2 880.5 628.6 906.5C631.6 928.8 632.0 964.8 632.0 1201.5C632.0 1447.2 631.7 1470.4 628.1 1487.7C622.7 1513.5 609.2 1543.7 594.4 1563.0C568.5 1596.6 536.8 1619.5 489.5 1638.8C472.3 1645.8 463.8 1648.6 450.5 1651.8C418.8 1659.4 420.1 1659.3 347.0 1659.5C311.0 1659.7 279.9 1659.6 278.0 1659.4ZM791.8 1659.0C767.9 1656.2 739.1 1637.8 717.7 1611.7C701.8 1592.4 683.8 1559.2 678.1 1538.9C676.9 1534.7 674.8 1527.9 673.4 1523.9C656.7 1474.9 651.7 1398.2 660.1 1318.5C662.9 1292.3 665.5 1280.0 677.0 1241.0C693.6 1184.1 730.1 1124.7 777.0 1078.1C806.2 1049.1 842.9 1020.3 880.5 996.7C906.6 980.4 912.5 976.8 923.5 970.7C929.5 967.4 939.2 962.0 945.0 958.8C950.8 955.6 961.3 950.0 968.4 946.4C986.1 937.4 1002.5 927.4 1005.5 923.9C1010.7 917.7 1010.5 923.5 1010.5 760.0C1010.5 585.7 1010.6 587.0 1002.4 578.4C997.3 573.0 989.4 574.3 985.2 581.2C980.4 589.0 980.6 583.8 980.0 737.5L979.5 882.5L977.3 887.2C975.9 890.2 974.0 892.5 971.8 893.7L968.5 895.5L838.0 895.5L707.5 895.5L703.8 893.6C701.7 892.6 699.0 890.1 697.8 888.1L695.5 884.5L695.2 802.0C694.9 717.2 695.2 707.3 699.1 671.5C704.9 618.1 712.6 584.8 727.1 550.5C730.0 543.9 733.7 535.1 735.5 530.9C738.7 523.3 750.1 503.8 759.1 490.4C770.2 473.8 786.5 455.7 802.0 442.5C831.0 418.0 871.8 397.3 902.0 391.8C913.0 389.9 1066.5 389.9 1079.5 391.9C1090.2 393.5 1116.5 401.2 1123.5 404.8C1126.2 406.2 1134.6 410.1 1142.0 413.5C1178.4 430.1 1215.7 461.8 1239.3 496.3C1254.3 518.3 1259.7 528.0 1267.0 546.5C1269.7 553.1 1273.2 561.4 1274.8 565.0C1278.2 572.5 1286.0 601.8 1288.9 617.6C1290.0 623.6 1291.7 637.3 1292.7 648.0L1294.5 667.5L1294.5 1159.0L1294.5 1650.6L1292.7 1653.3C1291.8 1654.8 1289.5 1656.8 1287.7 1657.7L1284.5 1659.5L1154.0 1659.5C1012.1 1659.5 1018.5 1659.8 1013.5 1653.9L1011.0 1650.8L1011.0 1597.2C1010.9 1535.8 1010.0 1512.9 1007.6 1508.2C1003.2 1499.6 996.9 1509.5 990.5 1535.0C986.5 1550.8 977.0 1570.7 964.7 1588.8C938.9 1627.0 896.9 1655.2 860.0 1659.0C848.4 1660.1 802.0 1660.1 791.8 1659.0ZM1498.3 1659.0C1459.3 1655.1 1416.7 1635.7 1387.0 1608.3C1374.1 1596.5 1368.0 1589.1 1358.9 1574.9C1341.9 1548.4 1334.7 1525.7 1332.0 1490.0C1330.6 1470.8 1330.6 571.3 1332.1 552.9C1334.9 517.5 1342.3 495.5 1360.7 468.0C1370.6 453.2 1383.9 439.4 1400.2 426.7C1412.5 417.1 1441.0 402.3 1457.1 397.1C1478.7 390.2 1470.8 390.5 1616.5 390.5L1748.5 390.5L1756.7 392.3C1770.6 395.3 1784.8 400.8 1801.6 409.7C1823.7 421.4 1840.6 434.6 1855.5 451.8C1868.7 467.0 1883.5 494.6 1887.8 512.0L1889.4 518.5L1889.8 1013.5C1890.0 1356.1 1889.8 1512.5 1889.0 1521.6C1887.6 1539.7 1883.0 1552.9 1871.4 1572.2C1862.5 1586.9 1857.7 1593.1 1845.8 1604.9C1819.2 1631.2 1783.7 1649.7 1744.5 1657.7C1737.4 1659.2 1723.4 1659.4 1621.5 1659.6C1558.2 1659.7 1502.8 1659.4 1498.3 1659.0ZM1620.9 1516.1C1622.3 1515.1 1624.3 1513.1 1625.4 1511.6L1627.5 1508.9L1627.8 1025.2L1628.0 541.5L1626.3 538.0C1621.3 528.2 1605.2 528.0 1600.4 537.7L1598.5 541.5L1598.5 1023.5C1598.5 1540.4 1598.2 1510.0 1603.5 1515.0C1607.8 1519.0 1616.0 1519.6 1620.9 1516.1ZM984.2 1435.0C987.1 1435.0 992.6 1429.3 993.8 1425.2C995.8 1418.6 995.5 1152.7 993.5 1137.5C991.3 1120.6 988.5 1115.0 982.5 1115.0C972.6 1115.0 967.4 1130.9 965.0 1168.0C963.4 1193.7 963.7 1422.3 965.4 1426.3C968.0 1432.3 974.9 1436.6 980.5 1435.4C981.6 1435.2 983.3 1435.0 984.2 1435.0ZM1099.5 345.3C1061.0 340.8 1048.2 336.3 1007.5 313.2C1000.1 309.1 972.1 289.8 955.5 277.4C935.9 262.9 915.6 253.0 903.4 252.2C885.2 251.0 872.5 262.8 868.4 284.8C865.2 302.0 864.8 303.1 861.8 306.5C860.1 308.6 857.2 310.4 854.9 311.0C852.4 311.7 832.3 312.0 796.8 311.8L742.5 311.5L739.2 309.7C731.5 305.5 730.5 299.7 732.0 268.8C733.8 232.1 737.5 202.6 742.5 186.0C756.8 137.8 767.6 115.7 786.6 95.1C801.2 79.4 823.3 65.9 843.0 60.9C860.2 56.5 898.1 56.3 918.7 60.6C947.8 66.6 982.0 85.2 1031.5 122.0C1053.0 138.0 1061.3 142.8 1075.7 147.6C1092.7 153.3 1108.9 148.5 1116.5 135.5C1118.2 132.7 1120.0 126.3 1121.9 116.6C1123.7 107.8 1125.7 100.6 1127.0 98.6C1131.1 91.9 1130.7 91.9 1194.2 92.2L1250.9 92.5L1253.7 94.6C1259.3 98.7 1260.2 102.3 1260.1 120.3C1260.0 138.1 1257.9 165.0 1255.6 177.5C1254.8 181.9 1252.8 193.4 1251.0 203.0C1248.0 219.9 1239.3 249.6 1232.3 266.5C1229.2 274.0 1218.6 290.9 1210.2 301.9C1196.8 319.2 1171.4 336.2 1151.5 341.0C1136.1 344.8 1111.7 346.8 1099.5 345.3Z"/></svg>
-  <span class="count" id="count" aria-live="polite">1 / 13</span>
+  <span class="count" id="count" aria-live="polite">1 / 11</span>
 </div>
 <div class="chrome bottom">
   <div class="progress" aria-hidden="true"><i id="bar"></i></div>
@@ -494,7 +467,7 @@
     i = Math.max(0, Math.min(total - 1, n));
     track.style.transform = "translateX(" + (-100 * i) + "%)";
     slides.forEach((s, k) => { const on = k === i; s.classList.toggle("is-active", on); s.setAttribute("aria-hidden", String(!on)); s.inert = !on; if (on) s.scrollTop = 0; });
-    document.body.classList.toggle("on-blue", slides[i].classList.contains("blue"));
+    document.body.classList.toggle("on-blue", slides[i].classList.contains("blue")); document.body.classList.toggle("first", i === 0);
     count.textContent = (i + 1) + " / " + total;
     bar.style.setProperty("--p", ((i + 1) / total * 100) + "%");
     prev.disabled = i === 0; next.disabled = i === total - 1;
