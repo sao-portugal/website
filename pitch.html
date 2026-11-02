@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>São — Venue pitch</title>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="#1205AB">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preload" href="assets/fonts/anton-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+    @font-face { font-family: "Anton"; font-weight: 400; font-display: swap; src: url("assets/fonts/anton-latin-400-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Familjen Grotesk"; font-weight: 400; font-display: swap; src: url("assets/fonts/familjen-grotesk-latin-400-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Familjen Grotesk"; font-weight: 500; font-display: swap; src: url("assets/fonts/familjen-grotesk-latin-500-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Familjen Grotesk"; font-weight: 700; font-display: swap; src: url("assets/fonts/familjen-grotesk-latin-700-normal.woff2") format("woff2"); }
+    #nl-badge-frame, #nl-hud-frame { display: none !important; }
+  /* Layout: full-screen slides on a horizontal track, drinksao.com brand: beige + São blue, Anton display, Familjen Grotesk text.
+     Single deliberate look (the brand's two colours), so no dark variant. */
+  :root {
+    --beige: #FEFBE4; --beige-2: #F6F0C8; --blue: #1205AB; --blue-deep: #0C0478; --blue-soft: #D9D6F2; --ink-soft: #3A3290;
+    --display: "Anton", "Arial Narrow", Impact, sans-serif;
+    --text: "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
+    --gut: max(16px, env(safe-area-inset-left, 0px));
+    --gut-r: max(16px, env(safe-area-inset-right, 0px));
+    color-scheme: light;
+  }
+  html, body { height: 100%; }
+  body { margin: 0; min-height: 520px; background: var(--beige); color: var(--blue); font: 400 16px/1.5 var(--text); -webkit-font-smoothing: antialiased; overflow: hidden; }
+  *, *::before, *::after { box-sizing: border-box; }
+  p, h1, h2, h3, ul, ol, figure { margin: 0; }
+  ul, ol { padding: 0; list-style: none; }
+  a { color: inherit; }
+  img { display: block; max-width: 100%; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 400; text-wrap: balance; }
+  :focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
+
+  /* Deck frame */
+  .deck { position: relative; height: 100%; height: 100vh; height: 100dvh; min-height: 520px; overflow: hidden; touch-action: pan-y; }
+  .track { display: flex; height: 100%; transition: transform .6s cubic-bezier(.2,.8,.2,1); will-change: transform; }
+  .slide { flex: 0 0 100%; width: 100%; height: 100%; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch;
+    padding: clamp(72px, 10vh, 104px) var(--gut-r) clamp(88px, 12vh, 112px) var(--gut); }
+  .slide.blue { background: var(--blue); color: var(--beige); }
+  .slide.beige { background: var(--beige); color: var(--blue); }
+  .inner { max-width: 1280px; min-height: 100%; margin: 0 auto; display: flex; flex-direction: column; justify-content: center; gap: clamp(20px, 3.4vh, 40px); padding-inline: clamp(0px, 3vw, 40px); }
+  @media (prefers-reduced-motion: reduce) { .track { transition: none; } }
+
+  /* Chrome: logo, counter, controls (colour follows the slide) */
+  .chrome { position: fixed; z-index: 5; left: 0; right: 0; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); color: var(--blue); pointer-events: none; transition: color .4s; }
+  .chrome > * { pointer-events: auto; }
+  .chrome.top { top: 0; padding-top: 18px; }
+  .chrome.bottom { bottom: 0; padding-top: 12px; padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px)); background: var(--beige); transition: color .4s, background-color .4s; }
+  .chrome.top { background: var(--beige); padding-bottom: 10px; transition: color .4s, background-color .4s; }
+  body.on-blue .chrome { background: var(--blue); }
+  body.on-blue .chrome { color: var(--beige); }
+  .logo { width: 52px; height: auto; }
+  .count { font: 700 15px/1 var(--text); font-variant-numeric: tabular-nums; letter-spacing: .04em; }
+  .progress { flex: 1; height: 3px; border-radius: 3px; background: color-mix(in srgb, currentColor 22%, transparent); overflow: hidden; }
+  .progress i { display: block; height: 100%; width: var(--p, 8%); background: currentColor; transition: width .5s cubic-bezier(.2,.8,.2,1); }
+  .nav { display: flex; gap: 8px; }
+  .nav button { appearance: none; width: 44px; height: 44px; border-radius: 50%; border: 2px solid currentColor; background: transparent; color: inherit; cursor: pointer; display: grid; place-items: center; transition: background-color .2s, color .2s; }
+  .nav button:hover { background: currentColor; }
+  .nav button:hover svg { color: var(--beige); }
+  body.on-blue .nav button:hover svg { color: var(--blue); }
+  .nav button:disabled { opacity: .3; cursor: default; background: transparent; }
+  .nav button:disabled svg { color: inherit !important; }
+  .nav svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* Type */
+  .eyebrow { font: 700 clamp(12px, 1.1vw, 14px)/1.2 var(--text); letter-spacing: .12em; text-transform: uppercase; }
+  .h-xl { font-size: clamp(48px, 8.4vw, 132px); line-height: 1.02; }
+  .h-l { font-size: clamp(40px, 6vw, 92px); line-height: 1.04; }
+  .h-m { font-size: clamp(26px, 2.6vw, 38px); line-height: 1.1; }
+  .lead { font-size: clamp(17px, 1.6vw, 22px); line-height: 1.45; max-width: 36rem; }
+  .muted { opacity: .78; }
+  .pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border: 2px solid currentColor; border-radius: 999px; font: 700 14px/1.2 var(--text); white-space: nowrap; }
+  .pill.fill { background: currentColor; }
+  .pill.fill span { color: var(--blue); }
+  .slide.beige .pill.fill span { color: var(--beige); }
+  .pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .foot-note { font-size: 13px; line-height: 1.4; opacity: .72; max-width: 60rem; }
+  .card { border: 2px solid currentColor; border-radius: 22px; padding: clamp(18px, 2vw, 28px); display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+  .card.solid-blue { background: var(--blue); color: var(--beige); border-color: var(--blue); }
+  .card.solid-beige { background: var(--beige); color: var(--blue); border-color: var(--beige); }
+  .card p { font-size: clamp(15px, 1.15vw, 17px); line-height: 1.45; }
+  .grid { display: grid; gap: clamp(12px, 1.4vw, 18px); }
+  .g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .big-num { font: 400 clamp(48px, 7vw, 108px)/1 var(--display); font-variant-numeric: tabular-nums; }
+
+  /* Entrance: plays when a slide becomes active; resting state is fully visible */
+  @media (prefers-reduced-motion: no-preference) {
+    .slide.is-active .inner > * { animation: rise .7s cubic-bezier(.2,.8,.2,1) both; }
+    .slide.is-active .inner > *:nth-child(2) { animation-delay: .06s; }
+    .slide.is-active .inner > *:nth-child(3) { animation-delay: .12s; }
+    .slide.is-active .inner > *:nth-child(4) { animation-delay: .18s; }
+    .slide.is-active .inner > *:nth-child(5) { animation-delay: .24s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(18px); } }
+  }
+
+  /* 1 Cover */
+  .cover { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(24px, 4vw, 64px); align-items: center; }
+  .cover .photo { position: relative; aspect-ratio: 4 / 5; max-height: 72vh; border-radius: 26px; overflow: hidden; justify-self: end; width: 100%; max-width: 100%; }
+  .cover .photo img { width: 100%; height: 100%; object-fit: cover; }
+  .cover .photo figcaption { position: absolute; left: 0; bottom: 0; padding: 8px 14px; background: var(--beige); color: var(--blue); font: 700 13px/1.3 var(--text); border-top-right-radius: 12px; }
+  .cover h1 { font-size: clamp(46px, 7.2vw, 116px); line-height: 1.02; }
+  .cover .stack { display: flex; flex-direction: column; gap: clamp(16px, 2.6vh, 28px); }
+
+  /* 2 Gap */
+  .gap-col h3 { font-size: clamp(30px, 3.2vw, 48px); }
+  .gap-col .tag { font: 700 13px/1.2 var(--text); letter-spacing: .1em; text-transform: uppercase; }
+  .gap-col.hero { transform: translateY(-10px); box-shadow: 0 22px 40px -24px rgba(12,4,120,.6); }
+  .gap-col ul li { position: relative; padding-left: 18px; font-size: clamp(15px, 1.15vw, 17px); line-height: 1.45; }
+  .gap-col ul li + li { margin-top: 6px; }
+  .gap-col ul li::before { content: ""; position: absolute; left: 0; top: .55em; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+
+  /* 3 Product */
+  .facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 2px solid currentColor; border-bottom: 2px solid currentColor; }
+  .facts div { padding: clamp(14px, 2vh, 24px) 12px; border-left: 2px solid currentColor; }
+  .facts div:first-child { border-left: 0; padding-left: 0; }
+  .facts b { display: block; font: 400 clamp(36px, 5vw, 76px)/1 var(--display); }
+  .facts span { font-size: 15px; font-weight: 700; }
+  .flavours { display: flex; flex-wrap: wrap; gap: clamp(10px, 1.4vw, 16px); }
+  .flavour { display: flex; flex-direction: column; gap: 4px; padding: clamp(16px, 2vw, 24px) clamp(22px, 2.6vw, 34px); border-radius: 999px; min-width: 0; }
+  .flavour.a { background: var(--beige); color: var(--blue); }
+  .flavour.b { border: 2px solid var(--beige); }
+  .flavour b { font: 400 clamp(26px, 3vw, 44px)/1.05 var(--display); }
+  .flavour span { font-size: 15px; font-weight: 500; }
+
+  /* 4 Proof */
+  .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(12px, 1.4vw, 18px); }
+  .stat { border-top: 3px solid currentColor; padding-top: 16px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+  .stat .big-num { font-size: clamp(48px, 6.2vw, 100px); white-space: nowrap; }
+  .stat p { font-size: clamp(15px, 1.2vw, 18px); line-height: 1.45; max-width: 22rem; }
+
+  /* 6 Margin */
+  .trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(10px, 1.2vw, 16px); }
+  .trio .card { align-items: flex-start; }
+  .trio .big-num { font-size: clamp(44px, 6vw, 92px); }
+  .trio .card.solid-beige .label { color: var(--blue); }
+  .label { font: 700 14px/1.3 var(--text); }
+  .table-wrap { overflow-x: auto; border-radius: 18px; border: 2px solid currentColor; }
+  table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; min-width: 560px; }
+  th, td { padding: clamp(9px, 1.4vh, 14px) clamp(10px, 1.4vw, 18px); text-align: right; font-size: clamp(14px, 1.2vw, 17px); white-space: nowrap; }
+  th:first-child, td:first-child { text-align: left; }
+  thead th { font-weight: 700; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; border-bottom: 2px solid currentColor; }
+  tbody tr + tr td { border-top: 1px solid rgba(18,5,171,.2); }
+  tr.sweet td { background: var(--blue); color: var(--beige); font-weight: 700; font-size: clamp(16px, 1.4vw, 20px); }
+  .sweet-tag { margin-left: 8px; vertical-align: 2px; }
+  .sweet-tag { display: inline-block; padding: 3px 10px; border-radius: 999px; background: var(--beige); color: var(--blue); font: 700 12px/1.3 var(--text); letter-spacing: .04em; text-transform: uppercase; }
+  .margin-note { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(12px, 2vw, 32px); align-items: start; }
+  .margin-note p { font-size: clamp(14px, 1.1vw, 16px); line-height: 1.5; }
+
+  /* 7 Terms */
+  .terms { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 5vw, 80px); align-items: center; }
+  .price-block { min-width: 0; }
+  .price-block .big-num { display: block; font-size: clamp(72px, 10vw, 156px); line-height: .95; }
+  .list-lines li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 14px; align-items: center; padding: clamp(10px, 1.6vh, 16px) 0; border-top: 2px solid currentColor; font-size: clamp(16px, 1.4vw, 20px); font-weight: 500; }
+  .list-lines li:last-child { border-bottom: 2px solid currentColor; }
+  .list-lines svg { width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* 9 Tiers */
+  .tier { border: 2px solid currentColor; border-radius: 22px; padding: clamp(18px, 2vw, 28px); display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+  .tier .who { font: 700 13px/1.2 var(--text); letter-spacing: .08em; text-transform: uppercase; }
+  .tier h3 { font-size: clamp(34px, 3.6vw, 56px); line-height: 1; }
+  .tier ul li { position: relative; padding-left: 18px; font-size: clamp(14px, 1.1vw, 16px); line-height: 1.45; }
+  .tier ul li + li { margin-top: 6px; }
+  .tier ul li::before { content: ""; position: absolute; left: 0; top: .55em; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+  .tier.top { background: var(--beige); color: var(--blue); border-color: var(--beige); transform: translateY(-10px); box-shadow: 0 24px 44px -24px rgba(0,0,0,.5); }
+  .tier .plus { font-weight: 700; }
+
+  /* 10 Marketing */
+  .mk { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: clamp(20px, 3vw, 48px); align-items: stretch; }
+  .mk .photo { border-radius: 22px; overflow: hidden; min-height: 240px; }
+  .mk .photo img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* 11 Founding */
+  .found { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(24px, 4vw, 64px); align-items: center; }
+  .twenty-five { font: 400 clamp(180px, 30vw, 440px)/.85 var(--display); color: transparent; -webkit-text-stroke: clamp(2px, .3vw, 4px) var(--beige); letter-spacing: -.01em; }
+  .found ul li { position: relative; padding: clamp(10px, 1.6vh, 14px) 0 clamp(10px, 1.6vh, 14px) 34px; border-top: 2px solid rgba(254,251,228,.35); font-size: clamp(15px, 1.25vw, 18px); line-height: 1.45; }
+  .found ul li::before { content: "✦"; position: absolute; left: 0; top: clamp(9px, 1.5vh, 13px); font-size: 18px; }
+  .deadline { display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 10px; padding: 12px 20px; border-radius: 999px; background: var(--beige); color: var(--blue); }
+  .deadline b { font: 400 clamp(22px, 2.2vw, 32px)/1 var(--display); }
+  .deadline span { font-weight: 700; font-size: 14px; }
+
+  /* 12 Steps */
+  .flow { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr); gap: clamp(10px, 1.4vw, 18px); align-items: stretch; }
+  .step { border: 2px solid currentColor; border-radius: 22px; padding: clamp(20px, 2.2vw, 30px); display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+  .step .n { font: 400 clamp(48px, 5vw, 76px)/1 var(--display); }
+  .step h3 { font-size: clamp(28px, 2.8vw, 42px); }
+  .step p { font-size: clamp(15px, 1.15vw, 17px); line-height: 1.45; }
+  .step.go { background: var(--blue); color: var(--beige); border-color: var(--blue); }
+  .arrow { align-self: center; width: clamp(28px, 3vw, 44px); }
+  .arrow svg { width: 100%; height: auto; fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* 13 Contact */
+  .contact { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(12px, 1.4vw, 18px); }
+  .field { border: 2px solid var(--beige); border-radius: 22px; padding: clamp(18px, 2vw, 28px); display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .field .v { font: 400 clamp(22px, 2.2vw, 32px)/1.15 var(--display); overflow-wrap: anywhere; user-select: all; }
+  .field .row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 8px; }
+  .btn { appearance: none; display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 0 16px; border-radius: 999px; border: 2px solid var(--beige); background: transparent; color: var(--beige); font: 700 14px/1 var(--text); text-decoration: none; cursor: pointer; }
+  .btn.solid { background: var(--beige); color: var(--blue); }
+  .btn:hover { transform: translateY(-1px); }
+
+  @media (max-width: 900px) {
+    .cover, .terms, .found, .mk, .margin-note { grid-template-columns: minmax(0, 1fr); }
+    .cover .photo { justify-self: stretch; aspect-ratio: 16 / 10; max-height: 34vh; order: -1; }
+    .g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .g3, .stats, .contact { grid-template-columns: minmax(0, 1fr); }
+    .gap-col.hero, .tier.top { transform: none; }
+    .flow { grid-template-columns: minmax(0, 1fr); }
+    .arrow { transform: rotate(90deg); justify-self: center; }
+    .twenty-five { font-size: clamp(140px, 42vw, 240px); }
+    .mk .photo { min-height: 200px; max-height: 260px; }
+    .trio { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .inner { justify-content: flex-start; }
+  }
+  @media (max-width: 560px) {
+    .g4, .g2 { grid-template-columns: minmax(0, 1fr); }
+    .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .facts div:nth-child(3) { border-left: 0; padding-left: 0; }
+    .facts div:nth-child(n+3) { border-top: 2px solid currentColor; }
+    .trio { grid-template-columns: minmax(0, 1fr); }
+    .nav button { width: 40px; height: 40px; }
+  }
+</style>
+</head>
+<body>
+
+
+<div class="deck" id="deck" aria-roledescription="carousel" aria-label="São venue pitch">
+  <div class="track" id="track">
+
+    <!-- 1 Cover -->
+    <section class="slide blue" aria-label="Cover">
+      <div class="inner cover">
+        <div class="stack">
+          <div class="pills"><span class="pill">Season 2026</span><span class="pill">Lisbon · Albufeira</span></div>
+          <h1>The light drink your bar is missing.</h1>
+          <p class="lead">Fast to serve, good margin, no risk to try.</p>
+          <p class="eyebrow muted">São hard seltzer · Venue partner pitch</p>
+        </div>
+        <figure class="photo"><img src="assets/img/events/club.jpg" alt="A packed Lisbon dance floor at night"><figcaption>Saturday, 00:40, Lisboa</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- 2 The gap -->
+    <section class="slide beige" aria-label="The gap">
+      <div class="inner">
+        <p class="eyebrow">The gap on your menu</p>
+        <h2 class="h-l">Your guests want something between a beer and a €12 cocktail.</h2>
+        <div class="grid g3">
+          <article class="card gap-col">
+            <p class="tag">Beer</p>
+            <h3>Heavy.</h3>
+            <ul><li>Filling after the second round</li><li>Same tap as every bar on the street</li><li>No reason to pick your bar</li></ul>
+          </article>
+          <article class="card gap-col solid-blue hero">
+            <p class="tag">São</p>
+            <h3>Light. Ordered all night.</h3>
+            <ul><li>0 g sugar, 67 kcal, 4.5% alc.</li><li>Served in seconds, straight from the fridge</li><li>A reason to come back for round three</li></ul>
+          </article>
+          <article class="card gap-col">
+            <p class="tag">Cocktail</p>
+            <h3>Good margin. Slow.</h3>
+            <ul><li>Great money per glass</li><li>Minutes behind the shaker</li><li>At 1am, every minute is a lost order</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 Product -->
+    <section class="slide blue" aria-label="The product">
+      <div class="inner">
+        <p class="eyebrow">Meet São</p>
+        <h2 class="h-l">Hard seltzer, made for Portugal’s nights.</h2>
+        <div class="facts">
+          <div><b>0 g</b><span>sugar</span></div>
+          <div><b>67</b><span>kcal per can</span></div>
+          <div><b>250 ml</b><span>slim can</span></div>
+          <div><b>4.5%</b><span>alcohol</span></div>
+        </div>
+        <div class="flavours">
+          <div class="flavour a"><b>Lime &amp; Yuzu</b><span>Sharp, citrus, clean</span></div>
+          <div class="flavour b"><b>Maracujá &amp; Mango</b><span>Tropical, soft, fresh</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 Proof -->
+    <section class="slide beige" aria-label="Proof">
+      <div class="inner">
+        <p class="eyebrow">Proof</p>
+        <h2 class="h-l">Hard seltzer already sells big in Europe.</h2>
+        <div class="stats">
+          <div class="stat"><span class="big-num">10M+</span><p>cans sold by Stëlz, a Dutch hard seltzer brand founded in 2020.</p></div>
+          <div class="stat"><span class="big-num">13→18%</span><p>hard seltzer’s share of Dutch RTD sales, 2023 to projected 2028.</p></div>
+          <div class="stat"><span class="big-num">2024</span><p>the year Heineken bought into Stëlz to grow “beyond beer”.</p></div>
+        </div>
+        <p class="foot-note">Sources: Stëlz / Just Drinks / Drinks Intel (2024). Your UK, Irish and Dutch guests already drink it at home.</p>
+      </div>
+    </section>
+
+    <!-- 5 Built for a busy bar -->
+    <section class="slide blue" aria-label="Built for a busy bar">
+      <div class="inner">
+        <p class="eyebrow">Built for a busy bar</p>
+        <h2 class="h-l">Made for the rush, not the menu photo.</h2>
+        <div class="grid g4">
+          <article class="card"><span class="big-num" style="font-size:clamp(44px,5vw,76px)">10 s</span><h3 class="h-m">per serve</h3><p>Open, pour over ice or hand over the can. Faster than a pint.</p></article>
+          <article class="card"><span class="big-num" style="font-size:clamp(44px,5vw,76px)">0</span><h3 class="h-m">taps or mixing</h3><p>Nothing to install, nothing to waste, nothing goes flat.</p></article>
+          <article class="card"><span class="big-num" style="font-size:clamp(44px,5vw,76px)">1</span><h3 class="h-m">shelf, one case</h3><p>Slim 250 ml cans fit the fridge you already have.</p></article>
+          <article class="card solid-beige"><span class="big-num" style="font-size:clamp(44px,5vw,76px)">0</span><h3 class="h-m">exclusivity asked</h3><p>São sits beside every brand you already pour.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 Your margin -->
+    <section class="slide beige" aria-label="Your margin">
+      <div class="inner">
+        <p class="eyebrow">Your margin</p>
+        <div class="trio">
+          <div class="card"><span class="label">You pay per can</span><span class="big-num">€1.10</span></div>
+          <div class="card"><span class="label">Advised menu price</span><span class="big-num">€4.50</span></div>
+          <div class="card solid-blue"><span class="label">You keep, every can</span><span class="big-num">€2.56</span></div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Menu price</th><th>Ex IVA (23%)</th><th>Profit per can</th><th>Profit per case (24)</th><th>Margin</th></tr></thead>
+            <tbody>
+              <tr><td>€3.50</td><td>€2.85</td><td>€1.75</td><td>€42</td><td>61%</td></tr>
+              <tr><td>€4.00</td><td>€3.25</td><td>€2.15</td><td>€52</td><td>66%</td></tr>
+              <tr class="sweet"><td>€4.50 <span class="sweet-tag">✦ Sweet spot</span></td><td>€3.66</td><td>€2.56</td><td>€61</td><td>70%</td></tr>
+              <tr><td>€5.00 · tourist area</td><td>€4.07</td><td>€2.97</td><td>€71</td><td>73%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="margin-note">
+          <p><b>Horeca benchmark: 60–75% margin on drinks.</b> São sits at the top of that range. Most beers don’t come close.</p>
+          <p><b>Why €4.50.</b> Affordable enough to try, high enough to feel premium, and 70% margin for your venue.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 Terms -->
+    <section class="slide blue" aria-label="Terms">
+      <div class="inner terms">
+        <div class="price-block">
+          <p class="eyebrow">Terms</p>
+          <span class="big-num">€26.40</span>
+          <p class="h-m" style="font-family:var(--display);margin-top:10px">per case of 24 · ex IVA</p>
+          <p class="lead muted" style="margin-top:12px">€1.10 per can. IABA alcohol excise included.</p>
+        </div>
+        <ul class="list-lines">
+          <li><svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/></svg>Minimum order: 2 cases</li>
+          <li><svg viewBox="0 0 24 24"><path d="M2 15V6h12v9M14 10h4.5l3.5 3.5V15h-8"/><circle cx="6" cy="17" r="2"/><circle cx="18" cy="17" r="2"/></svg>Free delivery from 3 cases in Lisbon &amp; Albufeira</li>
+          <li><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Pay 30 days after delivery</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 21V7M12 7C10 3 7 3 7 5s5 2 5 2zm0 0c2-4 5-4 5-2s-5 2-5 2z"/></svg>Every 11th case free</li>
+          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Delivered within 48 hours</li>
+          <li><svg viewBox="0 0 24 24"><path d="M7 3h4v18H7zM13 3h4v18h-4z"/></svg>Mix both flavours in one case</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 8 Zero risk -->
+    <section class="slide beige" aria-label="Zero risk">
+      <div class="inner">
+        <p class="eyebrow">Zero risk</p>
+        <h2 class="h-l">Saying yes costs you nothing.</h2>
+        <div class="grid g4">
+          <article class="card solid-blue"><h3 class="h-m">Free tasting kit</h3><p>Cans for you and your team. No order needed.</p></article>
+          <article class="card"><h3 class="h-m">Sale or return</h3><p>First order not sold in 60 days? We take the cans back.</p></article>
+          <article class="card"><h3 class="h-m">No contract</h3><p>Order when you want, stop when you want.</p></article>
+          <article class="card"><h3 class="h-m">No exclusivity</h3><p>Keep every brand you have. We just add one.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9 Partner tiers -->
+    <section class="slide blue" aria-label="Partner tiers">
+      <div class="inner">
+        <p class="eyebrow">Partner tiers</p>
+        <h2 class="h-l">Pour more, get more.</h2>
+        <div class="grid g3" style="align-items:start">
+          <article class="tier">
+            <p class="who">From your first case</p>
+            <h3>Vizinho</h3>
+            <ul><li>Menu inserts, table talkers and bar sticker</li><li>Your venue on the drinksao.com map</li><li>Featured on @drinksao</li><li>15-minute staff tasting &amp; training</li><li>Restock within 48 hours</li></ul>
+          </article>
+          <article class="tier">
+            <p class="who">10+ cases a month</p>
+            <h3>Amigo</h3>
+            <ul><li class="plus">Everything in Vizinho</li><li>Every 11th case free</li><li>One São Night with promo staff</li><li>2 free cases for sampling</li><li>Monthly staff challenge with prizes</li></ul>
+          </article>
+          <article class="tier top">
+            <p class="who">30+ cases a month · ✦</p>
+            <h3>Casa São</h3>
+            <ul><li class="plus">Everything in Amigo</li><li>Branded São fridge on loan</li><li>Price locked for all of 2026</li><li>A São Night or creator visit every month</li><li>First to pour new flavours</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 Marketing -->
+    <section class="slide beige" aria-label="Marketing">
+      <div class="inner">
+        <p class="eyebrow">Marketing</p>
+        <h2 class="h-l">We don’t just deliver cans. We bring people.</h2>
+        <div class="mk">
+          <figure class="photo"><img src="assets/img/events/dancefloor.jpg" alt="A crowded dance floor at a São Night"></figure>
+          <div class="grid g2">
+            <article class="card solid-blue"><h3 class="h-m">São Nights</h3><p>Club takeovers and after-work drinks, hosted at partner venues.</p></article>
+            <article class="card"><h3 class="h-m">Creators</h3><p>Our creator family films at your venue and tags you.</p></article>
+            <article class="card"><h3 class="h-m">Find-us map</h3><p>Every partner on drinksao.com, the first place fans look.</p></article>
+            <article class="card"><h3 class="h-m">Social</h3><p>Your bar in our posts and stories, all season long.</p></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 Founding venues -->
+    <section class="slide blue" aria-label="Founding venues">
+      <div class="inner found">
+        <div class="twenty-five" aria-hidden="true">25</div>
+        <div style="display:flex;flex-direction:column;gap:clamp(16px,2.6vh,26px);min-width:0">
+          <p class="eyebrow">Founding venues</p>
+          <h2 class="h-l">25 founding venues. Then the list closes.</h2>
+          <ul>
+            <li>€26.40 per case, price locked for all of 2026, even if excise or costs go up</li>
+            <li>Branded São fridge and a São Night every month, from day one</li>
+            <li>First mover advantage: your guests discover São through you, before it’s everywhere</li>
+            <li>Your name on the Founding Venues wall on drinksao.com, for good</li>
+          </ul>
+          <div><span class="deadline"><span>Deadline</span><b>15 January 2027</b></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12 How it works -->
+    <section class="slide beige" aria-label="How it works">
+      <div class="inner">
+        <p class="eyebrow">How it works</p>
+        <h2 class="h-l">Three steps. You can start this week.</h2>
+        <div class="flow">
+          <article class="step"><span class="n">1</span><h3>Taste</h3><p>We drop off a free tasting kit. Your team tries both flavours, no order needed.</p></article>
+          <span class="arrow" aria-hidden="true"><svg viewBox="0 0 48 24"><path d="M2 12h42M34 3l10 9-10 9"/></svg></span>
+          <article class="step"><span class="n">2</span><h3>First order</h3><p>From 2 cases, €52.80 ex IVA. Sale or return if it doesn’t sell in 60 days.</p></article>
+          <span class="arrow" aria-hidden="true"><svg viewBox="0 0 48 24"><path d="M2 12h42M34 3l10 9-10 9"/></svg></span>
+          <article class="step go"><span class="n">3</span><h3>Launch night</h3><p>We put São on your menu and bring people to try it.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13 Contact -->
+    <section class="slide blue" aria-label="Contact">
+      <div class="inner">
+        <p class="eyebrow">Contact</p>
+        <h2 class="h-xl">Let’s put São on your menu.</h2>
+        <div class="contact">
+          <div class="field"><span class="label">WhatsApp · Koen</span><span class="v" id="c-wa">+351 [NUMMER INVULLEN]</span><div class="row"><button class="btn solid" type="button" data-copy="c-wa">Copy number</button></div></div>
+          <div class="field"><span class="label">Email</span><span class="v" id="c-mail">info@drinksao.com</span><div class="row"><button class="btn solid" type="button" data-copy="c-mail">Copy email</button></div></div>
+          <div class="field"><span class="label">Follow &amp; find</span><span class="v">@drinksao<br>drinksao.com</span><div class="row"><a class="btn" href="https://www.instagram.com/drinksao/" target="_blank" rel="noopener">Instagram</a><a class="btn" href="https://drinksao.com" target="_blank" rel="noopener">Website</a></div></div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<div class="chrome top" aria-hidden="false">
+  <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="57 53 1836 1610" fill="currentColor" role="img" aria-label="São"><path fill-rule="evenodd" d="M278.0 1659.4C258.1 1657.3 250.8 1656.1 233.9 1651.9C222.2 1649.0 211.2 1645.7 206.4 1643.5C202.1 1641.5 194.7 1638.3 190.2 1636.4C163.7 1625.4 140.3 1609.4 119.7 1588.1C95.9 1563.6 79.9 1533.0 74.6 1502.0C71.0 1481.1 70.9 1468.9 71.2 1179.0L71.5 893.5L73.5 890.1C74.6 888.3 77.1 885.9 79.0 884.9L82.5 883.0L202.0 883.0L321.5 883.0L324.7 885.0C326.5 886.0 328.7 888.4 329.7 890.2L331.5 893.5L332.0 1203.5C332.6 1542.0 332.1 1517.8 338.5 1524.8C341.5 1528.1 342.4 1528.5 346.8 1528.5C352.9 1528.5 356.1 1526.0 358.7 1519.1L360.5 1514.5L360.5 1192.0C360.5 921.4 360.3 868.9 359.1 865.6C357.2 860.1 351.8 854.6 345.7 851.9L340.5 849.5L258.0 848.9C170.2 848.3 170.9 848.3 156.0 843.3C122.2 831.9 88.1 792.2 74.6 748.5C71.5 738.3 64.0 708.2 62.5 699.6C60.7 688.8 60.2 573.7 62.0 563.4C63.4 555.9 72.3 527.0 76.6 516.3C92.5 476.8 138.2 433.5 185.0 413.5C193.1 410.0 201.7 406.2 204.0 405.0C209.4 402.3 236.6 394.4 248.4 392.3C260.2 390.1 411.6 389.1 434.0 391.0C480.9 395.1 543.7 424.4 576.5 457.7C585.3 466.5 596.1 479.3 600.6 486.0C612.3 503.4 625.0 534.7 628.6 554.9C631.2 569.7 632.2 602.0 631.8 659.8L631.5 715.5L629.5 719.4C628.4 721.6 626.2 724.3 624.7 725.4L621.9 727.5L498.4 727.8L374.9 728.0L370.6 726.2C367.6 724.8 365.8 723.2 364.4 720.4L362.5 716.5L362.0 623.0L361.5 529.5L359.0 524.5C355.6 517.8 351.3 515.3 346.0 516.9C341.3 518.3 336.5 523.6 334.8 529.2C332.9 535.5 332.9 728.5 334.8 735.0C336.9 742.2 342.0 748.4 348.7 751.6L354.5 754.5L432.0 755.1C516.3 755.7 514.7 755.6 532.9 761.6C541.6 764.5 558.2 773.5 566.0 779.5C576.5 787.6 593.6 807.7 601.2 821.0C612.3 840.2 625.2 880.5 628.6 906.5C631.6 928.8 632.0 964.8 632.0 1201.5C632.0 1447.2 631.7 1470.4 628.1 1487.7C622.7 1513.5 609.2 1543.7 594.4 1563.0C568.5 1596.6 536.8 1619.5 489.5 1638.8C472.3 1645.8 463.8 1648.6 450.5 1651.8C418.8 1659.4 420.1 1659.3 347.0 1659.5C311.0 1659.7 279.9 1659.6 278.0 1659.4ZM791.8 1659.0C767.9 1656.2 739.1 1637.8 717.7 1611.7C701.8 1592.4 683.8 1559.2 678.1 1538.9C676.9 1534.7 674.8 1527.9 673.4 1523.9C656.7 1474.9 651.7 1398.2 660.1 1318.5C662.9 1292.3 665.5 1280.0 677.0 1241.0C693.6 1184.1 730.1 1124.7 777.0 1078.1C806.2 1049.1 842.9 1020.3 880.5 996.7C906.6 980.4 912.5 976.8 923.5 970.7C929.5 967.4 939.2 962.0 945.0 958.8C950.8 955.6 961.3 950.0 968.4 946.4C986.1 937.4 1002.5 927.4 1005.5 923.9C1010.7 917.7 1010.5 923.5 1010.5 760.0C1010.5 585.7 1010.6 587.0 1002.4 578.4C997.3 573.0 989.4 574.3 985.2 581.2C980.4 589.0 980.6 583.8 980.0 737.5L979.5 882.5L977.3 887.2C975.9 890.2 974.0 892.5 971.8 893.7L968.5 895.5L838.0 895.5L707.5 895.5L703.8 893.6C701.7 892.6 699.0 890.1 697.8 888.1L695.5 884.5L695.2 802.0C694.9 717.2 695.2 707.3 699.1 671.5C704.9 618.1 712.6 584.8 727.1 550.5C730.0 543.9 733.7 535.1 735.5 530.9C738.7 523.3 750.1 503.8 759.1 490.4C770.2 473.8 786.5 455.7 802.0 442.5C831.0 418.0 871.8 397.3 902.0 391.8C913.0 389.9 1066.5 389.9 1079.5 391.9C1090.2 393.5 1116.5 401.2 1123.5 404.8C1126.2 406.2 1134.6 410.1 1142.0 413.5C1178.4 430.1 1215.7 461.8 1239.3 496.3C1254.3 518.3 1259.7 528.0 1267.0 546.5C1269.7 553.1 1273.2 561.4 1274.8 565.0C1278.2 572.5 1286.0 601.8 1288.9 617.6C1290.0 623.6 1291.7 637.3 1292.7 648.0L1294.5 667.5L1294.5 1159.0L1294.5 1650.6L1292.7 1653.3C1291.8 1654.8 1289.5 1656.8 1287.7 1657.7L1284.5 1659.5L1154.0 1659.5C1012.1 1659.5 1018.5 1659.8 1013.5 1653.9L1011.0 1650.8L1011.0 1597.2C1010.9 1535.8 1010.0 1512.9 1007.6 1508.2C1003.2 1499.6 996.9 1509.5 990.5 1535.0C986.5 1550.8 977.0 1570.7 964.7 1588.8C938.9 1627.0 896.9 1655.2 860.0 1659.0C848.4 1660.1 802.0 1660.1 791.8 1659.0ZM1498.3 1659.0C1459.3 1655.1 1416.7 1635.7 1387.0 1608.3C1374.1 1596.5 1368.0 1589.1 1358.9 1574.9C1341.9 1548.4 1334.7 1525.7 1332.0 1490.0C1330.6 1470.8 1330.6 571.3 1332.1 552.9C1334.9 517.5 1342.3 495.5 1360.7 468.0C1370.6 453.2 1383.9 439.4 1400.2 426.7C1412.5 417.1 1441.0 402.3 1457.1 397.1C1478.7 390.2 1470.8 390.5 1616.5 390.5L1748.5 390.5L1756.7 392.3C1770.6 395.3 1784.8 400.8 1801.6 409.7C1823.7 421.4 1840.6 434.6 1855.5 451.8C1868.7 467.0 1883.5 494.6 1887.8 512.0L1889.4 518.5L1889.8 1013.5C1890.0 1356.1 1889.8 1512.5 1889.0 1521.6C1887.6 1539.7 1883.0 1552.9 1871.4 1572.2C1862.5 1586.9 1857.7 1593.1 1845.8 1604.9C1819.2 1631.2 1783.7 1649.7 1744.5 1657.7C1737.4 1659.2 1723.4 1659.4 1621.5 1659.6C1558.2 1659.7 1502.8 1659.4 1498.3 1659.0ZM1620.9 1516.1C1622.3 1515.1 1624.3 1513.1 1625.4 1511.6L1627.5 1508.9L1627.8 1025.2L1628.0 541.5L1626.3 538.0C1621.3 528.2 1605.2 528.0 1600.4 537.7L1598.5 541.5L1598.5 1023.5C1598.5 1540.4 1598.2 1510.0 1603.5 1515.0C1607.8 1519.0 1616.0 1519.6 1620.9 1516.1ZM984.2 1435.0C987.1 1435.0 992.6 1429.3 993.8 1425.2C995.8 1418.6 995.5 1152.7 993.5 1137.5C991.3 1120.6 988.5 1115.0 982.5 1115.0C972.6 1115.0 967.4 1130.9 965.0 1168.0C963.4 1193.7 963.7 1422.3 965.4 1426.3C968.0 1432.3 974.9 1436.6 980.5 1435.4C981.6 1435.2 983.3 1435.0 984.2 1435.0ZM1099.5 345.3C1061.0 340.8 1048.2 336.3 1007.5 313.2C1000.1 309.1 972.1 289.8 955.5 277.4C935.9 262.9 915.6 253.0 903.4 252.2C885.2 251.0 872.5 262.8 868.4 284.8C865.2 302.0 864.8 303.1 861.8 306.5C860.1 308.6 857.2 310.4 854.9 311.0C852.4 311.7 832.3 312.0 796.8 311.8L742.5 311.5L739.2 309.7C731.5 305.5 730.5 299.7 732.0 268.8C733.8 232.1 737.5 202.6 742.5 186.0C756.8 137.8 767.6 115.7 786.6 95.1C801.2 79.4 823.3 65.9 843.0 60.9C860.2 56.5 898.1 56.3 918.7 60.6C947.8 66.6 982.0 85.2 1031.5 122.0C1053.0 138.0 1061.3 142.8 1075.7 147.6C1092.7 153.3 1108.9 148.5 1116.5 135.5C1118.2 132.7 1120.0 126.3 1121.9 116.6C1123.7 107.8 1125.7 100.6 1127.0 98.6C1131.1 91.9 1130.7 91.9 1194.2 92.2L1250.9 92.5L1253.7 94.6C1259.3 98.7 1260.2 102.3 1260.1 120.3C1260.0 138.1 1257.9 165.0 1255.6 177.5C1254.8 181.9 1252.8 193.4 1251.0 203.0C1248.0 219.9 1239.3 249.6 1232.3 266.5C1229.2 274.0 1218.6 290.9 1210.2 301.9C1196.8 319.2 1171.4 336.2 1151.5 341.0C1136.1 344.8 1111.7 346.8 1099.5 345.3Z"/></svg>
+  <span class="count" id="count" aria-live="polite">1 / 13</span>
+</div>
+<div class="chrome bottom">
+  <div class="progress" aria-hidden="true"><i id="bar"></i></div>
+  <div class="nav">
+    <button type="button" id="prev" aria-label="Previous slide"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <button type="button" id="next" aria-label="Next slide"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+  </div>
+</div>
+
+<script>
+(function () {
+  const track = document.getElementById("track");
+  const slides = Array.from(track.children);
+  const total = slides.length;
+  const count = document.getElementById("count"), bar = document.getElementById("bar");
+  const prev = document.getElementById("prev"), next = document.getElementById("next");
+  let i = 0;
+
+  function fromHash() { const m = /^#slide-(\d+)$/.exec(location.hash); return m ? Math.min(total, Math.max(1, +m[1])) - 1 : 0; }
+  function go(n, push) {
+    i = Math.max(0, Math.min(total - 1, n));
+    track.style.transform = "translateX(" + (-100 * i) + "%)";
+    slides.forEach((s, k) => { const on = k === i; s.classList.toggle("is-active", on); s.setAttribute("aria-hidden", String(!on)); s.inert = !on; if (on) s.scrollTop = 0; });
+    document.body.classList.toggle("on-blue", slides[i].classList.contains("blue"));
+    count.textContent = (i + 1) + " / " + total;
+    bar.style.setProperty("--p", ((i + 1) / total * 100) + "%");
+    prev.disabled = i === 0; next.disabled = i === total - 1;
+    if (push !== false) { try { history.replaceState(null, "", "#slide-" + (i + 1)); } catch (e) {} }
+  }
+  prev.addEventListener("click", () => go(i - 1));
+  next.addEventListener("click", () => go(i + 1));
+  document.addEventListener("keydown", e => {
+    if (e.target.closest("input, textarea")) return;
+    if (["ArrowRight", "PageDown", " "].includes(e.key)) { e.preventDefault(); go(i + 1); }
+    else if (["ArrowLeft", "PageUp"].includes(e.key)) { e.preventDefault(); go(i - 1); }
+    else if (e.key === "Home") go(0);
+    else if (e.key === "End") go(total - 1);
+  });
+
+  // Click on empty slide space: right two-thirds forward, left third back
+  track.addEventListener("click", e => {
+    if (e.target.closest("a, button, .field, table") || (window.getSelection && String(window.getSelection()).length)) return;
+    if (swiped) return;
+    (e.clientX < window.innerWidth / 3) ? go(i - 1) : go(i + 1);
+  });
+
+  // Swipe
+  let sx = 0, sy = 0, tracking = false, swiped = false;
+  track.addEventListener("touchstart", e => { const t = e.touches[0]; sx = t.clientX; sy = t.clientY; tracking = true; swiped = false; }, { passive: true });
+  track.addEventListener("touchend", e => {
+    if (!tracking) return; tracking = false;
+    const t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.3) { swiped = true; go(dx < 0 ? i + 1 : i - 1); setTimeout(() => { swiped = false; }, 350); }
+  }, { passive: true });
+
+  // Copy buttons
+  document.querySelectorAll("[data-copy]").forEach(b => b.addEventListener("click", () => {
+    const el = document.getElementById(b.dataset.copy), text = el.textContent.trim(), label = b.textContent;
+    const done = ok => { b.textContent = ok ? "Copied" : "Select and copy"; setTimeout(() => { b.textContent = label; }, 1600); };
+    const select = () => { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(() => done(true), () => { select(); done(false); });
+    else { select(); done(false); }
+  }));
+
+  window.addEventListener("hashchange", () => go(fromHash(), false));
+  go(fromHash(), false);
+})();
+</script>
+
+</body>
+</html>
