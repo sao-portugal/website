@@ -92,6 +92,10 @@
     } else rv.forEach(el => el.classList.add("in"));
   };
 
+  /* ---------- FAQ: golfje dat wegspoelt als je een vraag opent ---------- */
+  const WAVE = '<svg class="surfy" viewBox="0 0 40 24" aria-hidden="true"><path class="flat" d="M4 17.5 C10 17 16 18 22 17.4 S32 17 36 17.5"/><g class="roll"><path d="M2 17.5 C7 17.5 9.5 15 12 11 C15 6 18.5 3.2 23.5 3.2 C28.5 3.2 31 6.8 29.2 9.8 C27.6 12.2 24.4 11.6 24.6 9.1"/><path class="tail" d="M25 17.5 C28 17.5 29.5 15.8 32 15.8 C34.5 15.8 35.8 17.5 38 17.5"/><circle cx="31.5" cy="4.5" r=".9"/><circle cx="34" cy="7.5" r=".7"/></g></svg>';
+  document.querySelectorAll(".acc summary").forEach(s => s.insertAdjacentHTML("beforeend", WAVE));
+
   /* ---------- Mobiel menu ---------- */
   const mBtn = document.getElementById("menuBtn"), mNav = document.getElementById("mobileNav");
   if (mBtn) mBtn.addEventListener("click", () => { const o = mNav.hidden; mNav.hidden = !o; mBtn.setAttribute("aria-expanded", String(o)); });
