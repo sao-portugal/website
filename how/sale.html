@@ -35,73 +35,68 @@
 
 <main>
 
-<div class="cv">
-  <section class="cv-hero" aria-hidden="true">
+<div class="rb">
+  <section class="rb-video" aria-hidden="true">
     <video autoplay muted loop playsinline preload="metadata" poster="img/sale/hero-poster.jpg"><source src="img/sale/hero.mp4" type="video/mp4"></video>
   </section>
-  <section class="cv-offer">
-    <div class="wrap">
-      <div>
-        <p class="kick">sinterklaas &amp; kerst sale</p>
-        <h1>40% korting op alle kleding</h1>
-      </div>
-      <div class="cv-offer-r">
-        <p>Automatisch verrekend in je mandje. Op = op, dus wees er snel bij! 🌊</p>
-        <p class="cv-end" id="cvEnd" hidden></p>
-        <a class="btn solid" href="#kleding">shop de sale</a>
-      </div>
+
+  <section class="rb-offer rb-wrap">
+    <h1>sinterklaas &amp; kerst sale: 40% op alle kleding</h1>
+    <p>De korting zie je meteen in je winkelwagen. Op = op, dus wees er snel bij! 🌊</p>
+    <p class="rb-ship" id="rbShip"></p>
+    <p class="rb-end" id="rbEnd" hidden></p>
+  </section>
+
+  <section class="rb-sec" id="energy">
+    <h2 class="rb-h2 rb-wrap">waves of energy: hoodies &amp; sweaters</h2>
+    <div class="rb-row" data-row="hoodie-blue-sunset,hoodie-green-eye,sweater-stargazer"></div>
+  </section>
+
+  <section class="rb-sec" id="creation">
+    <h2 class="rb-h2 rb-wrap">waves of creation: t-shirts &amp; bucket hat</h2>
+    <div class="rb-row" data-row="t-shirt-sunset-aura,t-shirt-ocean-aura,bucket-hat-house-of-waves"></div>
+  </section>
+
+  <section class="rb-banner">
+    <img src="img/sale/sport-wide.jpg" alt="Drie vrouwen hardlopend in de sportsets van House of Waves" loading="lazy">
+    <div class="rb-banner-text"><h2>waves of movement</h2><p>de sportsetjes nu 40% goedkoper</p><a class="rb-btn light" href="#movement">shop de sportsetjes</a></div>
+  </section>
+
+  <section class="rb-sec" id="movement">
+    <h2 class="rb-h2 rb-wrap">waves of movement: the sport collection</h2>
+    <div class="rb-row" data-row="zip-jacket-flowy-green,sport-top-ocean-blue,shorts-ocean-blue,sport-top-flowy-green,shorts-flowy-green"></div>
+  </section>
+
+  <section class="rb-sec rb-revs">
+    <div class="rb-wrap">
+      <h2 class="rb-h2 center">jullie mening</h2>
+      <p class="center rb-sub">een paar reviews van jullie &lt;3</p>
+      <div class="rb-rev-row"><figure class="rb-rev"><blockquote>“Zo blij met dit sportvest! Ik gebruik hem vooral voor het hardlopen en ook met lange afstanden blijft hij goed zitten, kruipt hij niet omhoog en blijft hij mooi. De mouwen zijn wat langer en hebben een duimopening en daardoor blijven mijn handen ook lekker warm in de koudere temperaturen! Het is echt mijn go to-sportvest geworden en ik ben er echt heel blij mee :)”</blockquote><figcaption><b>Charlotte</b><span>zip jacket - flowy green</span></figcaption></figure><figure class="rb-rev"><blockquote>“Ik heb het prachtige blauwe setje van Eva mogen ontvangen. Hij zit absoluut lekker en sluit perfect aan! Ik zou hem iedereen aanraden!! Bedankt voor het super leuke setje Eva xx”</blockquote><figcaption><b>Indira</b><span>ocean blue sportset</span></figcaption></figure><figure class="rb-rev"><blockquote>“Heb het shirt inmiddels al een tijdje, en het shirt zit echt super!! Heel blij mee :)) Ook was de verzending snel en was het pakketje leuk ingepakt!”</blockquote><figcaption><b>Elise</b><span>sunset aura t-shirt</span></figcaption></figure></div>
     </div>
   </section>
 
-  <section class="cv-tiles" aria-label="Shop per categorie">
-    <div class="wrap">
-      <a href="#kleding" data-go="hoodie"><img src="img/p/hoodie-green-eye-2.jpg" alt="" loading="lazy"><span><b>hoodies &amp; sweaters</b>vanaf €29,99</span></a>
-      <a href="#kleding" data-go="tee"><img src="img/sale/tees.jpg" alt="" loading="lazy"><span><b>t-shirts</b>nu €21,00</span></a>
-      <a href="#kleding" data-go="sport"><img src="img/sale/sport.jpg" alt="" loading="lazy"><span><b>sportsetjes</b>vanaf €19,20</span></a>
+  <section class="rb-sec rb-iwt rb-wrap">
+    <img src="img/sale/new-energy.jpg" alt="Handgeschreven: are you ready for new energy?" loading="lazy">
+    <div>
+      <h2 class="rb-h2">manifestation journal essentials</h2>
+      <p>House of Waves heeft alle essentials voor je inspirerende journal sessies! Tel je journal of kaartendeck op bij je sale-items, vanaf €100 is de verzending gratis.</p>
+      <a class="rb-btn" href="shop.html?c=journal-essentials">Dit wil ik</a>
     </div>
   </section>
 
-  <section class="cv-shop" id="kleding">
-    <div class="wrap">
-      <div class="cv-bar">
-        <div class="filters" role="group" aria-label="Filter">
-          <button type="button" data-f="" aria-pressed="true">alles</button>
-          <button type="button" data-f="hoodie">hoodies &amp; sweaters</button>
-          <button type="button" data-f="tee">t-shirts</button>
-          <button type="button" data-f="sport">sportsetjes</button>
-          <button type="button" data-f="acc">bucket hat</button>
-        </div>
-        <p class="cv-ship" id="cvShip"></p>
-      </div>
-      <div class="grid-shop" id="cvGrid"></div>
+  <section class="rb-sec rb-faq rb-wrap">
+    <h2 class="rb-h2 center">vragen over de sale</h2>
+    <div class="acc">
+      <details><summary>Moet ik een kortingscode invullen?</summary><div class="in"><p>Nee. De korting zie je meteen in je winkelwagen en wordt bij het afrekenen automatisch verrekend.</p></div></details>
+      <details><summary>Is mijn bestelling op tijd voor pakjesavond of kerst?</summary><div class="in"><p>Bestel vóór [datum] voor pakjesavond en vóór [datum] voor kerst.</p></div></details>
+      <details><summary>Kan ik sale-items ruilen of retourneren?</summary><div class="in"><p>[Retourbeleid voor sale-items invullen.]</p></div></details>
+      <details><summary>Welke maat moet ik hebben?</summary><div class="in"><p>[Maatadvies invullen.]</p></div></details>
     </div>
   </section>
 
-  <section class="cv-revs" id="reviews" aria-label="Reviews">
-    <div class="wrap"><ul><li><span class="stars" aria-label="5 sterren">★★★★★</span> “Ik zou hem iedereen aanraden!!” <span class="who">Indira, ocean blue sportset</span></li><li><span class="stars" aria-label="5 sterren">★★★★★</span> “Het shirt zit echt super!! Heel blij mee :))” <span class="who">Elise, sunset aura t-shirt</span></li><li><span class="stars" aria-label="5 sterren">★★★★★</span> “Echt mijn go to-sportvest geworden.” <span class="who">Charlotte, zip jacket - flowy green</span></li></ul></div>
-  </section>
-
-  <section class="cv-up">
-    <div class="wrap">
-      <div class="cv-up-head"><h2>maak je bestelling af</h2><p>Combineer met de journal essentials en zit je sneller boven de €100 voor gratis verzending.</p></div>
-      <div class="grid-shop" id="cvUp"></div>
-    </div>
-  </section>
-
-  <section class="cv-faq">
-    <div class="wrap">
-      <div class="acc">
-        <details><summary>Moet ik een kortingscode invullen?</summary><div class="in"><p>Nee. De korting zie je direct in je mandje en wordt bij het afrekenen automatisch verrekend.</p></div></details>
-        <details><summary>Wanneer is mijn bestelling in huis?</summary><div class="in"><p>[Levertijd invullen.] Bestel vóór [datum] voor pakjesavond en vóór [datum] voor kerst.</p></div></details>
-        <details><summary>Kan ik sale-items ruilen of retourneren?</summary><div class="in"><p>[Retourbeleid voor sale-items invullen.]</p></div></details>
-        <details><summary>Welke maat moet ik hebben?</summary><div class="in"><p>[Maatadvies invullen, bijvoorbeeld: de hoodies vallen oversized.]</p></div></details>
-      </div>
-    </div>
-  </section>
-
-  <div class="cv-sticky" id="cvSticky" hidden>
-    <span><b data-n>0</b> in je mandje · <b data-t>€0,00</b></span>
-    <a class="btn solid" data-checkout href="#">afrekenen</a>
+  <div class="rb-sticky" id="rbSticky" hidden>
+    <span><b data-n>0</b> in je winkelwagen · <b data-t>€0,00</b></span>
+    <a class="rb-btn" data-checkout href="#">Afrekenen</a>
   </div>
 </div>
 </main>
@@ -135,42 +130,43 @@
 <script src="app.js"></script>
 <script>
 (function () {
-  const H = window.HOW;
+  const H = window.HOW, E = H.euro;
   // zet hier de einddatum van de sale (bijv. "2026-12-24T23:59:00+01:00") om een aftelklok te tonen
   const END = "";
-  const CAT = { hoodie: ["hoodie-blue-sunset", "hoodie-green-eye", "sweater-stargazer"], tee: ["t-shirt-sunset-aura", "t-shirt-ocean-aura"], sport: ["zip-jacket-flowy-green", "sport-top-ocean-blue", "shorts-ocean-blue", "sport-top-flowy-green", "shorts-flowy-green"], acc: ["bucket-hat-house-of-waves"] };
-  const ALL = [].concat(CAT.hoodie, CAT.tee, CAT.sport, CAT.acc).map(h => H.byH[h]).filter(p => p && p.sale);
-  const soldOut = p => p.v.every(v => !v.a);
-  const grid = document.getElementById("cvGrid");
-  let f = "";
-  function draw() {
-    const list = ALL.filter(p => !f || CAT[f].includes(p.h)).sort((a, b) => soldOut(a) - soldOut(b));
-    grid.innerHTML = list.map(p => H.card(p, { sizes: true })).join("");
-    document.querySelectorAll(".cv .filters [data-f]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.f === f)));
-  }
-  document.querySelectorAll(".cv .filters [data-f]").forEach(b => b.addEventListener("click", () => { f = b.dataset.f; draw(); }));
-  document.querySelectorAll("[data-go]").forEach(a => a.addEventListener("click", () => { f = a.dataset.go; draw(); }));
-  // video alleen afspelen als iemand geen 'minder beweging' heeft ingesteld
-  const vid = document.querySelector(".cv-hero video"); if (vid && H.reduce) { vid.removeAttribute("autoplay"); vid.pause(); }
-  draw();
-  document.getElementById("cvUp").innerHTML = ["journal-pen-discount-bundle", "kaartendeck-journal-pen-mega-journaling-discount-bundle", "balance-kaartendeck-gesprekskaarten-journalvragen", "pen-create-your-reality"].map(h => H.card(H.byH[h])).join("");
+  const vid = document.querySelector(".rb-video video"); if (vid && H.reduce) { vid.removeAttribute("autoplay"); vid.pause(); }
 
-  // gratis-verzending-duwtje + vaste mandjesbalk op mobiel
-  const ship = document.getElementById("cvShip"), sticky = document.getElementById("cvSticky");
+  function card(p) {
+    const sold = p.v.every(v => !v.a), left = p.v.filter(v => v.a).length;
+    const was = Math.min(...p.v.map(v => v.was || v.p)), now = Math.min(...p.v.map(v => v.p));
+    const sizes = sold ? '<p class="rb-out">uitverkocht</p>' : p.v.length > 1
+      ? '<div class="rb-pills" role="group" aria-label="Kies je maat voor ' + p.t + '">' + p.v.map(v => v.a
+          ? '<button type="button" data-addv="' + p.h + '|' + v.id + '">' + v.t + '</button>'
+          : '<button type="button" disabled aria-label="' + v.t + ', uitverkocht">' + v.t + '</button>').join("") + '</div>'
+      : '<div class="rb-pills"><button type="button" data-addv="' + p.h + '|' + p.v[0].id + '">in winkelwagen</button></div>';
+    return '<article class="rb-card"><a class="rb-ph" href="product.html?p=' + p.h + '">' + (sold ? '' : '<span class="rb-badge">sale</span>') +
+      '<img src="' + p.img[0] + '" alt="' + p.t + '" loading="lazy"></a>' +
+      '<h3><a href="product.html?p=' + p.h + '">' + p.t + '</a></h3>' +
+      '<p class="rb-price"><s>' + E(was) + '</s> <b>' + E(now) + '</b>' + (p.v.length > 1 && left === 1 && !sold ? ' <span class="rb-low">nog 1 maat</span>' : '') + '</p>' + sizes + '</article>';
+  }
+  document.querySelectorAll("[data-row]").forEach(r => {
+    const list = r.dataset.row.split(",").map(h => H.byH[h]).filter(Boolean).sort((a, b) => a.v.every(v => !v.a) - b.v.every(v => !v.a));
+    r.innerHTML = list.map(card).join("");
+  });
+
+  const ship = document.getElementById("rbShip"), sticky = document.getElementById("rbSticky");
   function upd() {
-    const t = H.total(), left = H.FREE - t;
-    ship.innerHTML = t === 0 ? "gratis verzending vanaf <b>€100</b>" : left > 0 ? "nog <b>" + H.euro(left) + "</b> tot gratis verzending" : "<b>je verzending is gratis</b> 🌊";
-    const n = H.count(); sticky.hidden = n === 0;
-    sticky.querySelector("[data-n]").textContent = n; sticky.querySelector("[data-t]").textContent = H.euro(t);
+    const t = H.total(), left = H.FREE - t, n = H.count();
+    ship.innerHTML = t === 0 ? "gratis verzending vanaf €100 || verzending naar Nederland &amp; België" : left > 0 ? "nog <b>" + E(left) + "</b> tot gratis verzending" : "<b>je verzending is gratis</b> 🌊";
+    sticky.hidden = n === 0;
+    sticky.querySelector("[data-n]").textContent = n; sticky.querySelector("[data-t]").textContent = E(t);
     sticky.querySelector("[data-checkout]").href = H.checkoutUrl();
   }
   document.addEventListener("cart", upd); upd();
 
-  // aftelklok alleen als er een echte einddatum is
   if (END) {
-    const el = document.getElementById("cvEnd"), end = new Date(END).getTime();
+    const el = document.getElementById("rbEnd"), end = new Date(END).getTime();
     const tick = () => { const s = Math.max(0, (end - Date.now()) / 1000), d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60);
-      el.innerHTML = s > 0 ? "nog <b>" + d + "d " + h + "u " + m + "m</b>" : "de sale is afgelopen"; };
+      el.innerHTML = s > 0 ? "de sale stopt over <b>" + d + "d " + h + "u " + m + "m</b>" : "de sale is afgelopen"; };
     el.hidden = false; tick(); setInterval(tick, 30000);
   }
 })();
