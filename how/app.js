@@ -1,6 +1,9 @@
 /* House of Waves — gedeelde logica: winkelwagen, drawer, productkaarten, reveal */
 (function () {
   const P = window.HOW_PRODUCTS || [];
+  /* ---------- Sale: alle kleding 40% (zet on op false als de sale voorbij is) ---------- */
+  const SALE = { on: true, pct: 40, code: "KLEDING40", h: ["hoodie-blue-sunset", "hoodie-green-eye", "sweater-stargazer", "zip-jacket-flowy-green", "t-shirt-sunset-aura", "t-shirt-ocean-aura", "sport-top-ocean-blue", "shorts-ocean-blue", "sport-top-flowy-green", "shorts-flowy-green", "bucket-hat-house-of-waves"] };
+  if (SALE.on) P.forEach(p => { if (SALE.h.includes(p.h)) { p.sale = true; p.v.forEach(v => { v.was = v.p; v.p = Math.round(v.p * (100 - SALE.pct)) / 100; }); } });
   const byH = Object.fromEntries(P.map(p => [p.h, p]));
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const FREE = 100;
@@ -22,8 +25,8 @@
     save(); openDrawer();
   }
   function setQ(id, q) { const l = cart.find(x => x.id === id); if (!l) return; l.q = Math.max(0, Math.min(20, q)); cart = cart.filter(x => x.q > 0); save(); }
-  function checkoutUrl() { return "https://houseofwaves.nl/cart/" + cart.map(l => l.id + ":" + l.q).join(","); }
-  window.HOW = { add, setQ, cart: () => cart, total, count, euro, byH, P, checkoutUrl, FREE, variant, reduce };
+  function checkoutUrl() { return "https://houseofwaves.nl/cart/" + cart.map(l => l.id + ":" + l.q).join(",") + (SALE.on && cart.some(l => byH[l.h].sale) ? "?discount=" + SALE.code : ""); }
+  window.HOW = { SALE, add, setQ, cart: () => cart, total, count, euro, byH, P, checkoutUrl, FREE, variant, reduce };
 
   /* ---------- Drawer ---------- */
   const drawer = document.getElementById("drawer"), scrim = document.getElementById("scrim");
@@ -41,7 +44,7 @@
     return '<li class="line"><a href="product.html?p=' + p.h + '"><img src="' + p.img[0] + '" alt=""></a><div class="line-info"><a href="product.html?p=' + p.h + '" class="line-t">' + p.t.replace(" - ", " · ") + '</a>' +
       (v.t !== "Default Title" ? '<span class="line-v">maat ' + v.t + '</span>' : '') +
       '<div class="qty" role="group" aria-label="Aantal"><button type="button" data-q="' + l.id + '" data-d="-1" aria-label="Eén minder">−</button><span>' + l.q + '</span><button type="button" data-q="' + l.id + '" data-d="1" aria-label="Eén meer">+</button></div></div>' +
-      '<div class="line-r"><span class="line-p">' + euro(v.p * l.q) + '</span><button type="button" class="rm" data-rm="' + l.id + '">verwijder</button></div></li>';
+      '<div class="line-r"><span class="line-p">' + (v.was ? '<s>' + euro(v.was * l.q) + '</s>' : '') + euro(v.p * l.q) + '</span><button type="button" class="rm" data-rm="' + l.id + '">verwijder</button></div></li>';
   }
   function bindLines(root) {
     root.querySelectorAll("[data-q]").forEach(b => b.addEventListener("click", () => { const l = cart.find(x => x.id == b.dataset.q); setQ(l.id, l.q + +b.dataset.d); }));
@@ -71,15 +74,19 @@
   window.HOW.card = function (p, opts) {
     opts = opts || {};
     const v0 = p.v[0], min = Math.min(...p.v.map(v => v.p)), sold = p.v.every(v => !v.a);
-    const tag = p.h.includes("bundle") ? '<span class="tag">bundel · voordeel</span>' : sold ? '<span class="tag">uitverkocht</span>' : "";
+    const tag = sold ? '<span class="tag">uitverkocht</span>' : p.sale ? '<span class="tag sale">−' + SALE.pct + '% · op = op</span>' : p.h.includes("bundle") ? '<span class="tag">bundel · voordeel</span>' : "";
     const quick = p.v.length === 1 && !sold ? '<button class="quick" type="button" data-add="' + p.h + '" aria-label="' + p.t + ' in winkelwagen">+ in winkelwagen</button>' : "";
     return '<article class="item' + (opts.big ? " big" : "") + '"><div class="phw"><a class="ph" href="product.html?p=' + p.h + '">' + tag +
       '<img src="' + p.img[0] + '" alt="' + p.t + '" loading="lazy">' + (p.img[1] ? '<img src="' + p.img[1] + '" alt="" loading="lazy">' : "") + '</a>' + quick + '</div>' +
-      '<a class="meta" href="product.html?p=' + p.h + '"><h3>' + p.t.replace(" - ", " · ") + '</h3><span class="price">' + (p.v.length > 1 && p.v.some(v => v.p !== min) ? "vanaf " : "") + euro(min) + '</span></a></article>';
+      '<a class="meta" href="product.html?p=' + p.h + '"><h3>' + p.t.replace(" - ", " · ") + '</h3><span class="price">' + (p.v.length > 1 && p.v.some(v => v.p !== min) ? "vanaf " : "") + (p.sale ? '<s>' + euro(Math.min(...p.v.map(v => v.was))) + '</s>' : '') + euro(min) + '</span></a>' + (opts.sizes && p.v.length > 1 ? '<div class="sizes" role="group" aria-label="Kies je maat">' + p.v.map(v => '<button type="button" ' + (v.a ? 'data-addv="' + p.h + '|' + v.id + '"' : 'disabled') + ' aria-label="' + p.t + ' maat ' + v.t + (v.a ? '' : ', uitverkocht') + '">' + v.t.charAt(0) + '</button>').join("") + '</div>' : '') + '</article>';
   };
   document.addEventListener("click", e => {
     const b = e.target.closest("[data-add]"); if (!b) return;
     const p = byH[b.dataset.add]; add(p.h, p.v[0].id, 1);
+  });
+  document.addEventListener("click", e => {
+    const b = e.target.closest("[data-addv]"); if (!b) return;
+    const [h, id] = b.dataset.addv.split("|"); add(h, +id, 1);
   });
 
   /* ---------- Reveal ---------- */
