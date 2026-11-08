@@ -449,15 +449,21 @@ html, body { overflow-x: clip; }
 .item .sz button:disabled:hover { background: transparent; color: var(--deep); border-color: var(--line); }
 
 /* Sale-pagina: conversiegericht. Compact aanbod bovenaan, producten meteen zichtbaar */
-.cv-top { background: linear-gradient(100deg, #fde4d2, #f7dce9 50%, #e6e1fa); border-bottom: 1px solid var(--line); }
-.cv-top .wrap { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 20px 48px; align-items: center; padding-block: clamp(22px, 3vw, 36px); }
-.cv-top h1 { margin-top: 6px; font-size: clamp(34px, 4.4vw, 60px); line-height: 1; color: var(--deep); }
-.cv-sub { margin-top: 10px; font-size: 16px; }
-.cv-end { margin-top: 10px; display: inline-block; padding: 6px 12px; border-radius: 999px; background: var(--deep); color: var(--paper); font-size: 14px; }
-.cv-trust { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; font-size: 14px; color: var(--sea); }
-.cv-trust li { display: block; }
-.cv-trust b { color: var(--deep); font-weight: 600; }
-.cv-trust a { color: inherit; }
+.cv-hero { position: relative; height: min(58vh, 640px); overflow: hidden; background: #2c4a3a; }
+.cv-hero video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cv-offer .wrap { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 16px 48px; align-items: end; padding-block: clamp(28px, 3.5vw, 48px) 8px; }
+.cv-offer h1 { margin-top: 8px; font-size: clamp(40px, 5.4vw, 80px); line-height: 1; color: var(--deep); }
+.cv-offer-r p { font-size: clamp(16px, 1.3vw, 18px); max-width: 30rem; }
+.cv-offer-r .btn { margin-top: 18px; }
+.cv-end { margin-top: 12px; display: inline-block; padding: 6px 12px; border-radius: 999px; background: var(--deep); color: var(--paper); font-size: 14px; }
+.cv-tiles { padding-top: clamp(16px, 2vw, 24px); }
+.cv-tiles .wrap { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(10px, 1.4vw, 18px); }
+.cv-tiles a { position: relative; display: block; aspect-ratio: 4 / 5; border-radius: 18px; overflow: hidden; color: #fff; text-decoration: none; }
+.cv-tiles img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2,.8,.2,1); }
+.cv-tiles a::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.5), transparent 45%); }
+.cv-tiles a:hover img { transform: scale(1.04); }
+.cv-tiles span { position: absolute; z-index: 1; left: 20px; right: 20px; bottom: 18px; font-size: 14px; }
+.cv-tiles b { display: block; font: 400 clamp(24px, 2.4vw, 34px)/1.05 var(--serif); margin-bottom: 4px; }
 .cv .stars { color: #e6a23c; letter-spacing: 1px; }
 .cv-shop { padding-block: 22px clamp(48px, 6vw, 80px); }
 .cv-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px 24px; flex-wrap: wrap; margin-bottom: 20px; }
@@ -482,9 +488,13 @@ html, body { overflow-x: clip; }
 .cv-sticky .btn { min-height: 44px; padding: 0 22px; }
 @media (min-width: 861px) { .cv-sticky { display: none; } }
 @media (max-width: 860px) {
-  .cv-top .wrap { grid-template-columns: minmax(0, 1fr); }
-  .cv-trust { grid-template-columns: 1fr 1fr; gap: 6px 14px; font-size: 13px; }
-  .cv-trust { display: none; }
+  .cv-hero { height: 52vh; }
+  .cv-offer .wrap { grid-template-columns: minmax(0, 1fr); }
+  .cv-offer-r .btn { display: none; }
+  .cv-tiles .wrap { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .cv-tiles a { border-radius: 12px; aspect-ratio: 3 / 4.4; }
+  .cv-tiles span { left: 10px; right: 8px; bottom: 10px; font-size: 11px; }
+  .cv-tiles b { font-size: 16px; }
   .cv-revs ul { grid-template-columns: minmax(0, 1fr); gap: 14px; }
   .cv .filters { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-inline: calc(-1 * var(--gut)); padding-inline: var(--gut); }
   .cv .filters button { flex: none; }

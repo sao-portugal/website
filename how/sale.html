@@ -36,20 +36,28 @@
 <main>
 
 <div class="cv">
-  <section class="cv-top">
+  <section class="cv-hero" aria-hidden="true">
+    <video autoplay muted loop playsinline preload="metadata" poster="img/sale/hero-poster.jpg"><source src="img/sale/hero.mp4" type="video/mp4"></video>
+  </section>
+  <section class="cv-offer">
     <div class="wrap">
-      <div class="cv-offer">
+      <div>
         <p class="kick">sinterklaas &amp; kerst sale</p>
         <h1>40% korting op alle kleding</h1>
-        <p class="cv-sub">Automatisch verrekend in je mandje. Op = op, dus wees er snel bij! 🌊</p>
-        <p class="cv-end" id="cvEnd" hidden></p>
       </div>
-      <ul class="cv-trust">
-        <li><b>gratis verzending</b> vanaf €100</li>
-        <li><b>verzending</b> naar Nederland &amp; België</li>
-        <li><b>veilig afrekenen</b> via de House of Waves webshop</li>
-        <li><a href="#reviews"><span class="stars">★★★★★</span> lees jullie reviews</a></li>
-      </ul>
+      <div class="cv-offer-r">
+        <p>Automatisch verrekend in je mandje. Op = op, dus wees er snel bij! 🌊</p>
+        <p class="cv-end" id="cvEnd" hidden></p>
+        <a class="btn solid" href="#kleding">shop de sale</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cv-tiles" aria-label="Shop per categorie">
+    <div class="wrap">
+      <a href="#kleding" data-go="hoodie"><img src="img/p/hoodie-green-eye-2.jpg" alt="" loading="lazy"><span><b>hoodies &amp; sweaters</b>vanaf €29,99</span></a>
+      <a href="#kleding" data-go="tee"><img src="img/sale/tees.jpg" alt="" loading="lazy"><span><b>t-shirts</b>nu €21,00</span></a>
+      <a href="#kleding" data-go="sport"><img src="img/sale/sport.jpg" alt="" loading="lazy"><span><b>sportsetjes</b>vanaf €19,20</span></a>
     </div>
   </section>
 
@@ -141,6 +149,9 @@
     document.querySelectorAll(".cv .filters [data-f]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.f === f)));
   }
   document.querySelectorAll(".cv .filters [data-f]").forEach(b => b.addEventListener("click", () => { f = b.dataset.f; draw(); }));
+  document.querySelectorAll("[data-go]").forEach(a => a.addEventListener("click", () => { f = a.dataset.go; draw(); }));
+  // video alleen afspelen als iemand geen 'minder beweging' heeft ingesteld
+  const vid = document.querySelector(".cv-hero video"); if (vid && H.reduce) { vid.removeAttribute("autoplay"); vid.pause(); }
   draw();
   document.getElementById("cvUp").innerHTML = ["journal-pen-discount-bundle", "kaartendeck-journal-pen-mega-journaling-discount-bundle", "balance-kaartendeck-gesprekskaarten-journalvragen", "pen-create-your-reality"].map(h => H.card(H.byH[h])).join("");
 
