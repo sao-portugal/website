@@ -92,28 +92,36 @@
     } else rv.forEach(el => el.classList.add("in"));
   };
 
-  /* ---------- FAQ: golfje breekt en spoelt weg bij openen, rolt weer aan bij sluiten ---------- */
-  const WAVE = '<svg class="surfy" viewBox="0 0 40 24" aria-hidden="true">' +
-    '<path class="flat" d="M3 18 C9 17.2 15 18.6 21 17.8 S32 17.2 37 18"/>' +
-    '<g class="back"><path d="M10 18 C14 18 16 15 19 13.5 C22 12 25 13.5 26 15.5"/></g>' +
-    '<g class="roll"><path d="M2 18 C7 18 9.5 15.5 12 11.5 C15 6.5 18.5 3.5 23.5 3.5 C28.5 3.5 31 7 29.2 10 C27.6 12.4 24.4 11.8 24.6 9.3"/><path d="M25 18 C28 18 29.5 16.3 32 16.3 C34.5 16.3 35.8 18 38 18"/></g>' +
-    '<g class="drops"><circle cx="30" cy="5" r="1"/><circle cx="33" cy="8" r=".8"/><circle cx="27" cy="2.5" r=".7"/></g></svg>';
-  const sums = document.querySelectorAll(".acc summary");
-  sums.forEach(s => {
-    s.insertAdjacentHTML("beforeend", WAVE);
-    const svg = s.lastElementChild;
-    svg.addEventListener("animationend", e => { if (e.animationName === "breakOut" || e.animationName === "rollIn") { svg.classList.remove("go-out", "go-in"); svg.style.animationDelay = ""; } });
+  /* ---------- FAQ: het golfje gaat liggen tot vlak water bij openen, en komt weer op bij sluiten ---------- */
+  // dezelfde lijn in twee standen; we schuiven geleidelijk tussen de punten, zodat de golf echt gaat liggen
+  const UP   = [2,18, 7,18, 9.5,15.5, 12,11.5, 15,6.5, 18.5,3.5, 23.5,3.5, 28.5,3.5, 31,7, 29.2,10, 27.6,12.4, 24.4,11.8, 24.6,9.3];
+  const FLAT = [2,18, 7,18, 10,18, 13,18, 17,18, 20,18, 24,18, 28,18, 31,18, 34,18, 36,18, 37,18, 38,18];
+  const pathAt = h => { // h = 1 golf, 0 vlak
+    const k = 1 - h, p = UP.map((v, i) => FLAT[i] + (v - FLAT[i]) * h + (i % 2 ? 0 : Math.sin(k * Math.PI) * 3 * (i / UP.length)));
+    return "M" + p[0] + " " + p[1] + " C" + p.slice(2, 8).join(" ") + " C" + p.slice(8, 14).join(" ") + " C" + p.slice(14, 20).join(" ") + " C" + p.slice(20, 26).join(" ");
+  };
+  const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  function setWave(svg, h) { svg.firstChild.setAttribute("d", pathAt(h)); svg.lastChild.style.opacity = h; svg.dataset.h = h; }
+  function animWave(svg, to, delay) {
+    const from = +svg.dataset.h, t0 = performance.now() + (delay || 0), dur = 700;
+    cancelAnimationFrame(svg._raf);
+    if (reduce) return setWave(svg, to);
+    const step = now => { const t = Math.min(1, Math.max(0, (now - t0) / dur)); setWave(svg, from + (to - from) * ease(t)); if (t < 1) svg._raf = requestAnimationFrame(step); };
+    svg._raf = requestAnimationFrame(step);
+  }
+  document.querySelectorAll(".acc details").forEach(d => {
+    const s = d.querySelector("summary");
+    s.insertAdjacentHTML("beforeend", '<svg class="surfy" viewBox="0 0 40 24" aria-hidden="true"><path/><path class="tail" d="M25 18 C28 18 29.5 16.3 32 16.3 C34.5 16.3 35.8 18 38 18"/></svg>');
+    const svg = s.lastElementChild; setWave(svg, d.open ? 0 : 1);
+    d.addEventListener("toggle", () => animWave(svg, d.open ? 0 : 1));
   });
-  document.querySelectorAll(".acc details").forEach(d => d.addEventListener("toggle", () => {
-    const svg = d.querySelector(".surfy"); if (!svg || reduce) return;
-    svg.classList.remove("go-out", "go-in"); void svg.offsetWidth;
-    svg.classList.add(d.open ? "go-out" : "go-in");
-  }));
-  // bij binnenscrollen spoelen de golfjes één voor één aan
+  // bij binnenscrollen komen de golfjes één voor één op
   if ("IntersectionObserver" in window && !reduce) {
+    const closed = [...document.querySelectorAll(".acc details:not([open]) .surfy")];
+    closed.forEach(svg => setWave(svg, 0));
     const io = new IntersectionObserver(es => es.forEach(e => {
       if (!e.isIntersecting) return; io.unobserve(e.target);
-      e.target.querySelectorAll("details:not([open]) .surfy").forEach((svg, i) => { svg.style.animationDelay = (i * .12) + "s"; svg.classList.add("go-in"); });
+      e.target.querySelectorAll("details:not([open]) .surfy").forEach((svg, i) => animWave(svg, 1, i * 110));
     }), { threshold: .3 });
     document.querySelectorAll(".acc").forEach(a => io.observe(a));
   }
