@@ -570,3 +570,95 @@ html, body { overflow-x: clip; }
   .sx-toast { bottom: 76px; }
   .sx { padding-bottom: 64px; }
 }
+
+/* ---------- Winkelwagen (DESIGN.md): golf vult richting gratis verzending ---------- */
+.wk { --sand: #F5ECDD; --teal: #305D6A; --text: rgba(48,93,106,.8); --sale: #E8573A; --hair: rgba(48,93,106,.2); --white: #fff;
+  background: var(--sand); color: var(--text); font: 400 16px/1.6 Helvetica, Arial, sans-serif; padding-bottom: clamp(64px, 8vw, 104px); }
+.wk h1, .wk h2 { font-family: "Gloock", Georgia, serif; font-weight: 400; color: var(--teal); }
+.wk a { color: inherit; }
+.wk :focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+.wk-wrap { max-width: 1160px; margin-inline: auto; padding-inline: max(20px, env(safe-area-inset-left)) max(20px, env(safe-area-inset-right)); }
+.wk-head { display: flex; align-items: baseline; gap: 16px; padding-top: clamp(32px, 5vw, 64px); }
+.wk-head h1 { font-size: clamp(40px, 5.4vw, 72px); line-height: 1; }
+.wk-head p { font-weight: 700; }
+.wk-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 28px; border-radius: 4px; background: var(--teal); color: var(--white) !important; font: 700 16px Helvetica, Arial, sans-serif; text-decoration: none; border: 1px solid var(--teal); transition: background .2s; }
+.wk-btn:hover { background: #26505b; }
+.wk-btn.ghost { background: transparent; color: var(--teal) !important; }
+.wk-btn.ghost:hover { background: rgba(48,93,106,.08); }
+
+.wk-wave { margin-top: 22px; }
+.wk-wave svg { display: block; width: 100%; height: 34px; overflow: visible; }
+.wk-wave path { fill: none; stroke-width: 4; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.wk-wave .track { stroke: var(--hair); stroke-dasharray: 2 8; stroke-width: 2.5; }
+.wk-wave .fill { stroke: var(--teal); transition: stroke .4s; }
+.wk-wave #wkFill { transition: width .9s cubic-bezier(.3,.7,.2,1); }
+.wk-wave.done .fill { stroke: var(--sale); }
+.wk-wave p { margin-top: 6px; font-size: 15px; }
+.wk-wave b { color: var(--teal); }
+.wk-wave.done b { color: var(--sale); }
+
+.wk-grid { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: clamp(24px, 4vw, 56px); align-items: start; margin-top: 28px; }
+.wk-lines { border-top: 1px solid var(--hair); }
+.wk-line { display: grid; grid-template-columns: 104px minmax(0, 1fr) auto; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--hair); }
+.wk-img { display: block; aspect-ratio: 4 / 5; border-radius: 8px; overflow: hidden; background: #e9dfcd; }
+.wk-img img { width: 100%; height: 100%; object-fit: cover; }
+.wk-info { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; min-width: 0; }
+.wk-name { font: 400 20px/1.2 "Gloock", Georgia, serif; color: var(--teal); text-decoration: none; }
+.wk-var { font-size: 14px; }
+.wk-tag { margin-top: 4px; font-size: 12px; font-weight: 700; color: var(--sale); background: rgba(232,87,58,.1); padding: 1px 9px; border-radius: 40px; }
+.wk-qty { margin-top: auto; display: inline-flex; align-items: center; border: 1px solid var(--hair); border-radius: 40px; }
+.wk-qty button { width: 38px; height: 38px; border: 0; background: none; color: var(--teal); font-size: 18px; cursor: pointer; border-radius: 40px; }
+.wk-qty button:hover { background: rgba(48,93,106,.08); }
+.wk-qty span { min-width: 22px; text-align: center; font-weight: 700; color: var(--teal); }
+.wk-right { display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; text-align: right; }
+.wk-price { font-weight: 700; color: var(--teal); white-space: nowrap; }
+.wk-price s { display: block; font-weight: 400; font-size: 13px; opacity: .6; }
+.wk-rm { border: 0; background: none; color: var(--text); font: 400 14px Helvetica, Arial, sans-serif; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; padding: 6px 0; }
+.wk-rm:hover { color: var(--teal); }
+
+.wk-sum { position: sticky; top: 96px; background: var(--white); border-radius: 14px; padding: 26px; display: grid; gap: 12px; }
+.wk-sum h2 { font-size: 28px; line-height: 1.1; margin-bottom: 4px; }
+.wk-sum .row { display: flex; justify-content: space-between; gap: 12px; font-size: 15px; }
+.wk-sum .row.save { color: var(--sale); font-weight: 700; }
+.wk-sum .row.tot { padding-top: 14px; border-top: 1px solid var(--hair); align-items: baseline; color: var(--teal); font-weight: 700; }
+.wk-sum .row.tot b { font: 400 30px/1 "Gloock", Georgia, serif; }
+.wk-sum .wk-btn { width: 100%; margin-top: 4px; }
+.wk-trust { display: grid; gap: 6px; font-size: 13px; padding-top: 4px; }
+.wk-trust li { padding-left: 18px; position: relative; }
+.wk-trust li::before { content: ""; position: absolute; left: 0; top: .6em; width: 8px; height: 8px; border-radius: 50%; background: var(--teal); opacity: .5; }
+.wk-pay { font-size: 12px; opacity: .8; }
+
+.wk-empty { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(24px, 5vw, 64px); align-items: center; margin-top: 24px; }
+.wk-empty img { width: 100%; height: auto; display: block; }
+.wk-empty h2 { font-size: clamp(30px, 3.4vw, 46px); line-height: 1.05; }
+.wk-empty p { margin-top: 12px; font-weight: 700; max-width: 30rem; }
+.wk-empty-btns { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 10px; }
+
+.wk-more { margin-top: clamp(56px, 7vw, 88px); }
+.wk-more h2 { font-size: clamp(26px, 2.8vw, 36px); line-height: 1.1; margin-bottom: 20px; }
+.wk-sug { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 20px); }
+.wk-s { display: flex; flex-direction: column; min-width: 0; }
+.wk-s-img { position: relative; display: block; aspect-ratio: 4 / 5; border-radius: 8px; overflow: hidden; background: #e9dfcd; }
+.wk-s-img img { width: 100%; height: 100%; object-fit: cover; }
+.wk-s-img span { position: absolute; left: 10px; bottom: 10px; padding: 3px 10px; border-radius: 40px; background: var(--sale); color: var(--white); font-size: 12px; font-weight: 700; }
+.wk-s-name { margin-top: 10px; font: 400 17px/1.2 "Gloock", Georgia, serif; color: var(--teal); text-decoration: none; }
+.wk-s-price { font-size: 15px; font-weight: 700; color: var(--teal); }
+.wk-s-price s { font-weight: 400; opacity: .6; }
+.wk-s-add { margin-top: 10px; align-self: flex-start; display: inline-flex; align-items: center; min-height: 38px; padding: 0 16px; border-radius: 4px; border: 1px solid var(--teal); background: transparent; color: var(--teal); font: 700 14px Helvetica, Arial, sans-serif; text-decoration: none; cursor: pointer; }
+.wk-s-add:hover { background: var(--teal); color: var(--white) !important; }
+
+.wk-sticky { position: fixed; z-index: 40; left: 0; right: 0; bottom: 0; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px max(14px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(18px, env(safe-area-inset-left)); background: var(--sand); border-top: 1px solid var(--hair); color: var(--teal); }
+.wk-sticky b { font: 400 22px "Gloock", Georgia, serif; margin-left: 6px; }
+.wk-sticky .wk-btn { min-height: 46px; }
+@media (min-width: 861px) { .wk-sticky { display: none !important; } }
+@media (prefers-reduced-motion: reduce) { .wk-wave #wkFill, .wk-wave .fill { transition: none; } }
+@media (max-width: 860px) {
+  .wk-grid { grid-template-columns: minmax(0, 1fr); }
+  .wk-sum { position: static; }
+  .wk-line { grid-template-columns: 84px minmax(0, 1fr) auto; gap: 14px; }
+  .wk-name { font-size: 17px; }
+  .wk-empty { grid-template-columns: minmax(0, 1fr); }
+  .wk-sug { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .wk { padding-bottom: 96px; }
+}
+@media (max-width: 860px) { .wk-head { flex-direction: column; gap: 4px; } }

@@ -34,25 +34,61 @@
 </header>
 
 <main>
-<section class="phead"><div class="aura" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-  <div class="wrap"><p class="crumbs"><a href="index.html">home</a> / winkelwagen</p><h1>jouw mandje</h1><p class="lead">Bijna klaar. Check je producten en reken veilig af in onze webshop.</p></div>
-</section>
-<section class="cartpage">
-  <div class="wrap">
-    <div><div class="ship" id="shipP" style="padding:0 0 18px"></div><div id="linesP"></div></div>
-    <aside class="summary" id="sum">
-      <h2>overzicht</h2>
-      <p class="row"><span>subtotaal</span><span id="sSub">€0,00</span></p>
-      <p class="row"><span>verzending</span><span id="sShip">berekend bij afrekenen</span></p>
-      <p class="row tot"><span>totaal</span><b id="sTot">€0,00</b></p>
-      <a class="btn solid" id="sGo" href="#">afrekenen</a>
-      <a class="btn" href="shop.html">verder winkelen</a>
-      <small>Je rekent af in de beveiligde checkout van onze webshop. Kortingscode? Die vul je daar in.</small>
-      <div class="pay" aria-label="Betaalmethoden"><span>iDEAL</span><span>Visa</span><span>Mastercard</span><span>Maestro</span><span>Amex</span></div>
-    </aside>
+
+<div class="wk">
+  <div class="wk-wrap">
+    <header class="wk-head">
+      <h1>jouw winkelwagen</h1>
+      <p id="wkCount"></p>
+    </header>
+
+    <div class="wk-wave" id="wkWave" hidden>
+      <svg viewBox="0 0 600 40" preserveAspectRatio="none" aria-hidden="true">
+        <defs><clipPath id="wkClip"><rect id="wkFill" x="0" y="0" width="0" height="40"/></clipPath></defs>
+        <path class="track" d="M0 22 C25 8 50 8 75 22 S125 36 150 22 200 8 225 22 275 36 300 22 350 8 375 22 425 36 450 22 500 8 525 22 575 36 600 22"/>
+        <path class="fill" clip-path="url(#wkClip)" d="M0 22 C25 8 50 8 75 22 S125 36 150 22 200 8 225 22 275 36 300 22 350 8 375 22 425 36 450 22 500 8 525 22 575 36 600 22"/>
+      </svg>
+      <p id="wkWaveText" aria-live="polite"></p>
+    </div>
+
+    <div class="wk-grid" id="wkFull">
+      <ul class="wk-lines" id="wkLines" aria-label="Producten in je winkelwagen"></ul>
+      <aside class="wk-sum" aria-label="Overzicht">
+        <h2>overzicht</h2>
+        <p class="row"><span>subtotaal</span><span id="wkSub"></span></p>
+        <p class="row save" id="wkSaveRow" hidden><span>je bespaart met de sale</span><span id="wkSave"></span></p>
+        <p class="row"><span>verzending</span><span id="wkShip"></span></p>
+        <p class="row tot"><span>totaal</span><b id="wkTot"></b></p>
+        <a class="wk-btn" id="wkGo" href="#">afrekenen</a>
+        <ul class="wk-trust">
+          <li>Je rekent veilig af in de checkout van de House of Waves webshop</li>
+          <li>Verzending naar Nederland &amp; België</li>
+          <li>Kortingscode? Die vul je bij het afrekenen in</li>
+        </ul>
+        <p class="wk-pay" aria-label="Betaalmethoden">Visa, Mastercard, Maestro, American Express [overige betaalmethoden checken in Shopify]</p>
+      </aside>
+    </div>
+
+    <section class="wk-empty" id="wkEmpty" hidden>
+      <img src="img/sale/new-energy.jpg" alt="Handgeschreven: are you ready for new energy?">
+      <div>
+        <h2>je winkelwagen is nog leeg</h2>
+        <p>Alle kleding is nu 40% goedkoper. Of begin bij de journal essentials, daar starten de meeste waves.</p>
+        <div class="wk-empty-btns"><a class="wk-btn" href="sale.html">naar de sale</a><a class="wk-btn ghost" href="shop.html?c=journal-essentials">journal essentials</a></div>
+      </div>
+    </section>
+
+    <section class="wk-more" id="wkMore">
+      <h2 id="wkMoreH">maak het compleet</h2>
+      <ul class="wk-sug" id="wkSug"></ul>
+    </section>
   </div>
-</section>
-<section class="sec" style="padding-top:0" id="upsell"><div class="wrap"><div class="sec-head"><h2 style="font-size:clamp(32px,4vw,52px)">vaak erbij gekocht</h2></div><div class="grid-shop" id="ups"></div></div></section>
+
+  <div class="wk-sticky" id="wkSticky" hidden>
+    <span>totaal <b id="wkStT"></b></span>
+    <a class="wk-btn" id="wkStGo" href="#">afrekenen</a>
+  </div>
+</div>
 </main>
 
 <footer class="foot">
@@ -84,27 +120,62 @@
 <script src="app.js"></script>
 <script>
 (function () {
-  const H = window.HOW;
-  function draw() {
-    const c = H.cart();
-    H.shipBar(shipP);
-    if (!c.length) {
-      linesP.innerHTML = '<div class="empty"><p class="hand">nog leeg hier</p><p>Begin bij de journal essentials, daar starten de meeste waves.</p><a class="btn solid" href="shop.html?c=journal-essentials">naar de journal essentials</a></div>';
-      sum.hidden = true;
-    } else {
-      sum.hidden = false;
-      linesP.innerHTML = '<ul class="lines">' + c.map(H.lineHTML).join("") + '</ul>'; H.bindLines(linesP);
-      const t = H.total(); sSub.textContent = H.euro(t); sTot.textContent = H.euro(t);
-      sShip.textContent = t >= H.FREE ? "gratis" : "berekend bij afrekenen";
-      sGo.href = H.checkoutUrl();
-    }
-    const inCart = c.map(l => l.h);
-    ups.innerHTML = ["balance-kaartendeck-gesprekskaarten-journalvragen", "pen-create-your-reality", "stickervel-inspiration", "flower-card-ocean-aura", "posterset-aura-4-pack", "journal-waves-of-creation"]
-      .filter(h => !inCart.includes(h)).slice(0, 4).map(h => H.card(H.byH[h])).join("");
+  const H = window.HOW, E = H.euro;
+  const $ = id => document.getElementById(id);
+  const SUG = ["balance-kaartendeck-gesprekskaarten-journalvragen", "journal-waves-of-creation", "journal-pen-discount-bundle", "kaartendeck-journal-pen-mega-journaling-discount-bundle", "pen-create-your-reality", "stickervel-inspiration", "flower-card-ocean-aura", "posterset-aura-4-pack", "hoodie-blue-sunset", "t-shirt-sunset-aura"];
+
+  function line(l) {
+    const p = H.byH[l.h], v = H.variant(l);
+    return '<li class="wk-line"><a class="wk-img" href="product.html?p=' + p.h + '"><img src="' + p.img[0] + '" alt=""></a>' +
+      '<div class="wk-info"><a class="wk-name" href="product.html?p=' + p.h + '">' + p.t + '</a>' +
+      (v.t !== "Default Title" ? '<span class="wk-var">maat ' + v.t + '</span>' : '') + (v.was ? '<span class="wk-tag">sale −' + H.SALE.pct + '%</span>' : '') +
+      '<div class="wk-qty" role="group" aria-label="Aantal ' + p.t + '"><button type="button" data-q="' + l.id + '" data-d="-1" aria-label="Eén minder">−</button><span>' + l.q + '</span><button type="button" data-q="' + l.id + '" data-d="1" aria-label="Eén meer">+</button></div></div>' +
+      '<div class="wk-right"><span class="wk-price">' + (v.was ? '<s>' + E(v.was * l.q) + '</s>' : '') + E(v.p * l.q) + '</span><button type="button" class="wk-rm" data-rm="' + l.id + '" aria-label="' + p.t + ' verwijderen">verwijder</button></div></li>';
   }
+
+  function draw() {
+    const c = H.cart(), t = H.total(), n = H.count(), left = Math.max(0, H.FREE - t);
+    const save = c.reduce((a, l) => { const v = H.variant(l); return a + (v.was ? (v.was - v.p) * l.q : 0); }, 0);
+    const empty = !c.length;
+    $("wkCount").textContent = empty ? "" : n + (n === 1 ? " product" : " producten");
+    $("wkFull").hidden = empty; $("wkEmpty").hidden = !empty; $("wkWave").hidden = empty; $("wkSticky").hidden = empty;
+
+    // golf vult tot gratis verzending
+    const pct = Math.min(1, t / H.FREE);
+    $("wkFill").setAttribute("width", (pct * 600).toFixed(1));
+    $("wkWave").classList.toggle("done", left === 0);
+    $("wkWaveText").innerHTML = left > 0 ? "nog <b>" + E(left) + "</b> tot gratis verzending" : "<b>je verzending is gratis</b> 🌊";
+
+    if (!empty) {
+      $("wkLines").innerHTML = c.map(line).join("");
+      $("wkSub").textContent = E(t);
+      $("wkSaveRow").hidden = save <= 0; $("wkSave").textContent = "−" + E(save);
+      $("wkShip").textContent = left === 0 ? "gratis" : "zie je bij afrekenen";
+      $("wkTot").textContent = E(t); $("wkStT").textContent = E(t);
+      $("wkGo").href = $("wkStGo").href = H.checkoutUrl();
+    }
+
+    // suggesties: wat er nog niet in zit; wat je over de €100 tilt komt eerst
+    const inCart = c.map(l => l.h);
+    let sug = SUG.map(h => H.byH[h]).filter(p => p && !inCart.includes(p.h) && p.v.some(v => v.a));
+    const price = p => Math.min(...p.v.filter(v => v.a).map(v => v.p));
+    // eerst wat je over de €100 tilt (goedkoopste eerst), daarna wat het dichtst bij het ontbrekende bedrag komt
+    if (!empty && left > 0) sug.sort((a, b) => { const la = price(a) >= left, lb = price(b) >= left; return la !== lb ? lb - la : la ? price(a) - price(b) : price(b) - price(a); });
+    $("wkMoreH").textContent = empty ? "populair bij House of Waves" : left > 0 ? "nog iets voor erbij?" : "maak het compleet";
+    $("wkSug").innerHTML = sug.slice(0, 4).map(p => {
+      const one = p.v.length === 1, v = p.v.find(x => x.a), lifts = !empty && left > 0 && price(p) >= left;
+      return '<li class="wk-s"><a class="wk-s-img" href="product.html?p=' + p.h + '"><img src="' + p.img[0] + '" alt="" loading="lazy">' + (lifts ? '<span>+ gratis verzending</span>' : '') + '</a>' +
+        '<a class="wk-s-name" href="product.html?p=' + p.h + '">' + p.t + '</a><p class="wk-s-price">' + (v.was ? '<s>' + E(v.was) + '</s> ' : '') + E(price(p)) + '</p>' +
+        (one ? '<button type="button" class="wk-s-add" data-quiet data-addv="' + p.h + '|' + v.id + '">+ toevoegen</button>' : '<a class="wk-s-add" href="product.html?p=' + p.h + '">kies je maat</a>') + '</li>';
+    }).join("");
+  }
+
+  document.addEventListener("click", e => {
+    const q = e.target.closest(".wk [data-q]"); if (q) { const l = H.cart().find(x => x.id == q.dataset.q); H.setQ(l.id, l.q + +q.dataset.d); }
+    const r = e.target.closest(".wk [data-rm]"); if (r) H.setQ(+r.dataset.rm, 0);
+  });
   document.addEventListener("cart", draw); draw();
 })();
-
 </script>
 </body>
 </html>
