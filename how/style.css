@@ -425,3 +425,26 @@
 .grid-shop .item, .grid-shop .item.big { grid-column: auto; }
 .grid-shop .item .meta { flex-direction: column; align-items: flex-start; gap: 4px; }
 .grid-shop .item .meta h3 { min-width: 0; overflow-wrap: anywhere; }
+
+/* Waves-pagina: golvende tijdlijn die zich tekent tijdens het scrollen */
+.timeline.wavy::before, .timeline.wavy .tl::after { display: none; }
+.tl-wave { position: absolute; left: 0; top: 0; width: 100%; pointer-events: none; overflow: visible; z-index: 0; }
+.tl-wave path { fill: none; stroke-width: 3; stroke-linecap: round; }
+.tl-wave .ghost { stroke: rgba(47,79,89,.12); stroke-dasharray: 2 10; }
+.tl-wave .dots circle { fill: var(--sand); stroke: rgba(47,79,89,.3); stroke-width: 2; transition: fill .5s, stroke .5s, r .5s; }
+.tl-wave .dots circle.on { fill: var(--paper); stroke: var(--sea); }
+.timeline.wavy .tl { z-index: 1; }
+.timeline.wavy .tl-pic { transition: transform .2s linear; will-change: transform; }
+@media (prefers-reduced-motion: no-preference) {
+  .tl.swell { opacity: 0; transform: translate(var(--sx, 0), 80px) rotate(var(--sr, 0deg)); transition: opacity 1.1s ease, transform 1.4s cubic-bezier(.16,1.12,.3,1); }
+  .tl.swell.from-l { --sx: -40px; --sr: -2.5deg; }
+  .tl.swell.from-r { --sx: 40px; --sr: 2.5deg; }
+  .tl.swell.in-wave { opacity: 1; transform: none; }
+  .tl.swell .when, .tl.swell h2, .tl.swell .q, .tl.swell .b, .tl.swell .btn { opacity: 0; transform: translateY(18px); transition: opacity .8s ease, transform 1s cubic-bezier(.16,1.12,.3,1); }
+  .tl.swell.in-wave .when { transition-delay: .25s; } .tl.swell.in-wave h2 { transition-delay: .35s; } .tl.swell.in-wave .q { transition-delay: .45s; } .tl.swell.in-wave .b { transition-delay: .55s; } .tl.swell.in-wave .btn { transition-delay: .65s; }
+  .tl.swell.in-wave .when, .tl.swell.in-wave h2, .tl.swell.in-wave .q, .tl.swell.in-wave .b, .tl.swell.in-wave .btn { opacity: 1; transform: none; }
+}
+/* geen horizontale scroll door golf-entree of aura-vlekken */
+html,body{overflow-x:clip}
+.timeline.wavy{overflow-x:clip}
+@media (max-width:700px){.tl.swell:not(.in-wave){transform:translateY(34px) rotate(0)!important}}
