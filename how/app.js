@@ -92,9 +92,31 @@
     } else rv.forEach(el => el.classList.add("in"));
   };
 
-  /* ---------- FAQ: golfje dat wegspoelt als je een vraag opent ---------- */
-  const WAVE = '<svg class="surfy" viewBox="0 0 40 24" aria-hidden="true"><path class="flat" d="M4 17.5 C10 17 16 18 22 17.4 S32 17 36 17.5"/><g class="roll"><path d="M2 17.5 C7 17.5 9.5 15 12 11 C15 6 18.5 3.2 23.5 3.2 C28.5 3.2 31 6.8 29.2 9.8 C27.6 12.2 24.4 11.6 24.6 9.1"/><path class="tail" d="M25 17.5 C28 17.5 29.5 15.8 32 15.8 C34.5 15.8 35.8 17.5 38 17.5"/><circle cx="31.5" cy="4.5" r=".9"/><circle cx="34" cy="7.5" r=".7"/></g></svg>';
-  document.querySelectorAll(".acc summary").forEach(s => s.insertAdjacentHTML("beforeend", WAVE));
+  /* ---------- FAQ: golfje breekt en spoelt weg bij openen, rolt weer aan bij sluiten ---------- */
+  const WAVE = '<svg class="surfy" viewBox="0 0 40 24" aria-hidden="true">' +
+    '<path class="flat" d="M3 18 C9 17.2 15 18.6 21 17.8 S32 17.2 37 18"/>' +
+    '<g class="back"><path d="M10 18 C14 18 16 15 19 13.5 C22 12 25 13.5 26 15.5"/></g>' +
+    '<g class="roll"><path d="M2 18 C7 18 9.5 15.5 12 11.5 C15 6.5 18.5 3.5 23.5 3.5 C28.5 3.5 31 7 29.2 10 C27.6 12.4 24.4 11.8 24.6 9.3"/><path d="M25 18 C28 18 29.5 16.3 32 16.3 C34.5 16.3 35.8 18 38 18"/></g>' +
+    '<g class="drops"><circle cx="30" cy="5" r="1"/><circle cx="33" cy="8" r=".8"/><circle cx="27" cy="2.5" r=".7"/></g></svg>';
+  const sums = document.querySelectorAll(".acc summary");
+  sums.forEach(s => {
+    s.insertAdjacentHTML("beforeend", WAVE);
+    const svg = s.lastElementChild;
+    svg.addEventListener("animationend", e => { if (e.animationName === "breakOut" || e.animationName === "rollIn") { svg.classList.remove("go-out", "go-in"); svg.style.animationDelay = ""; } });
+  });
+  document.querySelectorAll(".acc details").forEach(d => d.addEventListener("toggle", () => {
+    const svg = d.querySelector(".surfy"); if (!svg || reduce) return;
+    svg.classList.remove("go-out", "go-in"); void svg.offsetWidth;
+    svg.classList.add(d.open ? "go-out" : "go-in");
+  }));
+  // bij binnenscrollen spoelen de golfjes één voor één aan
+  if ("IntersectionObserver" in window && !reduce) {
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return; io.unobserve(e.target);
+      e.target.querySelectorAll("details:not([open]) .surfy").forEach((svg, i) => { svg.style.animationDelay = (i * .12) + "s"; svg.classList.add("go-in"); });
+    }), { threshold: .3 });
+    document.querySelectorAll(".acc").forEach(a => io.observe(a));
+  }
 
   /* ---------- Mobiel menu ---------- */
   const mBtn = document.getElementById("menuBtn"), mNav = document.getElementById("mobileNav");
