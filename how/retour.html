@@ -39,12 +39,12 @@
   <div class="rt-wrap">
     <aside class="rt-side">
       <h1>retour aanvragen</h1>
-      <p>Past iets niet of is het anders dan je dacht? Geen probleem. Vul je bestelling in, kies wat je terugstuurt en wij laten je weten hoe het verder gaat.</p>
+      <p>Past iets niet of is het anders dan je dacht? Geen probleem, je hebt 14 dagen. Vul je bestelling in, kies wat je terugstuurt en wij laten je weten hoe het verder gaat.</p>
       <ul class="rt-policy">
-        <li><b>Termijn</b> [aantal] dagen na ontvangst</li>
-        <li><b>Verzendkosten</b> [wie betaalt de retourzending?]</li>
-        <li><b>Sale-items</b> [wel of niet retourneerbaar?]</li>
-        <li><b>Geld terug</b> binnen [aantal] dagen nadat we je retour hebben ontvangen</li>
+        <li><b>Termijn</b> 14 dagen na ontvangst</li>
+        <li><b>Verzendkosten</b> voor jouw rekening, tenzij het product defect of beschadigd was</li>
+        <li><b>Sale-items</b> [wel of niet retourneerbaar? Nog bevestigen]</li>
+        <li><b>Geld terug</b> binnen 14 dagen, op de rekening waarmee je betaalde</li>
       </ul>
       <img src="img/sale/begin-again.jpg" alt="Uitzicht uit een vliegtuigraam bij zonsondergang met de handgeschreven tekst: I can begin again and again" loading="lazy">
     </aside>
@@ -85,7 +85,7 @@
         <fieldset class="rt-panel" data-panel="3" hidden>
           <legend>Klopt alles?</legend>
           <div class="rt-review" id="rtReview"></div>
-          <label class="rt-check"><input type="checkbox" id="rtOk" name="akkoord" value="ja"> <span>De producten zijn ongedragen en zitten nog in de originele staat [voorwaarde checken met Eva].</span></label>
+          <label class="rt-check"><input type="checkbox" id="rtOk" name="akkoord" value="ja"> <span>De producten zijn ongebruikt en zitten nog in de originele staat en verpakking.</span></label>
           <p class="rt-err" id="rtErr3" role="alert" hidden></p>
           <div class="rt-nav"><button type="button" class="rt-btn ghost" data-next="2">terug</button><button type="submit" class="rt-btn" id="rtSend">retour aanvragen</button></div>
         </fieldset>
@@ -93,11 +93,11 @@
 
       <section class="rt-done" id="rtDone" hidden tabindex="-1">
         <h2>we hebben je aanvraag ontvangen</h2>
-        <p>Je referentie is <b id="rtRef"></b>. Binnen [aantal] werkdagen krijg je een mail op <b id="rtMail"></b> met het retouradres en wat je verder moet doen.</p>
+        <p>Je referentie is <b id="rtRef"></b>. Uiterlijk binnen 2 werkdagen krijg je een mail op <b id="rtMail"></b> met het retouradres en wat je verder moet doen.</p>
         <ol class="rt-next">
           <li>Je krijgt een mail met het retouradres [of retourlabel].</li>
-          <li>Pak het product in en zet je referentie op een briefje in het pakket.</li>
-          <li>Zodra we het binnen hebben, krijg je je geld terug of je nieuwe maat.</li>
+          <li>Pak het product in, in de originele verpakking. Gebruik de retourstrip van de papieren zak en zet je referentie op een briefje erbij.</li>
+          <li>Zodra we het binnen hebben, krijg je binnen 14 dagen je geld terug, of je nieuwe maat.</li>
         </ol>
         <p><a class="rt-btn" href="sale.html">verder shoppen</a></p>
       </section>
@@ -113,7 +113,7 @@
       <p style="margin-top:16px;max-width:22rem;opacity:.8;font-size:15px">Balans in je dagelijkse flow. Journals, kaartendecks en meer, gemaakt door Eva Rose.</p>
     </div>
     <div><h4>shop</h4><ul><li><a href="shop.html?c=journal-essentials">journal essentials</a></li><li><a href="waves.html">waves</a></li><li><a href="shop.html">alle producten</a></li><li><a href="winkelwagen.html">winkelwagen</a></li></ul></div>
-    <div><h4>info</h4><ul><li><a href="verhaal.html">ons verhaal</a></li><li><a href="contact.html#verzending">verzending &amp; retour</a></li><li><a href="retour.html">retour aanvragen</a></li><li><a href="contact.html">contact</a></li><li><a href="contact.html#faq">veelgestelde vragen</a></li></ul></div>
+    <div><h4>info</h4><ul><li><a href="verhaal.html">ons verhaal</a></li><li><a href="verzending.html">verzending &amp; retour</a></li><li><a href="retour.html">retour aanvragen</a></li><li><a href="contact.html">contact</a></li><li><a href="contact.html#faq">veelgestelde vragen</a></li></ul></div>
     <div><h4>volg ons</h4><ul><li><a href="https://www.instagram.com/houseofwaves.nl/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.youtube.com/channel/UCZk25ujGGPJJ8OeNpAnQAMw" target="_blank" rel="noopener">YouTube</a></li><li><a href="https://open.spotify.com/show/7xa0ywGRBaXwm5x2HzpBCw" target="_blank" rel="noopener">podcast</a></li></ul></div>
     <p class="small"><span>© 2026 House of Waves · gratis verzending vanaf €100 naar NL &amp; BE</span><span>ontwerp · afrekenen gaat via de echte webshop</span></p>
   </div>
@@ -212,7 +212,7 @@
 
   form.addEventListener("submit", async e => {
     e.preventDefault();
-    if (!$("rtOk").checked) return err(3, "Vink aan dat de producten ongedragen zijn, dan kun je versturen.");
+    if (!$("rtOk").checked) return err(3, "Vink aan dat de producten ongebruikt zijn, dan kun je versturen.");
     err(3);
     const ref = "R-" + $("rtOrder").value.replace(/\D/g, "").slice(-6) + "-" + Date.now().toString(36).slice(-4).toUpperCase();
     $("rtItemsField").value = items.map(line).join("\n"); $("rtRefField").value = ref;
