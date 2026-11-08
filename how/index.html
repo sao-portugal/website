@@ -197,11 +197,23 @@
 
   /* Reviews */
   .reviews { background: linear-gradient(180deg, var(--sand), var(--paper)); }
-  .rev-grid { columns: 3 300px; column-gap: clamp(14px, 1.8vw, 24px); }
-  .rev { break-inside: avoid; margin-bottom: clamp(14px, 1.8vw, 24px); padding: 26px; border-radius: 22px; background: var(--paper); border: 1px solid var(--line); position: relative; overflow: hidden; }
+  .reviews.sec { padding-block: clamp(48px, 6vw, 88px); }
+  .reviews .sec-head { margin-bottom: 24px; }
+  .rev-grid { display: flex; align-items: flex-start; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 6px var(--gut-r) 18px var(--gut); margin: 0 calc(-1 * var(--gut-r)) 0 calc(-1 * var(--gut)); scrollbar-width: none; cursor: grab; }
+  .rev-grid::-webkit-scrollbar { display: none; }
+  .rev-grid.drag { cursor: grabbing; scroll-snap-type: none; }
+  .rev-grid .rev { flex: 0 0 clamp(270px, 30vw, 360px); scroll-snap-align: start; transition: transform .5s cubic-bezier(.2,.8,.2,1); }
+  .rev-grid .rev:nth-child(odd) { transform: rotate(-1.2deg); }
+  .rev-grid .rev:nth-child(even) { transform: rotate(1deg) translateY(8px); }
+  .rev-grid .rev:hover { transform: rotate(0) translateY(-4px); }
+  .rev-nav { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 6px; }
+  .dots { display: flex; gap: 8px; }
+  .dots i { width: 8px; height: 8px; border-radius: 50%; background: var(--line); transition: background-color .3s, width .3s; }
+  .dots i.on { width: 22px; border-radius: 99px; background: var(--sea); }
+  .rev { padding: 22px; border-radius: 22px; background: var(--paper); border: 1px solid var(--line); position: relative; overflow: hidden; }
   .rev::before { content: ""; position: absolute; width: 140px; height: 140px; right: -50px; top: -50px; border-radius: 50%; filter: blur(30px); opacity: .55; background: var(--c, var(--peach)); }
   .rev .stars { letter-spacing: 3px; color: var(--sea); font-size: 14px; }
-  .rev p { position: relative; margin-top: 12px; font-size: 16px; }
+  .rev p { position: relative; margin-top: 10px; font-size: 15px; line-height: 1.55; }
   .rev footer { position: relative; margin-top: 16px; display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; font-size: 13.5px; }
   .rev footer b { font-family: var(--hand); font-size: 26px; font-weight: 400; color: var(--deep); line-height: .8; }
   .rev footer span { color: var(--sea); }
@@ -443,15 +455,16 @@
     <div class="wrap">
       <div class="sec-head rv">
         <h2>jullie mening</h2>
-        <p>Een paar reviews van jullie, precies zoals ze binnenkwamen.</p>
+        <p>Een paar reviews van jullie, precies zoals ze binnenkwamen. Swipe door ze heen.</p>
       </div>
-      <div class="rev-grid">
-        <article class="rev rv" style="--c:var(--peach)"><p class="stars" aria-label="5 sterren">★★★★★</p><p>“De journal is super fijn! Dik papier dat niet doorschijnt en goede harde kaft zodat 'ie niet beschadigd raakt. De invul pagina's zijn ook top, hele leuk vragen en dingen zoals een habittracker. Ik gebruik hem elke dag en vind hem echt fantastisch. Ook het kaarten dek is echt top. Love house of waves🌊”</p><footer><b>Lotte</b><span>mega journaling bundle</span></footer></article>
-        <article class="rev rv" style="--c:var(--lilac)"><p class="stars" aria-label="5 sterren">★★★★★</p><p>“Super blij met de kaartendeck! De kaarten zien er hetzelfde uit als op de website foto's. Net zoals het T-shirt. Deze is ook van goede kwaliteit. Het pakketje was mooi verpakt met een leuke kaart erbij! :)”</p><footer><b>Charlotte</b><span>card deck &amp; shirt</span></footer></article>
-        <article class="rev rv" style="--c:var(--aqua)"><p class="stars" aria-label="5 sterren">★★★★★</p><p>“Heb het shirt inmiddels al een tijdje, en het shirt zit echt super!! Heel blij mee :)) Ook was de verzending snel en was het pakketje leuk ingepakt!”</p><footer><b>Elise</b><span>sunset aura t-shirt</span></footer></article>
-        <article class="rev rv" style="--c:var(--rose)"><p class="stars" aria-label="5 sterren">★★★★★</p><p>“Zo blij met dit sportvest! Ik gebruik hem vooral voor het hardlopen en ook met lange afstanden blijft hij goed zitten. Het is echt mijn go to-sportvest geworden.”</p><footer><b>Charlotte</b><span>zip jacket · flowy green</span></footer></article>
-        <article class="rev rv" style="--c:var(--sky)"><p class="stars" aria-label="5 sterren">★★★★★</p><p>“Ik heb het prachtige blauwe setje van Eva mogen ontvangen. Hij zit absoluut lekker en sluit perfect aan! Ik zou hem iedereen aanraden!! Bedankt voor het super leuke setje Eva xx”</p><footer><b>Indira</b><span>ocean blue sportset</span></footer></article>
+      <div class="rev-grid" id="revTrack" aria-label="Reviews">
+        <article class="rev " style="--c:var(--peach)"><p class="stars" aria-label="5 sterren">★★★★★</p><p>“De journal is super fijn! Dik papier dat niet doorschijnt en goede harde kaft zodat 'ie niet beschadigd raakt. De invul pagina's zijn ook top, hele leuk vragen en dingen zoals een habittracker. Ik gebruik hem elke dag en vind hem echt fantastisch. Ook het kaarten dek is echt top. Love house of waves🌊”</p><footer><b>Lotte</b><span>mega journaling bundle</span></footer></article>
+        <article class="rev " style="--c:var(--lilac)"><p class="stars" aria-label="5 sterren">★★★★★</p><p>“Super blij met de kaartendeck! De kaarten zien er hetzelfde uit als op de website foto's. Net zoals het T-shirt. Deze is ook van goede kwaliteit. Het pakketje was mooi verpakt met een leuke kaart erbij! :)”</p><footer><b>Charlotte</b><span>card deck &amp; shirt</span></footer></article>
+        <article class="rev " style="--c:var(--aqua)"><p class="stars" aria-label="5 sterren">★★★★★</p><p>“Heb het shirt inmiddels al een tijdje, en het shirt zit echt super!! Heel blij mee :)) Ook was de verzending snel en was het pakketje leuk ingepakt!”</p><footer><b>Elise</b><span>sunset aura t-shirt</span></footer></article>
+        <article class="rev " style="--c:var(--rose)"><p class="stars" aria-label="5 sterren">★★★★★</p><p>“Zo blij met dit sportvest! Ik gebruik hem vooral voor het hardlopen en ook met lange afstanden blijft hij goed zitten. Het is echt mijn go to-sportvest geworden.”</p><footer><b>Charlotte</b><span>zip jacket · flowy green</span></footer></article>
+        <article class="rev " style="--c:var(--sky)"><p class="stars" aria-label="5 sterren">★★★★★</p><p>“Ik heb het prachtige blauwe setje van Eva mogen ontvangen. Hij zit absoluut lekker en sluit perfect aan! Ik zou hem iedereen aanraden!! Bedankt voor het super leuke setje Eva xx”</p><footer><b>Indira</b><span>ocean blue sportset</span></footer></article>
       </div>
+      <div class="rev-nav"><div class="dots" id="revDots" aria-hidden="true"></div><div class="arrows"><button type="button" id="rPrev" aria-label="Vorige review"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" id="rNext" aria-label="Volgende review"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div></div>
     </div>
   </section>
 
@@ -548,6 +561,19 @@
   const step = () => (track.querySelector(".wave").getBoundingClientRect().width + 18);
   document.getElementById("wPrev").addEventListener("click", () => track.scrollBy({ left: -step(), behavior: reduce ? "auto" : "smooth" }));
   document.getElementById("wNext").addEventListener("click", () => track.scrollBy({ left: step(), behavior: reduce ? "auto" : "smooth" }));
+
+  // Reviews: swipe, slepen met de muis, pijlen en bolletjes
+  const rt = document.getElementById("revTrack"), cards = [...rt.children], dots = document.getElementById("revDots");
+  cards.forEach(() => dots.appendChild(document.createElement("i")));
+  const rstep = () => cards[0].getBoundingClientRect().width + 16;
+  function mark() { const k = Math.round(rt.scrollLeft / rstep()); [...dots.children].forEach((d, j) => d.classList.toggle("on", j === Math.min(k, cards.length - 1))); }
+  rt.addEventListener("scroll", () => requestAnimationFrame(mark), { passive: true }); mark();
+  document.getElementById("rPrev").addEventListener("click", () => rt.scrollBy({ left: -rstep(), behavior: reduce ? "auto" : "smooth" }));
+  document.getElementById("rNext").addEventListener("click", () => rt.scrollBy({ left: rstep(), behavior: reduce ? "auto" : "smooth" }));
+  let down = false, sx = 0, sl = 0;
+  rt.addEventListener("pointerdown", e => { if (e.pointerType !== "mouse") return; down = true; sx = e.clientX; sl = rt.scrollLeft; rt.classList.add("drag"); });
+  addEventListener("pointermove", e => { if (down) rt.scrollLeft = sl - (e.clientX - sx); });
+  addEventListener("pointerup", () => { if (!down) return; down = false; rt.classList.remove("drag"); rt.scrollTo({ left: Math.round(rt.scrollLeft / rstep()) * rstep(), behavior: "smooth" }); });
 
   // Nieuwsbrief (ontwerp: verstuurt niets)
   document.getElementById("newsForm").addEventListener("submit", e => {
