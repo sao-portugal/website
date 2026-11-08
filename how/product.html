@@ -114,7 +114,7 @@
     opts.addEventListener("click", e => { const b = e.target.closest("button"); if (!b || b.disabled) return; v = p.v.find(x => x.id == b.dataset.id); upd(); });
   }
   function upd() {
-    pp.innerHTML = (v.was ? "<s>" + H.euro(v.was) + "</s>" : "") + H.euro(v.p) + (p.h.includes("bundle") ? "<small>bundelprijs</small>" : v.was ? '<small class="salenote">−' + H.SALE.pct + '% · laatste voorraad, op = op</small>' : "");
+    pp.innerHTML = (v.was ? "<s>" + H.euro(v.was) + "</s>" : "") + H.euro(v.p) + (p.h.includes("bundle") ? "<small>bundelprijs</small>" : v.was ? '<small class="salenote">−' + H.SALE.pct + '% · op = op</small>' : "");
     opts.querySelectorAll && opts.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.id == v.id)));
     qn.textContent = q;
     addBtn.disabled = !v.a; addBtn.textContent = v.a ? "in mijn mandje · " + H.euro(v.p * q) : "uitverkocht";

@@ -74,7 +74,7 @@
   window.HOW.card = function (p, opts) {
     opts = opts || {};
     const v0 = p.v[0], min = Math.min(...p.v.map(v => v.p)), sold = p.v.every(v => !v.a);
-    const tag = sold ? '<span class="tag">uitverkocht</span>' : p.sale ? '<span class="tag sale">−' + SALE.pct + '% · op = op</span>' : p.h.includes("bundle") ? '<span class="tag">bundel · voordeel</span>' : "";
+    const tag = sold ? '<span class="tag">uitverkocht</span>' : p.sale ? '<span class="tag sale">−' + SALE.pct + '%</span>' : p.h.includes("bundle") ? '<span class="tag">bundel · voordeel</span>' : "";
     const quick = p.v.length === 1 && !sold ? '<button class="quick" type="button" data-add="' + p.h + '" aria-label="' + p.t + ' in winkelwagen">+ in winkelwagen</button>' : "";
     return '<article class="item' + (opts.big ? " big" : "") + '"><div class="phw"><a class="ph" href="product.html?p=' + p.h + '">' + tag +
       '<img src="' + p.img[0] + '" alt="' + p.t + '" loading="lazy">' + (p.img[1] ? '<img src="' + p.img[1] + '" alt="" loading="lazy">' : "") + '</a>' + quick + '</div>' +
