@@ -19,14 +19,15 @@
   const variant = l => byH[l.h].v.find(v => v.id === l.id);
   const count = () => cart.reduce((a, l) => a + l.q, 0);
   const total = () => cart.reduce((a, l) => a + l.q * variant(l).p, 0);
-  function add(h, id, q) {
+  function add(h, id, q, quiet) {
     const l = cart.find(x => x.id === id);
     if (l) l.q += q; else cart.push({ h, id, q });
-    save(); openDrawer();
+    save();
+    if (quiet) document.dispatchEvent(new CustomEvent("added", { detail: { h, id } })); else openDrawer();
   }
   function setQ(id, q) { const l = cart.find(x => x.id === id); if (!l) return; l.q = Math.max(0, Math.min(20, q)); cart = cart.filter(x => x.q > 0); save(); }
   function checkoutUrl() { return "https://houseofwaves.nl/cart/" + cart.map(l => l.id + ":" + l.q).join(",") + (SALE.on && cart.some(l => byH[l.h].sale) ? "?discount=" + SALE.code : ""); }
-  window.HOW = { SALE, add, setQ, cart: () => cart, total, count, euro, byH, P, checkoutUrl, FREE, variant, reduce };
+  window.HOW = { SALE, add, openDrawer: () => openDrawer(), setQ, cart: () => cart, total, count, euro, byH, P, checkoutUrl, FREE, variant, reduce };
 
   /* ---------- Drawer ---------- */
   const drawer = document.getElementById("drawer"), scrim = document.getElementById("scrim");
@@ -86,7 +87,7 @@
   });
   document.addEventListener("click", e => {
     const b = e.target.closest("[data-addv]"); if (!b) return;
-    const [h, id] = b.dataset.addv.split("|"); add(h, +id, 1);
+    const [h, id] = b.dataset.addv.split("|"); add(h, +id, 1, b.hasAttribute("data-quiet"));
   });
 
   /* ---------- Reveal ---------- */

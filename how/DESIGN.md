@@ -1,7 +1,7 @@
 # House of Waves · DESIGN.md
 
 Gebaseerd op houseofwaves.nl zelf (Shopify Dawn-thema, bekeken 8 nov 2026), niet op voorbeelden van andere sites.
-Doel: pagina's die je niet kunt onderscheiden van de echte webshop, met de beelden als het opvallende element.
+Doel: hun kleuren, letters en beelden; het ontwerp en de UX mogen beter dan hun huidige thema.
 
 ## Kleur
 | token | waarde | rol |
@@ -25,7 +25,7 @@ Contrast: teal op zand 6,3:1; wit op teal 7,4:1; sale-oranje alleen op groot/vet
 4px-basis: 4, 8, 12, 16, 24, 32, 48, 64, 96. Secties 64px (mobiel 48px). Tekstbreedte 1200px; productrijen lopen van rand tot rand, net als op hun homepage.
 
 ## Vorm
-- Radius: 0 voor knoppen, invoer en tekstvakken (hun thema); 0 voor foto's in rijen; **40px voor maat-pills** (hun `--variant-pills-radius`); 14px voor reviewkaartjes.
+- Radius: 4px voor knoppen en invoer; 8px voor foto's en banners; 14px voor kaartjes (reviews, aanbodvlak); 40px voor maat-pills (hun `--variant-pills-radius`). Hun eigen thema is recht; wij ronden licht af voor een zachtere uitstraling, maar nooit tot pil-knoppen.
 - Schaduw: geen. Diepte komt uit de foto's.
 
 ## Componenten
