@@ -37,19 +37,16 @@
 
 <div class="sx">
   <section class="sx-hero">
-    <div class="sx-hero-text">
-      <p class="sx-eyebrow">sinterklaas &amp; kerst sale</p>
-      <h1>40% op alle kleding</h1>
-      <p class="sx-hero-sub">Hoodies, sweaters, t-shirts en sportsetjes. De korting zie je meteen in je winkelwagen. Op = op, dus wees er snel bij! 🌊</p>
-      <p class="sx-end" id="sxEnd" hidden></p>
-      <a class="sx-btn" href="#shop">shop de sale</a>
-      <ul class="sx-quick" aria-label="Direct naar">
-        <li><a href="#shop" data-go="hoodie"><img data-qimg="hoodie-blue-sunset" alt=""><span><b>hoodies &amp; sweaters</b><i data-qmin="hoodie"></i></span></a></li>
-        <li><a href="#shop" data-go="tee"><img data-qimg="t-shirt-sunset-aura" alt=""><span><b>t-shirts &amp; hat</b><i data-qmin="tee"></i></span></a></li>
-        <li><a href="#shop" data-go="sport"><img data-qimg="sport-top-ocean-blue" alt=""><span><b>sportsetjes</b><i data-qmin="sport"></i></span></a></li>
-      </ul>
+    <div class="sx-hero-pics">
+      <img src="img/sale/hero-hoodie.jpg" alt="De Green Eye hoodie bij zonsondergang aan zee" fetchpriority="high">
+      <img src="img/sale/hero-sport.jpg" alt="Twee vrouwen in de Ocean Blue en Flowy Green sportsets">
     </div>
-    <figure class="sx-hero-pic"><img src="img/sale/hero-hoodie.jpg" alt="De Green Eye hoodie van House of Waves bij zonsondergang aan zee" fetchpriority="high"></figure>
+    <div class="sx-hero-copy">
+      <p class="sx-hero-kick">sinterklaas &amp; kerst sale</p>
+      <h1>40% op alle kleding</h1>
+      <p class="sx-end" id="sxEnd" hidden></p>
+      <a class="sx-hero-link" href="#shop">shop de sale</a>
+    </div>
   </section>
 
   <section class="sx-shop" id="shop" aria-label="Sale-producten">
@@ -186,8 +183,6 @@
   draw();
 
   // snelkoppelingen in de header: beeld + echte vanaf-prijs, en ze zetten het filter
-  document.querySelectorAll("[data-qimg]").forEach(i => { const p = H.byH[i.dataset.qimg]; if (p) i.src = p.img[0]; });
-  document.querySelectorAll("[data-qmin]").forEach(el => { const m = Math.min(...CAT[el.dataset.qmin].map(h => H.byH[h]).filter(p => p && p.v.some(v => v.a)).flatMap(p => p.v.filter(v => v.a).map(v => v.p))); el.textContent = "vanaf " + E(m); });
   document.querySelectorAll("[data-go]").forEach(a => a.addEventListener("click", () => { c = a.dataset.go; draw(); }));
 
   // upsell: journal essentials met één klik erbij

@@ -37,17 +37,17 @@
 
 <div class="bf" id="bf">
   <section class="bf-hero">
-    <div class="bf-hero-text">
+    <picture class="bf-hero-pic">
+      <source media="(max-width: 760px)" srcset="img/bf/hero.jpg">
+      <img src="img/bf/hero-wide.jpg" alt="Drie vrouwen hardlopend in de Ocean Blue en Flowy Green sportsets van House of Waves" fetchpriority="high">
+    </picture>
+    <div class="bf-hero-copy">
       <p class="bf-eyebrow" id="bfWhen">black friday, 27 t/m 30 november</p>
-      <h1>70% korting op de volledige sportset</h1>
-      <p class="bf-anchor">Sport top + shorts voor <b id="bfFrom"></b> <s id="bfFromWas"></s></p>
-      <div class="bf-clock" id="bfClock" aria-live="off">
-        <p id="bfClockLabel">nog</p>
-        <ol><li><b data-u="d">0</b><span>dagen</span></li><li><b data-u="h">0</b><span>uur</span></li><li><b data-u="m">0</b><span>min</span></li><li><b data-u="s">0</b><span>sec</span></li></ol>
-      </div>
-      <div class="bf-ctas"><a class="bf-btn" href="#sets" id="bfCta">kies je set</a><a class="bf-cal" id="bfCal" hidden download="house-of-waves-black-friday.ics">zet in je agenda</a></div>
+      <h1>70% op de volledige sportset</h1>
+      <p class="bf-anchor">top + shorts vanaf <b id="bfFrom"></b> <s id="bfFromWas"></s></p>
+      <p class="bf-clock" id="bfClock"><span id="bfClockLabel">nog</span> <b data-u="d">0</b>d <b data-u="h">00</b>u <b data-u="m">00</b>m <b data-u="s">00</b>s</p>
+      <p class="bf-links"><a class="bf-hero-link" href="#sets" id="bfCta">kies je set</a><a class="bf-hero-link" id="bfCal" hidden download="house-of-waves-black-friday.ics">zet in je agenda</a></p>
     </div>
-    <figure class="bf-hero-pic"><img src="img/bf/hero.jpg" alt="Twee vrouwen in de Ocean Blue en Flowy Green sportsets van House of Waves" fetchpriority="high"></figure>
   </section>
 
   <ul class="bf-trust bf-wrap" aria-label="Goed om te weten">
@@ -199,7 +199,7 @@
     const s = state(), target = s === "soon" ? start : end, left = Math.max(0, target - Date.now()) / 1000;
     const u = { d: Math.floor(left / 86400), h: Math.floor(left % 86400 / 3600), m: Math.floor(left % 3600 / 60), s: Math.floor(left % 60) };
     Object.keys(u).forEach(k => clock.querySelector('[data-u="' + k + '"]').textContent = String(u[k]).padStart(k === "d" ? 1 : 2, "0"));
-    $("bfClockLabel").textContent = s === "soon" ? "de actie start over" : "de actie stopt over";
+    $("bfClockLabel").textContent = s === "soon" ? "start over" : "nog";
     clock.hidden = s === "over";
     stT.innerHTML = s === "live" ? "nog <b>" + (u.d ? u.d + "d " : "") + u.h + "u " + String(u.m).padStart(2, "0") + "m</b>, sets vanaf " + E(minNow) : s === "soon" ? "start vrijdag 27 november" : "de actie is voorbij";
   }
