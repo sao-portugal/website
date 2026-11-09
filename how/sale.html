@@ -37,16 +37,19 @@
 
 <div class="sx">
   <section class="sx-hero">
-    <div class="sx-video" aria-hidden="true"><video autoplay muted loop playsinline preload="metadata" poster="img/sale/hero-poster.jpg"><source src="img/sale/hero.mp4" type="video/mp4"></video></div>
-    <div class="sx-wrap">
-      <div class="sx-offer">
-        <p class="sx-eyebrow">sinterklaas &amp; kerst sale</p>
-        <h1>40% op alle kleding</h1>
-        <p>Hoodies, sweaters, t-shirts en sportsetjes. De korting zie je meteen in je winkelwagen. Op = op, dus wees er snel bij! 🌊</p>
-        <p class="sx-end" id="sxEnd" hidden></p>
-        <a class="sx-btn" href="#shop">shop de sale</a>
-      </div>
+    <div class="sx-hero-text">
+      <p class="sx-eyebrow">sinterklaas &amp; kerst sale</p>
+      <h1>40% op alle kleding</h1>
+      <p class="sx-hero-sub">Hoodies, sweaters, t-shirts en sportsetjes. De korting zie je meteen in je winkelwagen. Op = op, dus wees er snel bij! 🌊</p>
+      <p class="sx-end" id="sxEnd" hidden></p>
+      <a class="sx-btn" href="#shop">shop de sale</a>
+      <ul class="sx-quick" aria-label="Direct naar">
+        <li><a href="#shop" data-go="hoodie"><img data-qimg="hoodie-blue-sunset" alt=""><span><b>hoodies &amp; sweaters</b><i data-qmin="hoodie"></i></span></a></li>
+        <li><a href="#shop" data-go="tee"><img data-qimg="t-shirt-sunset-aura" alt=""><span><b>t-shirts &amp; hat</b><i data-qmin="tee"></i></span></a></li>
+        <li><a href="#shop" data-go="sport"><img data-qimg="sport-top-ocean-blue" alt=""><span><b>sportsetjes</b><i data-qmin="sport"></i></span></a></li>
+      </ul>
     </div>
+    <figure class="sx-hero-pic"><img src="img/sale/hero-hoodie.jpg" alt="De Green Eye hoodie van House of Waves bij zonsondergang aan zee" fetchpriority="high"></figure>
   </section>
 
   <section class="sx-shop" id="shop" aria-label="Sale-producten">
@@ -137,7 +140,6 @@
   const H = window.HOW, E = H.euro;
   // zet hier de einddatum van de sale (bijv. "2026-12-24T23:59:00+01:00") om een aftelklok te tonen
   const END = "";
-  const vid = document.querySelector(".sx-video video"); if (vid && H.reduce) { vid.removeAttribute("autoplay"); vid.pause(); }
 
   const CAT = { hoodie: ["hoodie-blue-sunset", "hoodie-green-eye", "sweater-stargazer"], tee: ["t-shirt-sunset-aura", "t-shirt-ocean-aura", "bucket-hat-house-of-waves"], sport: ["zip-jacket-flowy-green", "sport-top-ocean-blue", "shorts-ocean-blue", "sport-top-flowy-green", "shorts-flowy-green"] };
   const ALL = [].concat(CAT.hoodie, CAT.tee, CAT.sport).map(h => H.byH[h]).filter(p => p && p.sale);
@@ -182,6 +184,11 @@
   }));
   grid.addEventListener("click", e => { if (e.target.closest("[data-clear]")) { size = ""; draw(); } });
   draw();
+
+  // snelkoppelingen in de header: beeld + echte vanaf-prijs, en ze zetten het filter
+  document.querySelectorAll("[data-qimg]").forEach(i => { const p = H.byH[i.dataset.qimg]; if (p) i.src = p.img[0]; });
+  document.querySelectorAll("[data-qmin]").forEach(el => { const m = Math.min(...CAT[el.dataset.qmin].map(h => H.byH[h]).filter(p => p && p.v.some(v => v.a)).flatMap(p => p.v.filter(v => v.a).map(v => v.p))); el.textContent = "vanaf " + E(m); });
+  document.querySelectorAll("[data-go]").forEach(a => a.addEventListener("click", () => { c = a.dataset.go; draw(); }));
 
   // upsell: journal essentials met één klik erbij
   const UP = ["journal-waves-of-creation", "balance-kaartendeck-gesprekskaarten-journalvragen", "pen-create-your-reality"].map(h => H.byH[h]);

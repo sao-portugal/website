@@ -458,16 +458,23 @@ html, body { overflow-x: clip; }
 .sx-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 28px; border-radius: 4px; background: var(--teal); color: var(--white) !important; font: 700 15px Helvetica, Arial, sans-serif; text-decoration: none; border: 0; cursor: pointer; transition: background .2s; }
 .sx-btn:hover { background: #26505b; }
 
-/* hero: video schoon, aanbod in een vlak dat over de onderrand valt */
-.sx-video { height: min(54vh, 600px); background: #2c4a3a; }
-.sx-video video { width: 100%; height: 100%; object-fit: cover; display: block; }
-.sx-offer { position: relative; margin-top: clamp(-120px, -9vw, -64px); width: min(100%, 560px); background: var(--sand); border-radius: 14px 14px 0 0; padding: clamp(24px, 3vw, 36px) clamp(22px, 3vw, 40px) 8px; }
+/* hero: aanbod links op zand, hun sterkste foto rechts op volle hoogte */
+.sx-hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: min(calc(100svh - 110px), 860px); }
+.sx-hero-text { display: flex; flex-direction: column; justify-content: center; padding: clamp(40px, 5vw, 72px) clamp(24px, 5vw, 72px) clamp(40px, 5vw, 72px) max(20px, calc((100vw - 1240px) / 2 + 20px)); }
 .sx-eyebrow { font-weight: 700; font-size: 15px; color: var(--teal); }
-.sx-offer h1 { margin-top: 4px; font-size: clamp(44px, 6vw, 84px); line-height: .95; letter-spacing: -.01em; }
-.sx-offer p { margin-top: 14px; max-width: 34rem; }
-.sx-offer .sx-btn { margin-top: 22px; }
-.sx-end { display: inline-block; padding: 6px 14px; border-radius: 4px; background: var(--white); color: var(--teal); font-size: 14px; }
-
+.sx-hero h1 { margin-top: 6px; font-size: clamp(52px, 6vw, 100px); line-height: .92; letter-spacing: -.01em; max-width: 9.5ch; }
+.sx-hero-sub { margin-top: 18px; max-width: 30rem; font-size: 17px; }
+.sx-hero .sx-btn { margin-top: 26px; align-self: flex-start; }
+.sx-end { margin-top: 14px; align-self: flex-start; padding: 6px 14px; border-radius: 4px; background: var(--white); color: var(--teal); font-size: 14px; }
+.sx-quick { margin-top: clamp(28px, 4vw, 48px); padding-top: 18px; border-top: 1px solid var(--hair); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; max-width: 560px; }
+.sx-quick a { display: flex; align-items: center; gap: 10px; text-decoration: none; border-radius: 8px; padding: 4px; margin: -4px; }
+.sx-quick a:hover b { text-decoration: underline; text-underline-offset: 3px; }
+.sx-quick img { width: 48px; height: 60px; object-fit: cover; border-radius: 6px; flex: none; background: #e9dfcd; }
+.sx-quick span { display: grid; line-height: 1.25; font-size: 13px; min-width: 0; }
+.sx-quick b { color: var(--teal); font-size: 14px; }
+.sx-quick i { font-style: normal; color: var(--sale); font-weight: 700; }
+.sx-hero-pic { position: relative; margin: 0; overflow: hidden; background: #c9a98a; }
+.sx-hero-pic img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 38%; }
 /* gereedschapsbalk: categorie + jouw maat, blijft staan tijdens scrollen */
 .sx-shop { padding-top: clamp(40px, 5vw, 64px); }
 .sx-tools { position: sticky; top: 77px; z-index: 15; background: rgba(245,236,221,.94); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-block: 1px solid var(--hair); }
@@ -554,8 +561,11 @@ html, body { overflow-x: clip; }
 @media (min-width: 861px) { .sx-sticky { display: none !important; } }
 @media (prefers-reduced-motion: reduce) { .sx-toast, .sx-ph img { transition: none; } }
 @media (max-width: 860px) {
-  .sx-video { height: 46vh; }
-  .sx-offer { margin-top: -48px; border-radius: 14px 14px 0 0; }
+  .sx-hero { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .sx-hero-pic { order: -1; height: 42svh; }
+  .sx-hero-text { padding: 28px 20px 8px; }
+  .sx-quick { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .sx-quick img { width: 40px; height: 50px; }
   .sx-tools-in { gap: 10px; padding-right: 12px; }
   .sx-seg { margin-left: -6px; min-width: 0; }
   .sx-seg button { padding: 0 10px; font-size: 14px; }
