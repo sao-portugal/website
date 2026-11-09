@@ -2,6 +2,12 @@
 (function () {
   const P = window.HOW_PRODUCTS || [];
   /* ---------- Sale: alle kleding 40% (zet on op false als de sale voorbij is) ---------- */
+  /* ---------- Black Friday: 70% op de volledige sportset (top + shorts in dezelfde kleur) ---------- */
+  const BF = { pct: 70, code: "BLACKFRIDAY70", start: "2026-11-27T00:00:00+01:00", end: "2026-11-30T23:59:59+01:00",
+    sets: { "ocean-blue": ["sport-top-ocean-blue", "shorts-ocean-blue"], "flowy-green": ["sport-top-flowy-green", "shorts-flowy-green"] } };
+  // op de concept-site kun je de actie bekijken met ?bf=preview in de url
+  try { if (/[?&]bf=preview/.test(location.search)) sessionStorage.setItem("how-bf", "1"); } catch (e) {}
+  const bfLive = () => { const n = Date.now(); let pv = false; try { pv = sessionStorage.getItem("how-bf") === "1"; } catch (e) {} return pv || (n >= Date.parse(BF.start) && n <= Date.parse(BF.end)); };
   const SALE = { on: true, pct: 40, code: "KLEDING40", h: ["hoodie-blue-sunset", "hoodie-green-eye", "sweater-stargazer", "zip-jacket-flowy-green", "t-shirt-sunset-aura", "t-shirt-ocean-aura", "sport-top-ocean-blue", "shorts-ocean-blue", "sport-top-flowy-green", "shorts-flowy-green", "bucket-hat-house-of-waves"] };
   if (SALE.on) P.forEach(p => { if (SALE.h.includes(p.h)) { p.sale = true; p.v.forEach(v => { v.was = v.p; v.p = Math.round(v.p * (100 - SALE.pct)) / 100; }); } });
   const byH = Object.fromEntries(P.map(p => [p.h, p]));
@@ -18,16 +24,32 @@
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(cart)); } catch (e) {} render(); };
   const variant = l => byH[l.h].v.find(v => v.id === l.id);
   const count = () => cart.reduce((a, l) => a + l.q, 0);
-  const total = () => cart.reduce((a, l) => a + l.q * variant(l).p, 0);
-  function add(h, id, q, quiet) {
+  // hoeveel stuks van een regel horen bij een complete set (top + shorts van dezelfde kleur)
+  function setAlloc() {
+    const m = {}; if (!bfLive()) return m;
+    Object.entries(BF.sets).forEach(([k, mem]) => {
+      const pairs = Math.min(...mem.map(h => cart.filter(l => l.set === k && l.h === h).reduce((a, l) => a + l.q, 0)));
+      mem.forEach(h => { let r = pairs; cart.filter(l => l.set === k && l.h === h).forEach(l => { const d = Math.min(l.q, r); m[l.id] = d; r -= d; }); });
+    });
+    return m;
+  }
+  const bfUnit = v => Math.round((v.was || v.p) * (100 - BF.pct)) / 100;
+  function lineTotal(l, a) { a = a || setAlloc(); const v = variant(l), d = a[l.id] || 0; return d * bfUnit(v) + (l.q - d) * v.p; }
+  function lineWas(l) { const v = variant(l); return (v.was || v.p) * l.q; }
+  const total = () => { const a = setAlloc(); return cart.reduce((s, l) => s + lineTotal(l, a), 0); };
+  function add(h, id, q, quiet, set) {
     const l = cart.find(x => x.id === id);
-    if (l) l.q += q; else cart.push({ h, id, q });
+    if (l) { l.q += q; if (set) l.set = set; } else cart.push(set ? { h, id, q, set } : { h, id, q });
     save();
     if (quiet) document.dispatchEvent(new CustomEvent("added", { detail: { h, id } })); else openDrawer();
   }
   function setQ(id, q) { const l = cart.find(x => x.id === id); if (!l) return; l.q = Math.max(0, Math.min(20, q)); cart = cart.filter(x => x.q > 0); save(); }
-  function checkoutUrl() { return "https://houseofwaves.nl/cart/" + cart.map(l => l.id + ":" + l.q).join(",") + (SALE.on && cart.some(l => byH[l.h].sale) ? "?discount=" + SALE.code : ""); }
-  window.HOW = { SALE, add, openDrawer: () => openDrawer(), setQ, cart: () => cart, total, count, euro, byH, P, checkoutUrl, FREE, variant, reduce };
+  function checkoutUrl() {
+    const a = setAlloc(), hasSet = Object.values(a).some(d => d > 0);
+    const code = hasSet ? BF.code : SALE.on && cart.some(l => byH[l.h].sale) ? SALE.code : "";
+    return "https://houseofwaves.nl/cart/" + cart.map(l => l.id + ":" + l.q).join(",") + (code ? "?discount=" + code : "");
+  }
+  window.HOW = { SALE, BF, bfLive, bfUnit, setAlloc, lineTotal, lineWas, add, openDrawer: () => openDrawer(), setQ, cart: () => cart, total, count, euro, byH, P, checkoutUrl, FREE, variant, reduce };
 
   /* ---------- Drawer ---------- */
   const drawer = document.getElementById("drawer"), scrim = document.getElementById("scrim");
@@ -44,8 +66,9 @@
     const p = byH[l.h], v = variant(l);
     return '<li class="line"><a href="product.html?p=' + p.h + '"><img src="' + p.img[0] + '" alt=""></a><div class="line-info"><a href="product.html?p=' + p.h + '" class="line-t">' + p.t.replace(" - ", " · ") + '</a>' +
       (v.t !== "Default Title" ? '<span class="line-v">maat ' + v.t + '</span>' : '') +
+      ((setAlloc()[l.id] || 0) > 0 ? '<span class="line-v" style="color:#E8573A;font-weight:700">black friday set −' + BF.pct + '%</span>' : '') +
       '<div class="qty" role="group" aria-label="Aantal"><button type="button" data-q="' + l.id + '" data-d="-1" aria-label="Eén minder">−</button><span>' + l.q + '</span><button type="button" data-q="' + l.id + '" data-d="1" aria-label="Eén meer">+</button></div></div>' +
-      '<div class="line-r"><span class="line-p">' + (v.was ? '<s>' + euro(v.was * l.q) + '</s>' : '') + euro(v.p * l.q) + '</span><button type="button" class="rm" data-rm="' + l.id + '">verwijder</button></div></li>';
+      '<div class="line-r"><span class="line-p">' + (lineWas(l) > lineTotal(l) ? '<s>' + euro(lineWas(l)) + '</s>' : '') + euro(lineTotal(l)) + '</span><button type="button" class="rm" data-rm="' + l.id + '">verwijder</button></div></li>';
   }
   function bindLines(root) {
     root.querySelectorAll("[data-q]").forEach(b => b.addEventListener("click", () => { const l = cart.find(x => x.id == b.dataset.q); setQ(l.id, l.q + +b.dataset.d); }));
@@ -138,6 +161,8 @@
   const mBtn = document.getElementById("menuBtn"), mNav = document.getElementById("mobileNav");
   if (mBtn) mBtn.addEventListener("click", () => { const o = mNav.hidden; mNav.hidden = !o; mBtn.setAttribute("aria-expanded", String(o)); });
 
+  // tijdens Black Friday wijst de aankondigingsbalk naar de actiepagina
+  if (bfLive()) document.querySelectorAll(".sale-bar").forEach(a => { a.href = "black-friday.html"; a.textContent = "black friday: 70% op de volledige sportset 🌊"; });
   render();
   document.addEventListener("DOMContentLoaded", () => window.HOW.reveal());
 })();

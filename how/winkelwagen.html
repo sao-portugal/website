@@ -56,7 +56,7 @@
       <aside class="wk-sum" aria-label="Overzicht">
         <h2>overzicht</h2>
         <p class="row"><span>subtotaal</span><span id="wkSub"></span></p>
-        <p class="row save" id="wkSaveRow" hidden><span>je bespaart met de sale</span><span id="wkSave"></span></p>
+        <p class="row save" id="wkSaveRow" hidden><span>je bespaart</span><span id="wkSave"></span></p>
         <p class="row"><span>verzending</span><span id="wkShip"></span></p>
         <p class="row tot"><span>totaal</span><b id="wkTot"></b></p>
         <a class="wk-btn" id="wkGo" href="#">afrekenen</a>
@@ -128,14 +128,14 @@
     const p = H.byH[l.h], v = H.variant(l);
     return '<li class="wk-line"><a class="wk-img" href="product.html?p=' + p.h + '"><img src="' + p.img[0] + '" alt=""></a>' +
       '<div class="wk-info"><a class="wk-name" href="product.html?p=' + p.h + '">' + p.t + '</a>' +
-      (v.t !== "Default Title" ? '<span class="wk-var">maat ' + v.t + '</span>' : '') + (v.was ? '<span class="wk-tag">sale −' + H.SALE.pct + '%</span>' : '') +
+      (v.t !== "Default Title" ? '<span class="wk-var">maat ' + v.t + '</span>' : '') + ((H.setAlloc()[l.id] || 0) > 0 ? '<span class="wk-tag">black friday set −' + H.BF.pct + '%</span>' : v.was ? '<span class="wk-tag">sale −' + H.SALE.pct + '%</span>' : '') +
       '<div class="wk-qty" role="group" aria-label="Aantal ' + p.t + '"><button type="button" data-q="' + l.id + '" data-d="-1" aria-label="Eén minder">−</button><span>' + l.q + '</span><button type="button" data-q="' + l.id + '" data-d="1" aria-label="Eén meer">+</button></div></div>' +
-      '<div class="wk-right"><span class="wk-price">' + (v.was ? '<s>' + E(v.was * l.q) + '</s>' : '') + E(v.p * l.q) + '</span><button type="button" class="wk-rm" data-rm="' + l.id + '" aria-label="' + p.t + ' verwijderen">verwijder</button></div></li>';
+      '<div class="wk-right"><span class="wk-price">' + (H.lineWas(l) > H.lineTotal(l) ? '<s>' + E(H.lineWas(l)) + '</s>' : '') + E(H.lineTotal(l)) + '</span><button type="button" class="wk-rm" data-rm="' + l.id + '" aria-label="' + p.t + ' verwijderen">verwijder</button></div></li>';
   }
 
   function draw() {
     const c = H.cart(), t = H.total(), n = H.count(), left = Math.max(0, H.FREE - t);
-    const save = c.reduce((a, l) => { const v = H.variant(l); return a + (v.was ? (v.was - v.p) * l.q : 0); }, 0);
+    const save = c.reduce((a, l) => a + H.lineWas(l) - H.lineTotal(l), 0);
     const empty = !c.length;
     $("wkCount").textContent = empty ? "" : n + (n === 1 ? " product" : " producten");
     $("wkFull").hidden = empty; $("wkEmpty").hidden = !empty; $("wkWave").hidden = empty; $("wkSticky").hidden = empty;

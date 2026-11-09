@@ -810,3 +810,91 @@ html, body { overflow-x: clip; }
 .vz .vz-facts { margin-top: clamp(24px, 3vw, 36px); }
 .vz .vz-steps { margin-top: 20px; }
 .vz .vz-facts dd { margin-top: 2px; }
+
+/* ---------- Black Friday (DESIGN.md, donkere variant: teal als vlak) ---------- */
+.bf { --sand: #F5ECDD; --teal: #305D6A; --deep: #24474F; --text: rgba(48,93,106,.82); --sale: #E8573A; --hair: rgba(48,93,106,.2); --white: #fff;
+  background: var(--sand); color: var(--text); font: 400 16px/1.6 Helvetica, Arial, sans-serif; }
+.bf h1, .bf h2, .bf h3 { font-family: "Gloock", Georgia, serif; font-weight: 400; color: var(--teal); }
+.bf a { color: inherit; }
+.bf :focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+.bf-wrap { max-width: 1160px; margin-inline: auto; padding-inline: max(20px, env(safe-area-inset-left)) max(20px, env(safe-area-inset-right)); }
+.bf-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 30px; border-radius: 4px; background: var(--sale); color: var(--white) !important; font: 700 16px Helvetica, Arial, sans-serif; text-decoration: none; border: 0; cursor: pointer; transition: filter .2s; }
+.bf-btn:hover { filter: brightness(.93); }
+.bf-btn.ghost { background: transparent; color: var(--teal) !important; border: 1px solid var(--teal); }
+
+/* hero: teal vlak, één aanbod, echte aftelklok */
+.bf-hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); min-height: min(calc(100svh - 110px), 820px); background: var(--teal); color: var(--sand); }
+.bf-hero :focus-visible { outline-color: var(--sand); }
+.bf-hero-text { display: flex; flex-direction: column; justify-content: center; padding: clamp(36px, 5vw, 72px) clamp(24px, 5vw, 64px) clamp(36px, 5vw, 72px) max(20px, calc((100vw - 1160px) / 2 + 20px)); }
+.bf-eyebrow { font-weight: 700; font-size: 15px; color: var(--sand); opacity: .9; }
+.bf-hero h1 { margin-top: 8px; color: var(--sand); font-size: clamp(46px, 5.6vw, 92px); line-height: .94; max-width: 11ch; }
+.bf-anchor { margin-top: 18px; font-size: clamp(17px, 1.5vw, 20px); }
+.bf-anchor b { color: var(--white); font-size: 1.25em; }
+.bf-anchor s { opacity: .65; margin-left: 6px; }
+.bf-clock { margin-top: 26px; }
+.bf-clock p { font-size: 14px; font-weight: 700; opacity: .85; }
+.bf-clock ol { margin: 8px 0 0; padding: 0; list-style: none; display: flex; gap: 8px; }
+.bf-clock li { min-width: 68px; padding: 10px 8px 8px; border-radius: 8px; background: rgba(245,236,221,.12); text-align: center; }
+.bf-clock b { display: block; font: 400 34px/1 "Gloock", Georgia, serif; color: var(--white); font-variant-numeric: tabular-nums; }
+.bf-clock span { font-size: 12px; opacity: .8; }
+.bf-ctas { margin-top: 26px; display: flex; flex-wrap: wrap; align-items: center; gap: 18px; }
+.bf-cal { font-weight: 700; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.bf-hero-pic { position: relative; margin: 0; overflow: hidden; }
+.bf-hero-pic img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 45%; }
+
+.bf-trust { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 32px; padding-block: 22px; border-bottom: 1px solid var(--hair); font-size: 14px; }
+.bf-trust li { display: grid; }
+.bf-trust b { color: var(--teal); font-size: 15px; }
+
+/* de twee sets */
+.bf-sets { padding-top: clamp(48px, 6vw, 80px); }
+.bf-sets h2, .bf-faq h2 { font-size: clamp(30px, 3.4vw, 46px); line-height: 1.05; margin-bottom: 22px; }
+.bf-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 2.4vw, 32px); }
+.bf-set { background: var(--white); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; }
+.bf-set figure { position: relative; margin: 0; aspect-ratio: 4 / 4.2; overflow: hidden; }
+.bf-set figure img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+.bf-badge { position: absolute; left: 16px; top: 16px; padding: 6px 14px; border-radius: 40px; background: var(--sale); color: var(--white); font-weight: 700; font-size: 16px; }
+.bf-set-body { padding: clamp(18px, 2.4vw, 28px); display: grid; gap: 12px; }
+.bf-set h3 { font-size: clamp(26px, 2.6vw, 34px); line-height: 1.05; }
+.bf-incl { margin-top: -8px; font-size: 15px; }
+.bf-price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; }
+.bf-price s { opacity: .55; font-size: 17px; }
+.bf-price b { font: 400 40px/1 "Gloock", Georgia, serif; color: var(--sale); }
+.bf-price span { font-size: 13px; font-weight: 700; color: var(--sale); background: rgba(232,87,58,.1); padding: 2px 10px; border-radius: 40px; }
+.bf-size p { font-size: 14px; font-weight: 700; color: var(--teal); margin-bottom: 6px; }
+.bf-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.bf-pills button { min-width: 64px; height: 42px; padding: 0 14px; border-radius: 40px; border: 1px solid var(--hair); background: transparent; color: var(--teal); font: 400 15px Helvetica, Arial, sans-serif; cursor: pointer; }
+.bf-pills button:hover { border-color: var(--teal); }
+.bf-pills button[aria-pressed="true"] { background: var(--teal); border-color: var(--teal); color: var(--white); font-weight: 700; }
+.bf-pills button:disabled { opacity: .4; text-decoration: line-through; cursor: default; }
+.bf-add { margin-top: 4px; min-height: 54px; border-radius: 4px; border: 0; background: var(--sale); color: var(--white); font: 700 16px Helvetica, Arial, sans-serif; cursor: pointer; }
+.bf-add:disabled { background: rgba(48,93,106,.12); color: var(--teal); cursor: default; }
+.bf-hint { min-height: 1.2em; font-size: 14px; font-weight: 700; color: var(--teal); }
+
+.bf-review { padding-top: clamp(56px, 7vw, 96px); }
+.bf-review figure { margin: 0; display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(24px, 5vw, 64px); align-items: center; }
+.bf-review img { width: 100%; aspect-ratio: 4 / 4.6; object-fit: cover; border-radius: 8px; }
+.bf-stars { color: #e6a23c; letter-spacing: 2px; }
+.bf-review blockquote { margin-top: 8px; font: 400 clamp(22px, 2.4vw, 32px)/1.3 "Gloock", Georgia, serif; color: var(--teal); }
+.bf-review figcaption { margin-top: 12px; font-size: 15px; }
+.bf-review figcaption b { color: var(--teal); }
+.bf-review .bf-btn { margin-top: 22px; }
+.bf-faq { max-width: 820px; padding-block: clamp(56px, 7vw, 96px); }
+.bf-faq summary { font-family: "Gloock", Georgia, serif; color: var(--teal); }
+
+.bf-sticky { position: fixed; z-index: 40; left: 0; right: 0; bottom: 0; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px max(14px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left)); background: var(--teal); color: var(--sand); font-size: 14px; }
+.bf-sticky b { color: var(--white); }
+.bf-sticky .bf-btn { min-height: 44px; padding: 0 20px; }
+.bf-sticky { transform: translateY(110%); transition: transform .3s; }
+.bf-sticky.on { transform: none; }
+@media (prefers-reduced-motion: reduce) { .bf-sticky { transition: none; } }
+@media (min-width: 861px) { .bf-sticky { display: none; } }
+@media (max-width: 860px) {
+  .bf-hero { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .bf-hero-pic { order: -1; height: 40svh; }
+  .bf-hero-text { padding: 26px 20px 30px; }
+  .bf-clock li { min-width: 0; flex: 1; }
+  .bf-trust, .bf-grid, .bf-review figure { grid-template-columns: minmax(0, 1fr); }
+  .bf-trust { gap: 10px; }
+  .bf { padding-bottom: 64px; }
+}
