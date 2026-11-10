@@ -757,15 +757,12 @@ body.waves .wv .pic img { box-shadow: 0 30px 60px -36px rgba(48,93,106,.5); }
 @media (max-width: 860px) { .tl { grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: 62%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-inline: calc(-1 * var(--gut)); padding-inline: var(--gut); } .tl li { scroll-snap-align: start; } }
 @media (prefers-reduced-motion: reduce) { .tl img { transition: none; } }
 
-/* koopknoppen duidelijker: gevulde teal knop onder de hero-foto en bij "kies je start" */
-.hero-pic figcaption { align-items: center; }
-.hero-pic .hp-r { display: flex; align-items: center; gap: 16px; }
-.hero-pic .hp-r .ulink { min-height: 46px; padding: 0 22px; border: 0; border-radius: 40px; background: var(--ink); color: var(--cream); font: 700 13.5px/1 var(--sans); letter-spacing: .04em; transition: background .2s; }
-.hero-pic .hp-r .ulink:hover { background: #24505c; opacity: 1; }
-.pk-txt .btn { background: var(--ink); color: var(--cream); border-color: var(--ink); min-height: 50px; }
-.pk-txt .btn:hover { background: #24505c; }
-@media (max-width: 480px) { .hero-pic figcaption { flex-wrap: wrap; } .hero-pic .hp-r { width: 100%; justify-content: space-between; } }
-@media (max-width: 480px) { .hero-pic img { aspect-ratio: 16 / 9; } .hero-pic figcaption { margin-top: 10px; gap: 8px; } .hero-pic .hp-r .ulink { min-height: 44px; } }
+/* de hoofdknop in de hero mag meer opvallen */
+.buyhero .hero-cta .pill.solid { min-height: 58px; padding: 0 34px; font-size: 15px; letter-spacing: .03em; box-shadow: 0 14px 30px -14px rgba(36,80,92,.75); transition: transform .2s, background .2s, box-shadow .2s; }
+.buyhero .hero-cta .pill.solid::after { content: "→"; margin-left: 4px; font-size: 17px; transition: transform .2s; }
+.buyhero .hero-cta .pill.solid:hover { transform: translateY(-2px); box-shadow: 0 18px 34px -14px rgba(36,80,92,.8); }
+.buyhero .hero-cta .pill.solid:hover::after { transform: translateX(4px); }
+@media (prefers-reduced-motion: reduce) { .buyhero .hero-cta .pill.solid, .buyhero .hero-cta .pill.solid::after { transition: none; } }
 /* Sale-pagina: merk van houseofwaves.nl, eigen UX. Zie DESIGN.md */
 .sx { --sand: #F5ECDD; --teal: #305D6A; --text: rgba(48,93,106,.8); --sale: #E8573A; --hair: rgba(48,93,106,.2); --white: #fff;
   background: var(--sand); color: var(--text); font: 400 16px/1.6 Helvetica, Arial, sans-serif; }
