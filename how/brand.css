@@ -551,7 +551,8 @@ body.auratop .bar { background: transparent; border-bottom: 1px solid rgba(251,2
 .hw-sec.wrap.paper-box { max-width: min(1320px, calc(100% - 2 * var(--gut))); }
 
 /* ---------- kleurvariant: elke sectie een tabbladkleur ---------- */
-body.kleur { --c1: #F6C4AE; --c2: #DCCBF2; --c3: #BFE2E0; --c4: #F3D7A8; }
+/* kleuren uit hun eigen producten: het blauw van de journal-kaft, het blauw van de kaarten, het oranje van de sale */
+body.kleur { --c1: #3A87A2; --c2: #5F7C99; --c3: var(--sand-2); --c4: var(--sale); }
 body.kleur .top, body.kleur .top.scrolled { background: var(--c1); box-shadow: none; }
 body.kleur main > section { padding-bottom: clamp(64px, 8vw, 120px); padding-top: clamp(64px, 8vw, 120px); }
 body.kleur main > section.blk { box-shadow: 0 0 0 100vmax var(--bc); clip-path: inset(0 -100vmax); background: var(--bc); }
@@ -562,6 +563,9 @@ body.kleur .paper-box { background: var(--c4); }
 body.kleur .hw-foot { margin-top: 0; }
 body.kleur main > section.quote-big:not(.paper-box), body.kleur main > section[aria-label="Bekend van"] { padding-bottom: 0; }
 body.kleur main > section.paper-box { margin-bottom: clamp(48px, 6vw, 88px); margin-top: clamp(48px, 6vw, 88px); }
+body.kleur .paper-box.dark h2 { color: #fff; } body.kleur .paper-box.dark .pill { border-color: #fff; color: #fff; }
+body.kleur .hero-trust { border-top-color: rgba(251,246,236,.3); }
+body.kleur .hw-open.dark { padding-bottom: clamp(48px, 6vw, 80px); }
 /* Sale-pagina: merk van houseofwaves.nl, eigen UX. Zie DESIGN.md */
 .sx { --sand: #F5ECDD; --teal: #305D6A; --text: rgba(48,93,106,.8); --sale: #E8573A; --hair: rgba(48,93,106,.2); --white: #fff;
   background: var(--sand); color: var(--text); font: 400 16px/1.6 Helvetica, Arial, sans-serif; }
