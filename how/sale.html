@@ -170,8 +170,8 @@
     else if (one) buy = '<button type="button" class="sx-add" data-quiet data-addv="' + p.h + '|' + p.v[0].id + '">in winkelwagen</button>';
     else if (mine && mine.a) buy = '<button type="button" class="sx-add" data-quiet data-addv="' + p.h + '|' + mine.id + '" aria-label="' + p.t + ', ' + size + ', in winkelwagen">+ in winkelwagen</button>';
     else buy = '<div class="sx-pills" role="group" aria-label="Maat voor ' + p.t + '">' + p.v.map(v => v.a
-        ? '<button type="button" data-quiet data-addv="' + p.h + '|' + v.id + '" aria-label="' + p.t + ', ' + v.t + ', in winkelwagen">' + v.t + '</button>'
-        : '<button type="button" disabled aria-label="' + v.t + ' is uitverkocht">' + v.t + '</button>').join("") + '</div>';
+        ? '<button type="button" data-quiet data-addv="' + p.h + '|' + v.id + '" aria-label="' + p.t + ', ' + v.t + ', in winkelwagen"><span class="lg">' + v.t + '</span><span class="sm" aria-hidden="true">' + v.t.charAt(0) + '</span></button>'
+        : '<button type="button" disabled aria-label="' + v.t + ' is uitverkocht"><span class="lg">' + v.t + '</span><span class="sm" aria-hidden="true">' + v.t.charAt(0) + '</span></button>').join("") + '</div>';
     const note = !sold && !one && left === 1 ? '<span class="sx-low">nog 1 maat</span>' : '';
     return '<article class="sx-card' + (sold ? ' is-out' : '') + '"><a class="sx-ph" href="product.html?p=' + p.h + '">' +
       '<img src="' + p.img[0] + '" alt="' + p.t + '" loading="lazy">' + (p.img[1] ? '<img src="' + p.img[1] + '" alt="" loading="lazy">' : '') + '</a>' +
