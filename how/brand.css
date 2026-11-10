@@ -839,6 +839,7 @@ body.waves .wv .pic img { box-shadow: 0 30px 60px -36px rgba(48,93,106,.5); }
   .gallery img:first-child { aspect-ratio: 1 / 1; }
 }
 @media (max-width: 860px) { .gallery img, .gallery img:first-child, .gallery .g-anim { aspect-ratio: 1 / 1; } }
+.upsell .btn { text-decoration: none; }
 /* Sale-pagina: merk van houseofwaves.nl, eigen UX. Zie DESIGN.md */
 .sx { --sand: #F5ECDD; --teal: #305D6A; --text: rgba(48,93,106,.8); --sale: #E8573A; --hair: rgba(48,93,106,.2); --white: #fff;
   background: var(--sand); color: var(--text); font: 400 16px/1.6 Helvetica, Arial, sans-serif; }
