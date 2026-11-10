@@ -735,6 +735,27 @@ body.waves .wv .pic img { box-shadow: 0 30px 60px -36px rgba(48,93,106,.5); }
 .grow-svg.done * { animation: none !important; }
 .grow-svg.done .g-card, .grow-svg.done .dr { opacity: 0; }
 .gallery .g-anim { scroll-snap-align: start; }
+
+/* ---------- ons verhaal ---------- */
+.story-lead { margin-top: 18px; max-width: 30rem; font: 400 clamp(19px, 1.7vw, 24px)/1.35 var(--serif); color: var(--ink); }
+.story-hero .hero-pic img { object-position: center 22%; }
+.jletter { max-width: 860px; margin: 0 auto; padding: clamp(14px, 2.2vw, 26px); border-radius: 8px; background: linear-gradient(150deg, #F9C9C4 0%, #FBD9C9 30%, #EFD3E6 62%, #D9D5F0 100%) !important; }
+.jletter .jp-in { padding: 0 clamp(18px, 4vw, 48px) clamp(22px, 3vw, 40px); }
+.jletter .jp-h { margin: 0 calc(-1 * clamp(18px, 4vw, 48px)); padding: 12px clamp(18px, 4vw, 48px); font-size: 14px; }
+.jletter blockquote { min-height: 0; margin-top: 4px; font-size: clamp(16.5px, 1.5vw, 19px); line-height: 36px; background: repeating-linear-gradient(to bottom, transparent 0 35px, #2A2A2A 35px 36px); background-position: 0 -1px; }
+.jletter blockquote p + p { margin-top: 36px; }
+.jletter .sign { font-weight: 700; }
+.tl { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; counter-reset: w; }
+.tl li { counter-increment: w; }
+.tl a { display: grid; gap: 3px; text-decoration: none; color: var(--text); }
+.tl img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 12px; margin-bottom: 10px; transition: transform .4s cubic-bezier(.2,.8,.2,1); }
+.tl a:hover img { transform: translateY(-6px); }
+.tl .when { font-size: 12.5px; letter-spacing: .05em; color: var(--dim); }
+.tl .when::before { content: "wave " counter(w) " · "; }
+.tl b { font: 400 22px/1.15 var(--serif); color: var(--ink); }
+.tl .q { font: italic 400 14px/1.4 Georgia, serif; }
+@media (max-width: 860px) { .tl { grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: 62%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-inline: calc(-1 * var(--gut)); padding-inline: var(--gut); } .tl li { scroll-snap-align: start; } }
+@media (prefers-reduced-motion: reduce) { .tl img { transition: none; } }
 /* Sale-pagina: merk van houseofwaves.nl, eigen UX. Zie DESIGN.md */
 .sx { --sand: #F5ECDD; --teal: #305D6A; --text: rgba(48,93,106,.8); --sale: #E8573A; --hair: rgba(48,93,106,.2); --white: #fff;
   background: var(--sand); color: var(--text); font: 400 16px/1.6 Helvetica, Arial, sans-serif; }
