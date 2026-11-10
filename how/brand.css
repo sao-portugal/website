@@ -74,7 +74,6 @@ a.bar:hover { color: var(--white); }
 .icons a:hover, .icons button:hover { opacity: .75; }
 .icons svg { display: none; }
 .badge { display: inline; position: static; padding: 0; background: none; color: inherit; font: inherit; }
-.badge::before { content: "("; } .badge::after { content: ")"; }
 .icons [data-open-cart] .lbl::after { content: ""; }
 #menuBtn { display: none; }
 .mobile-nav { position: fixed; inset: 0; z-index: 60; padding: 96px var(--gut-r) 40px var(--gut); background: rgba(16,44,68,.97); display: grid; align-content: start; gap: 4px; }
@@ -670,6 +669,11 @@ body.waves .aura-l { animation: none; inset: 0; background:
   linear-gradient(165deg, color-mix(in srgb, var(--a4) 42%, #fff) 0%, color-mix(in srgb, var(--a4) 18%, var(--sand)) 45%, var(--sand) 85%); }
 body.waves .hw-phead::before { display: none; }
 body.waves .wv .pic img { box-shadow: 0 30px 60px -36px rgba(48,93,106,.5); }
+/* aantal in het mandje: bolletje op het tasje, niet over het woord */
+.cart-btn .badge:not([hidden]) { top: -3px; right: auto; left: 12px; background: var(--teal); color: var(--white); white-space: nowrap; }
+.top .icons .cart-btn .badge { color: var(--white); }
+.cart-btn .badge:not([hidden]) { top: -9px; left: 13px; min-width: 17px; height: 17px; font-size: 10.5px; padding: 0 4px; }
+.cart-btn .lbl { margin-left: 12px; }
 /* Sale-pagina: merk van houseofwaves.nl, eigen UX. Zie DESIGN.md */
 .sx { --sand: #F5ECDD; --teal: #305D6A; --text: rgba(48,93,106,.8); --sale: #E8573A; --hair: rgba(48,93,106,.2); --white: #fff;
   background: var(--sand); color: var(--text); font: 400 16px/1.6 Helvetica, Arial, sans-serif; }
