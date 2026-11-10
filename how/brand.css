@@ -33,22 +33,23 @@ a.sr:focus { position: fixed; z-index: 100; left: 12px; top: 12px; width: auto; 
 
 /* ---------- de aura: vaste achtergrond die zacht ademt ---------- */
 .aura-bg { position: fixed; inset: 0; z-index: -2; overflow: hidden; background: linear-gradient(160deg, #1D6A80 0%, var(--night) 55%, #1B5A6E 100%); }
-.aura-bg::before { content: ""; position: absolute; inset: -15%;
+.aura-l { position: absolute; inset: -15%; opacity: 0; transition: opacity 1.2s ease; will-change: transform, opacity; transform: translateZ(0);
   background:
     radial-gradient(34% 40% at var(--ax, 52%) var(--ay, 46%), var(--peach) 0%, var(--a3) 16%, var(--a1) 32%, color-mix(in srgb, var(--a2) 85%, transparent) 50%, transparent 72%),
     radial-gradient(55% 60% at 22% 18%, color-mix(in srgb, var(--a4) 55%, transparent), transparent 62%),
     radial-gradient(55% 55% at 85% 88%, rgba(60,190,190,.45), transparent 62%);
   animation: breathe 11s ease-in-out infinite alternate; }
-.aura-bg::after { content: ""; position: absolute; inset: 0; opacity: .07; mix-blend-mode: overlay;
+.aura-l.on { opacity: 1; }
+.aura-bg::after { content: ""; position: absolute; inset: 0; opacity: .045;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
-@keyframes breathe { to { transform: scale(1.07) translate(1.5%, -1%); } }
-@media (prefers-reduced-motion: reduce) { .aura-bg::before { animation: none; } }
+@keyframes breathe { from { transform: translateZ(0); } to { transform: translateZ(0) scale(1.07) translate(1.5%, -1%); } }
+@media (prefers-reduced-motion: reduce) { .aura-l { animation: none; transition: none; } }
 /* op langere pagina's wordt de gloed rustiger zodat tekst leesbaar blijft */
-body.calm .aura-bg::before { opacity: .55; }
+body.calm .aura-l.on { opacity: .55; }
 
 /* ---------- knoppen en links ---------- */
 .pill { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 26px; border-radius: 40px; border: 1px solid rgba(251,246,236,.75);
-  background: transparent; color: var(--cream); font: 700 13.5px/1 var(--sans); letter-spacing: .05em; text-decoration: none; cursor: pointer; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); transition: background .25s, color .25s; }
+  background: transparent; color: var(--cream); font: 700 13.5px/1 var(--sans); letter-spacing: .05em; text-decoration: none; cursor: pointer; transition: background .25s, color .25s; }
 .pill:hover { background: rgba(251,246,236,.12); }
 .pill.solid { background: var(--cream); color: var(--ink); border-color: var(--cream); }
 .pill.solid:hover { background: var(--white); }
@@ -60,10 +61,10 @@ body.calm .aura-bg::before { opacity: .55; }
 .kick { font-size: 13px; letter-spacing: .06em; color: var(--dim); }
 
 /* ---------- bovenkant: logo links, zoeken + mandje rechts ---------- */
-.bar { display: block; margin: 0; padding: 8px var(--gut-r) 8px var(--gut); background: rgba(16,44,68,.55); color: var(--cream); text-align: center; font-size: 12.5px; letter-spacing: .05em; text-decoration: none; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.bar { display: block; margin: 0; padding: 8px var(--gut-r) 8px var(--gut); background: rgba(16,44,68,.7); color: var(--cream); text-align: center; font-size: 12.5px; letter-spacing: .05em; text-decoration: none; }
 a.bar:hover { color: var(--white); }
 .top { position: sticky; top: 0; z-index: 30; transition: background .3s, box-shadow .3s; }
-.top.scrolled { background: rgba(16,44,68,.72); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--line); }
+.top.scrolled { background: rgba(16,44,68,.94); box-shadow: 0 1px 0 var(--line); }
 .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 76px; max-width: none; }
 .logo { display: block; color: var(--cream); line-height: 0; }
 .logo svg { width: 124px; height: auto; }
@@ -76,7 +77,7 @@ a.bar:hover { color: var(--white); }
 .badge::before { content: "("; } .badge::after { content: ")"; }
 .icons [data-open-cart] .lbl::after { content: ""; }
 #menuBtn { display: none; }
-.mobile-nav { position: fixed; inset: 0; z-index: 60; padding: 96px var(--gut-r) 40px var(--gut); background: rgba(16,44,68,.9); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); display: grid; align-content: start; gap: 4px; }
+.mobile-nav { position: fixed; inset: 0; z-index: 60; padding: 96px var(--gut-r) 40px var(--gut); background: rgba(16,44,68,.97); display: grid; align-content: start; gap: 4px; }
 .mobile-nav a { display: block; padding: 10px 0; font: 400 40px/1.1 var(--serif); color: var(--cream); text-decoration: none; }
 .mobile-nav a[href="sale.html"] { color: var(--coral); }
 .mobile-nav .close { position: absolute; right: var(--gut-r); top: 24px; border: 0; background: none; color: var(--cream); font: 700 13px var(--sans); letter-spacing: .05em; cursor: pointer; }
@@ -164,7 +165,7 @@ a.bar:hover { color: var(--white); }
 @media (max-width: 760px) { .hw-corner { display: none; } .peek { bottom: -40px; } .hw-open { min-height: calc(100svh - 100px); } }
 
 /* ---------- de vraag van vandaag: journal-spread met een kaart ---------- */
-.spread { display: grid; grid-template-columns: 1fr 1fr; max-width: 1180px; margin: 0 auto; filter: drop-shadow(0 40px 60px rgba(0,0,0,.35)); }
+.spread { display: grid; grid-template-columns: 1fr 1fr; max-width: 1180px; margin: 0 auto; box-shadow: 0 40px 60px -20px rgba(0,0,0,.35); border-radius: 14px; }
 .spread .pg { position: relative; min-height: 640px; }
 .spread .pg.l { border-radius: 12px 2px 2px 12px; padding: 54px 60px 44px 64px; }
 .spread .pg.r { border-radius: 2px 12px 12px 2px; overflow: hidden; }
@@ -374,7 +375,6 @@ a.bar:hover { color: var(--white); }
 .wv .b { margin-top: 14px; max-width: 32rem; }
 .wv .ulink { margin-top: 24px; }
 @media (max-width: 760px) { .wv { grid-template-columns: 1fr; min-height: 0; } .wv:nth-child(even) .pic { order: 0; } }
-body.waves .aura-bg::before { transition: --ax .9s; }
 
 /* ---------- ons verhaal ---------- */
 .facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-block: 1px solid var(--line); }
@@ -413,11 +413,6 @@ body.waves .aura-bg::before { transition: --ax .9s; }
 @media (max-width: 760px) { .sheet { margin: 12px 10px 0; border-radius: 12px; } }
 
 /* kleuren van de aura zijn animeerbaar, zodat ze per wave zacht verlopen */
-@property --a1 { syntax: "<color>"; inherits: true; initial-value: #E8466E; }
-@property --a2 { syntax: "<color>"; inherits: true; initial-value: #9650B4; }
-@property --a3 { syntax: "<color>"; inherits: true; initial-value: #FF9A86; }
-@property --a4 { syntax: "<color>"; inherits: true; initial-value: #46B4C8; }
-body { transition: --a1 1.4s ease, --a2 1.4s ease, --a3 1.4s ease, --a4 1.4s ease; }
 @media (prefers-reduced-motion: reduce) { body { transition: none; } }
 
 /* ---------- kleine aanvullingen ---------- */

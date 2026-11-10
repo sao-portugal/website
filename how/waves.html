@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="brand.css">
 </head>
 <body class="waves">
-<div class="aura-bg" aria-hidden="true"></div>
+<div class="aura-bg" aria-hidden="true"><i class="aura-l on"></i><i class="aura-l"></i></div>
 <a class="sr" href="#main">naar de inhoud</a>
 <a class="bar sale-bar" href="sale.html">sale! 40% korting op alle kleding 🌊</a>
 <header class="top" id="top">
@@ -84,12 +84,15 @@
 </script>
 <script>
 (function () {
-  const b = document.body;
+  // twee aura-lagen: de verborgen laag krijgt de nieuwe kleuren en vloeit in (alleen opacity, dus soepel)
   if (!("IntersectionObserver" in window)) return;
+  const L = document.querySelectorAll(".aura-l"); let cur = "";
   const io = new IntersectionObserver(es => es.forEach(e => {
-    if (!e.isIntersecting) return;
-    const c = e.target.dataset.aura.split(",");
-    ["--a1", "--a2", "--a3", "--a4"].forEach((k, i) => b.style.setProperty(k, c[i]));
+    if (!e.isIntersecting || e.target.dataset.aura === cur) return;
+    cur = e.target.dataset.aura;
+    const c = cur.split(","), on = document.querySelector(".aura-l.on"), next = on === L[0] ? L[1] : L[0];
+    ["--a1", "--a2", "--a3", "--a4"].forEach((k, i) => next.style.setProperty(k, c[i]));
+    requestAnimationFrame(() => { next.classList.add("on"); on.classList.remove("on"); });
   }), { rootMargin: "-45% 0px -45% 0px" });
   document.querySelectorAll("[data-aura]").forEach(el => io.observe(el));
 })();
