@@ -44,7 +44,7 @@
       </div>
       <div class="upsell" id="upsell" hidden>
         <img src="img/p/kaartendeck-journal-pen-mega-journaling-discount-bundle-1.jpg" alt="" loading="lazy">
-        <div><b>liever compleet?</b><span id="upText">de journal-set: journal, pen en kaartendeck</span></div>
+        <div><b>liever compleet?</b><span>de journal-set: journal, pen en kaartendeck</span><span class="up-price" id="upPrice"></span></div>
         <a class="btn" href="product.html?p=kaartendeck-journal-pen-mega-journaling-discount-bundle" id="upBtn">bekijk de set</a>
       </div>
       <figure class="pdp-rev" id="pdpRev" hidden><p class="stars" aria-label="5 sterren">★★★★★</p><blockquote id="pdpRevQ"></blockquote><figcaption id="pdpRevN"></figcaption></figure>
@@ -156,8 +156,7 @@
   // prijzen staan op één plek (bij de prijs), dus zinnen met bedragen gaan uit de omschrijving
   const noPrice = s => s.split(/(?<=[.!?])\s+/).filter(z => !/€|\beuro\b|prijs/i.test(z)).join(" ").trim();
   tmp.querySelectorAll("p, li").forEach(el => { if (/€|\beuro\b|prijs/i.test(el.textContent)) { const c = noPrice(el.textContent); if (c) el.textContent = c; else el.remove(); } });
-  const PARTS = { "kaartendeck-journal-pen-mega-journaling-discount-bundle": ["journal-waves-of-creation", "balance-kaartendeck-gesprekskaarten-journalvragen", "pen-create-your-reality"], "journal-pen-discount-bundle": ["journal-waves-of-creation", "pen-create-your-reality"] }[p.h];
-  const loose = PARTS ? Math.round(PARTS.reduce((s, h) => s + (H.byH[h] ? H.byH[h].v[0].p : 0), 0) * 100) / 100 : 0;
+  const bd = H.bundle(p);
   const first = tmp.querySelector("p"); ps.textContent = first ? first.textContent.trim() : "";
   if (first) first.remove();
   pd.innerHTML = tmp.innerHTML.trim() || "<p>Meer informatie volgt.</p>";
@@ -168,7 +167,7 @@
     opts.addEventListener("click", e => { const b = e.target.closest("button"); if (!b || b.disabled) return; v = p.v.find(x => x.id == b.dataset.id); upd(); });
   }
   function upd() {
-    pp.innerHTML = (v.was ? "<s>" + H.euro(v.was) + "</s>" : "") + H.euro(v.p) + (loose > v.p ? "<small>los " + H.euro(loose) + ", je bespaart " + H.euro(loose - v.p) + "</small>" : v.was ? "<small>sale −" + H.SALE.pct + "%, op = op</small>" : "");
+    pp.innerHTML = (v.was ? "<s>" + H.euro(v.was) + "</s>" : bd ? "<s>" + H.euro(bd.loose) + "</s>" : "") + H.euro(v.p) + (bd ? "<small>" + (bd.label || "bundelprijs") + "</small>" : v.was ? "<small>sale −" + H.SALE.pct + "%, op = op</small>" : "");
     opts.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.id == v.id)));
     qn.textContent = q;
     bbPrice.textContent = H.euro(v.p * q); bbAdd.disabled = !v.a; bbAdd.textContent = v.a ? "in mijn mandje" : "uitverkocht";
@@ -187,7 +186,8 @@
   }
   const SET = ["journal-waves-of-creation", "balance-kaartendeck-gesprekskaarten-journalvragen", "pen-create-your-reality", "journal-pen-discount-bundle"];
   document.getElementById("upsell").hidden = !SET.includes(p.h);
-  const setP = H.byH["kaartendeck-journal-pen-mega-journaling-discount-bundle"]; if (setP) upText.textContent = "de journal-set: journal, pen en kaartendeck, " + H.euro(setP.v[0].p);
+  const setP = H.byH["kaartendeck-journal-pen-mega-journaling-discount-bundle"], setB = setP && H.bundle(setP);
+  if (setP) upPrice.innerHTML = (setB ? "<s>" + H.euro(setB.loose) + "</s> " : "") + "<b>" + H.euro(setP.v[0].p) + "</b>";
   const REV = { "journal-waves-of-creation": ["Dik papier dat niet doorschijnt en goede harde kaft. Ik gebruik hem elke dag en vind hem echt fantastisch.", "Lotte"],
     "kaartendeck-journal-pen-mega-journaling-discount-bundle": ["Ik gebruik hem elke dag en vind hem echt fantastisch. Ook het kaarten dek is echt top.", "Lotte"],
     "balance-kaartendeck-gesprekskaarten-journalvragen": ["Super blij met de kaartendeck! De kaarten zien er hetzelfde uit als op de website foto's.", "Charlotte"] }[p.h]

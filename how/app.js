@@ -95,17 +95,25 @@
   window.HOW.lineHTML = lineHTML; window.HOW.bindLines = bindLines; window.HOW.shipBar = shipBar;
 
   /* ---------- Productkaart ---------- */
+  /* Bundelvoordeel: wat de onderdelen los kosten en hoe we het voordeel noemen.
+     Vanaf €5 noemen we het bedrag, vanaf 10% het percentage, daaronder alleen de doorgestreepte losse prijs. */
+  const BUNDLES = { "kaartendeck-journal-pen-mega-journaling-discount-bundle": ["journal-waves-of-creation", "balance-kaartendeck-gesprekskaarten-journalvragen", "pen-create-your-reality"], "journal-pen-discount-bundle": ["journal-waves-of-creation", "pen-create-your-reality"] };
+  window.HOW.bundle = function (p) {
+    const parts = BUNDLES[p.h]; if (!parts) return null;
+    const price = p.v[0].p, loose = Math.round(parts.reduce((t, h) => t + (byH[h] ? byH[h].v[0].p : 0), 0) * 100) / 100, save = Math.round((loose - price) * 100) / 100;
+    if (save <= 0) return null;
+    const pct = Math.round(save / loose * 100);
+    return { loose, save, pct, label: save >= 5 ? "je bespaart " + euro(save) : pct >= 10 ? pct + "% voordeel" : "" };
+  };
   window.HOW.card = function (p, opts) {
     opts = opts || {};
     const v0 = p.v[0], min = Math.min(...p.v.map(v => v.p)), sold = p.v.every(v => !v.a);
     const tag = sold ? '<span class="tag">uitverkocht</span>' : p.sale ? '<span class="tag sale">sale −' + SALE.pct + '%</span>' : p.h.includes("bundle") ? '<span class="tag">bundel voordeel</span>' : "";
-    // bundelvoordeel: wat je bespaart t.o.v. los kopen
-    const parts = { "kaartendeck-journal-pen-mega-journaling-discount-bundle": ["journal-waves-of-creation", "balance-kaartendeck-gesprekskaarten-journalvragen", "pen-create-your-reality"], "journal-pen-discount-bundle": ["journal-waves-of-creation", "pen-create-your-reality"] }[p.h];
-    const bsave = parts ? Math.round((parts.reduce((t, h) => t + (byH[h] ? byH[h].v[0].p : 0), 0) - min) * 100) / 100 : 0;
+    const bd = window.HOW.bundle(p), bsave = bd ? bd.save : 0;
     const quick = p.v.length === 1 && !sold ? '<button class="quick" type="button" data-add="' + p.h + '" aria-label="' + p.t + ' in winkelwagen">+ in winkelwagen</button>' : "";
     return '<article class="item' + (opts.big ? " big" : "") + '"><div class="phw"><a class="ph" href="product.html?p=' + p.h + '">' + tag +
       '<img src="' + p.img[0] + '" alt="' + p.t + '" loading="lazy">' + (p.img[1] ? '<img src="' + p.img[1] + '" alt="" loading="lazy">' : "") + '</a>' + quick + '</div>' +
-      '<a class="meta" href="product.html?p=' + p.h + '"><h3>' + p.t + '</h3><span class="price">' + (p.v.length > 1 && p.v.some(v => v.p !== min) ? "vanaf " : "") + (p.sale ? '<s>' + euro(Math.min(...p.v.map(v => v.was))) + '</s>' : '') + euro(min) + '</span></a>' + (bsave > 0 && !sold ? '<p class="save">los ' + euro(min + bsave) + ', je bespaart ' + euro(bsave) + '</p>' : '') + (p.sale && !sold ? (function () { const left = p.v.filter(v => v.a).length, save = Math.max(...p.v.map(v => v.was - v.p)); return '<p class="save">je bespaart ' + euro(save) + (p.v.length > 1 && left === 1 ? ' · <b>nog maar 1 maat</b>' : '') + '</p>'; })() : '') + (opts.sizes && p.v.length > 1 ? '<div class="sz" role="group" aria-label="Kies je maat">' + p.v.map(v => '<button type="button" ' + (v.a ? 'data-addv="' + p.h + '|' + v.id + '"' : 'disabled') + ' aria-label="' + p.t + ' maat ' + v.t + (v.a ? '' : ', uitverkocht') + '">' + v.t.charAt(0) + '</button>').join("") + '</div>' : '') + '</article>';
+      '<a class="meta" href="product.html?p=' + p.h + '"><h3>' + p.t + '</h3><span class="price">' + (p.v.length > 1 && p.v.some(v => v.p !== min) ? "vanaf " : "") + (p.sale ? '<s>' + euro(Math.min(...p.v.map(v => v.was))) + '</s>' : bd && !sold ? '<s>' + euro(bd.loose) + '</s>' : '') + euro(min) + '</span></a>' + (bd && bd.label && !sold ? '<p class="save">' + bd.label + '</p>' : '') + (p.sale && !sold ? (function () { const left = p.v.filter(v => v.a).length, save = Math.max(...p.v.map(v => v.was - v.p)); return '<p class="save">je bespaart ' + euro(save) + (p.v.length > 1 && left === 1 ? ' · <b>nog maar 1 maat</b>' : '') + '</p>'; })() : '') + (opts.sizes && p.v.length > 1 ? '<div class="sz" role="group" aria-label="Kies je maat">' + p.v.map(v => '<button type="button" ' + (v.a ? 'data-addv="' + p.h + '|' + v.id + '"' : 'disabled') + ' aria-label="' + p.t + ' maat ' + v.t + (v.a ? '' : ', uitverkocht') + '">' + v.t.charAt(0) + '</button>').join("") + '</div>' : '') + '</article>';
   };
   document.addEventListener("click", e => {
     const b = e.target.closest("[data-add]"); if (!b) return;

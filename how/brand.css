@@ -840,6 +840,12 @@ body.waves .wv .pic img { box-shadow: 0 30px 60px -36px rgba(48,93,106,.5); }
 }
 @media (max-width: 860px) { .gallery img, .gallery img:first-child, .gallery .g-anim { aspect-ratio: 1 / 1; } }
 .upsell .btn { text-decoration: none; }
+/* prijzen: doorgestreepte losse prijs, voordeel erachter */
+.price s, .pk-price s, .hp-r s { font: 400 .62em var(--sans); opacity: .55; margin-right: 6px; }
+.item .price s { font-size: 1em; }
+.buy .price small { color: #B5432C; font-weight: 700; }
+.up-price { display: block; margin-top: 2px; }
+.up-price s { opacity: .55; } .up-price b { display: inline; font: 700 14.5px var(--sans); color: var(--ink); } .up-price i { font-style: normal; font-weight: 700; font-size: 12.5px; color: #B5432C; margin-left: 4px; }
 /* Sale-pagina: merk van houseofwaves.nl, eigen UX. Zie DESIGN.md */
 .sx { --sand: #F5ECDD; --teal: #305D6A; --text: rgba(48,93,106,.8); --sale: #E8573A; --hair: rgba(48,93,106,.2); --white: #fff;
   background: var(--sand); color: var(--text); font: 400 16px/1.6 Helvetica, Arial, sans-serif; }

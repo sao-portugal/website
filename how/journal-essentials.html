@@ -191,10 +191,8 @@
   card.addEventListener("click", draw); drawBtn.addEventListener("click", draw);
 
 
-  const SETP = { "kaartendeck-journal-pen-mega-journaling-discount-bundle": ["journal-waves-of-creation", "balance-kaartendeck-gesprekskaarten-journalvragen", "pen-create-your-reality"], "journal-pen-discount-bundle": ["journal-waves-of-creation", "pen-create-your-reality"] };
-  document.querySelectorAll("[data-price]").forEach(el => { const p = H.byH[el.dataset.price]; if (p) el.textContent = H.euro(p.v[0].p); });
-  document.querySelectorAll("[data-save]").forEach(el => { const parts = SETP[el.dataset.save], p = H.byH[el.dataset.save]; if (!parts || !p) return;
-    const save = Math.round((parts.reduce((t, h) => t + (H.byH[h] ? H.byH[h].v[0].p : 0), 0) - p.v[0].p) * 100) / 100; if (save > 0) el.textContent = "je bespaart " + H.euro(save); });
+  document.querySelectorAll("[data-price]").forEach(el => { const p = H.byH[el.dataset.price]; if (!p) return; const bd = H.bundle(p); el.innerHTML = (bd ? "<s>" + H.euro(bd.loose) + "</s>" : "") + H.euro(p.v[0].p); });
+  document.querySelectorAll("[data-save]").forEach(el => { const p = H.byH[el.dataset.save], bd = p && H.bundle(p); if (bd && bd.label) el.textContent = bd.label; });
   const main = ["journal-waves-of-creation", "journal-pen-discount-bundle", "kaartendeck-journal-pen-mega-journaling-discount-bundle"];
   document.getElementById("extra").innerHTML = H.P.filter(p => p.c.includes("journal-essentials") && !main.includes(p.h)).map(p => H.card(p)).join("");
 })();
