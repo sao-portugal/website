@@ -517,6 +517,29 @@ body.auratop .bar { background: transparent; border-bottom: 1px solid rgba(251,2
 .hw-sec.wrap.aura-box { max-width: min(1320px, calc(100% - 2 * var(--gut))); }
 /* vel-pagina's (sale, winkelwagen, ...) hebben zelf al zand, dus geen kader */
 .paper.plain { box-shadow: 0 20px 50px -34px rgba(48,93,106,.45); }
+
+/* ---------- menu: gewoon bovenin, met een tabbladkleurtje als knipoog ---------- */
+.tabs-nav { display: none; }
+.top .wrap { display: grid; grid-template-columns: auto 1fr auto; }
+.main-nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 4px 28px; font-size: 13.5px; letter-spacing: .03em; }
+.main-nav a { position: relative; padding: 8px 0; color: var(--fg); text-decoration: none; }
+.main-nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 2px; height: 3px; border-radius: 3px; background: var(--tc, var(--fg)); transform: scaleX(0); transform-origin: left; transition: transform .25s ease; }
+.main-nav a:hover::after, .main-nav a[aria-current="page"]::after { transform: scaleX(1); }
+.main-nav .t1 { --tc: #F2A88A; } .main-nav .t2 { --tc: #B9A3E6; } .main-nav .t3 { --tc: #7CC7C2; } .main-nav .t4 { --tc: #E8B867; } .main-nav .t0 { --tc: var(--fg); }
+.main-nav .t5 { color: var(--sale); font-weight: 700; --tc: var(--sale); }
+.top.dark .main-nav .t5 { color: #FFB3A0; }
+.icons { justify-content: flex-end; }
+@media (max-width: 1080px) { .main-nav { gap: 4px 20px; font-size: 13px; } .main-nav .t0 { display: none; } }
+@media (max-width: 900px) { .main-nav { display: none; } .top .wrap { grid-template-columns: auto 1fr; } }
+
+/* ---------- hero: foto met onderschrift ---------- */
+.hero-pic { margin: 0; }
+.hero-pic img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 14px; }
+.hero-pic figcaption { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; margin-top: 14px; font-size: 13.5px; }
+.hero-pic b { display: block; font: 400 22px/1.15 var(--serif); color: var(--fg); }
+.hero-pic .hp-r { display: grid; justify-items: end; gap: 6px; font: 400 20px var(--serif); color: var(--fg); white-space: nowrap; }
+.hero-pic .ulink { border: 0; border-bottom: 1px solid currentColor; background: none; padding: 0 0 3px; color: var(--fg); cursor: pointer; font-family: var(--sans); }
+@media (max-width: 860px) { .hero-pic img { aspect-ratio: 4 / 3; } }
 /* Sale-pagina: merk van houseofwaves.nl, eigen UX. Zie DESIGN.md */
 .sx { --sand: #F5ECDD; --teal: #305D6A; --text: rgba(48,93,106,.8); --sale: #E8573A; --hair: rgba(48,93,106,.2); --white: #fff;
   background: var(--sand); color: var(--text); font: 400 16px/1.6 Helvetica, Arial, sans-serif; }
