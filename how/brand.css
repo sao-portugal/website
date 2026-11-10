@@ -765,6 +765,45 @@ body.waves .wv .pic img { box-shadow: 0 30px 60px -36px rgba(48,93,106,.5); }
 @media (prefers-reduced-motion: reduce) { .buyhero .hero-cta .pill.solid, .buyhero .hero-cta .pill.solid::after { transition: none; } }
 .buyhero .hero-cta .pill.solid { min-height: 52px; padding: 0 30px; font-size: 14.5px; }
 .buyhero .hero-cta .pill.solid::after { content: none; }
+
+/* ---------- contact ---------- */
+.help { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 8px; }
+.help a { display: flex; flex-direction: column; gap: 6px; height: 100%; padding: 22px 22px 20px; border-radius: 14px; background: var(--cream); text-decoration: none; color: var(--text); font-size: 14px; box-shadow: 0 20px 44px -34px rgba(48,93,106,.5); transition: transform .25s cubic-bezier(.2,.8,.2,1); }
+.help a:hover { transform: translateY(-4px); }
+.help b { font: 400 21px/1.15 var(--serif); color: var(--ink); }
+.help i { margin-top: auto; padding-top: 10px; font-style: normal; font-weight: 700; font-size: 13px; letter-spacing: .03em; color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 980px) { .help { grid-template-columns: 1fr 1fr; } } @media (max-width: 520px) { .help { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { .help a { transition: none; } }
+.contact { margin-top: 0; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); }
+.cform, .cdone { padding: clamp(24px, 3.4vw, 44px); border-radius: 16px; background: var(--cream); box-shadow: 0 30px 60px -40px rgba(48,93,106,.5); }
+.cform { display: grid; gap: 18px; }
+.cform h2, .cdone h2 { font-size: clamp(28px, 2.8vw, 40px); line-height: 1.05; }
+.cform .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.cform .f { display: grid; gap: 6px; }
+.cform label { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+.cform label small { font-weight: 400; color: var(--text); }
+.cform input, .cform select, .cform textarea { width: 100%; min-height: 50px; padding: 12px 14px; border: 1px solid rgba(48,93,106,.35); border-radius: 10px; background: #fff; color: var(--ink); font: 400 16px/1.4 var(--sans); }
+.cform textarea { resize: vertical; min-height: 150px; }
+.cform input:focus-visible, .cform select:focus-visible, .cform textarea:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; border-color: var(--ink); }
+.cform [aria-invalid="true"] { border-color: #B5432C; }
+.cform .err { font-size: 13.5px; font-weight: 700; color: #B5432C; }
+.cform .err a { color: inherit; }
+.cform .send { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 18px; }
+.cform .send .btn { min-height: 52px; padding: 0 30px; }
+.cform .send .btn[disabled] { opacity: .6; cursor: default; }
+.cform .send small { font-size: 13px; }
+.cdone p { margin: 12px 0 18px; }
+.contact .side { padding-top: 8px; }
+.ways { margin-top: 18px; border-top: 1px solid var(--line); }
+.ways div { display: grid; grid-template-columns: 100px 1fr; gap: 14px; padding: 13px 0; border-bottom: 1px solid var(--line); font-size: 14.5px; }
+.ways dt { font-weight: 700; color: var(--ink); }
+.ways a { color: var(--ink); font-weight: 700; text-underline-offset: 3px; }
+.biz { margin-top: 26px; font-style: normal; font-size: 14px; line-height: 1.6; }
+.biz b { display: block; font: 400 19px var(--serif); color: var(--ink); margin-bottom: 2px; }
+.faq2 { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 5vw, 72px); align-items: start; }
+.faq2 h3 { font-size: 22px; margin-bottom: 12px; }
+@media (max-width: 860px) { .contact, .faq2 { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .cform .row2 { grid-template-columns: 1fr; } }
 /* Sale-pagina: merk van houseofwaves.nl, eigen UX. Zie DESIGN.md */
 .sx { --sand: #F5ECDD; --teal: #305D6A; --text: rgba(48,93,106,.8); --sale: #E8573A; --hair: rgba(48,93,106,.2); --white: #fff;
   background: var(--sand); color: var(--text); font: 400 16px/1.6 Helvetica, Arial, sans-serif; }

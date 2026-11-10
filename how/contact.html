@@ -28,24 +28,53 @@
 <nav class="mobile-nav" id="mobileNav" hidden aria-label="Menu"><button type="button" class="close" id="menuClose">sluiten</button><a href="index.html">home</a><a href="journal-essentials.html">journal essentials</a><a href="shop.html">shop alles</a><a href="waves.html">waves</a><a href="verhaal.html">ons verhaal</a><a href="contact.html">contact</a><a href="sale.html">sale</a></nav>
 
 <main id="main">
-<section class="hw-phead"><div class="wrap"><p class="crumbs"><a href="index.html">home</a> / contact</p><h1>let’s <em>talk</em></h1><p class="lead">Een vraag over je bestelling, een samenwerking of gewoon iets liefs om te delen? Je hoort uiterlijk binnen 2 werkdagen van ons.</p></div></section>
-<section class="wrap contact">
-  <form class="form paper" id="cForm" novalidate>
-    <div class="row2"><label for="cn">naam<input id="cn" autocomplete="name"></label><label for="ce">e-mail<input id="ce" type="email" autocomplete="email"></label></div>
-    <label for="cs">waar gaat het over?<select id="cs"><option>mijn bestelling</option><option>retour of ruilen</option><option>samenwerking of pers</option><option>events</option><option>iets anders</option></select></label>
-    <label for="cm">bericht<textarea id="cm"></textarea></label>
-    <button class="btn" type="submit">verstuur</button>
-    <p class="msg" id="cMsg" aria-live="polite"></p>
-  </form>
-  <div class="side">
-    <h2>sneller antwoord?</h2>
-    <p>Mail naar info@houseofwaves.nl of stuur een dm op Instagram, daar zijn we het snelst.</p>
-    <div class="links"><a class="ulink" href="mailto:info@houseofwaves.nl">info@houseofwaves.nl</a><a class="ulink" href="https://www.instagram.com/houseofwaves.nl/" target="_blank" rel="noopener">@houseofwaves.nl</a></div>
-  </div>
+<section class="hw-phead"><div class="wrap"><p class="crumbs"><a href="index.html">home</a> / contact</p><h1>let’s <em>talk</em></h1><p class="lead">Heb je een vraag of wil je met ons in contact komen? We denken graag met je mee. Je hoort uiterlijk binnen 2 werkdagen van ons.</p></div></section>
+<section class="wrap" aria-label="Snel geregeld">
+  <ul class="help">
+    <li><a href="verzending.html"><b>waar blijft mijn bestelling?</b><span>We versturen binnen 3 werkdagen, PostNL bezorgt meestal in 1 à 2 dagen.</span><i>verzending bekijken</i></a></li>
+    <li><a href="retour.html"><b>iets terugsturen</b><span>Dat kan binnen 14 dagen. Meld je retour aan met je ordernummer.</span><i>retour aanvragen</i></a></li>
+    <li><a href="#faq"><b>veelgestelde vragen</b><span>Over levering, verzendkosten, de journal en het kaartendeck.</span><i>naar de antwoorden</i></a></li>
+    <li><a href="mailto:info@houseofwaves.nl?subject=Samenwerking"><b>samenwerken of pers</b><span>Een idee voor een event, samenwerking of interview? Mail ons direct.</span><i>info@houseofwaves.nl</i></a></li>
+  </ul>
 </section>
+
+<section class="hw-sec wrap contact" aria-labelledby="cTitle">
+  <div class="cform-wrap">
+    <form class="cform" id="cForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+      <input type="hidden" name="form-name" value="contact">
+      <p hidden><label>Niet invullen: <input name="bot-field"></label></p>
+      <h2 id="cTitle">stuur een bericht</h2>
+      <div class="f"><label for="cs">waar gaat het over?</label>
+        <select id="cs" name="onderwerp"><option>een vraag over een product</option><option>mijn bestelling</option><option>retour of ruilen</option><option>samenwerking of pers</option><option>events</option><option>iets anders</option></select></div>
+      <div class="row2">
+        <div class="f"><label for="cn">naam</label><input id="cn" name="naam" autocomplete="name"></div>
+        <div class="f"><label for="ce">e-mail <span aria-hidden="true">*</span></label><input id="ce" name="email" type="email" autocomplete="email" required aria-describedby="ceErr"><p class="err" id="ceErr" hidden>Vul een geldig e-mailadres in, dan kunnen we je antwoorden.</p></div>
+      </div>
+      <div class="f" id="orderF" hidden><label for="co">ordernummer <small>(staat in je bevestigingsmail)</small></label><input id="co" name="ordernummer" inputmode="numeric" placeholder="bijv. #1042"></div>
+      <div class="f"><label for="cm">je bericht <span aria-hidden="true">*</span></label><textarea id="cm" name="bericht" rows="6" required aria-describedby="cmErr"></textarea><p class="err" id="cmErr" hidden>Schrijf even kort waar we je mee kunnen helpen.</p></div>
+      <div class="send"><button class="btn solid" type="submit" id="cSend">verstuur bericht</button><small>Je hoort uiterlijk binnen 2 werkdagen van ons.</small></div>
+      <p class="err" id="cFail" hidden role="alert">Versturen lukte niet. Probeer het opnieuw of mail naar <a href="mailto:info@houseofwaves.nl">info@houseofwaves.nl</a>.</p>
+    </form>
+    <div class="cdone" id="cDone" hidden tabindex="-1"><h2>dank je, je bericht is verstuurd</h2><p>Je hoort uiterlijk binnen 2 werkdagen van ons, op het e-mailadres dat je hebt ingevuld.</p><a class="ulink" href="index.html">terug naar de homepage</a></div>
+  </div>
+  <aside class="side">
+    <h2>liever direct?</h2>
+    <dl class="ways">
+      <div><dt>e-mail</dt><dd><a href="mailto:info@houseofwaves.nl">info@houseofwaves.nl</a></dd></div>
+      <div><dt>Instagram</dt><dd><a href="https://www.instagram.com/houseofwaves.nl/" target="_blank" rel="noopener">@houseofwaves.nl</a>, een dm mag altijd</dd></div>
+      <div><dt>TikTok</dt><dd><a href="https://www.tiktok.com/@houseofwaves.nl" target="_blank" rel="noopener">@houseofwaves.nl</a></dd></div>
+      <div><dt>reactietijd</dt><dd>uiterlijk binnen 2 werkdagen</dd></div>
+    </dl>
+    <address class="biz"><b>House of Waves</b>Fascinatio Boulevard 708<br>2909 VA Capelle aan den IJssel<br>KVK 76158179</address>
+  </aside>
+</section>
+
 <section class="hw-sec wrap" id="faq" aria-labelledby="faqTitle">
   <div class="hw-head"><h2 id="faqTitle">veelgestelde vragen</h2><a class="ulink" href="verzending.html">alles over verzending &amp; retour</a></div>
-  <div class="acc"><details><summary>Hoe lang duurt de levering?</summary><div class="in"><p>We versturen uiterlijk binnen 3 werkdagen naar Nederland en België. PostNL bezorgt meestal in 1 à 2 dagen. Rond de feestdagen kan het wat langer duren.</p></div></details><details><summary>Wat kost verzending?</summary><div class="in"><p>Verzending is gratis vanaf €100. Onder dat bedrag zie je de verzendkosten bij het afrekenen.</p></div></details><details><summary>Kan ik iets retourneren?</summary><div class="in"><p>Ja, binnen 14 dagen na ontvangst, als het product ongebruikt is en in de originele staat en verpakking. Meld je retour eerst aan via het <a href="retour.html">retourformulier</a> of mail naar info@houseofwaves.nl. Alles staat op <a href="verzending.html">verzending &amp; retour</a>.</p></div></details><details><summary>Hoe gebruik ik het Balance kaartendeck?</summary><div class="in"><p>Trek een kaart als journal prompt, stel de vragen aan elkaar tijdens een goed gesprek, of pak er één als start van je dag. Er zijn 60 vragen over mental health, selfcare, motivatie en inspiratie.</p></div></details><details><summary>Wat staat er in de Waves of Creation journal?</summary><div class="in"><p>Lijntjespagina’s met volop ruimte voor je gedachten, dromen en plannen. Om de vijf pagina’s kom je een inspirerende quote of een invullijstje tegen. Dik papier dat niet doorschijnt en een harde kaft.</p></div></details><details><summary>Kan ik een cadeaubon geven?</summary><div class="in"><p>Ja, je kunt online een cadeaubon bestellen. Leuke tip: schrijf de code op een Flower Card van zaadpapier, dan groeien er ook nog bloemetjes uit.</p></div></details></div>
+  <div class="faq2">
+    <div><h3>bestellen en verzenden</h3><div class="acc"><details><summary>Hoe lang duurt de levering?</summary><div class="in"><p>We versturen uiterlijk binnen 3 werkdagen naar Nederland en België. PostNL bezorgt meestal in 1 à 2 dagen. Rond de feestdagen kan het wat langer duren.</p></div></details><details><summary>Wat kost verzending?</summary><div class="in"><p>Verzending is gratis vanaf €100. Onder dat bedrag zie je de verzendkosten bij het afrekenen.</p></div></details><details><summary>Kan ik iets retourneren?</summary><div class="in"><p>Ja, binnen 14 dagen na ontvangst, als het product ongebruikt is en in de originele staat en verpakking. Meld je retour eerst aan via het <a href="retour.html">retourformulier</a> of mail naar info@houseofwaves.nl. Alles staat op <a href="verzending.html">verzending &amp; retour</a>.</p></div></details><details><summary>Kan ik een cadeaubon geven?</summary><div class="in"><p>Ja, je kunt online een cadeaubon bestellen. Leuke tip: schrijf de code op een Flower Card van zaadpapier, dan groeien er ook nog bloemetjes uit.</p></div></details></div></div>
+    <div><h3>producten</h3><div class="acc"><details><summary>Hoe gebruik ik het Balance kaartendeck?</summary><div class="in"><p>Trek een kaart als journal prompt, stel de vragen aan elkaar tijdens een goed gesprek, of pak er één als start van je dag. Er zijn 60 vragen over mental health, selfcare, motivatie en inspiratie.</p></div></details><details><summary>Wat staat er in de Waves of Creation journal?</summary><div class="in"><p>Lijntjespagina’s met volop ruimte voor je gedachten, dromen en plannen. Om de vijf pagina’s kom je een inspirerende quote of een invullijstje tegen. Dik papier dat niet doorschijnt en een harde kaft.</p></div></details></div></div>
+  </div>
 </section>
 </main>
 
@@ -100,11 +129,27 @@
 })();
 </script>
 <script>
-document.getElementById("cForm").addEventListener("submit", e => {
-  e.preventDefault();
-  const ok = cn.value.trim() && /\S+@\S+\.\S+/.test(ce.value) && cm.value.trim();
-  cMsg.textContent = ok ? "Dank je! Dit is een ontwerp: in de echte webshop komt je bericht hier bij House of Waves binnen." : "Vul je naam, een geldig e-mailadres en een bericht in.";
-});
+(function () {
+  const form = document.getElementById("cForm"), cs = document.getElementById("cs"), ce = document.getElementById("ce"), cm = document.getElementById("cm"), btn = document.getElementById("cSend");
+  const orderF = document.getElementById("orderF");
+  const topic = () => { orderF.hidden = !/bestelling|retour/.test(cs.value); };
+  cs.addEventListener("change", topic); topic();
+  const check = (el, ok) => { const e = document.getElementById(el.id + "Err"); e.hidden = ok; el.setAttribute("aria-invalid", String(!ok)); return ok; };
+  const okMail = () => /^\S+@\S+\.\S+$/.test(ce.value.trim()), okMsg = () => cm.value.trim().length > 2;
+  ce.addEventListener("blur", () => { if (ce.value) check(ce, okMail()); });
+  [ce, cm].forEach(el => el.addEventListener("input", () => { if (el.getAttribute("aria-invalid") === "true") check(el, el === ce ? okMail() : okMsg()); }));
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    const a = check(ce, okMail()), b = check(cm, okMsg());
+    if (!a || !b) { (a ? cm : ce).focus(); return; }
+    btn.disabled = true; btn.textContent = "bezig met versturen"; document.getElementById("cFail").hidden = true;
+    try {
+      const r = await fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(new FormData(form)).toString() });
+      if (!r.ok) throw new Error(r.status);
+      form.hidden = true; const d = document.getElementById("cDone"); d.hidden = false; d.focus();
+    } catch (err) { document.getElementById("cFail").hidden = false; btn.disabled = false; btn.textContent = "verstuur bericht"; }
+  });
+})();
 </script>
 </body>
 </html>
