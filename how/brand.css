@@ -923,6 +923,26 @@ body.waves .wv .pic img { box-shadow: 0 30px 60px -36px rgba(48,93,106,.5); }
 .hero-pic .hp-img { display: block; }
 .story-hero .hp-img img { width: 100%; }
 @media (max-width: 860px) { .pick .pk-img { position: relative; min-height: 150px; } .pick .pk-img img { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; } }
+
+/* ---------- bekend van: op mobiel een doorlopende slider ---------- */
+.press { display: flex; align-items: center; justify-content: center; gap: 14px 46px; padding-block: 30px; border-block: 1px solid var(--line); }
+.press .label { flex: none; font-size: 12.5px; letter-spacing: .06em; color: var(--dim); }
+.press-track { display: flex; min-width: 0; }
+.press ul { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px 46px; }
+.press ul[aria-hidden] { display: none; }
+.press li { font: 400 22px var(--serif); color: var(--fg); opacity: .8; white-space: nowrap; }
+@media (max-width: 760px) {
+  .press { flex-direction: column; gap: 14px; padding-block: 22px; margin-inline: calc(-1 * var(--gut)); }
+  .press .label { flex-basis: auto; }
+  .press-track { width: 100%; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+  .press ul, .press ul[aria-hidden] { display: flex; flex-wrap: nowrap; flex: none; gap: 0; justify-content: flex-start; animation: pressSlide 22s linear infinite; }
+  .press li { padding-right: 36px; font-size: 20px; }
+}
+@keyframes pressSlide { to { transform: translateX(-100%); } }
+@media (max-width: 760px) and (prefers-reduced-motion: reduce) {
+  .press-track { overflow-x: auto; scrollbar-width: none; -webkit-mask-image: none; mask-image: none; padding-inline: var(--gut); }
+  .press ul { animation: none; } .press ul[aria-hidden] { display: none; }
+}
 /* Sale-pagina: merk van houseofwaves.nl, eigen UX. Zie DESIGN.md */
 .sx { --sand: #F5ECDD; --teal: #305D6A; --text: rgba(48,93,106,.8); --sale: #E8573A; --hair: rgba(48,93,106,.2); --white: #fff;
   background: var(--sand); color: var(--text); font: 400 16px/1.6 Helvetica, Arial, sans-serif; }
