@@ -549,6 +549,19 @@ body.auratop .bar { background: transparent; border-bottom: 1px solid rgba(251,2
 .hw-open:not(.dark) .hero-trust li::before { color: var(--ink); }
 .paper-box { border-radius: 20px; padding: clamp(48px, 7vw, 96px) 24px; background: var(--sand-2); }
 .hw-sec.wrap.paper-box { max-width: min(1320px, calc(100% - 2 * var(--gut))); }
+
+/* ---------- kleurvariant: elke sectie een tabbladkleur ---------- */
+body.kleur { --c1: #F6C4AE; --c2: #DCCBF2; --c3: #BFE2E0; --c4: #F3D7A8; }
+body.kleur .top, body.kleur .top.scrolled { background: var(--c1); box-shadow: none; }
+body.kleur main > section { padding-bottom: clamp(64px, 8vw, 120px); padding-top: clamp(64px, 8vw, 120px); }
+body.kleur main > section.blk { box-shadow: 0 0 0 100vmax var(--bc); clip-path: inset(0 -100vmax); background: var(--bc); }
+body.kleur .hw-open { --bc: var(--c1); padding-top: clamp(24px, 4vw, 56px); }
+body.kleur .b2 { --bc: var(--c2); } body.kleur .b3 { --bc: var(--c3); }
+body.kleur .hero-trust { border-top-color: rgba(48,93,106,.25); }
+body.kleur .paper-box { background: var(--c4); }
+body.kleur .hw-foot { margin-top: 0; }
+body.kleur main > section.quote-big:not(.paper-box), body.kleur main > section[aria-label="Bekend van"] { padding-bottom: 0; }
+body.kleur main > section.paper-box { margin-bottom: clamp(48px, 6vw, 88px); margin-top: clamp(48px, 6vw, 88px); }
 /* Sale-pagina: merk van houseofwaves.nl, eigen UX. Zie DESIGN.md */
 .sx { --sand: #F5ECDD; --teal: #305D6A; --text: rgba(48,93,106,.8); --sale: #E8573A; --hair: rgba(48,93,106,.2); --white: #fff;
   background: var(--sand); color: var(--text); font: 400 16px/1.6 Helvetica, Arial, sans-serif; }
