@@ -589,6 +589,61 @@ body.zacht .hero-trust { border-top-color: rgba(48,93,106,.2); }
     radial-gradient(90vw 70vw at 60% 30%, #FFE1D2 0%, #FBB7AE 28%, rgba(233,160,196,.7) 52%, rgba(190,170,226,.4) 72%, transparent 90%),
     linear-gradient(165deg, #9FD3E0 0%, #BFE3E8 45%, #E3EEE6 80%, var(--sand) 100%); }
 }
+
+/* ---------- hero past op één scherm ---------- */
+@media (min-width: 861px) {
+  body.zacht .hw-open { min-height: calc(100svh - 112px); padding-top: 24px; padding-bottom: 22px; row-gap: 18px; grid-template-rows: 1fr auto; }
+  body.zacht .hero-pic img { aspect-ratio: auto; height: clamp(260px, calc(100svh - 330px), 720px); }
+  body.zacht .buyhero h1 { font-size: clamp(52px, min(8vw, 15svh), 128px); }
+  body.zacht .hero-rev { margin-top: clamp(14px, 3svh, 32px); }
+  body.zacht .hero-trust { padding-top: 14px; }
+}
+@media (min-width: 861px) and (max-height: 700px) { body.zacht .hero-rev { display: none; } }
+
+/* ---------- teststapel van het Balance kaartendeck ---------- */
+.deck { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: clamp(32px, 6vw, 96px); max-width: 1080px; margin: 0 auto; }
+.deck-stack { position: relative; width: min(270px, 62vw); aspect-ratio: 5 / 7; margin: 20px auto 30px; perspective: 1400px; }
+.dc, .dcard { position: absolute; inset: 0; border-radius: 16px; }
+.dc svg, .dcard svg { display: block; width: 100%; height: 100%; }
+.dc { box-shadow: 0 10px 24px -14px rgba(30,50,70,.5); }
+.dc.d1 { transform: translate(5px, 6px) rotate(2.2deg); } .dc.d2 { transform: translate(-7px, 11px) rotate(-3.4deg); } .dc.d3 { transform: translate(10px, 17px) rotate(5.5deg); }
+.dcard { padding: 0; border: 0; background: none; cursor: pointer; transition: transform .42s cubic-bezier(.3,.7,.2,1), opacity .3s; animation: nudge 4.5s ease-in-out infinite; -webkit-tap-highlight-color: transparent; }
+.dcard:focus-visible { outline: 2px solid var(--ink); outline-offset: 6px; }
+@keyframes nudge { 0%, 70%, 100% { transform: none; } 80% { transform: translateY(-10px) rotate(-2deg); } 90% { transform: translateY(-3px) rotate(1deg); } }
+.dcard:hover { transform: translateY(-10px) rotate(-1.5deg); animation: none; }
+.dcard.flip { animation: none; transform: translateY(-14px); }
+.dc-in { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform .7s cubic-bezier(.3,.8,.2,1); border-radius: 16px; box-shadow: 0 26px 44px -22px rgba(30,50,70,.6); }
+.dcard.flip .dc-in { transform: rotateY(180deg); }
+.dc-back, .dc-front { position: absolute; inset: 0; border-radius: 16px; overflow: hidden; -webkit-backface-visibility: hidden; backface-visibility: hidden; }
+.dc-front { transform: rotateY(180deg); background: #F6EBDD; display: grid; grid-template-rows: auto 1fr auto; justify-items: center; align-items: center; padding: 30px 26px 26px; text-align: center; }
+.dc-front::before { content: ""; position: absolute; inset: 12px; border: 1.4px solid #7C9BBF; border-radius: 8px; pointer-events: none; }
+.dc-front .sun { width: 30px; height: 30px; border-radius: 50%; background: #E3553F; box-shadow: 0 0 0 5px #F6EBDD, 0 0 0 6.4px #E3553F; }
+.dc-front .q { font: 400 clamp(19px, 2vw, 23px)/1.25 var(--serif); color: #3F5F86; text-wrap: balance; }
+.dc-front .ft { font: 400 9px var(--sans); letter-spacing: .34em; text-transform: uppercase; color: #7C9BBF; }
+.dcard.out { transform: translate(135%, -30px) rotate(16deg); opacity: 0; }
+.dcard.noanim, .dcard.noanim .dc-in { transition: none !important; }
+.dcard.deal { animation: deal .26s ease-out; }
+@keyframes deal { from { transform: translateY(14px) scale(.98); } to { transform: none; } }
+.deck-txt h2 { margin-top: 8px; font-size: clamp(40px, 5vw, 76px); line-height: .95; }
+.deck-txt > p:not(.kick):not(.sr) { margin-top: 16px; max-width: 30rem; }
+.deck-cta { display: flex; flex-wrap: wrap; gap: 10px; margin: 26px 0 18px; }
+.deck-cta .btn { color: var(--ink); }
+.deck-cta .btn.solid { color: var(--cream); }
+@media (max-width: 760px) { .deck { grid-template-columns: 1fr; gap: 22px; text-align: center; } .deck-txt { order: -1; } .deck-txt > p { margin-inline: auto; } .deck-cta { justify-content: center; } }
+@media (prefers-reduced-motion: reduce) { .dcard, .dc-in { animation: none; transition: none; } }
+
+/* ---------- reviews op een bladzijde uit de journal: pastel rand, wit vel met dunne lijntjes ---------- */
+.jpage { scroll-snap-align: start; margin: 0; padding: 13px; border-radius: 6px; display: flex;
+  background: linear-gradient(150deg, #F9C9C4 0%, #FBD9C9 30%, #EFD3E6 62%, #D9D5F0 100%); box-shadow: 0 22px 40px -28px rgba(48,93,106,.55); }
+.jpage:nth-child(2) { background: linear-gradient(200deg, #F7BFC6 0%, #FAD3C4 40%, #F3E1C8 100%); }
+.jpage:nth-child(3) { background: linear-gradient(160deg, #DCD3F1 0%, #F1CFE0 50%, #FBD6C8 100%); }
+.jpage:nth-child(4) { background: linear-gradient(140deg, #FBD9C9 0%, #F5C6CF 45%, #D8DDF2 100%); }
+.jp-in { flex: 1; display: flex; flex-direction: column; background: #fff; border: 1px solid #2A2A2A; padding: 0 16px 14px; color: #222; }
+.jp-h { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin: 0 -16px; padding: 9px 16px; border-bottom: 1px solid #2A2A2A; font: italic 700 13px Georgia, "Times New Roman", serif; letter-spacing: .28em; }
+.jp-h .stars { font: 400 10px var(--sans); letter-spacing: .2em; }
+.jpage blockquote { flex: 1; min-height: 232px; margin-top: 2px; font: italic 400 15.5px/29px Georgia, "Times New Roman", serif; color: #222;
+  background: repeating-linear-gradient(to bottom, transparent 0 28px, #2A2A2A 28px 29px); background-position: 0 -1px; }
+.jpage figcaption { margin-top: 12px; font: italic 400 12.5px Georgia, serif; color: #555; }
 /* Sale-pagina: merk van houseofwaves.nl, eigen UX. Zie DESIGN.md */
 .sx { --sand: #F5ECDD; --teal: #305D6A; --text: rgba(48,93,106,.8); --sale: #E8573A; --hair: rgba(48,93,106,.2); --white: #fff;
   background: var(--sand); color: var(--text); font: 400 16px/1.6 Helvetica, Arial, sans-serif; }
