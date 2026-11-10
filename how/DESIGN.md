@@ -25,7 +25,7 @@ Contrast: teal op zand 6,3:1; wit op teal 7,4:1; sale-oranje alleen op groot/vet
 4px-basis: 4, 8, 12, 16, 24, 32, 48, 64, 96. Secties 64px (mobiel 48px). Tekstbreedte 1200px; productrijen lopen van rand tot rand, net als op hun homepage.
 
 ## Vorm
-- Radius: 4px voor knoppen en invoer; 8px voor foto's en banners; 14px voor kaartjes (reviews, aanbodvlak); 40px voor maat-pills (hun `--variant-pills-radius`). Hun eigen thema is recht; wij ronden licht af voor een zachtere uitstraling, maar nooit tot pil-knoppen.
+- Radius: 0 voor foto's en banners van rand tot rand; 6px voor productfoto's en beelden in de tekstbreedte; 4px voor knoppen en invoer; 10px voor reviewkaartjes; 40px voor maat-pills en labels.
 - Schaduw: geen. Diepte komt uit de foto's.
 
 ## Componenten
@@ -40,3 +40,12 @@ Contrast: teal op zand 6,3:1; wit op teal 7,4:1; sale-oranje alleen op groot/vet
 - Hun eigen video's en foto's, groot en van rand tot rand. Geen illustraties, geen aura-vlekken, geen stockbeeld.
 - Handgeschreven teksten alleen zoals ze in hun eigen beelden staan.
 - Emoji spaarzaam zoals zij doen (🌊, <3).
+
+## Opbouw (sinds 10 nov 2026, richting Bram's Fruit)
+- Elke pagina opent met een grote foto van rand tot rand, op desktop vaak als tweeluik van twee staande foto's. Tekst klein en kort: één regel boven, een kop in Gloock, een onderstreepte link. Nooit een vlak of kader over de foto.
+- Plaats de tekst waar de foto leeg is (lucht, water); anders onderaan met een zachte donkere overgang.
+- Producten in rustige rijen van rand tot rand met pijlen (desktop) of vegen (mobiel), met tabs in Gloock erboven.
+- Tussen productrijen: één brede foto-banner met een korte kop en link.
+- Productkaarten: foto 4:5 op `--sand-2`, naam en prijs in kleine Helvetica, labels als klein pilletje met stip.
+- Footer licht (`--sand-2`) met nieuwsbrief als onderstreept invoerveld.
+- Stylesheet: `brand.css` (de oude `style.css` wordt niet meer gebruikt).

@@ -64,7 +64,7 @@
   }
   function lineHTML(l) {
     const p = byH[l.h], v = variant(l);
-    return '<li class="line"><a href="product.html?p=' + p.h + '"><img src="' + p.img[0] + '" alt=""></a><div class="line-info"><a href="product.html?p=' + p.h + '" class="line-t">' + p.t.replace(" - ", " · ") + '</a>' +
+    return '<li class="line"><a href="product.html?p=' + p.h + '"><img src="' + p.img[0] + '" alt=""></a><div class="line-info"><a href="product.html?p=' + p.h + '" class="line-t">' + p.t + '</a>' +
       (v.t !== "Default Title" ? '<span class="line-v">maat ' + v.t + '</span>' : '') +
       ((setAlloc()[l.id] || 0) > 0 ? '<span class="line-v" style="color:#E8573A;font-weight:700">black friday set −' + BF.pct + '%</span>' : '') +
       '<div class="qty" role="group" aria-label="Aantal"><button type="button" data-q="' + l.id + '" data-d="-1" aria-label="Eén minder">−</button><span>' + l.q + '</span><button type="button" data-q="' + l.id + '" data-d="1" aria-label="Eén meer">+</button></div></div>' +
@@ -98,11 +98,11 @@
   window.HOW.card = function (p, opts) {
     opts = opts || {};
     const v0 = p.v[0], min = Math.min(...p.v.map(v => v.p)), sold = p.v.every(v => !v.a);
-    const tag = sold ? '<span class="tag">uitverkocht</span>' : p.sale ? '<span class="tag">−' + SALE.pct + '%</span>' : p.h.includes("bundle") ? '<span class="tag">bundel · voordeel</span>' : "";
+    const tag = sold ? '<span class="tag">uitverkocht</span>' : p.sale ? '<span class="tag sale">sale −' + SALE.pct + '%</span>' : p.h.includes("bundle") ? '<span class="tag">bundel voordeel</span>' : "";
     const quick = p.v.length === 1 && !sold ? '<button class="quick" type="button" data-add="' + p.h + '" aria-label="' + p.t + ' in winkelwagen">+ in winkelwagen</button>' : "";
     return '<article class="item' + (opts.big ? " big" : "") + '"><div class="phw"><a class="ph" href="product.html?p=' + p.h + '">' + tag +
       '<img src="' + p.img[0] + '" alt="' + p.t + '" loading="lazy">' + (p.img[1] ? '<img src="' + p.img[1] + '" alt="" loading="lazy">' : "") + '</a>' + quick + '</div>' +
-      '<a class="meta" href="product.html?p=' + p.h + '"><h3>' + p.t.replace(" - ", " · ") + '</h3><span class="price">' + (p.v.length > 1 && p.v.some(v => v.p !== min) ? "vanaf " : "") + (p.sale ? '<s>' + euro(Math.min(...p.v.map(v => v.was))) + '</s>' : '') + euro(min) + '</span></a>' + (p.sale && !sold ? (function () { const left = p.v.filter(v => v.a).length, save = Math.max(...p.v.map(v => v.was - v.p)); return '<p class="save">je bespaart ' + euro(save) + (p.v.length > 1 && left === 1 ? ' · <b>nog maar 1 maat</b>' : '') + '</p>'; })() : '') + (opts.sizes && p.v.length > 1 ? '<div class="sz" role="group" aria-label="Kies je maat">' + p.v.map(v => '<button type="button" ' + (v.a ? 'data-addv="' + p.h + '|' + v.id + '"' : 'disabled') + ' aria-label="' + p.t + ' maat ' + v.t + (v.a ? '' : ', uitverkocht') + '">' + v.t.charAt(0) + '</button>').join("") + '</div>' : '') + '</article>';
+      '<a class="meta" href="product.html?p=' + p.h + '"><h3>' + p.t + '</h3><span class="price">' + (p.v.length > 1 && p.v.some(v => v.p !== min) ? "vanaf " : "") + (p.sale ? '<s>' + euro(Math.min(...p.v.map(v => v.was))) + '</s>' : '') + euro(min) + '</span></a>' + (p.sale && !sold ? (function () { const left = p.v.filter(v => v.a).length, save = Math.max(...p.v.map(v => v.was - v.p)); return '<p class="save">je bespaart ' + euro(save) + (p.v.length > 1 && left === 1 ? ' · <b>nog maar 1 maat</b>' : '') + '</p>'; })() : '') + (opts.sizes && p.v.length > 1 ? '<div class="sz" role="group" aria-label="Kies je maat">' + p.v.map(v => '<button type="button" ' + (v.a ? 'data-addv="' + p.h + '|' + v.id + '"' : 'disabled') + ' aria-label="' + p.t + ' maat ' + v.t + (v.a ? '' : ', uitverkocht') + '">' + v.t.charAt(0) + '</button>').join("") + '</div>' : '') + '</article>';
   };
   document.addEventListener("click", e => {
     const b = e.target.closest("[data-add]"); if (!b) return;
