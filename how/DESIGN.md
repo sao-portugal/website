@@ -41,11 +41,12 @@ Contrast: teal op zand 6,3:1; wit op teal 7,4:1; sale-oranje alleen op groot/vet
 - Handgeschreven teksten alleen zoals ze in hun eigen beelden staan.
 - Emoji spaarzaam zoals zij doen (🌊, <3).
 
-## Richting sinds 10 nov 2026: de aura (kaft van de journal) + journal-snufjes
-- Basis is licht: zand `#F5ECDD` met teal tekst, footer in teal. De donkere aura (`.dark`) staat alleen achter de homepage-hero, op de waves-pagina en in de sale-banner.
-- Aura: donker `#102C44` met een ademende gloed (roze #E8466E, violet #9650B4, koraal #FF9A86, aqua #46B4C8, perzik #FFD9C8) en lichte korrel. Tekst crème `#FBF6EC`.
-- De aura-kleuren zijn `--a1`–`--a4` (`@property`, dus ze vloeien over). Op de waves-pagina kleurt de aura mee per wave.
-- Journal-onderdelen als interface: gekleurde tabbladen aan de rechterrand als hoofdmenu (onder 900px een menuknop), crème (gelinieerd) papier voor koopblok, reviews, stappen, brief en formulier, de winkelwagen-lade als journal-blad.
-- Homepage: de vraag van vandaag als open journal (kaart trekken, antwoord blijft alleen op het apparaat), daarna journal essentials.
-- Sale, winkelwagen, retour, verzending en Black Friday liggen als vel papier (`.sheet`) op de aura en houden hun eigen lichte stijl.
-- Stylesheet: `brand.css` (aura-basis + de pagina-onderdelen).
+## Richting (10 nov 2026, akkoord van Koen): licht met de kleurovergangen van de journal-kaft
+- Basis: zand `#F5ECDD`, teal `#305D6A` voor tekst, knoppen, aankondigingsbalk en footer. Gloock voor koppen.
+- Kleur komt alleen uit lichte overgangen zoals op de kaft: zachtblauw (`#A9D8E3` → `#C6E6EA`) met een gloed van perzik (`#FFE1D2`), roze (`#FBB7AE`) en lila, die onderaan overloopt in zand. Staat achter de hero, elke paginakop, de kaartensectie en de sale-banner. Geen donkere vlakken, geen verzonnen steunkleuren.
+- Homepage-hero past op één scherm: titel, knop, één review, foto van de set met prijs en "in mijn mandje", regel met verzending en retour.
+- Menu gewoon bovenin; mandje als icoon met aantal. Knoppen zijn rond (40px).
+- Kaartendeck: een teststapel in het ontwerp van de Balance-kaarten (stofblauw `#7C9BBF`, crème kader, koraalrode zon `#E3553F`); tik om een kaart om te draaien.
+- Reviews staan op een bladzijde uit de journal: pastel rand, wit vel met dun zwart kader, kop zoals "daily creation", cursieve tekst op lijntjes.
+- Waves-pagina: dezelfde lichte gloed, die per wave van kleur wisselt (twee lagen die in elkaar overvloeien).
+- Stylesheet: `brand.css`.

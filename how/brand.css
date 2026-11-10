@@ -644,6 +644,32 @@ body.zacht .hero-trust { border-top-color: rgba(48,93,106,.2); }
 .jpage blockquote { flex: 1; min-height: 232px; margin-top: 2px; font: italic 400 15.5px/29px Georgia, "Times New Roman", serif; color: #222;
   background: repeating-linear-gradient(to bottom, transparent 0 28px, #2A2A2A 28px 29px); background-position: 0 -1px; }
 .jpage figcaption { margin-top: 12px; font: italic 400 12.5px Georgia, serif; color: #555; }
+
+/* ---------- de zachte stijl op elke pagina ---------- */
+/* paginakop: dezelfde lichte kleurovergang als de homepage, kleiner */
+body.zacht .hw-phead, body.zacht .pdp { position: relative; }
+body.zacht .hw-phead::before, body.zacht .pdp::before { content: ""; position: absolute; z-index: -1; left: calc(50% - 50vw); width: 100vw; top: -90px; background:
+  linear-gradient(to bottom, transparent 55%, var(--sand) 100%),
+  radial-gradient(30vw 22vw at 50% 50%, #FFE1D2 0%, rgba(251,183,174,.85) 28%, rgba(233,160,196,.55) 52%, rgba(190,170,226,.3) 72%, transparent 88%),
+  linear-gradient(165deg, #A9D8E3 0%, #C6E6EA 45%, #E6EFE6 80%, var(--sand) 100%); }
+body.zacht .hw-phead::before { bottom: -60px; }
+body.zacht .hw-phead { padding-bottom: clamp(24px, 4vw, 56px); }
+body.zacht .pdp::before { height: 560px; background:
+  linear-gradient(to bottom, transparent 50%, var(--sand) 100%),
+  radial-gradient(34vw 24vw at 30% 45%, rgba(255,225,210,.9) 0%, rgba(251,183,174,.6) 34%, rgba(205,175,228,.3) 64%, transparent 86%),
+  linear-gradient(165deg, #A9D8E3 0%, #C6E6EA 45%, #E6EFE6 80%, var(--sand) 100%); }
+@media (max-width: 760px) { body.zacht .hw-phead::before { background:
+  linear-gradient(to bottom, transparent 55%, var(--sand) 100%),
+  radial-gradient(80vw 50vw at 55% 45%, #FFE1D2 0%, rgba(251,183,174,.8) 30%, rgba(233,160,196,.5) 56%, transparent 86%),
+  linear-gradient(165deg, #A9D8E3 0%, #C6E6EA 45%, #E6EFE6 80%, var(--sand) 100%); } }
+/* waves: lichte gloed die per wave van kleur wisselt */
+body.waves .aura-bg { display: block; position: fixed; background: var(--sand); }
+body.waves .aura-bg::after { display: none; }
+body.waves .aura-l { animation: none; inset: 0; background:
+  radial-gradient(38vw 34vw at 50% 52%, color-mix(in srgb, var(--a3) 45%, #fff) 0%, color-mix(in srgb, var(--a1) 38%, #fff) 30%, color-mix(in srgb, var(--a2) 26%, transparent) 58%, transparent 80%),
+  linear-gradient(165deg, color-mix(in srgb, var(--a4) 42%, #fff) 0%, color-mix(in srgb, var(--a4) 18%, var(--sand)) 45%, var(--sand) 85%); }
+body.waves .hw-phead::before { display: none; }
+body.waves .wv .pic img { box-shadow: 0 30px 60px -36px rgba(48,93,106,.5); }
 /* Sale-pagina: merk van houseofwaves.nl, eigen UX. Zie DESIGN.md */
 .sx { --sand: #F5ECDD; --teal: #305D6A; --text: rgba(48,93,106,.8); --sale: #E8573A; --hair: rgba(48,93,106,.2); --white: #fff;
   background: var(--sand); color: var(--text); font: 400 16px/1.6 Helvetica, Arial, sans-serif; }
@@ -1085,3 +1111,17 @@ body.zacht .hero-trust { border-top-color: rgba(48,93,106,.2); }
 }
 @media (min-width: 761px) { .sx-hero-copy { left: auto; right: max(24px, calc((100vw - 1240px) / 2 + 20px)); text-align: right; } }
 .sx-hero::after { background: linear-gradient(to top, rgba(20,40,46,.55), transparent 42%); }
+
+/* ---------- zachte stijl op de losse pagina's: ronde knoppen en dezelfde kleurovergang bovenaan ---------- */
+.sx-btn, .sx-seg button, .sx-add, .sx-toast button, .wk-btn, .wk-s-add, .rt-btn, .vz-btn, .bf-btn, .bf-add { border-radius: 40px; }
+body.zacht .wk, body.zacht .rt, body.zacht .vz { position: relative; background: transparent; }
+body.zacht .wk::before, body.zacht .rt::before, body.zacht .vz::before { content: ""; position: absolute; z-index: -1; left: calc(50% - 50vw); width: 100vw; top: -90px; height: 520px; pointer-events: none; background:
+  linear-gradient(to bottom, transparent 50%, #F5ECDD 100%),
+  radial-gradient(32vw 22vw at 26% 55%, rgba(255,225,210,.95) 0%, rgba(251,183,174,.7) 32%, rgba(214,170,220,.4) 60%, transparent 86%),
+  linear-gradient(165deg, #A9D8E3 0%, #C6E6EA 45%, #E6EFE6 80%, #F5ECDD 100%); }
+@media (max-width: 760px) { body.zacht .wk::before, body.zacht .rt::before, body.zacht .vz::before { height: 380px; background:
+  linear-gradient(to bottom, transparent 50%, #F5ECDD 100%),
+  radial-gradient(80vw 50vw at 40% 55%, rgba(255,225,210,.95) 0%, rgba(251,183,174,.65) 34%, transparent 86%),
+  linear-gradient(165deg, #A9D8E3 0%, #C6E6EA 45%, #E6EFE6 80%, #F5ECDD 100%); } }
+body.zacht .wk.sheet, body.zacht .rt.sheet, body.zacht .vz.sheet { overflow: visible; }
+body.zacht .wk-empty img { mix-blend-mode: multiply; }
