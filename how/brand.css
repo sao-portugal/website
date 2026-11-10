@@ -675,6 +675,12 @@ body.waves .wv .pic img { box-shadow: 0 30px 60px -36px rgba(48,93,106,.5); }
 .cart-btn .badge:not([hidden]) { top: -9px; left: 13px; min-width: 17px; height: 17px; font-size: 10.5px; padding: 0 4px; }
 .cart-btn .lbl { margin-left: 12px; }
 .cart-btn .lbl { display: none; }
+/* leesbaarheid op licht */
+.item .save { color: #B5432C; font-weight: 700; }
+.shop-tabs button[aria-selected="true"] { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+.pill.solid { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+.pill.solid:hover { background: #24505c; border-color: #24505c; }
+.hw-open:not(.dark) .hero-rev .stars, .pdp-rev .stars { color: #B8620F; }
 /* Sale-pagina: merk van houseofwaves.nl, eigen UX. Zie DESIGN.md */
 .sx { --sand: #F5ECDD; --teal: #305D6A; --text: rgba(48,93,106,.8); --sale: #E8573A; --hair: rgba(48,93,106,.2); --white: #fff;
   background: var(--sand); color: var(--text); font: 400 16px/1.6 Helvetica, Arial, sans-serif; }
