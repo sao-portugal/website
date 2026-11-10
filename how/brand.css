@@ -763,6 +763,8 @@ body.waves .wv .pic img { box-shadow: 0 30px 60px -36px rgba(48,93,106,.5); }
 .buyhero .hero-cta .pill.solid:hover { transform: translateY(-2px); box-shadow: 0 18px 34px -14px rgba(36,80,92,.8); }
 .buyhero .hero-cta .pill.solid:hover::after { transform: translateX(4px); }
 @media (prefers-reduced-motion: reduce) { .buyhero .hero-cta .pill.solid, .buyhero .hero-cta .pill.solid::after { transition: none; } }
+.buyhero .hero-cta .pill.solid { min-height: 52px; padding: 0 30px; font-size: 14.5px; }
+.buyhero .hero-cta .pill.solid::after { content: none; }
 /* Sale-pagina: merk van houseofwaves.nl, eigen UX. Zie DESIGN.md */
 .sx { --sand: #F5ECDD; --teal: #305D6A; --text: rgba(48,93,106,.8); --sale: #E8573A; --hair: rgba(48,93,106,.2); --white: #fff;
   background: var(--sand); color: var(--text); font: 400 16px/1.6 Helvetica, Arial, sans-serif; }
