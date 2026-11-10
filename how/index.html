@@ -21,7 +21,7 @@
     <div class="icons">
       <a href="shop.html">shop</a>
       <a href="contact.html">contact</a>
-      <button type="button" data-open-cart aria-label="Winkelwagen openen">mandje <span class="badge" data-count hidden>0</span></button>
+      <button type="button" class="cart-btn" data-open-cart aria-label="Winkelwagen openen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg><span class="lbl">mandje</span><span class="badge" data-count hidden>0</span></button>
       <button type="button" id="menuBtn" aria-expanded="false" aria-controls="mobileNav">menu</button>
     </div>
   </div>
@@ -31,15 +31,36 @@
 
 <main id="main">
 
-<section class="hw-open">
-  <div>
+<section class="hw-open buyhero">
+  <div class="hero-txt">
     <h1>Create a<br><em>new era</em><br>of you</h1>
     <p class="sub">journals en kaartendecks voor je dagelijkse moment met jezelf</p>
-    <a class="pill" href="product.html?p=journal-waves-of-creation">open de journal</a>
+    <div class="hero-cta"><a class="pill solid" href="shop.html?c=journal-essentials">shop journal essentials</a><a class="ulink" href="#todayTitle">trek eerst een kaart</a></div>
+    <figure class="hero-rev"><p class="stars" aria-label="5 sterren">★★★★★</p><blockquote>“Ik gebruik hem elke dag en vind hem echt fantastisch.”</blockquote><figcaption>Lotte, over de journal-set</figcaption></figure>
   </div>
-  <span class="hw-corner l">waves of creation</span>
-  <span class="hw-corner r">experience the wave of creation</span>
-  <div class="peek" aria-hidden="true"><img src="img/hw/open-pen.jpg" alt=""><img src="img/hw/prompts.jpg" alt=""><img src="img/hw/deck-candle.jpg" alt=""></div>
+  <article class="hero-buy">
+    <a class="hb-img" href="product.html?p=kaartendeck-journal-pen-mega-journaling-discount-bundle"><img src="img/p/kaartendeck-journal-pen-mega-journaling-discount-bundle-1.jpg" alt="De journal-set: journal, Balance kaartendeck en pen"></a>
+    <div class="hb-txt">
+      <p class="kick">meest complete keuze</p>
+      <h2><a href="product.html?p=kaartendeck-journal-pen-mega-journaling-discount-bundle">de journal-set</a></h2>
+      <p class="hb-what">journal, Balance kaartendeck en pen</p>
+      <p class="hb-price"><s>€45,89</s> €39,90 <span>je bespaart €5,99</span></p>
+      <button type="button" class="btn solid" data-add="kaartendeck-journal-pen-mega-journaling-discount-bundle">in mijn mandje</button>
+    </div>
+  </article>
+  <ul class="hero-trust"><li>gratis verzending vanaf €100</li><li>binnen 3 werkdagen verstuurd</li><li>14 dagen retour</li></ul>
+</section>
+
+<section class="hw-sec first" aria-labelledby="jeTab0">
+  <div class="wrap hw-head">
+    <div class="hw-tabs" role="tablist" aria-label="Journal essentials">
+      <button type="button" role="tab" id="jeTab0" aria-selected="true" data-t="all">journal essentials</button>
+      <button type="button" role="tab" id="jeTab1" aria-selected="false" data-t="bundles">bundels</button>
+      <button type="button" role="tab" id="jeTab2" aria-selected="false" data-t="small">cadeautjes onder €15</button>
+    </div>
+    <div class="hw-arrows"><button type="button" id="jePrev" aria-label="Vorige producten"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" id="jeNext" aria-label="Volgende producten"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div>
+  </div>
+  <div class="hw-row" id="jeRow" role="tabpanel" aria-labelledby="jeTab0"></div>
 </section>
 
 <section class="hw-sec wrap" aria-labelledby="todayTitle">
@@ -52,24 +73,20 @@
       <textarea class="answer" id="answer" rows="4" placeholder="schrijf het hier op"></textarea>
       <div class="pg-actions"><button type="button" id="draw">trek een nieuwe kaart</button><span class="saved" id="saved">je antwoord blijft alleen op dit apparaat</span></div>
     </div>
-    <a class="pg r" href="product.html?p=balance-kaartendeck-gesprekskaarten-journalvragen">
+    <div class="pg r">
       <img src="img/hw/deck-candle.jpg" alt="Het Balance kaartendeck naast een brandende kaars" loading="lazy">
-      <span class="cap"><b class="h3">60 vragen voor jezelf en elkaar</b><span class="p">Balance kaartendeck, €14,99</span><span class="ulink">bekijk het kaartendeck</span></span>
-    </a>
+      <div class="cap"><b class="h3">elke dag een nieuwe vraag</b><span class="p">Balance kaartendeck, 60 vragen voor jezelf en elkaar</span>
+        <div class="cap-buy"><button type="button" class="btn cream" data-add="balance-kaartendeck-gesprekskaarten-journalvragen">in mijn mandje, €14,99</button><a class="ulink" href="product.html?p=balance-kaartendeck-gesprekskaarten-journalvragen">meer over het deck</a></div></div>
+    </div>
     <div class="spine" aria-hidden="true"></div>
   </div>
 </section>
 
-<section class="hw-sec" aria-labelledby="jeTab0">
-  <div class="wrap hw-head">
-    <div class="hw-tabs" role="tablist" aria-label="Journal essentials">
-      <button type="button" role="tab" id="jeTab0" aria-selected="true" data-t="all">journal essentials</button>
-      <button type="button" role="tab" id="jeTab1" aria-selected="false" data-t="bundles">bundels</button>
-      <button type="button" role="tab" id="jeTab2" aria-selected="false" data-t="small">cadeautjes onder €15</button>
-    </div>
-    <div class="hw-arrows"><button type="button" id="jePrev" aria-label="Vorige producten"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" id="jeNext" aria-label="Volgende producten"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div>
-  </div>
-  <div class="hw-row" id="jeRow" role="tabpanel" aria-labelledby="jeTab0"></div>
+
+
+<section class="hw-sec" aria-labelledby="revTitle">
+  <div class="wrap hw-head"><div><h2 id="revTitle">jullie mening</h2><p>Een paar reviews van jullie, precies zoals ze binnenkwamen.</p></div></div>
+  <div class="wrap"><div class="notes"><figure class="note paper"><p class="stars" aria-label="5 sterren">★★★★★</p><blockquote>“De journal is super fijn! Dik papier dat niet doorschijnt en goede harde kaft zodat 'ie niet beschadigd raakt. De invul pagina's zijn ook top, hele leuk vragen en dingen zoals een habittracker. Ik gebruik hem elke dag en vind hem echt fantastisch. Ook het kaarten dek is echt top. Love house of waves🌊”</blockquote><figcaption><b>Lotte</b>, mega journaling bundle</figcaption></figure><figure class="note paper"><p class="stars" aria-label="5 sterren">★★★★★</p><blockquote>“Super blij met de kaartendeck! De kaarten zien er hetzelfde uit als op de website foto's. Net zoals het T-shirt. Deze is ook van goede kwaliteit. Het pakketje was mooi verpakt met een leuke kaart erbij! :)”</blockquote><figcaption><b>Charlotte</b>, kaartendeck & shirt</figcaption></figure><figure class="note paper"><p class="stars" aria-label="5 sterren">★★★★★</p><blockquote>“Heb het shirt inmiddels al een tijdje, en het shirt zit echt super!! Heel blij mee :)) Ook was de verzending snel en was het pakketje leuk ingepakt!”</blockquote><figcaption><b>Elise</b>, sunset aura t-shirt</figcaption></figure><figure class="note paper"><p class="stars" aria-label="5 sterren">★★★★★</p><blockquote>“Ik heb het prachtige blauwe setje van Eva mogen ontvangen. Hij zit absoluut lekker en sluit perfect aan! Ik zou hem iedereen aanraden!! Bedankt voor het super leuke setje Eva xx”</blockquote><figcaption><b>Indira</b>, ocean blue sportset</figcaption></figure></div></div>
 </section>
 
 <section class="hw-sec wrap" aria-labelledby="stepsTitle">
@@ -87,10 +104,7 @@
   <a class="ulink" href="verhaal.html">lees ons verhaal</a>
 </section>
 
-<section class="hw-sec" aria-labelledby="revTitle">
-  <div class="wrap hw-head"><div><h2 id="revTitle">jullie mening</h2><p>Een paar reviews van jullie, precies zoals ze binnenkwamen.</p></div></div>
-  <div class="wrap"><div class="notes"><figure class="note paper"><p class="stars" aria-label="5 sterren">★★★★★</p><blockquote>“De journal is super fijn! Dik papier dat niet doorschijnt en goede harde kaft zodat 'ie niet beschadigd raakt. De invul pagina's zijn ook top, hele leuk vragen en dingen zoals een habittracker. Ik gebruik hem elke dag en vind hem echt fantastisch. Ook het kaarten dek is echt top. Love house of waves🌊”</blockquote><figcaption><b>Lotte</b>, mega journaling bundle</figcaption></figure><figure class="note paper"><p class="stars" aria-label="5 sterren">★★★★★</p><blockquote>“Super blij met de kaartendeck! De kaarten zien er hetzelfde uit als op de website foto's. Net zoals het T-shirt. Deze is ook van goede kwaliteit. Het pakketje was mooi verpakt met een leuke kaart erbij! :)”</blockquote><figcaption><b>Charlotte</b>, kaartendeck & shirt</figcaption></figure><figure class="note paper"><p class="stars" aria-label="5 sterren">★★★★★</p><blockquote>“Heb het shirt inmiddels al een tijdje, en het shirt zit echt super!! Heel blij mee :)) Ook was de verzending snel en was het pakketje leuk ingepakt!”</blockquote><figcaption><b>Elise</b>, sunset aura t-shirt</figcaption></figure><figure class="note paper"><p class="stars" aria-label="5 sterren">★★★★★</p><blockquote>“Ik heb het prachtige blauwe setje van Eva mogen ontvangen. Hij zit absoluut lekker en sluit perfect aan! Ik zou hem iedereen aanraden!! Bedankt voor het super leuke setje Eva xx”</blockquote><figcaption><b>Indira</b>, ocean blue sportset</figcaption></figure></div></div>
-</section>
+
 
 <section class="hw-sec wrap" aria-label="Bekend van"><ul class="press"><li class="label">bekend van</li><li>Trouw</li><li>Tina</li><li>KVK</li><li>NOS Stories</li><li>RTL Boulevard</li><li>Hogeschool Rotterdam</li></ul></section>
 

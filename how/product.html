@@ -21,7 +21,7 @@
     <div class="icons">
       <a href="shop.html">shop</a>
       <a href="contact.html">contact</a>
-      <button type="button" data-open-cart aria-label="Winkelwagen openen">mandje <span class="badge" data-count hidden>0</span></button>
+      <button type="button" class="cart-btn" data-open-cart aria-label="Winkelwagen openen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg><span class="lbl">mandje</span><span class="badge" data-count hidden>0</span></button>
       <button type="button" id="menuBtn" aria-expanded="false" aria-controls="mobileNav">menu</button>
     </div>
   </div>
@@ -44,6 +44,12 @@
         <div class="qty" role="group" aria-label="Aantal"><button type="button" id="qm" aria-label="Eén minder">−</button><span id="qn">1</span><button type="button" id="qp" aria-label="Eén meer">+</button></div>
         <button class="btn" type="button" id="addBtn">in mijn mandje</button>
       </div>
+      <div class="upsell" id="upsell" hidden>
+        <img src="img/p/kaartendeck-journal-pen-mega-journaling-discount-bundle-1.jpg" alt="" loading="lazy">
+        <div><b>maak er de journal-set van</b><span>journal, kaartendeck en pen voor €39,90 in plaats van €45,89</span></div>
+        <button type="button" class="btn" data-add="kaartendeck-journal-pen-mega-journaling-discount-bundle">voeg toe</button>
+      </div>
+      <figure class="pdp-rev" id="pdpRev" hidden><p class="stars" aria-label="5 sterren">★★★★★</p><blockquote id="pdpRevQ"></blockquote><figcaption id="pdpRevN"></figcaption></figure>
       <ul class="perks"><li>gratis verzending vanaf €100</li><li>verzonden binnen 3 werkdagen naar Nederland &amp; België</li><li>14 dagen retour</li></ul>
       <div class="acc">
         <details open><summary>over dit product</summary><div class="in" id="pd"></div></details>
@@ -141,6 +147,13 @@
   qm.onclick = () => { q = Math.max(1, q - 1); upd(); };
   qp.onclick = () => { q = Math.min(20, q + 1); upd(); };
   addBtn.onclick = () => H.add(p.h, v.id, q);
+  const SET = ["journal-waves-of-creation", "balance-kaartendeck-gesprekskaarten-journalvragen", "pen-create-your-reality", "journal-pen-discount-bundle"];
+  document.getElementById("upsell").hidden = !SET.includes(p.h);
+  const REV = { "journal-waves-of-creation": ["Dik papier dat niet doorschijnt en goede harde kaft. Ik gebruik hem elke dag en vind hem echt fantastisch.", "Lotte"],
+    "kaartendeck-journal-pen-mega-journaling-discount-bundle": ["Ik gebruik hem elke dag en vind hem echt fantastisch. Ook het kaarten dek is echt top.", "Lotte"],
+    "balance-kaartendeck-gesprekskaarten-journalvragen": ["Super blij met de kaartendeck! De kaarten zien er hetzelfde uit als op de website foto's.", "Charlotte"] }[p.h]
+    || (p.c.includes("nieuwe-collectie") ? ["Hij zit absoluut lekker en sluit perfect aan! Ik zou hem iedereen aanraden!!", "Indira, over de Ocean Blue set"] : null);
+  if (REV) { pdpRev.hidden = false; pdpRevQ.textContent = "“" + REV[0] + "”"; pdpRevN.textContent = REV[1]; }
   upd();
   let rel = H.P.filter(x => x.h !== p.h && x.c.some(c => p.c.includes(c)));
   if (rel.length < 6) rel = rel.concat(H.P.filter(x => x.h !== p.h && !rel.includes(x) && x.c.includes("journal-essentials")));
