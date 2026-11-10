@@ -552,7 +552,7 @@ body.auratop .bar { background: transparent; border-bottom: 1px solid rgba(251,2
 
 /* ---------- kleurvariant: elke sectie een tabbladkleur ---------- */
 /* kleuren uit hun eigen producten: het blauw van de journal-kaft, het blauw van de kaarten, het oranje van de sale */
-body.kleur { --c1: #3A87A2; --c2: #5F7C99; --c3: var(--sand-2); --c4: var(--sale); }
+body.kleur { --c1: var(--teal); --c2: var(--teal); --c3: var(--sand-2); --c4: var(--sand-2); }
 body.kleur .top, body.kleur .top.scrolled { background: var(--c1); box-shadow: none; }
 body.kleur main > section { padding-bottom: clamp(64px, 8vw, 120px); padding-top: clamp(64px, 8vw, 120px); }
 body.kleur main > section.blk { box-shadow: 0 0 0 100vmax var(--bc); clip-path: inset(0 -100vmax); background: var(--bc); }
