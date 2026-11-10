@@ -712,42 +712,29 @@ body.waves .wv .pic img { box-shadow: 0 30px 60px -36px rgba(48,93,106,.5); }
 .notes.two { grid-auto-flow: row; grid-template-columns: repeat(2, minmax(0, 420px)); justify-content: start; overflow: visible; }
 @media (max-width: 760px) { .notes.two { grid-template-columns: 1fr; } }
 
-/* ---------- flower card: van kaart naar bloemen ---------- */
-.grow-in { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(28px, 5vw, 80px); align-items: center; }
-.grow-txt h2 { margin-top: 10px; font-size: clamp(32px, 3.8vw, 54px); line-height: 1.02; }
-.grow-txt ol { margin: 24px 0 22px; display: grid; gap: 14px; counter-reset: g; }
-.grow-txt li { counter-increment: g; display: grid; grid-template-columns: 34px 1fr; column-gap: 12px; font-size: 14.5px; }
-.grow-txt li::before { content: counter(g); grid-row: span 2; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--ink); display: grid; place-items: center; font: 400 17px var(--serif); color: var(--ink); }
-.grow-txt li b { font: 400 20px/1.2 var(--serif); color: var(--ink); }
-.grow-txt .ulink { border: 0; border-bottom: 1px solid currentColor; background: none; padding: 0 0 3px; color: var(--ink); cursor: pointer; }
-.grow-svg { width: 100%; height: auto; display: block; border-radius: 18px; box-shadow: 0 30px 60px -40px rgba(48,93,106,.5); }
+/* ---------- flower card: animatie tussen de foto's, speelt door ---------- */
+.g-anim { position: relative; margin: 0; aspect-ratio: 4 / 5; border-radius: 12px; overflow: hidden; }
+.g-anim .grow-svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.g-anim figcaption { position: absolute; left: 18px; right: 18px; bottom: 14px; color: #FBF6EC; font-size: 13px; letter-spacing: .02em; }
 .grow-svg .g-card, .grow-svg .fl-in, .grow-svg .lf, .grow-svg .dr { transform-box: fill-box; }
-/* beginstand: kaart zweeft boven de aarde, nog niets gegroeid */
-.grow-svg .g-card { transform-origin: 50% 50%; transform: translateY(-70px) rotate(-8deg); }
-.grow-svg .st { stroke-dasharray: 1; stroke-dashoffset: 1; }
-.grow-svg .lf { transform-origin: 50% 100%; transform: scale(0); }
-.grow-svg .fl-in { transform-origin: 50% 50%; transform: scale(0); }
-.grow-svg .dr { opacity: 0; }
-.grow-svg.play .g-card { animation: gCard 2.3s cubic-bezier(.5,0,.3,1) both; }
-@keyframes gCard { 0% { transform: translateY(-70px) rotate(-8deg); } 22% { transform: translateY(-78px) rotate(-3deg); } 60% { transform: translateY(96px) rotate(0); } 72% { transform: translateY(96px) rotate(0); } 100% { transform: translateY(215px) rotate(0); } }
-.grow-svg.play .dr { animation: gDrop .8s ease-in both; }
-.grow-svg.play .d1 { animation-delay: 2.4s; } .grow-svg.play .d2 { animation-delay: 2.65s; } .grow-svg.play .d3 { animation-delay: 2.9s; }
-@keyframes gDrop { 0% { opacity: 0; transform: translateY(0); } 15% { opacity: 1; } 85% { opacity: 1; } 100% { opacity: 0; transform: translateY(228px); } }
-.grow-svg.play .st { animation: gStem 1.6s cubic-bezier(.4,0,.2,1) both; }
-.grow-svg.play .s1 { animation-delay: 3.6s; } .grow-svg.play .s2 { animation-delay: 3.85s; } .grow-svg.play .s3 { animation-delay: 4s; }
-@keyframes gStem { to { stroke-dashoffset: 0; } }
-.grow-svg.play .lf { animation: gPop .7s cubic-bezier(.3,1.5,.5,1) both; }
-.grow-svg.play .l1 { animation-delay: 4.5s; } .grow-svg.play .l2 { animation-delay: 4.7s; } .grow-svg.play .l3 { animation-delay: 4.9s; } .grow-svg.play .l4 { animation-delay: 5.05s; }
-.grow-svg.play .fl-in { animation: gBloom 1s cubic-bezier(.3,1.5,.5,1) both; }
-.grow-svg.play .f1 .fl-in { animation-delay: 5.2s; } .grow-svg.play .f2 .fl-in { animation-delay: 5.5s; } .grow-svg.play .f3 .fl-in { animation-delay: 5.7s; }
-@keyframes gPop { to { transform: scale(1); } }
-@keyframes gBloom { from { transform: scale(0) rotate(-60deg); } to { transform: scale(1) rotate(0); } }
-/* zonder beweging: meteen het eindbeeld */
-.grow-svg.done .g-card { transform: translateY(215px); } .grow-svg.done .st { stroke-dashoffset: 0; } .grow-svg.done .lf, .grow-svg.done .fl-in { transform: scale(1); }
-@media (max-width: 860px) { .grow-in { grid-template-columns: 1fr; } .grow-svg { order: -1; } }
-.grow-svg .st { opacity: 0; }
-@keyframes gStem { 0% { opacity: 0; stroke-dashoffset: 1; } 4% { opacity: 1; } 100% { opacity: 1; stroke-dashoffset: 0; } }
-.grow-svg.done .st { opacity: 1; }
+.grow-svg .g-card { transform-origin: 50% 50%; animation: gCard 10s ease-in-out infinite; }
+.grow-svg .dr { animation: gDrop 10s ease-in infinite; }
+.grow-svg .d2 { animation-delay: .25s; } .grow-svg .d3 { animation-delay: .5s; }
+.grow-svg .st { stroke-dasharray: 1; animation: gStem 10s ease-in-out infinite; }
+.grow-svg .s2 { animation-delay: .25s; } .grow-svg .s3 { animation-delay: .4s; }
+.grow-svg .lf { transform-origin: 50% 100%; animation: gLeaf 10s ease-out infinite; }
+.grow-svg .l2 { animation-delay: .2s; } .grow-svg .l3 { animation-delay: .4s; } .grow-svg .l4 { animation-delay: .55s; }
+.grow-svg .fl-in { transform-origin: 50% 50%; animation: gBloom 10s ease-out infinite; }
+.grow-svg .f2 .fl-in { animation-delay: .3s; } .grow-svg .f3 .fl-in { animation-delay: .5s; }
+@keyframes gCard { 0% { transform: translateY(-70px) rotate(-8deg); opacity: 0; } 3% { transform: translateY(-74px) rotate(-6deg); opacity: 1; } 14%, 17% { transform: translateY(96px) rotate(0); opacity: 1; } 23% { transform: translateY(215px); opacity: 1; } 24%, 100% { transform: translateY(215px); opacity: 0; } }
+@keyframes gDrop { 0%, 24% { opacity: 0; transform: translateY(0); } 25.5% { opacity: 1; } 31% { opacity: 1; } 32.5%, 100% { opacity: 0; transform: translateY(228px); } }
+@keyframes gStem { 0%, 35% { stroke-dashoffset: 1; opacity: 0; } 36% { stroke-dashoffset: 1; opacity: 1; } 51% { stroke-dashoffset: 0; opacity: 1; } 88% { stroke-dashoffset: 0; opacity: 1; } 95%, 100% { stroke-dashoffset: 0; opacity: 0; } }
+@keyframes gLeaf { 0%, 45% { transform: scale(0); opacity: 1; } 51% { transform: scale(1.08); } 53%, 88% { transform: scale(1); opacity: 1; } 95%, 100% { transform: scale(1); opacity: 0; } }
+@keyframes gBloom { 0%, 52% { transform: scale(0) rotate(-60deg); opacity: 1; } 60% { transform: scale(1.1) rotate(4deg); } 63%, 88% { transform: scale(1) rotate(0); opacity: 1; } 95%, 100% { transform: scale(1) rotate(0); opacity: 0; } }
+/* zonder beweging: het eindbeeld met de bloemen */
+.grow-svg.done * { animation: none !important; }
+.grow-svg.done .g-card, .grow-svg.done .dr { opacity: 0; }
+.gallery .g-anim { scroll-snap-align: start; }
 /* Sale-pagina: merk van houseofwaves.nl, eigen UX. Zie DESIGN.md */
 .sx { --sand: #F5ECDD; --teal: #305D6A; --text: rgba(48,93,106,.8); --sale: #E8573A; --hair: rgba(48,93,106,.2); --white: #fff;
   background: var(--sand); color: var(--text); font: 400 16px/1.6 Helvetica, Arial, sans-serif; }
