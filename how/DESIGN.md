@@ -41,11 +41,10 @@ Contrast: teal op zand 6,3:1; wit op teal 7,4:1; sale-oranje alleen op groot/vet
 - Handgeschreven teksten alleen zoals ze in hun eigen beelden staan.
 - Emoji spaarzaam zoals zij doen (🌊, <3).
 
-## Opbouw (sinds 10 nov 2026, richting Bram's Fruit)
-- Elke pagina opent met een grote foto van rand tot rand, op desktop vaak als tweeluik van twee staande foto's. Tekst klein en kort: één regel boven, een kop in Gloock, een onderstreepte link. Nooit een vlak of kader over de foto.
-- Plaats de tekst waar de foto leeg is (lucht, water); anders onderaan met een zachte donkere overgang.
-- Producten in rustige rijen van rand tot rand met pijlen (desktop) of vegen (mobiel), met tabs in Gloock erboven.
-- Tussen productrijen: één brede foto-banner met een korte kop en link.
-- Productkaarten: foto 4:5 op `--sand-2`, naam en prijs in kleine Helvetica, labels als klein pilletje met stip.
-- Footer licht (`--sand-2`) met nieuwsbrief als onderstreept invoerveld.
-- Stylesheet: `brand.css` (de oude `style.css` wordt niet meer gebruikt).
+## Richting sinds 10 nov 2026: de aura (kaft van de journal) + journal-snufjes
+- Achtergrond: donker `#102C44` met een ademende aura (roze #E8466E, violet #9650B4, koraal #FF9A86, aqua #46B4C8, perzik #FFD9C8) en lichte korrel. Tekst crème `#FBF6EC`.
+- De aura-kleuren zijn `--a1`–`--a4` (`@property`, dus ze vloeien over). Op de waves-pagina kleurt de aura mee per wave.
+- Journal-onderdelen als interface: gekleurde tabbladen aan de rechterrand als hoofdmenu (onder 900px een menuknop), crème (gelinieerd) papier voor koopblok, reviews, stappen, brief en formulier, de winkelwagen-lade als journal-blad.
+- Homepage: de vraag van vandaag als open journal (kaart trekken, antwoord blijft alleen op het apparaat), daarna journal essentials.
+- Sale, winkelwagen, retour, verzending en Black Friday liggen als vel papier (`.sheet`) op de aura en houden hun eigen lichte stijl.
+- Stylesheet: `brand.css` (aura-basis + de pagina-onderdelen).
