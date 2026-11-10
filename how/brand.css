@@ -540,6 +540,15 @@ body.auratop .bar { background: transparent; border-bottom: 1px solid rgba(251,2
 .hero-pic .hp-r { display: grid; justify-items: end; gap: 6px; font: 400 20px var(--serif); color: var(--fg); white-space: nowrap; }
 .hero-pic .ulink { border: 0; border-bottom: 1px solid currentColor; background: none; padding: 0 0 3px; color: var(--fg); cursor: pointer; font-family: var(--sans); }
 @media (max-width: 860px) { .hero-pic img { aspect-ratio: 4 / 3; } }
+
+/* ---------- lichte variant van de hero (zonder aura-achtergrond) ---------- */
+.hw-open:not(.dark) .pill.solid { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+.hw-open:not(.dark) .pill.solid:hover { background: #24505c; }
+.hw-open:not(.dark) .hero-rev .stars { color: #E08A2E; }
+.hw-open:not(.dark) .hero-rev blockquote { color: var(--ink); }
+.hw-open:not(.dark) .hero-trust li::before { color: var(--ink); }
+.paper-box { border-radius: 20px; padding: clamp(48px, 7vw, 96px) 24px; background: var(--sand-2); }
+.hw-sec.wrap.paper-box { max-width: min(1320px, calc(100% - 2 * var(--gut))); }
 /* Sale-pagina: merk van houseofwaves.nl, eigen UX. Zie DESIGN.md */
 .sx { --sand: #F5ECDD; --teal: #305D6A; --text: rgba(48,93,106,.8); --sale: #E8573A; --hair: rgba(48,93,106,.2); --white: #fff;
   background: var(--sand); color: var(--text); font: 400 16px/1.6 Helvetica, Arial, sans-serif; }
