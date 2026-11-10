@@ -804,6 +804,41 @@ body.waves .wv .pic img { box-shadow: 0 30px 60px -36px rgba(48,93,106,.5); }
 .faq2 h3 { font-size: 22px; margin-bottom: 12px; }
 @media (max-width: 860px) { .contact, .faq2 { grid-template-columns: 1fr; } }
 @media (max-width: 520px) { .cform .row2 { grid-template-columns: 1fr; } }
+
+/* ---------- schermvullende secties: niets valt buiten beeld ---------- */
+/* hero's op telefoon en tablet: de foto vult precies de ruimte die overblijft */
+@media (max-width: 860px) {
+  body.zacht .hw-open.buyhero { display: flex; flex-direction: column; justify-content: center; gap: 18px; min-height: calc(100svh - 112px); padding-top: 18px; padding-bottom: 18px; }
+  body.zacht .buyhero .hero-pic { flex: 1 1 0; display: flex; flex-direction: column; min-height: 150px; max-height: 560px; }
+  body.zacht .buyhero .hero-pic > a { flex: 1 1 0; min-height: 0; display: block; }
+  body.zacht .buyhero .hero-pic img { flex: 1 1 0; min-height: 0; height: 100%; width: 100%; aspect-ratio: auto; }
+  body.zacht .buyhero .hero-pic > img { height: 0; }
+  body.zacht .buyhero .hero-pic figcaption { margin-top: 10px; }
+  body.zacht .buyhero h1 { font-size: clamp(40px, min(13vw, 8.6svh), 72px); }
+  body.zacht .buyhero .sub { margin-top: 12px; }
+  body.zacht .hero-cta { margin-top: 18px; }
+  body.zacht .story-lead { margin-top: 10px; font-size: 17px; }
+  body.zacht .hero-trust { padding-top: 12px; }
+}
+@media (max-width: 860px) and (max-height: 760px) { body.zacht .hero-trust, body.zacht .story-lead { display: none; } body.zacht .buyhero .hero-pic { min-height: 110px; } }
+@media (max-width: 860px) and (max-height: 620px) { body.zacht .buyhero .sub { display: none; } }
+/* waves: elke wave past op één scherm */
+.wv { min-height: calc(100svh - 76px); padding-block: clamp(20px, 4svh, 60px); }
+.wv .pic { display: grid; place-items: center; }
+.wv .pic img { width: auto; max-width: 100%; height: auto; max-height: calc(100svh - 76px - 2 * clamp(20px, 4svh, 60px)); }
+.wv h2 { font-size: clamp(40px, min(6.4vw, 12svh), 104px); }
+@media (max-width: 760px) { .wv { min-height: 0; padding-block: 28px; } .wv .pic img { width: 100%; aspect-ratio: 4 / 3; max-height: 40svh; } .wv h2 { font-size: clamp(36px, 11vw, 56px); } }
+/* productpagina op mobiel: vaste koopbalk */
+.buybar { display: none; }
+@media (max-width: 860px) {
+  .buybar:not([hidden]) { position: fixed; z-index: 35; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px var(--gut-r) calc(10px + env(safe-area-inset-bottom, 0px)) var(--gut); background: rgba(251,246,236,.97); box-shadow: 0 -1px 0 var(--line), 0 -14px 30px -18px rgba(48,93,106,.4); }
+  .buybar > span { min-width: 0; display: grid; font-size: 13px; color: var(--ink); }
+  .buybar b { font: 400 16px/1.2 var(--serif); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .buybar .btn { flex: none; min-height: 46px; padding: 0 20px; }
+  body.has-buybar .hw-foot { padding-bottom: 70px; }
+  .gallery img:first-child { aspect-ratio: 1 / 1; }
+}
+@media (max-width: 860px) { .gallery img, .gallery img:first-child, .gallery .g-anim { aspect-ratio: 1 / 1; } }
 /* Sale-pagina: merk van houseofwaves.nl, eigen UX. Zie DESIGN.md */
 .sx { --sand: #F5ECDD; --teal: #305D6A; --text: rgba(48,93,106,.8); --sale: #E8573A; --hair: rgba(48,93,106,.2); --white: #fff;
   background: var(--sand); color: var(--text); font: 400 16px/1.6 Helvetica, Arial, sans-serif; }
@@ -1259,3 +1294,4 @@ body.zacht .wk::before, body.zacht .rt::before, body.zacht .vz::before { content
   linear-gradient(165deg, #A9D8E3 0%, #C6E6EA 45%, #E6EFE6 80%, #F5ECDD 100%); } }
 body.zacht .wk.sheet, body.zacht .rt.sheet, body.zacht .vz.sheet { overflow: visible; }
 body.zacht .wk-empty img { mix-blend-mode: multiply; }
+.bf-hero { min-height: 400px; }

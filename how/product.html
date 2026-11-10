@@ -78,6 +78,7 @@
         <g class="fl f1" transform="translate(300 146)"><g class="fl-in"><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F4A3B4" transform="rotate(0)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F4A3B4" transform="rotate(60)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F4A3B4" transform="rotate(120)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F4A3B4" transform="rotate(180)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F4A3B4" transform="rotate(240)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F4A3B4" transform="rotate(300)"/><circle r="7.5" fill="#F6D77A"/></g></g><g class="fl f2" transform="translate(234 188)"><g class="fl-in"><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#C7B2EA" transform="rotate(0)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#C7B2EA" transform="rotate(60)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#C7B2EA" transform="rotate(120)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#C7B2EA" transform="rotate(180)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#C7B2EA" transform="rotate(240)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#C7B2EA" transform="rotate(300)"/><circle r="7.5" fill="#F6D77A"/></g></g><g class="fl f3" transform="translate(368 178)"><g class="fl-in"><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F8B49C" transform="rotate(0)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F8B49C" transform="rotate(60)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F8B49C" transform="rotate(120)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F8B49C" transform="rotate(180)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F8B49C" transform="rotate(240)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F8B49C" transform="rotate(300)"/><circle r="7.5" fill="#F6D77A"/></g></g>
       </g>
     </svg><figcaption>plant de kaart, geef water en er groeien bloemetjes uit</figcaption></figure></template>
+<div class="buybar" id="buybar" hidden><span><b id="bbName"></b><span id="bbPrice"></span></span><button type="button" class="btn solid" id="bbAdd">in mijn mandje</button></div>
 <section class="hw-sec" aria-labelledby="relTitle">
   <div class="wrap hw-head"><h2 id="relTitle">maak het compleet</h2><div class="hw-arrows"><button type="button" id="relPrev" aria-label="Vorige producten"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" id="relNext" aria-label="Volgende producten"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div></div>
   <div class="hw-row" id="related"></div>
@@ -165,11 +166,14 @@
     pp.innerHTML = (v.was ? "<s>" + H.euro(v.was) + "</s>" : "") + H.euro(v.p) + (p.h.includes("bundle") ? "<small>bundelprijs</small>" : v.was ? "<small>sale −" + H.SALE.pct + "%, op = op</small>" : "");
     opts.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.id == v.id)));
     qn.textContent = q;
+    bbPrice.textContent = H.euro(v.p * q); bbAdd.disabled = !v.a; bbAdd.textContent = v.a ? "in mijn mandje" : "uitverkocht";
     addBtn.disabled = !v.a; addBtn.textContent = v.a ? "in mijn mandje, " + H.euro(v.p * q) : "uitverkocht";
   }
   qm.onclick = () => { q = Math.max(1, q - 1); upd(); };
   qp.onclick = () => { q = Math.min(20, q + 1); upd(); };
   addBtn.onclick = () => H.add(p.h, v.id, q);
+  bbName.textContent = p.t; bbAdd.onclick = () => H.add(p.h, v.id, q);
+  if ("IntersectionObserver" in window) new IntersectionObserver(es => { const e = es[0]; buybar.hidden = e.isIntersecting || e.boundingClientRect.top > innerHeight * 2; document.body.classList.toggle("has-buybar", !buybar.hidden); }, { threshold: 0 }).observe(addBtn);
   // flower card: de animatie staat tussen de foto's en blijft afspelen
   if (p.h.indexOf("flower-card") === 0) {
     const fig = document.getElementById("growTpl").content.firstElementChild.cloneNode(true);
