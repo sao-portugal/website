@@ -126,6 +126,19 @@
 .spw-early summary::-webkit-details-marker { display: none; }
 .spw-early form { width: min(360px, calc(100vw - 40px)); margin-top: 4px; }
 @media (max-width: 749px) { .spw-big b { font-size: 34px; } .spw-big { gap: 22px; } }
+
+/* voor de opening: iets lager en iets kleiner, voor de rust */
+.spw-fase.voor { margin-top: clamp(40px, 9vh, 110px); }
+.spw-fase.voor .spw-big { margin-bottom: clamp(16px, 2.6vh, 26px); }
+.spw-fase.voor .spw-big b { font-size: clamp(34px, 3.4vw, 46px); }
+.spw-fase.voor .spw-box.main { max-width: 480px; }
+.spw-fase.voor .spw-box.main h2 { font-size: clamp(24px, 2.1vw, 28px); }
+.spw-fase.voor .spw-box.main p.t { font-size: 14px; }
+.spw-fase.voor .spw-box.main .spw-row { margin-top: 14px; }
+.spw-fase.voor .spw-box.main .spw-row input, .spw-fase.voor .spw-box.main .spw-row button { height: 52px; font-size: 16px; }
+.spw-fase.voor .spw-box.main .spw-row button { width: 160px; }
+@media (max-width: 749px) { .spw-fase.voor { margin-top: 32px; } .spw-fase.voor .spw-box.main h2 { font-size: 23px; } .spw-fase.voor .spw-box.main .spw-row button { width: 140px; } }
+@media (min-width: 750px) and (max-height: 800px) { .spw-fase.voor { margin-top: 24px; } }
 </style></head>
 <body>
 <section class="spw" id="spw-x" aria-labelledby="spw-t-x" data-open="2026-11-14T10:00:00+01:00" data-end="2026-11-15T23:59:59+01:00">
@@ -138,7 +151,7 @@
     <p class="spw-sub" data-fase="voor">Dit weekend is de webshop alleen open met een wachtwoord. Zaterdag 14 november om 10:00 gaat de presale open.</p><p class="spw-sub" data-fase="tijdens na" hidden>Alleen met wachtwoord, tot en met zondag 15 november, 23:59.</p>
   </div>
   <div class="spw-mid">
-    <div class="spw-fase" data-fase="voor"><ul class="spw-big" data-clock role="timer" aria-label="Tijd tot de presale opengaat"><li data-dd><b data-d>0</b><span data-du>dagen</span></li><li><b data-h>00</b><span>uur</span></li><li><b data-m>00</b><span>min</span></li><li><b data-s>00</b><span>sec</span></li></ul><div class="spw-box main"><h2>zet je op de lijst</h2><form data-demo="mail" novalidate><p class="t">Zaterdag om 10:00 krijg je het wachtwoord in je mail.</p><label class="visually-hidden" for="em2">E-mailadres</label><div class="spw-row"><input id="em2" type="email" placeholder="jouw e-mailadres" required><button type="submit">aanmelden</button></div><p class="spw-note">Je kunt je altijd afmelden. Lees meer in het <a href="https://houseofwaves.nl/policies/privacy-policy">privacybeleid</a>.</p></form></div></div>
+    <div class="spw-fase voor" data-fase="voor"><ul class="spw-big" data-clock role="timer" aria-label="Tijd tot de presale opengaat"><li data-dd><b data-d>0</b><span data-du>dagen</span></li><li><b data-h>00</b><span>uur</span></li><li><b data-m>00</b><span>min</span></li><li><b data-s>00</b><span>sec</span></li></ul><div class="spw-box main"><h2>wil je erbij zijn?</h2><form data-demo="mail" novalidate><p class="t">Laat je e-mailadres achter, dan krijg je zaterdag om 10:00 het wachtwoord.</p><label class="visually-hidden" for="em2">E-mailadres</label><div class="spw-row"><input id="em2" type="email" placeholder="jouw e-mailadres" required><button type="submit">aanmelden</button></div><p class="spw-note">Je kunt je altijd afmelden. Lees meer in het <a href="https://houseofwaves.nl/policies/privacy-policy">privacybeleid</a>.</p></form></div></div>
     <div class="spw-fase" data-fase="tijdens na" hidden><div class="spw-box main"><h2>heb je het wachtwoord?</h2><form data-demo="pw" novalidate><p class="t">Je vindt het wachtwoord in de mail die je van ons hebt gekregen.</p><label class="visually-hidden" for="pw">Wachtwoord</label><div class="spw-row"><input id="pw" type="text" name="password" placeholder="wachtwoord" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" required><button type="submit">naar de presale</button></div><p class="spw-msg" hidden>Dit wachtwoord klopt niet. Check je mail nog even.</p></form></div></div>
   </div>
   <div class="spw-bot">
