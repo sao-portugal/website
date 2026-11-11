@@ -76,23 +76,6 @@
   </div>
 </section>
 
-<section class="hw-sec wrap mp-sec" aria-labelledby="mpTitle">
-  <div class="mp-card">
-    <div class="mp-art" aria-hidden="true">
-  <svg class="env-back" viewBox="0 0 200 130"><path d="M6 10 Q6 4 12 4 H188 Q194 4 194 10 V124 H6 Z" fill="#E6D3B6"/></svg>
-  <img class="env-card" src="img/hw/card-back.jpg" alt="">
-  <svg class="env-front" viewBox="0 0 200 130"><path d="M6 40 L100 92 L194 40 V120 Q194 126 188 126 H12 Q6 126 6 120 Z" fill="#F4E8D6"/><path d="M6 40 L100 92 L194 40" fill="none" stroke="#D9C09C" stroke-width="1.2"/><path d="M84 108 q4 -6 8 0 t8 0 t8 0" fill="none" stroke="#305D6A" stroke-width="1.6" stroke-linecap="round"/></svg>
-</div>
-    <div class="mp-txt">
-      <p class="kick">journal prompts in je mail</p>
-      <h2 id="mpTitle">vond je dit een fijne vraag?</h2>
-      <p>Ontvang nieuwe journal prompts in je mail, met een persoonlijk woordje van Eva.</p>
-      <form class="mp-form" name="prompts" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate><input type="hidden" name="form-name" value="prompts"><input type="hidden" name="bron" value="kaart"><p hidden><label>Niet invullen <input name="bot-field"></label></p><label class="sr" for="mp-kaart">Je e-mailadres</label><div class="mp-row"><input id="mp-kaart" name="email" type="email" autocomplete="email" placeholder="jouw e-mailadres" required><button type="submit">aanmelden</button></div><p class="mp-msg" aria-live="polite"></p></form>
-      <small>Je kunt je altijd afmelden. Lees meer in het <a href="https://houseofwaves.nl/policies/privacy-policy" target="_blank" rel="noopener">privacybeleid</a>.</small>
-    </div>
-  </div>
-</section>
-
 <section class="hw-sec" aria-labelledby="revTitle">
   <div class="wrap hw-head"><div><h2 id="revTitle">jullie mening</h2><p>Een paar reviews van jullie, precies zoals ze binnenkwamen.</p></div></div>
   <div class="wrap"><div class="notes"><figure class="jpage"><div class="jp-in"><p class="jp-h"><span>lotte</span></p><p class="jp-stars" aria-label="5 van 5 sterren"><span aria-hidden="true">★★★★★</span>5/5</p><blockquote>De journal is super fijn! Dik papier dat niet doorschijnt en goede harde kaft zodat 'ie niet beschadigd raakt. De invul pagina's zijn ook top, hele leuk vragen en dingen zoals een habittracker. Ik gebruik hem elke dag en vind hem echt fantastisch. Ook het kaarten dek is echt top. Love house of waves🌊</blockquote><figcaption>over de mega journaling bundle</figcaption></div></figure><figure class="jpage"><div class="jp-in"><p class="jp-h"><span>charlotte</span></p><p class="jp-stars" aria-label="5 van 5 sterren"><span aria-hidden="true">★★★★★</span>5/5</p><blockquote>Super blij met de kaartendeck! De kaarten zien er hetzelfde uit als op de website foto's. Net zoals het T-shirt. Deze is ook van goede kwaliteit. Het pakketje was mooi verpakt met een leuke kaart erbij! :)</blockquote><figcaption>over de kaartendeck & shirt</figcaption></div></figure><figure class="jpage"><div class="jp-in"><p class="jp-h"><span>elise</span></p><p class="jp-stars" aria-label="5 van 5 sterren"><span aria-hidden="true">★★★★★</span>5/5</p><blockquote>Heb het shirt inmiddels al een tijdje, en het shirt zit echt super!! Heel blij mee :)) Ook was de verzending snel en was het pakketje leuk ingepakt!</blockquote><figcaption>over de sunset aura t-shirt</figcaption></div></figure><figure class="jpage"><div class="jp-in"><p class="jp-h"><span>indira</span></p><p class="jp-stars" aria-label="5 van 5 sterren"><span aria-hidden="true">★★★★★</span>5/5</p><blockquote>Ik heb het prachtige blauwe setje van Eva mogen ontvangen. Hij zit absoluut lekker en sluit perfect aan! Ik zou hem iedereen aanraden!! Bedankt voor het super leuke setje Eva xx</blockquote><figcaption>over de ocean blue sportset</figcaption></div></figure></div></div>
@@ -220,11 +203,6 @@
   arrows(row, document.getElementById("jePrev"), document.getElementById("jeNext"));
 })();
 </script>
-<aside class="mp-toast" id="mpToast" hidden aria-labelledby="mpToastT">
-  <button type="button" class="mp-x" id="mpX" aria-label="Sluiten"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-  <img class="mp-mini" src="img/hw/card-back.jpg" alt="">
-  <div class="mp-tb"><p class="mp-tt" id="mpToastT">een journal prompt in je mail?</p><p class="mp-ts">Nieuwe vragen om over te schrijven, met een woordje van Eva.</p><form class="mp-form" name="prompts" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate><input type="hidden" name="form-name" value="prompts"><input type="hidden" name="bron" value="melding"><p hidden><label>Niet invullen <input name="bot-field"></label></p><label class="sr" for="mp-melding">Je e-mailadres</label><div class="mp-row"><input id="mp-melding" name="email" type="email" autocomplete="email" placeholder="jouw e-mailadres" required><button type="submit">ja, graag</button></div><p class="mp-msg" aria-live="polite"></p></form></div>
-</aside>
 <script>
 (function () {
   const store = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };

@@ -95,11 +95,6 @@
   document.querySelectorAll("[data-aura]").forEach(el => io.observe(el));
 })();
 </script>
-<aside class="mp-toast" id="mpToast" hidden aria-labelledby="mpToastT">
-  <button type="button" class="mp-x" id="mpX" aria-label="Sluiten"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-  <img class="mp-mini" src="img/hw/card-back.jpg" alt="">
-  <div class="mp-tb"><p class="mp-tt" id="mpToastT">een journal prompt in je mail?</p><p class="mp-ts">Nieuwe vragen om over te schrijven, met een woordje van Eva.</p><form class="mp-form" name="prompts" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate><input type="hidden" name="form-name" value="prompts"><input type="hidden" name="bron" value="melding"><p hidden><label>Niet invullen <input name="bot-field"></label></p><label class="sr" for="mp-melding">Je e-mailadres</label><div class="mp-row"><input id="mp-melding" name="email" type="email" autocomplete="email" placeholder="jouw e-mailadres" required><button type="submit">ja, graag</button></div><p class="mp-msg" aria-live="polite"></p></form></div>
-</aside>
 <script>
 (function () {
   const store = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
