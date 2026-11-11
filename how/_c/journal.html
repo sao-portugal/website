@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Richting A: het open journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&display=swap" rel="stylesheet">
+<style>
+  :root { --sand:#F5ECDD; --page:#FBF6EC; --teal:#305D6A; --text:rgba(48,93,106,.8); --sale:#E8573A; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #E9DDC8; color: var(--text); font: 15px/1.6 "Helvetica Neue", Helvetica, Arial, sans-serif; min-height: 100vh; overflow: hidden; }
+  .g { font-family: Gloock, Georgia, serif; font-weight: 400; color: var(--teal); }
+  .corner { position: fixed; z-index: 5; font-size: 13px; letter-spacing: .03em; color: var(--teal); }
+  .tl { top: 26px; left: 32px; } .tr { top: 26px; right: 32px; } .bl { bottom: 22px; left: 32px; } .br { bottom: 22px; right: 32px; }
+  .tl svg { width: 120px; }
+  /* het boek */
+  .book { position: absolute; left: 50%; top: 50%; width: 1160px; height: 720px; transform: translate(-50%, -48%); display: grid; grid-template-columns: 1fr 1fr;
+    filter: drop-shadow(0 40px 60px rgba(48,93,106,.22)); }
+  .p { position: relative; background: var(--page); overflow: hidden; }
+  .left { border-radius: 10px 2px 2px 10px; padding: 58px 64px 48px 72px;
+    background-image: linear-gradient(to right, rgba(0,0,0,0) 94%, rgba(48,93,106,.10)), repeating-linear-gradient(to bottom, transparent 0 35px, rgba(48,93,106,.13) 35px 36px);
+    background-color: var(--page); background-position: 0 0, 0 22px; }
+  .right { border-radius: 2px 10px 10px 2px; }
+  .spine { position: absolute; left: 50%; top: 0; bottom: 0; width: 60px; transform: translateX(-50%); background: linear-gradient(to right, rgba(48,93,106,0), rgba(48,93,106,.14) 48%, rgba(255,255,255,.4) 52%, rgba(48,93,106,0)); pointer-events: none; z-index: 2; }
+  .date { font-size: 13px; letter-spacing: .04em; display: flex; justify-content: space-between; }
+  .q { margin-top: 64px; font-size: 44px; line-height: 1.12; max-width: 13ch; }
+  .write { margin-top: 30px; height: 180px; font: 400 22px/36px Gloock, Georgia, serif; color: rgba(48,93,106,.45); }
+  .write i { display: inline-block; width: 2px; height: 26px; background: var(--teal); vertical-align: -5px; margin-left: 2px; animation: c 1s steps(1) infinite; }
+  @keyframes c { 50% { opacity: 0; } }
+  .actions { position: absolute; left: 72px; right: 64px; bottom: 44px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-weight: 700; letter-spacing: .03em; color: var(--teal); }
+  .actions a { color: inherit; text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+  .right img { width: 100%; height: 100%; object-fit: cover; object-position: center 72%; }
+  .right .cap { position: absolute; left: 44px; right: 44px; bottom: 40px; color: #fff; }
+  .right::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(20,40,46,.55), transparent 45%); }
+  .cap { z-index: 1; }
+  .cap h1 { color: #fff; font-size: 40px; line-height: 1.05; }
+  .cap p { margin-top: 8px; font-size: 14px; }
+  .cap a { display: inline-block; margin-top: 14px; color: #fff; font-size: 13px; font-weight: 700; letter-spacing: .03em; text-decoration: none; border-bottom: 1px solid #fff; padding-bottom: 2px; }
+  /* tabbladen aan de rand van het boek = navigatie */
+  .tabs { position: absolute; right: -44px; top: 64px; display: grid; gap: 8px; z-index: 0; }
+  .tabs a { display: block; width: 64px; height: 108px; padding: 14px 0 0 30px; border-radius: 0 10px 10px 0; color: var(--teal); text-decoration: none; font-size: 12px; letter-spacing: .04em;
+    writing-mode: vertical-rl; }
+  .t1 { background: #F7C9B4; } .t2 { background: #DCCBF2; } .t3 { background: #BFE2E0; } .t4 { background: #F3D7A8; } .t5 { background: var(--sale); color: #fff !important; }
+  .note { position: fixed; left: 50%; top: 18px; transform: translateX(-50%); font-size: 12px; color: var(--teal); opacity: .7; }
+</style></head>
+<body>
+  <a class="corner tl" href="#"><svg viewBox="374 320 1268 415" fill="#305D6A" id="logo"></svg></a>
+  <span class="corner tr">zoeken &nbsp;&nbsp; mandje (0)</span>
+  <span class="corner bl">gratis verzending vanaf €100</span>
+  <span class="corner br">scroll om verder te bladeren</span>
+  <div class="book">
+    <div class="tabs"><a class="t1" href="#">journal essentials</a><a class="t2" href="#">kaartendeck</a><a class="t3" href="#">waves</a><a class="t4" href="#">ons verhaal</a><a class="t5" href="#">sale</a></div>
+    <section class="p left">
+      <p class="date"><span>dinsdag 10 november</span><span>vraag 07 / 60</span></p>
+      <h2 class="g q">Waar haal jij op dit moment de meeste energie uit?</h2>
+      <p class="write">schrijf het hier op<i></i></p>
+      <p class="actions"><a href="#">trek een nieuwe kaart</a><span>uit het Balance kaartendeck</span></p>
+    </section>
+    <section class="p right">
+      <img src="../img/hw/journal-sky.jpg" alt="">
+      <div class="cap"><h1 class="g">create a new era of you</h1><p>De Waves of Creation journal, €24,95</p><a href="#">bekijk de journal</a></div>
+    </section>
+    <div class="spine"></div>
+  </div>
+<script>fetch('../logo.svg').then(r=>r.text()).then(t=>{document.getElementById('logo').outerHTML=t.replace('<svg','<svg style="width:120px;color:#305D6A"')});</script>
+</body></html>

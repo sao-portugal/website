@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Richting B: de aura</title>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { min-height: 100vh; overflow: hidden; font: 15px/1.6 "Helvetica Neue", Helvetica, Arial, sans-serif; color: #FBF6EC;
+    background: #12304A; }
+  /* het hele scherm is de kaft van de journal: een ademende aura */
+  .aura { position: fixed; inset: -10%; background:
+      radial-gradient(38% 46% at 52% 50%, #FFD9C8 0%, #FF9A86 18%, #E8466E 34%, rgba(150,60,170,.85) 52%, rgba(40,70,150,.0) 74%),
+      radial-gradient(60% 70% at 30% 20%, rgba(70,170,200,.55), transparent 60%),
+      radial-gradient(60% 60% at 80% 85%, rgba(60,190,190,.5), transparent 60%),
+      linear-gradient(160deg, #1D6A80, #12304A 60%, #1B5A6E);
+    filter: saturate(1.05); animation: breathe 9s ease-in-out infinite alternate; }
+  @keyframes breathe { to { transform: scale(1.06) translate(1%, -1%); } }
+  .grain { position: fixed; inset: 0; opacity: .08; mix-blend-mode: overlay; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .corner { position: fixed; z-index: 3; font-size: 13px; letter-spacing: .04em; }
+  .tl { top: 28px; left: 36px; } .tr { top: 30px; right: 36px; display: flex; gap: 26px; } .bl { bottom: 28px; left: 36px; } .br { bottom: 28px; right: 36px; }
+  .tr span:last-child { font-weight: 700; }
+  .center { position: fixed; inset: 0; z-index: 2; display: grid; place-items: center; text-align: center; }
+  h1 { font: 400 132px/.92 Gloock, Georgia, serif; letter-spacing: -.01em; }
+  h1 em { font-style: italic; }
+  .sub { margin-top: 26px; font-size: 14px; letter-spacing: .08em; opacity: .9; }
+  .cta { display: inline-block; margin-top: 30px; padding: 14px 26px; border: 1px solid rgba(251,246,236,.7); border-radius: 40px; color: #FBF6EC; text-decoration: none; font-size: 13px; font-weight: 700; letter-spacing: .05em; backdrop-filter: blur(6px); }
+  .peek { position: fixed; z-index: 3; left: 50%; bottom: -170px; transform: translateX(-50%); display: flex; gap: 14px; }
+  .peek img { width: 200px; height: 250px; object-fit: cover; border-radius: 6px; box-shadow: 0 20px 40px rgba(0,0,0,.25); }
+  .peek img:nth-child(1) { transform: rotate(-6deg) translateY(20px); } .peek img:nth-child(3) { transform: rotate(5deg) translateY(16px); }
+</style></head>
+<body>
+  <div class="aura"></div><div class="grain"></div>
+  <a class="corner tl" href="#" id="logoWrap"></a>
+  <nav class="corner tr"><span>journal essentials</span><span>waves</span><span>ons verhaal</span><span>mandje (0)</span></nav>
+  <span class="corner bl">waves of creation</span>
+  <span class="corner br">experience the wave of creation</span>
+  <div class="center"><div>
+    <h1>Create a<br><em>new era</em><br>of you</h1>
+    <p class="sub">journals en kaartendecks voor je dagelijkse moment met jezelf</p>
+    <a class="cta" href="#">open de journal</a>
+  </div></div>
+  <div class="peek"><img src="../img/hw/open-pen.jpg" alt=""><img src="../img/hw/prompts.jpg" alt=""><img src="../img/hw/deck-candle.jpg" alt=""></div>
+<script>fetch('../logo.svg').then(r=>r.text()).then(t=>{document.getElementById('logoWrap').innerHTML=t.replace('<svg','<svg style="width:120px;color:#FBF6EC"')});</script>
+</body></html>
