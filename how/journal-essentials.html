@@ -95,6 +95,23 @@
   </div>
 </section>
 
+<section class="hw-sec wrap mp-sec" aria-labelledby="mpTitle">
+  <div class="mp-card">
+    <div class="mp-art" aria-hidden="true">
+  <svg class="env-back" viewBox="0 0 200 130"><path d="M6 10 Q6 4 12 4 H188 Q194 4 194 10 V124 H6 Z" fill="#E6D3B6"/></svg>
+  <img class="env-card" src="img/hw/card-back.jpg" alt="">
+  <svg class="env-front" viewBox="0 0 200 130"><path d="M6 40 L100 92 L194 40 V120 Q194 126 188 126 H12 Q6 126 6 120 Z" fill="#F4E8D6"/><path d="M6 40 L100 92 L194 40" fill="none" stroke="#D9C09C" stroke-width="1.2"/><path d="M84 108 q4 -6 8 0 t8 0 t8 0" fill="none" stroke="#305D6A" stroke-width="1.6" stroke-linecap="round"/></svg>
+</div>
+    <div class="mp-txt">
+      <p class="kick">journal prompts in je mail</p>
+      <h2 id="mpTitle">vond je dit een fijne vraag?</h2>
+      <p>Ontvang nieuwe journal prompts in je mail, met een persoonlijk woordje van Eva.</p>
+      <form class="mp-form" name="prompts" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate><input type="hidden" name="form-name" value="prompts"><input type="hidden" name="bron" value="kaart"><p hidden><label>Niet invullen <input name="bot-field"></label></p><label class="sr" for="mp-kaart">Je e-mailadres</label><div class="mp-row"><input id="mp-kaart" name="email" type="email" autocomplete="email" placeholder="jouw e-mailadres" required><button type="submit">aanmelden</button></div><p class="mp-msg" aria-live="polite"></p></form>
+      <small>Je kunt je altijd afmelden. Lees meer in het <a href="https://houseofwaves.nl/policies/privacy-policy" target="_blank" rel="noopener">privacybeleid</a>.</small>
+    </div>
+  </div>
+</section>
+
 <section class="hw-sec" aria-labelledby="extraTitle">
   <div class="wrap hw-head"><div><h2 id="extraTitle">maak je set af</h2><p>Los te bestellen, of als cadeautje bij een journal.</p></div></div>
   <div class="wrap"><div class="grid-shop je-extra" id="extra"></div></div>
@@ -121,12 +138,11 @@
     </div>
     <div><h4>shop</h4><ul><li><a href="journal-essentials.html">journal essentials</a></li><li><a href="product.html?p=balance-kaartendeck-gesprekskaarten-journalvragen">Balance kaartendeck</a></li><li><a href="waves.html">waves</a></li><li><a href="shop.html">alle producten</a></li><li><a href="sale.html">sale</a></li><li><a href="winkelwagen.html">winkelwagen</a></li></ul></div>
     <div><h4>info</h4><ul><li><a href="verhaal.html">over Eva</a></li><li><a href="verzending.html">verzending &amp; retour</a></li><li><a href="retour.html">retour aanvragen</a></li><li><a href="contact.html#faq">veelgestelde vragen</a></li><li><a href="contact.html">contact</a></li></ul></div>
-    <form class="hw-nl" id="nlForm" novalidate>
-      <label for="nlMail">hoor als eerste over de volgende wave</label>
-      <div class="row"><input id="nlMail" type="email" autocomplete="email" placeholder="jouw e-mailadres"><button type="submit" aria-label="Aanmelden"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
-      <small>Exclusieve kortingen, extra inspiratie en als eerste op de hoogte van nieuwe producten.</small>
-      <p class="msg" id="nlMsg" aria-live="polite"></p>
-    </form>
+    <div class="hw-nl">
+      <p class="nl-h">journal prompts in je mail</p>
+      <form class="mp-form" name="prompts" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate><input type="hidden" name="form-name" value="prompts"><input type="hidden" name="bron" value="footer"><p hidden><label>Niet invullen <input name="bot-field"></label></p><label class="sr" for="mp-footer">Je e-mailadres</label><div class="mp-row"><input id="mp-footer" name="email" type="email" autocomplete="email" placeholder="jouw e-mailadres" required><button type="submit" aria-label="Aanmelden"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div><p class="mp-msg" aria-live="polite"></p></form>
+      <small>Nieuwe vragen om over te schrijven, een woordje van Eva en als eerste weten wanneer er iets nieuws is. Altijd af te melden.</small>
+    </div>
     <p class="bottom"><span>© 2026 House of Waves</span><span>experience the wave of creation</span></p>
   </div>
 </footer>
@@ -157,9 +173,6 @@
   document.getElementById("menuClose").addEventListener("click", close);
   addEventListener("keydown", e => { if (e.key === "Escape" && !mn.hidden) close(); });
   mb.addEventListener("click", () => { if (!mn.hidden) setTimeout(() => document.getElementById("menuClose").focus(), 0); });
-  const f = document.getElementById("nlForm");
-  f.addEventListener("submit", e => { e.preventDefault(); const m = document.getElementById("nlMail"), ok = /\S+@\S+\.\S+/.test(m.value);
-    document.getElementById("nlMsg").textContent = ok ? "Dank je! Dit is een ontwerp: in de echte webshop kom je hier op de lijst. 🌊" : "Vul een geldig e-mailadres in."; });
 })();
 </script>
 <script>
@@ -194,6 +207,44 @@
   document.querySelectorAll("[data-save]").forEach(el => { const p = H.byH[el.dataset.save], bd = p && H.bundle(p); if (bd && bd.label) el.textContent = bd.label; });
   const main = ["journal-waves-of-creation", "journal-pen-discount-bundle", "kaartendeck-journal-pen-mega-journaling-discount-bundle"];
   document.getElementById("extra").innerHTML = H.P.filter(p => p.c.includes("journal-essentials") && !main.includes(p.h)).map(p => H.card(p)).join("");
+})();
+</script>
+<aside class="mp-toast" id="mpToast" hidden aria-labelledby="mpToastT">
+  <button type="button" class="mp-x" id="mpX" aria-label="Sluiten"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <img class="mp-mini" src="img/hw/card-back.jpg" alt="">
+  <div class="mp-tb"><p class="mp-tt" id="mpToastT">een journal prompt in je mail?</p><p class="mp-ts">Nieuwe vragen om over te schrijven, met een woordje van Eva.</p><form class="mp-form" name="prompts" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate><input type="hidden" name="form-name" value="prompts"><input type="hidden" name="bron" value="melding"><p hidden><label>Niet invullen <input name="bot-field"></label></p><label class="sr" for="mp-melding">Je e-mailadres</label><div class="mp-row"><input id="mp-melding" name="email" type="email" autocomplete="email" placeholder="jouw e-mailadres" required><button type="submit">ja, graag</button></div><p class="mp-msg" aria-live="polite"></p></form></div>
+</aside>
+<script>
+(function () {
+  const store = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
+  document.querySelectorAll(".mp-form").forEach(f => f.addEventListener("submit", async e => {
+    e.preventDefault();
+    const m = f.querySelector("[name=email]"), msg = f.querySelector(".mp-msg"), b = f.querySelector("button");
+    if (!/^\S+@\S+\.\S+$/.test(m.value.trim())) { msg.textContent = "Vul een geldig e-mailadres in."; m.setAttribute("aria-invalid", "true"); m.focus(); return; }
+    m.removeAttribute("aria-invalid"); b.disabled = true;
+    try {
+      const r = await fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(new FormData(f)).toString() });
+      if (!r.ok) throw 0;
+      store.set("how_prompts", "1"); f.classList.add("done"); msg.textContent = "Je staat erop! De eerste prompt komt naar je toe."; m.value = "";
+      const t = document.getElementById("mpToast"); if (t && f.closest("#mpToast")) setTimeout(() => t.classList.remove("in"), 2800);
+    } catch (x) { msg.textContent = "Dat lukte even niet. Probeer het nog een keer."; }
+    b.disabled = false;
+  }));
+  // envelop: kaart schuift omhoog zodra hij in beeld komt
+  document.querySelectorAll(".mp-art").forEach(a => {
+    if (!("IntersectionObserver" in window)) return a.classList.add("in");
+    new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting) { a.classList.add("in"); o.disconnect(); } }), { threshold: .4 }).observe(a);
+  });
+  // rustige melding: na 30 seconden of halverwege de pagina, hooguit eens per 2 weken, niet op service- en afrekenpagina's
+  const t = document.getElementById("mpToast"); if (!t) return;
+  if (/(winkelwagen|retour|contact|verzending)\.html/.test(location.pathname) || store.get("how_prompts")) return;
+  if (Date.now() - (+store.get("how_prompts_seen") || 0) < 12096e5) return;
+  let shown = false;
+  const inView = () => [...document.querySelectorAll(".mp-sec, .hw-nl")].some(el => { const r = el.getBoundingClientRect(); return r.top < innerHeight && r.bottom > 0; });
+  const show = () => { if (shown) return; if (inView()) { setTimeout(show, 4000); return; } shown = true; store.set("how_prompts_seen", String(Date.now())); t.hidden = false; requestAnimationFrame(() => requestAnimationFrame(() => t.classList.add("in"))); };
+  const timer = setTimeout(show, 30000);
+  addEventListener("scroll", function sc() { if (scrollY > (document.documentElement.scrollHeight - innerHeight) * .55) { removeEventListener("scroll", sc); clearTimeout(timer); show(); } }, { passive: true });
+  document.getElementById("mpX").addEventListener("click", () => { t.classList.remove("in"); setTimeout(() => { t.hidden = true; }, 400); });
 })();
 </script>
 </body>
