@@ -1223,6 +1223,9 @@ body.waves .wv .pic img { box-shadow: 0 30px 60px -36px rgba(48,93,106,.5); }
   .ss-price s { font-size: 13px; }
   .setstrip .ss-add { min-height: 48px; margin-top: 12px; }
 }
+/* kop boven een productrij lijnt uit met de eerste kaart */
+.wrap.hw-head:has(+ .hw-row) { max-width: none; margin-inline: 0; justify-content: space-between; text-align: left; }
+.wrap.hw-head:has(+ .hw-row) .hw-tabs { justify-content: flex-start; }
 /* Sale-pagina: merk van houseofwaves.nl, eigen UX. Zie DESIGN.md */
 .sx { --sand: #F5ECDD; --teal: #305D6A; --text: rgba(48,93,106,.8); --sale: #E8573A; --hair: rgba(48,93,106,.2); --white: #fff;
   background: var(--sand); color: var(--text); font: 400 16px/1.6 Helvetica, Arial, sans-serif; }
