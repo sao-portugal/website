@@ -1389,6 +1389,14 @@ html.lb-open { overflow: hidden; }
 }
 @media (max-width: 860px) { .gallery .g-btn img, .gallery .g-anim { aspect-ratio: auto; height: min(100vw, 52svh); } .gallery .g-anim svg { height: 100%; } }
 @media (max-width: 860px) { .gallery .g-anim { border-radius: 0; } .gallery .g-anim figcaption { padding-right: 80px; } }
+
+/* ---------- betaaliconen: footer + winkelwagen ---------- */
+.pay-ic { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0; padding: 0; }
+.pay-ic li { margin: 0 !important; line-height: 0; }
+.pay-ic img { display: block; width: 38px; height: 24px; border-radius: 3px; }
+.hw-foot .bottom { align-items: center; }
+.wk-pay.pay-ic { margin-top: 16px; }
+@media (max-width: 720px) { .hw-foot .bottom .pay-ic { order: -1; width: 100%; margin-bottom: 6px; } }
 /* Sale-pagina: merk van houseofwaves.nl, eigen UX. Zie DESIGN.md */
 .sx { --sand: #F5ECDD; --teal: #305D6A; --text: rgba(48,93,106,.8); --sale: #E8573A; --hair: rgba(48,93,106,.2); --white: #fff;
   background: var(--sand); color: var(--text); font: 400 16px/1.6 Helvetica, Arial, sans-serif; }
