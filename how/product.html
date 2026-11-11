@@ -31,7 +31,7 @@
 
 <section class="pdp">
   <div class="wrap">
-    <div class="gallery" id="gallery" aria-label="Foto's"></div>
+    <div class="gal-wrap"><div class="gallery" id="gallery" aria-label="Foto's"></div><span class="gal-count" id="galCount" aria-hidden="true"></span></div>
     <div class="buy paper plain">
       <p class="crumbs"><a href="index.html">home</a> / <a href="shop.html" id="crumbC">shop</a></p>
       <h1 id="pt"></h1>
@@ -78,6 +78,7 @@
         <g class="fl f1" transform="translate(300 146)"><g class="fl-in"><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F4A3B4" transform="rotate(0)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F4A3B4" transform="rotate(60)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F4A3B4" transform="rotate(120)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F4A3B4" transform="rotate(180)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F4A3B4" transform="rotate(240)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F4A3B4" transform="rotate(300)"/><circle r="7.5" fill="#F6D77A"/></g></g><g class="fl f2" transform="translate(234 188)"><g class="fl-in"><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#C7B2EA" transform="rotate(0)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#C7B2EA" transform="rotate(60)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#C7B2EA" transform="rotate(120)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#C7B2EA" transform="rotate(180)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#C7B2EA" transform="rotate(240)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#C7B2EA" transform="rotate(300)"/><circle r="7.5" fill="#F6D77A"/></g></g><g class="fl f3" transform="translate(368 178)"><g class="fl-in"><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F8B49C" transform="rotate(0)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F8B49C" transform="rotate(60)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F8B49C" transform="rotate(120)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F8B49C" transform="rotate(180)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F8B49C" transform="rotate(240)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F8B49C" transform="rotate(300)"/><circle r="7.5" fill="#F6D77A"/></g></g>
       </g>
     </svg><figcaption>plant de kaart, geef water en er groeien bloemetjes uit</figcaption></figure></template>
+<dialog class="lb" id="lb" aria-label="Foto's vergroot"><div class="lb-track" id="lbTrack"></div><button type="button" class="lb-x" id="lbX" aria-label="Sluiten"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button><button type="button" class="lb-nav lb-prev" id="lbPrev" aria-label="Vorige foto"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" class="lb-nav lb-next" id="lbNext" aria-label="Volgende foto"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><p class="lb-n" id="lbN" aria-live="polite"></p><p class="lb-hint">tik op de foto om in te zoomen</p></dialog>
 <div class="buybar" id="buybar" hidden><span><b id="bbName"></b><span id="bbPrice"></span></span><button type="button" class="btn solid" id="bbAdd">in mijn mandje</button></div>
 <section class="hw-sec" aria-labelledby="relTitle">
   <div class="wrap hw-head"><h2 id="relTitle">maak het compleet</h2><div class="hw-arrows"><button type="button" id="relPrev" aria-label="Vorige producten"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" id="relNext" aria-label="Volgende producten"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div></div>
@@ -156,7 +157,32 @@
   const first = tmp.querySelector("p"); ps.textContent = first ? first.textContent.trim() : "";
   if (first) first.remove();
   pd.innerHTML = tmp.innerHTML.trim() || "<p>Meer informatie volgt.</p>";
-  gallery.innerHTML = p.img.map((s, i) => '<img src="' + s + '" alt="' + (i === 0 ? p.t : p.t + ", foto " + (i + 1)) + '"' + (i > 1 ? ' loading="lazy"' : "") + ">").join("");
+  gallery.innerHTML = p.img.map((s, i) => '<button type="button" class="g-btn" data-i="' + i + '" aria-label="Foto ' + (i + 1) + ' van ' + p.img.length + ' vergroten"><img src="' + s + '" alt="' + (i === 0 ? p.t : p.t + ", foto " + (i + 1)) + '"' + (i > 1 ? ' loading="lazy"' : "") + '></button>').join("");
+  // teller op mobiel en vergroten met zoom
+  const updCount = () => { const n = gallery.children.length, w = gallery.clientWidth || 1, i = Math.min(n, Math.round(gallery.scrollLeft / (w * .999)) + 1); galCount.textContent = i + " / " + n; };
+  gallery.addEventListener("scroll", updCount, { passive: true }); updCount();
+  lbTrack.innerHTML = p.img.map((s, i) => '<figure class="lb-f"><img src="' + s + '" alt="' + p.t + ', foto ' + (i + 1) + '" loading="lazy" draggable="false"></figure>').join("");
+  const figs = [...lbTrack.children];
+  const lbCount = () => { const i = Math.round(lbTrack.scrollLeft / lbTrack.clientWidth); lbN.textContent = (i + 1) + " / " + figs.length; lbPrev.disabled = i === 0; lbNext.disabled = i === figs.length - 1; };
+  lbTrack.addEventListener("scroll", () => { figs.forEach(f => { if (f.classList.contains("zoom") && Math.abs(f.offsetLeft - lbTrack.scrollLeft) > 4) unzoom(f); }); lbCount(); }, { passive: true });
+  let lbOpener = null;
+  gallery.addEventListener("click", e => { const b = e.target.closest(".g-btn"); if (!b) return; lbOpener = b;
+    if (lb.showModal) lb.showModal(); else lb.setAttribute("open", "");
+    document.documentElement.classList.add("lb-open");
+    lbTrack.scrollLeft = lbTrack.clientWidth * +b.dataset.i; lbCount(); lbX.focus(); });
+  const unzoom = f => { f.classList.remove("zoom"); f.scrollLeft = f.scrollTop = 0; };
+  figs.forEach(f => f.addEventListener("click", e => {
+    if (f.classList.contains("zoom")) return unzoom(f);
+    const r = f.getBoundingClientRect(), img = f.querySelector("img"), ir = img.getBoundingClientRect(), fx = (e.clientX - ir.left) / ir.width, fy = (e.clientY - ir.top) / ir.height;
+    f.classList.add("zoom");
+    requestAnimationFrame(() => { const z = f.querySelector("img"); f.scrollLeft = z.offsetWidth * fx - r.width / 2; f.scrollTop = z.offsetHeight * fy - r.height / 2; });
+  }));
+  const lbClose = () => { figs.forEach(unzoom); if (lb.close) lb.close(); else lb.removeAttribute("open"); };
+  lbX.onclick = lbClose;
+  lb.addEventListener("close", () => { document.documentElement.classList.remove("lb-open"); if (lbOpener) lbOpener.focus(); });
+  lbPrev.onclick = () => lbTrack.scrollBy({ left: -lbTrack.clientWidth, behavior: H.reduce ? "auto" : "smooth" });
+  lbNext.onclick = () => lbTrack.scrollBy({ left: lbTrack.clientWidth, behavior: H.reduce ? "auto" : "smooth" });
+  lb.addEventListener("keydown", e => { if (e.key === "ArrowRight") lbNext.click(); if (e.key === "ArrowLeft") lbPrev.click(); });
   if (p.v.length > 1) {
     sizes.hidden = false;
     opts.innerHTML = p.v.map(x => '<button type="button" data-id="' + x.id + '"' + (x.a ? "" : " disabled") + '>' + x.t + (x.a ? "" : '<span class="sr"> (uitverkocht)</span>') + '</button>').join("");
@@ -178,7 +204,7 @@
   if (p.h.indexOf("flower-card") === 0) {
     const fig = document.getElementById("growTpl").content.firstElementChild.cloneNode(true);
     if (H.reduce) fig.querySelector("svg").classList.add("done");
-    gallery.insertBefore(fig, gallery.children[1] || null);
+    gallery.insertBefore(fig, gallery.children[1] || null); updCount();
   }
   const SET = ["journal-waves-of-creation", "balance-kaartendeck-gesprekskaarten-journalvragen", "pen-create-your-reality", "journal-pen-discount-bundle"];
   document.getElementById("upsell").hidden = !SET.includes(p.h);

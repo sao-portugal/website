@@ -1332,6 +1332,63 @@ body.waves .wv .pic img { box-shadow: 0 30px 60px -36px rgba(48,93,106,.5); }
 .mp-art.in .env-card { transform: translateY(-4%) rotate(-4deg); }
 @keyframes envFloat { 0%, 100% { transform: translateY(-4%) rotate(-4deg); } 50% { transform: translateY(-8%) rotate(-2.5deg); } }
 @media (max-width: 760px) { .mp-card { grid-template-columns: minmax(0, 1fr); } .mp-txt { min-width: 0; } }
+
+/* ---------- productpagina: klikbare foto's, vergroten, mobiel ---------- */
+.gal-wrap { position: relative; min-width: 0; }
+.g-btn { display: block; padding: 0; border: 0; background: none; cursor: zoom-in; border-radius: 12px; overflow: hidden; }
+.g-btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.gallery .g-btn img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 0; transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+.gallery .g-btn:hover img { transform: scale(1.03); }
+.gallery > :first-child { grid-column: 1 / -1; }
+.gal-count { display: none; }
+.lb { width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: #12242B; color: var(--cream); overflow: hidden; }
+.lb::backdrop { background: #12242B; }
+.lb-track { display: flex; height: 100%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.lb-track::-webkit-scrollbar { display: none; }
+.lb-f { flex: 0 0 100%; height: 100%; margin: 0; display: grid; place-items: center; overflow: hidden; scroll-snap-align: center; cursor: zoom-in; }
+.lb-f img { max-width: 100%; max-height: 100%; object-fit: contain; user-select: none; -webkit-user-drag: none; }
+.lb-f.zoom { display: block; overflow: auto; cursor: zoom-out; scrollbar-width: none; }
+.lb-f.zoom img { max-width: none; max-height: none; width: auto; height: 240%; }
+.lb-x, .lb-nav { position: absolute; z-index: 2; width: 48px; height: 48px; display: grid; place-items: center; border: 0; border-radius: 50%; background: rgba(251,246,236,.92); color: var(--ink); cursor: pointer; }
+.lb-x { top: max(14px, env(safe-area-inset-top)); right: 14px; }
+.lb-nav { top: 50%; transform: translateY(-50%); }
+.lb-prev { left: 18px; } .lb-next { right: 18px; }
+.lb-nav:disabled { opacity: 0; pointer-events: none; }
+.lb-x svg, .lb-nav svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.lb-n { position: absolute; left: 50%; bottom: max(18px, env(safe-area-inset-bottom)); transform: translateX(-50%); padding: 6px 14px; border-radius: 40px; background: rgba(251,246,236,.14); font-size: 13px; letter-spacing: .06em; }
+.lb-hint { position: absolute; left: 18px; top: 26px; font-size: 12.5px; opacity: .7; }
+html.lb-open { overflow: hidden; }
+.perks { list-style: none; padding: 0; }
+.perks li::before { content: "✓ "; color: var(--ink); font-weight: 700; }
+@media (max-width: 860px) {
+  .pdp { padding-top: 0; }
+  .gallery { grid-auto-columns: 100%; gap: 0; margin-inline: calc(-1 * var(--gut)); padding: 0; scroll-padding: 0; }
+  .g-btn { border-radius: 0; }
+  .gallery .g-btn img, .gallery .g-anim { aspect-ratio: 1 / 1; }
+  .gallery > :first-child { grid-column: auto; }
+  .gallery > * { scroll-snap-align: start; }
+  .gal-count { display: block; position: absolute; right: 12px; bottom: 12px; padding: 5px 12px; border-radius: 40px; background: rgba(251,246,236,.92); color: var(--ink); font: 700 12px var(--sans); letter-spacing: .06em; pointer-events: none; }
+  .gallery .g-btn:hover img { transform: none; }
+  .buy, .buy.paper { display: flex; flex-direction: column; padding: 18px 0 0; background: none; box-shadow: none; border: 0; }
+  .buy::before, .buy::after { display: none; }
+  .buy > * + * { margin-top: 12px; }
+  .buy .crumbs { display: none; }
+  .buy h1 { order: 1; margin-top: 0; font-size: clamp(25px, 7.2vw, 30px); line-height: 1.08; }
+  .buy .price { order: 2; font-size: 22px; font-family: var(--serif); font-weight: 400; }
+  .buy .price small { font-family: var(--sans); }
+  .buy .sizes { order: 3; }
+  .buyrow { order: 4; margin-top: 16px; }
+  .buyrow .btn { font-size: 14.5px; }
+  .perks { order: 5; display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 12.5px; color: var(--ink-text); }
+  .buy .short { order: 6; margin-top: 20px; font-size: 15px; line-height: 1.6; }
+  .upsell { order: 7; }
+  .pdp-rev { order: 8; }
+  .buy .acc { order: 9; }
+  .lb-nav, .lb-hint { display: none; }
+  .lb-n { bottom: max(22px, env(safe-area-inset-bottom)); }
+}
+@media (max-width: 860px) { .gallery .g-btn img, .gallery .g-anim { aspect-ratio: auto; height: min(100vw, 52svh); } .gallery .g-anim svg { height: 100%; } }
+@media (max-width: 860px) { .gallery .g-anim { border-radius: 0; } .gallery .g-anim figcaption { padding-right: 80px; } }
 /* Sale-pagina: merk van houseofwaves.nl, eigen UX. Zie DESIGN.md */
 .sx { --sand: #F5ECDD; --teal: #305D6A; --text: rgba(48,93,106,.8); --sale: #E8573A; --hair: rgba(48,93,106,.2); --white: #fff;
   background: var(--sand); color: var(--text); font: 400 16px/1.6 Helvetica, Arial, sans-serif; }
