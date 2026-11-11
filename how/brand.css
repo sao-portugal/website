@@ -1258,6 +1258,22 @@ body.waves .wv .pic img { box-shadow: 0 30px 60px -36px rgba(48,93,106,.5); }
 }
 @media (max-width: 760px) { .je-hero h1 { font-size: clamp(46px, min(15vw, 8.6svh), 70px); } }
 .notes.one { justify-content: start; padding-left: 0; }
+/* journal-set valt meer op (vooral desktop) */
+.pick.best { outline: 0; border: 2px solid var(--ink); box-shadow: 0 34px 60px -34px rgba(48,93,106,.75); background: #FFFDF8; }
+.pick.best .pk-price { font-size: 32px; }
+.pick.best .pk-price small { font-size: 13.5px; }
+.pick.best .btn.solid { min-height: 50px; font-size: 14.5px; }
+@media (min-width: 861px) {
+  .picks { grid-template-columns: minmax(0, 1.18fr) minmax(0, 1fr) minmax(0, 1fr); align-items: end; }
+  .pick.best { margin-top: -18px; }
+  .pick.best .pk-img .tag { left: 0; right: 0; top: 0; border-radius: 0; padding: 9px 16px; text-align: center; font-size: 12.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+  .pick.best .pk-txt h3 { font-size: 32px; }
+  .pick:not(.best) { opacity: .97; }
+}
+@media (max-width: 860px) { .pick.best .pk-price { font-size: 24px; } .pick.best .pk-img .tag { font-weight: 700; } }
+@media (min-width: 861px) { .picks .pk-img img { aspect-ratio: auto; height: clamp(220px, 20vw, 290px); } .pick.best .pk-img { padding-top: 36px; background: var(--ink); } }
+@media (min-width: 861px) { .picks { align-items: stretch; margin-top: 54px; } .pick:not(.best) .pk-img { margin-top: 0; } .pick.best { margin-top: -54px; } }
+@media (min-width: 861px) { #kies .hw-head { margin-bottom: 40px; } }
 /* Sale-pagina: merk van houseofwaves.nl, eigen UX. Zie DESIGN.md */
 .sx { --sand: #F5ECDD; --teal: #305D6A; --text: rgba(48,93,106,.8); --sale: #E8573A; --hair: rgba(48,93,106,.2); --white: #fff;
   background: var(--sand); color: var(--text); font: 400 16px/1.6 Helvetica, Arial, sans-serif; }
