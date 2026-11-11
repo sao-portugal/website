@@ -686,7 +686,7 @@ body.waves .wv .pic img { box-shadow: 0 30px 60px -36px rgba(48,93,106,.5); }
 .buyhero .crumbs { margin-bottom: 14px; }
 .picks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; align-items: stretch; }
 .pick { display: flex; flex-direction: column; background: var(--cream); border-radius: 16px; overflow: hidden; box-shadow: 0 24px 50px -36px rgba(48,93,106,.5); }
-.pick.top { outline: 1.5px solid var(--ink); }
+.pick.best { outline: 1.5px solid var(--ink); }
 .pk-img { position: relative; display: block; }
 .pk-img img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
 .pk-img .tag { position: absolute; left: 12px; top: 12px; padding: 4px 12px; border-radius: 40px; background: var(--ink); color: var(--cream); font-size: 11.5px; letter-spacing: .05em; }
@@ -1226,6 +1226,38 @@ body.waves .wv .pic img { box-shadow: 0 30px 60px -36px rgba(48,93,106,.5); }
 /* kop boven een productrij lijnt uit met de eerste kaart */
 .wrap.hw-head:has(+ .hw-row) { max-width: none; margin-inline: 0; justify-content: space-between; text-align: left; }
 .wrap.hw-head:has(+ .hw-row) .hw-tabs { justify-content: flex-start; }
+
+/* ---------- journal essentials: beeld-hero, volle rij extra's, één review ---------- */
+.je-hero { position: relative; min-height: calc(100svh - 112px); display: flex; align-items: center; overflow: hidden; isolation: isolate;
+  background: linear-gradient(160deg, #BFD0F0 0%, #D6CDEF 40%, #EDC7DA 75%, #F3D3D6 100%); }
+.je-img { position: absolute; top: 0; right: 0; width: 64%; height: 100%; object-fit: cover; object-position: 40% 42%; z-index: -1;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 34%); mask-image: linear-gradient(90deg, transparent 0%, #000 34%); }
+.je-txt { width: 100%; max-width: 620px; padding: 40px var(--gut); }
+.je-hero .crumbs { font-size: 13px; color: var(--ink-text); margin-bottom: 14px; }
+.je-hero .crumbs a { color: inherit; }
+.je-hero h1 { font-size: clamp(60px, min(9vw, 16svh), 150px); line-height: .9; color: var(--ink); }
+.je-hero h1 em { font-style: italic; }
+.je-hero .sub { margin-top: 20px; font-size: 16px; color: var(--ink); max-width: 27rem; }
+.je-hero .fh-cta { margin-top: 28px; }
+.je-hero .pill.solid { min-height: 52px; padding: 0 30px; font-size: 14.5px; background: var(--ink); color: var(--cream); border-color: var(--ink); }
+.je-hero .ulink { color: var(--ink); }
+.je-extra { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.notes.one { display: grid; grid-template-columns: minmax(0, 620px); justify-content: center; overflow: visible; }
+.notes.one .jpage blockquote { min-height: 0; }
+@media (max-width: 760px) {
+  .je-hero { min-height: calc(100svh - 100px); align-items: flex-end; }
+  .je-img { width: 100%; height: 78%; object-position: 30% 40%; -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 100%); mask-image: linear-gradient(180deg, #000 55%, transparent 100%); }
+  .je-txt { padding-bottom: 28px; }
+  .je-hero .crumbs { display: none; }
+  .je-hero h1 { font-size: clamp(50px, 15vw, 70px); }
+  .je-hero .sub { font-size: 14.5px; margin-top: 12px; }
+  .je-hero .fh-cta { margin-top: 18px; }
+  .je-extra { grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: 62%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-inline: calc(-1 * var(--gut)); padding-inline: var(--gut); }
+  .je-extra::-webkit-scrollbar { display: none; }
+  .je-extra > * { scroll-snap-align: start; }
+}
+@media (max-width: 760px) { .je-hero h1 { font-size: clamp(46px, min(15vw, 8.6svh), 70px); } }
+.notes.one { justify-content: start; padding-left: 0; }
 /* Sale-pagina: merk van houseofwaves.nl, eigen UX. Zie DESIGN.md */
 .sx { --sand: #F5ECDD; --teal: #305D6A; --text: rgba(48,93,106,.8); --sale: #E8573A; --hair: rgba(48,93,106,.2); --white: #fff;
   background: var(--sand); color: var(--text); font: 400 16px/1.6 Helvetica, Arial, sans-serif; }
