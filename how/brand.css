@@ -1180,6 +1180,32 @@ body.waves .wv .pic img { box-shadow: 0 30px 60px -36px rgba(48,93,106,.5); }
 .dcard svg.cf-frame { width: 88%; height: 78.2%; }
 .dcard .cf-logo svg { width: 100%; height: auto; }
 .dc, .dcard, .dc-in, .dc-back, .dc-front { border-radius: 7cqw; }
+
+/* bovenbalk met de drie zekerheden; set-balk compacter */
+.bar.usp ul { display: flex; justify-content: center; flex-wrap: wrap; gap: 4px 40px; margin: 0; padding: 0; list-style: none; }
+.bar.usp li::before { content: "✓"; margin-right: 7px; opacity: .85; }
+@media (max-width: 760px) {
+  .bar.usp ul { display: grid; height: 1.6em; overflow: hidden; }
+  .bar.usp li { grid-area: 1 / 1; opacity: 0; animation: uspCycle 9s infinite; }
+  .bar.usp li:nth-child(2) { animation-delay: 3s; } .bar.usp li:nth-child(3) { animation-delay: 6s; }
+}
+@keyframes uspCycle { 0% { opacity: 0; transform: translateY(6px); } 4%, 30% { opacity: 1; transform: none; } 34%, 100% { opacity: 0; transform: translateY(-6px); } }
+@media (max-width: 760px) and (prefers-reduced-motion: reduce) { .bar.usp li { animation: none; } .bar.usp li:first-child { opacity: 1; } }
+.setstrip { padding-block: 12px; gap: 10px 20px; grid-template-columns: 56px 1fr auto auto; }
+.ss-pic img { width: 56px; height: 56px; border-radius: 8px; }
+.ss-name b { font-size: 20px; }
+.ss-price { font-size: 20px; }
+.setstrip .ss-add { min-height: 44px; }
+@media (max-width: 760px) {
+  .setstrip { grid-template-columns: 52px 1fr auto; row-gap: 0; padding-block: 12px; }
+  .ss-pic { grid-row: auto; }
+  .ss-pic img { width: 52px; height: 52px; }
+  .ss-name { align-self: center; font-size: 12.5px; }
+  .ss-name b { font-size: 17px; }
+  .ss-price { grid-column: auto; align-self: center; font-size: 17px; }
+  .ss-price s { display: block; font-size: 12px; margin: 0; text-align: right; }
+  .setstrip .ss-add { margin-top: 10px; min-height: 44px; }
+}
 /* Sale-pagina: merk van houseofwaves.nl, eigen UX. Zie DESIGN.md */
 .sx { --sand: #F5ECDD; --teal: #305D6A; --text: rgba(48,93,106,.8); --sale: #E8573A; --hair: rgba(48,93,106,.2); --white: #fff;
   background: var(--sand); color: var(--text); font: 400 16px/1.6 Helvetica, Arial, sans-serif; }
