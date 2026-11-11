@@ -959,7 +959,7 @@ body.waves .wv .pic img { box-shadow: 0 30px 60px -36px rgba(48,93,106,.5); }
 .fullhero .pill.solid:hover { background: #fff; }
 .fullhero .ulink { color: #FBF6EC; border-bottom: 1px solid rgba(251,246,236,.7); padding-bottom: 3px; font-size: 14px; }
 .fh-rev { margin-top: 26px; font: 400 16px/1.4 var(--serif); color: rgba(251,246,236,.92); max-width: 30rem; }
-.fh-rev .stars { color: #F2C27B; letter-spacing: .1em; font: 13px var(--sans); margin-right: 6px; }
+.fh-rev .stars { color: #F2C27B; letter-spacing: .08em; font: 17px/1 var(--sans); margin-right: 8px; vertical-align: -1px; }
 .fh-rev .who { font: 12.5px var(--sans); opacity: .8; margin-left: 4px; }
 .setstrip { display: grid; grid-template-columns: 76px 1fr auto auto; align-items: center; gap: 14px 22px; padding: 18px var(--gut-r, var(--gut)) 18px var(--gut); border-bottom: 1px solid var(--line); }
 .ss-pic img { width: 76px; height: 76px; object-fit: cover; border-radius: 10px; display: block; }
