@@ -30,22 +30,22 @@
 <main id="main">
 
 <div class="sx sheet">
-  <section class="sx-hero">
-    <div class="sx-hero-pics">
-      <img src="img/sale/hero-hoodie.jpg" alt="De Green Eye hoodie bij zonsondergang aan zee" fetchpriority="high">
-      <img src="img/sale/hero-sport.jpg" alt="Twee vrouwen in de Ocean Blue en Flowy Green sportsets">
-    </div>
-    <div class="sx-hero-copy">
-      <p class="sx-hero-kick">sinterklaas &amp; kerst sale</p>
-      <h1>40% op alle kleding</h1>
+  <section class="sx-hero" aria-labelledby="sxTitle">
+    <img class="sx-img" src="img/sale/hero-hoodie.jpg" alt="De Green Eye hoodie bij zonsondergang aan zee" fetchpriority="high">
+    <div class="sx-txt">
+      <p class="crumbs"><a href="index.html">home</a> / sale</p>
+      <p class="sx-kick">sinterklaas &amp; kerst sale</p>
+      <h1 id="sxTitle">40% op alle <em>kleding</em></h1>
+      <p class="sub">Hoodies, t-shirts en sportsetjes. De korting gaat er automatisch af, op = op.</p>
       <p class="sx-end" id="sxEnd" hidden></p>
-      <a class="sx-hero-link" href="#shop">shop de sale</a>
+      <div class="fh-cta"><a class="pill solid" href="#shop">shop de sale</a></div>
+      <ul class="sx-from" id="sxFrom" aria-label="Sale-prijzen"></ul>
     </div>
   </section>
 
   <section class="sx-shop" id="shop" aria-label="Sale-producten">
     <div class="sx-tools" id="sxTools">
-      <div class="sx-wrap sx-tools-in">
+      <div class="wrap sx-tools-in">
         <div class="sx-seg" role="group" aria-label="Categorie">
           <button type="button" data-c="" aria-pressed="true">alles</button>
           <button type="button" data-c="hoodie">hoodies &amp; sweaters</button>
@@ -60,35 +60,25 @@
         </div>
       </div>
     </div>
-    <div class="sx-wrap">
-      <p class="sx-count" id="sxCount" aria-live="polite"></p>
+    <div class="wrap">
+      <p class="sx-count"><span id="sxCount" aria-live="polite"></span><span class="sx-hint">tik op je maat en hij zit in je winkelwagen</span></p>
       <div class="sx-grid" id="sxGrid"></div>
     </div>
   </section>
 
-  <section class="sx-revs sx-wrap" aria-label="Reviews">
-    <h2>jullie mening</h2>
-    <p class="sx-sub">een paar reviews van jullie over de kleding &lt;3</p>
-    <div class="sx-rev-row"><figure class="sx-rev"><blockquote>“Zo blij met dit sportvest! Ik gebruik hem vooral voor het hardlopen en ook met lange afstanden blijft hij goed zitten, kruipt hij niet omhoog en blijft hij mooi. De mouwen zijn wat langer en hebben een duimopening en daardoor blijven mijn handen ook lekker warm in de koudere temperaturen! Het is echt mijn go to-sportvest geworden en ik ben er echt heel blij mee :)”</blockquote><figcaption><b>Charlotte</b><span>zip jacket - flowy green</span></figcaption></figure><figure class="sx-rev"><blockquote>“Ik heb het prachtige blauwe setje van Eva mogen ontvangen. Hij zit absoluut lekker en sluit perfect aan! Ik zou hem iedereen aanraden!! Bedankt voor het super leuke setje Eva xx”</blockquote><figcaption><b>Indira</b><span>ocean blue sportset</span></figcaption></figure><figure class="sx-rev"><blockquote>“Heb het shirt inmiddels al een tijdje, en het shirt zit echt super!! Heel blij mee :)) Ook was de verzending snel en was het pakketje leuk ingepakt!”</blockquote><figcaption><b>Elise</b><span>sunset aura t-shirt</span></figcaption></figure></div>
+  <section class="hw-sec wrap" aria-labelledby="sxRevT">
+    <div class="hw-head"><div><h2 id="sxRevT">jullie mening</h2><p>over de kleding &lt;3</p></div></div>
+    <div class="notes sx-notes"><figure class="jpage"><div class="jp-in"><p class="jp-h"><span>charlotte</span></p><p class="jp-stars" aria-label="5 van 5 sterren"><span aria-hidden="true">★★★★★</span>5/5</p><blockquote>Zo blij met dit sportvest! Ik gebruik hem vooral voor het hardlopen en ook met lange afstanden blijft hij goed zitten, kruipt hij niet omhoog en blijft hij mooi. De mouwen zijn wat langer en hebben een duimopening en daardoor blijven mijn handen ook lekker warm in de koudere temperaturen! Het is echt mijn go to-sportvest geworden en ik ben er echt heel blij mee :)</blockquote><figcaption>over de zip jacket - flowy green</figcaption></div></figure><figure class="jpage"><div class="jp-in"><p class="jp-h"><span>indira</span></p><p class="jp-stars" aria-label="5 van 5 sterren"><span aria-hidden="true">★★★★★</span>5/5</p><blockquote>Ik heb het prachtige blauwe setje van Eva mogen ontvangen. Hij zit absoluut lekker en sluit perfect aan! Ik zou hem iedereen aanraden!! Bedankt voor het super leuke setje Eva xx</blockquote><figcaption>over de ocean blue sportset</figcaption></div></figure><figure class="jpage"><div class="jp-in"><p class="jp-h"><span>elise</span></p><p class="jp-stars" aria-label="5 van 5 sterren"><span aria-hidden="true">★★★★★</span>5/5</p><blockquote>Heb het shirt inmiddels al een tijdje, en het shirt zit echt super!! Heel blij mee :)) Ook was de verzending snel en was het pakketje leuk ingepakt!</blockquote><figcaption>over de sunset aura t-shirt</figcaption></div></figure></div>
   </section>
 
-  <section class="sx-up sx-wrap">
-    <img src="img/sale/new-energy.jpg" alt="Handgeschreven: are you ready for new energy?" loading="lazy">
-    <div>
-      <h2>manifestation journal essentials</h2>
-      <p class="sx-ship" id="sxShip"></p>
-      <ul class="sx-up-list" id="sxUp"></ul>
-    </div>
+  <section class="hw-sec" aria-labelledby="sxUpT">
+    <div class="wrap hw-head"><div><h2 id="sxUpT">en iets voor je journal-sessie?</h2><p class="sx-ship" id="sxShip"></p></div><a class="ulink" href="journal-essentials.html">alle journal essentials</a></div>
+    <div class="wrap"><div class="grid-shop je-extra" id="sxUp"></div></div>
   </section>
 
-  <section class="sx-faq sx-wrap">
-    <h2>vragen over de sale</h2>
-    <div class="acc">
-      <details><summary>Moet ik een kortingscode invullen?</summary><div class="in"><p>Nee. De korting zie je meteen in je winkelwagen en wordt bij het afrekenen automatisch verrekend.</p></div></details>
-      <details><summary>Is mijn bestelling op tijd voor pakjesavond of kerst?</summary><div class="in"><p>We versturen uiterlijk binnen 3 werkdagen en PostNL bezorgt meestal in 1 à 2 dagen. Rond de feestdagen kan dat langer duren, dus bestel op tijd.</p></div></details>
-      <details><summary>Kan ik sale-items ruilen of retourneren?</summary><div class="in"><p>Je kunt binnen 14 dagen na ontvangst retourneren, als het product ongebruikt is en in de originele staat en verpakking. Alles over retourneren lees je bij <a href="verzending.html">verzending &amp; retour</a>.</p></div></details>
-      <details><summary>Welke maat moet ik hebben?</summary><div class="in"><p>De sweaters en hoodies vallen een beetje oversized. Bij elk item staat welke maat er op de foto wordt gedragen. Twijfel je, mail gerust naar <a href="mailto:info@houseofwaves.nl">info@houseofwaves.nl</a>.</p></div></details>
-    </div>
+  <section class="hw-sec wrap" aria-labelledby="sxFaqT">
+    <div class="hw-head"><h2 id="sxFaqT">vragen over de sale</h2><a class="ulink" href="contact.html#faq">alle vragen</a></div>
+    <div class="acc"><details><summary>Moet ik een kortingscode invullen?</summary><div class="in"><p>Nee. De 40% gaat er automatisch af, je ziet het meteen in je winkelwagen.</p></div></details><details><summary>Geldt de korting ook op de journals?</summary><div class="in"><p>De sale geldt op alle kleding: hoodies, sweaters, t-shirts, de bucket hat en de sportsetjes. Voor de journals, het kaartendeck en de pen heb je de voordelige setprijzen bij de <a href="journal-essentials.html">journal essentials</a>.</p></div></details><details><summary>Is mijn bestelling op tijd voor pakjesavond of kerst?</summary><div class="in"><p>We versturen uiterlijk binnen 3 werkdagen en PostNL bezorgt meestal in 1 à 2 dagen. Rond de feestdagen kan dat langer duren, dus bestel op tijd.</p></div></details><details><summary>Welke maat moet ik hebben?</summary><div class="in"><p>De sweaters en hoodies vallen een beetje oversized. Bij elk item staat welke maat er op de foto wordt gedragen. Twijfel je, mail gerust naar <a href="mailto:info@houseofwaves.nl">info@houseofwaves.nl</a>.</p></div></details><details><summary>Kan ik sale-items retourneren?</summary><div class="in"><p>Ja, binnen 14 dagen na ontvangst, als het product ongebruikt is en in de originele staat en verpakking. Alles over retourneren lees je bij <a href="verzending.html">verzending &amp; retour</a>.</p></div></details></div>
   </section>
 
   <div class="sx-toast" id="sxToast" role="status" aria-live="polite" hidden></div>
@@ -170,9 +160,9 @@
         : '<button type="button" disabled aria-label="' + v.t + ' is uitverkocht"><span class="lg">' + v.t + '</span><span class="sm" aria-hidden="true">' + v.t.charAt(0) + '</span></button>').join("") + '</div>';
     const note = !sold && !one && left === 1 ? '<span class="sx-low">nog 1 maat</span>' : '';
     return '<article class="sx-card' + (sold ? ' is-out' : '') + '"><a class="sx-ph" href="product.html?p=' + p.h + '">' +
-      '<img src="' + p.img[0] + '" alt="' + p.t + '" loading="lazy">' + (p.img[1] ? '<img src="' + p.img[1] + '" alt="" loading="lazy">' : '') + '</a>' +
+      (sold ? '' : '<span class="sx-badge">−' + H.SALE.pct + '%</span>') + '<img src="' + p.img[0] + '" alt="' + p.t + '" loading="lazy">' + (p.img[1] ? '<img src="' + p.img[1] + '" alt="" loading="lazy">' : '') + '</a>' +
       '<div class="sx-meta"><h3><a href="product.html?p=' + p.h + '">' + p.t + '</a></h3>' +
-      '<p class="sx-price"><s aria-label="was ' + E(was) + '">' + E(was) + '</s><b>' + E(now) + '</b><span class="sx-save">−' + E(was - now) + '</span>' + note + '</p></div>' + buy + '</article>';
+      '<p class="sx-price"><s aria-label="was ' + E(was) + '">' + E(was) + '</s><b>' + E(now) + '</b>' + note + '</p></div>' + buy + '</article>';
   }
   const banner = '<figure class="sx-banner"><img src="img/sale/sport-wide.jpg" alt="Drie vrouwen hardlopend in de sportsets van House of Waves" loading="lazy"><figcaption><b>waves of movement</b>de sportsetjes, nu 40% goedkoper</figcaption></figure>';
 
@@ -182,7 +172,16 @@
     const hidden = list.filter(p => !fits(p)).length;
     list = list.filter(fits).sort((a, b) => a.v.every(v => !v.a) - b.v.every(v => !v.a));
     let html = list.map(card);
-    if (!c && html.length > 6) html.splice(6, 0, banner);
+    const withBanner = !c && html.length > 6;
+    if (withBanner) html.splice(6, 0, banner);
+    const rest = list.length - (withBanner ? 6 : 0), SET = H.byH["kaartendeck-journal-pen-mega-journaling-discount-bundle"];
+    if (SET && list.length && rest % 3 === 2) {
+      const bd = H.bundle(SET);
+      html.push('<article class="sx-tile' + (rest % 2 === 0 ? ' m-hide' : '') + '"><a class="sx-ph" href="journal-essentials.html"><img src="img/hw/journal-sky.jpg" alt="De Waves of Creation journal tegen een roze lucht" loading="lazy"></a>' +
+        '<div class="sx-meta"><p class="sx-tk">en voor je journal-sessie</p><h3><a href="product.html?p=' + SET.h + '">de journal-set</a></h3>' +
+        '<p class="sx-price">' + (bd ? '<s>' + E(bd.loose) + '</s>' : '') + '<b class="set">' + E(SET.v[0].p) + '</b><span class="sx-low">journal, pen en kaartendeck</span></p></div>' +
+        '<button type="button" class="sx-add" data-quiet data-addv="' + SET.h + '|' + SET.v[0].id + '">in winkelwagen</button></article>');
+    }
     grid.innerHTML = html.join("") || '<p class="sx-empty">Helaas, in ' + size + ' is hier niets meer over. <button type="button" data-clear>Toon alle maten</button></p>';
     count.textContent = list.length + (list.length === 1 ? " item" : " items") + (size ? " in " + size : "") + (hidden ? ", " + hidden + " niet meer in jouw maat" : "");
     document.querySelectorAll(".sx-seg [data-c]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.c === c)));
@@ -195,12 +194,13 @@
   grid.addEventListener("click", e => { if (e.target.closest("[data-clear]")) { size = ""; draw(); } });
   draw();
 
-  // snelkoppelingen in de header: beeld + echte vanaf-prijs, en ze zetten het filter
-  document.querySelectorAll("[data-go]").forEach(a => a.addEventListener("click", () => { c = a.dataset.go; draw(); }));
 
-  // upsell: journal essentials met één klik erbij
-  const UP = ["journal-waves-of-creation", "balance-kaartendeck-gesprekskaarten-journalvragen", "pen-create-your-reality"].map(h => H.byH[h]);
-  document.getElementById("sxUp").innerHTML = UP.map(p => '<li><img src="' + p.img[0] + '" alt="" loading="lazy"><a href="product.html?p=' + p.h + '">' + p.t + '</a><b>' + E(p.v[0].p) + '</b><button type="button" class="sx-plus" data-quiet data-addv="' + p.h + '|' + p.v[0].id + '" aria-label="' + p.t + ' in winkelwagen">+</button></li>').join("");
+  // upsell: journal essentials, richting gratis verzending
+  document.getElementById("sxUp").innerHTML = ["journal-waves-of-creation", "balance-kaartendeck-gesprekskaarten-journalvragen", "pen-create-your-reality"].map(h => H.byH[h]).filter(Boolean).map(p => H.card(p)).join("");
+  // vanaf-prijzen in de hero
+  const from = (k, label, only) => { const ps = CAT[k].filter(h => !only || h.startsWith(only)).map(h => H.byH[h]).filter(p => p && p.sale && p.v.some(v => v.a)); if (!ps.length) return ""; const m = Math.min(...ps.map(p => Math.min(...p.v.filter(v => v.a).map(v => v.p)))); return '<li><a href="#shop" data-go="' + k + '">' + label + ' <b>vanaf ' + E(m) + '</b></a></li>'; };
+  document.getElementById("sxFrom").innerHTML = from("hoodie", "hoodies &amp; sweaters") + from("tee", "t-shirts", "t-shirt") + from("sport", "sportsetjes");
+  document.querySelectorAll("[data-go]").forEach(a => a.addEventListener("click", () => { c = a.dataset.go; draw(); }));
 
   // melding bij toevoegen, zonder de winkelwagen open te klappen
   const toast = document.getElementById("sxToast"); let tt;
@@ -216,8 +216,8 @@
   sticky.querySelector("[data-open-cart]").addEventListener("click", () => H.openDrawer());
   function upd() {
     const t = H.total(), left = H.FREE - t, n = H.count();
-    ship.innerHTML = t === 0 ? "Alles voor je inspirerende journal sessies. Vanaf €100 is de verzending gratis."
-      : left > 0 ? "Nog <b>" + E(left) + "</b> tot gratis verzending. Misschien iets voor je journal sessies?" : "<b>Je verzending is gratis</b> 🌊";
+    ship.innerHTML = t === 0 ? "Vanaf €100 is je verzending gratis."
+      : left > 0 ? "Nog <b>" + E(left) + "</b> tot gratis verzending." : "<b>Je verzending is gratis</b> 🌊";
     sticky.hidden = n === 0;
     sticky.querySelector("[data-n]").textContent = n; sticky.querySelector("[data-t]").textContent = E(t);
     sticky.querySelector("[data-checkout]").href = H.checkoutUrl();
