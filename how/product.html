@@ -47,6 +47,7 @@
         <div><b>liever compleet?</b><span>de journal-set: journal, pen en kaartendeck</span><span class="up-price" id="upPrice"></span></div>
         <a class="btn" href="product.html?p=kaartendeck-journal-pen-mega-journaling-discount-bundle" id="upBtn">bekijk de set</a>
       </div>
+      <div class="inset" id="inset" hidden><p class="is-h">in deze set</p><ul id="isList"></ul><p class="is-sum" id="isSum"></p></div>
       <figure class="pdp-rev" id="pdpRev" hidden><p class="stars" aria-label="5 sterren">★★★★★</p><blockquote id="pdpRevQ"></blockquote><figcaption id="pdpRevN"></figcaption></figure>
       <ul class="perks"><li>gratis verzending vanaf €100</li><li>verzonden binnen 3 werkdagen naar Nederland &amp; België</li><li>14 dagen retour</li></ul>
       <div class="acc">
@@ -78,6 +79,7 @@
         <g class="fl f1" transform="translate(300 146)"><g class="fl-in"><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F4A3B4" transform="rotate(0)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F4A3B4" transform="rotate(60)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F4A3B4" transform="rotate(120)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F4A3B4" transform="rotate(180)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F4A3B4" transform="rotate(240)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F4A3B4" transform="rotate(300)"/><circle r="7.5" fill="#F6D77A"/></g></g><g class="fl f2" transform="translate(234 188)"><g class="fl-in"><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#C7B2EA" transform="rotate(0)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#C7B2EA" transform="rotate(60)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#C7B2EA" transform="rotate(120)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#C7B2EA" transform="rotate(180)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#C7B2EA" transform="rotate(240)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#C7B2EA" transform="rotate(300)"/><circle r="7.5" fill="#F6D77A"/></g></g><g class="fl f3" transform="translate(368 178)"><g class="fl-in"><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F8B49C" transform="rotate(0)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F8B49C" transform="rotate(60)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F8B49C" transform="rotate(120)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F8B49C" transform="rotate(180)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F8B49C" transform="rotate(240)"/><ellipse cx="0" cy="-15" rx="8.5" ry="14" fill="#F8B49C" transform="rotate(300)"/><circle r="7.5" fill="#F6D77A"/></g></g>
       </g>
     </svg><figcaption>plant de kaart, geef water en er groeien bloemetjes uit</figcaption></figure></template>
+<dialog class="qv" id="qv" aria-labelledby="qvT"><button type="button" class="qv-x" id="qvX" aria-label="Sluiten"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="qv-g" id="qvG"></div><div class="qv-t"><p class="qv-k">in de set</p><h2 id="qvT"></h2><div class="qv-d" id="qvD"></div><button type="button" class="btn solid" id="qvBack">terug naar de set</button></div></dialog>
 <div class="buybar" id="buybar" hidden><span><b id="bbName"></b><span id="bbPrice"></span></span><button type="button" class="btn solid" id="bbAdd">in mijn mandje</button></div>
 <section class="hw-sec" aria-labelledby="relTitle">
   <div class="wrap hw-head"><h2 id="relTitle">maak het compleet</h2><div class="hw-arrows"><button type="button" id="relPrev" aria-label="Vorige producten"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" id="relNext" aria-label="Volgende producten"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div></div>
@@ -188,6 +190,27 @@
     "kaartendeck-journal-pen-mega-journaling-discount-bundle": ["Ik gebruik hem elke dag en vind hem echt fantastisch. Ook het kaarten dek is echt top.", "Lotte"],
     "balance-kaartendeck-gesprekskaarten-journalvragen": ["Super blij met de kaartendeck! De kaarten zien er hetzelfde uit als op de website foto's.", "Charlotte"] }[p.h]
     || (p.c.includes("nieuwe-collectie") ? ["Hij zit absoluut lekker en sluit perfect aan! Ik zou hem iedereen aanraden!!", "Indira, over de Ocean Blue set"] : null);
+  // in deze set: onderdelen met een klein venster, zodat je op de bundelpagina blijft
+  const parts = H.parts(p.h);
+  if (parts) {
+    const LINE = { "journal-waves-of-creation": ["de journal", "A5, 200 pagina’s, met quotes en invullijstjes"], "balance-kaartendeck-gesprekskaarten-journalvragen": ["het Balance kaartendeck", "60 vragen over mental health, selfcare, motivatie en inspiratie"], "pen-create-your-reality": ["de pen", "duurzame balpen van tarwestengels, Create Your Reality"] };
+    inset.hidden = false;
+    isList.innerHTML = parts.map(h => { const x = H.byH[h], l = LINE[h] || [x.t, ""]; return '<li><button type="button" data-qv="' + h + '"><img src="' + x.img[0] + '" alt="" loading="lazy"><span><b>' + l[0] + '</b><small>' + l[1] + '</small></span><i>bekijk</i></button></li>'; }).join("");
+    if (bd) isSum.innerHTML = "los " + H.euro(bd.loose) + ", in de set <b>" + H.euro(p.v[0].p) + "</b>";
+    let opener = null;
+    isList.addEventListener("click", e => {
+      const b = e.target.closest("[data-qv]"); if (!b) return; opener = b;
+      const x = H.byH[b.dataset.qv], d = document.createElement("div"); d.innerHTML = x.desc;
+      d.querySelectorAll("p, li").forEach(el => { if (/€|euro|prijs/i.test(el.textContent)) { const c = noPrice(el.textContent); if (c) el.textContent = c; else el.remove(); } });
+      qvT.textContent = (LINE[x.h] || [x.t])[0]; qvD.innerHTML = d.innerHTML;
+      qvG.innerHTML = x.img.slice(0, 3).map((s, i) => '<img src="' + s + '" alt="' + x.t + (i ? ", foto " + (i + 1) : "") + '">').join("");
+      if (qv.showModal) qv.showModal(); else qv.setAttribute("open", "");
+    });
+    const shut = () => { if (qv.close) qv.close(); else qv.removeAttribute("open"); };
+    qvX.onclick = shut; qvBack.onclick = shut;
+    qv.addEventListener("click", e => { if (e.target === qv) shut(); });
+    qv.addEventListener("close", () => { if (opener) opener.focus(); });
+  }
   if (REV) { pdpRev.hidden = false; pdpRevQ.textContent = "“" + REV[0] + "”"; pdpRevN.textContent = REV[1]; }
   upd();
   let rel = H.P.filter(x => x.h !== p.h && x.c.some(c => p.c.includes(c)));
