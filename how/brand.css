@@ -1262,6 +1262,7 @@ body.waves .wv .pic img { box-shadow: 0 30px 60px -36px rgba(48,93,106,.5); }
 .pick.best { outline: 1.5px solid var(--ink); box-shadow: -16px -10px 44px -12px rgba(255,154,134,.75), 16px -10px 44px -12px rgba(120,160,235,.7), 0 22px 50px -14px rgba(232,70,110,.55), 0 0 60px -20px rgba(150,80,180,.6); }
 .pick.best { position: relative; z-index: 1; }
 @media (min-width: 861px) { .picks { gap: 26px; } }
+.pick.best { box-shadow: -14px -8px 42px -14px rgba(255,170,150,.5), 14px -8px 42px -14px rgba(140,175,235,.48), 0 20px 46px -16px rgba(232,110,140,.36), 0 0 56px -22px rgba(160,110,190,.4); }
 /* Sale-pagina: merk van houseofwaves.nl, eigen UX. Zie DESIGN.md */
 .sx { --sand: #F5ECDD; --teal: #305D6A; --text: rgba(48,93,106,.8); --sale: #E8573A; --hair: rgba(48,93,106,.2); --white: #fff;
   background: var(--sand); color: var(--text); font: 400 16px/1.6 Helvetica, Arial, sans-serif; }
