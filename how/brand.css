@@ -1948,3 +1948,9 @@ body.zacht .wk-empty img { mix-blend-mode: multiply; }
 /* scrollrijen op mobiel: eerste kaart lijnt uit met de tekst, niet tegen de schermrand */
 @media (max-width: 760px) { .notes, .je-extra { scroll-padding-inline: var(--gut); } }
 @media (max-width: 760px) { .notes.one { margin-inline: 0; } }
+/* "meest compleet": op mobiel boven de titel, niet over de foto */
+.tag-m { display: none; }
+@media (max-width: 860px) {
+  .pick .pk-img .tag { display: none; }
+  .tag-m { display: inline-block; align-self: flex-start; margin-bottom: 8px; padding: 4px 11px; border-radius: 40px; background: var(--ink); color: var(--cream); font-size: 11.5px; font-weight: 700; letter-spacing: .03em; }
+}
