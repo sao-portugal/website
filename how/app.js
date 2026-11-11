@@ -98,7 +98,6 @@
   /* Bundelvoordeel: wat de onderdelen los kosten en hoe we het voordeel noemen.
      Vanaf €5 noemen we het bedrag, vanaf 10% het percentage, daaronder alleen de doorgestreepte losse prijs. */
   const BUNDLES = { "kaartendeck-journal-pen-mega-journaling-discount-bundle": ["journal-waves-of-creation", "balance-kaartendeck-gesprekskaarten-journalvragen", "pen-create-your-reality"], "journal-pen-discount-bundle": ["journal-waves-of-creation", "pen-create-your-reality"] };
-  window.HOW.parts = h => BUNDLES[h] || null;
   window.HOW.bundle = function (p) {
     const parts = BUNDLES[p.h]; if (!parts) return null;
     const price = p.v[0].p, loose = Math.round(parts.reduce((t, h) => t + (byH[h] ? byH[h].v[0].p : 0), 0) * 100) / 100, save = Math.round((loose - price) * 100) / 100;
