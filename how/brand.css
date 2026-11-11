@@ -1206,6 +1206,23 @@ body.waves .wv .pic img { box-shadow: 0 30px 60px -36px rgba(48,93,106,.5); }
   .ss-price s { display: block; font-size: 12px; margin: 0; text-align: right; }
   .setstrip .ss-add { margin-top: 10px; min-height: 44px; }
 }
+/* set-balk iets groter */
+.setstrip { padding-block: 18px; grid-template-columns: 76px 1fr auto auto; gap: 10px 24px; }
+.ss-pic img { width: 76px; height: 76px; border-radius: 10px; }
+.ss-name { font-size: 14px; }
+.ss-name b { font-size: 24px; }
+.ss-price { font-size: 24px; }
+.ss-price s { font-size: 16px; }
+.setstrip .ss-add { min-height: 50px; padding: 0 30px; font-size: 14.5px; }
+@media (max-width: 760px) {
+  .setstrip { grid-template-columns: 64px 1fr auto; padding-block: 16px; column-gap: 14px; }
+  .ss-pic img { width: 64px; height: 64px; }
+  .ss-name { font-size: 13px; }
+  .ss-name b { font-size: 20px; }
+  .ss-price { font-size: 20px; }
+  .ss-price s { font-size: 13px; }
+  .setstrip .ss-add { min-height: 48px; margin-top: 12px; }
+}
 /* Sale-pagina: merk van houseofwaves.nl, eigen UX. Zie DESIGN.md */
 .sx { --sand: #F5ECDD; --teal: #305D6A; --text: rgba(48,93,106,.8); --sale: #E8573A; --hair: rgba(48,93,106,.2); --white: #fff;
   background: var(--sand); color: var(--text); font: 400 16px/1.6 Helvetica, Arial, sans-serif; }
