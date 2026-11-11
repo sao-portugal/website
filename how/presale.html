@@ -123,6 +123,8 @@
     <p class="spw-kick" data-fase="tijdens na" hidden>tot 40% op alle kleding</p>
     <h1 id="spw-t-x"><span data-fase="voor">tot 40% op alle kleding</span><span data-fase="tijdens na" hidden>de presale is open</span></h1>
     <p class="spw-sub" data-fase="voor">Dit weekend is de webshop alleen open met een wachtwoord. Zaterdag 14 november om 10:00 gaat de presale open.</p><p class="spw-sub" data-fase="tijdens na" hidden>Alleen met wachtwoord, tot en met zondag 15 november, 23:59.</p>
+    <p class="spw-clock" data-clock data-fase="voor" role="timer"><span class="lbl"></span><span class="dd" data-dd><b data-d>0</b><span data-du>dagen</span></span><b data-h>00</b><span>uur</span><b data-m>00</b><span>min</span><b data-s>00</b><span>sec</span></p>
+
   </div>
   <div class="spw-mid">
     <div class="spw-box main"><h2>heb je het wachtwoord?</h2><form data-demo="pw" novalidate><p class="t" data-fase="voor">Je vindt het in de mail die je zaterdag om 10:00 krijgt.</p><p class="t" data-fase="tijdens na" hidden>Je vindt het wachtwoord in de mail die je van ons hebt gekregen.</p><label class="visually-hidden" for="pw">Wachtwoord</label><div class="spw-row"><input id="pw" type="text" name="password" placeholder="wachtwoord" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" required><button type="submit">naar de presale</button></div><p class="spw-msg" hidden>Dit wachtwoord klopt niet. Check je mail nog even.</p></form></div>
@@ -136,11 +138,17 @@
   var root = document.getElementById("spw-x"); if (!root) return;
   var OPEN = new Date(root.getAttribute("data-open")).getTime();
   var test = /[?&]nu=([^&]+)/.exec(location.search), offset = test ? new Date(decodeURIComponent(test[1])).getTime() - Date.now() : 0;
+  var clock = root.querySelector("[data-clock]"), q = function (k) { return clock.querySelector("[data-" + k + "]"); }, pad = function (n) { return (n < 10 ? "0" : "") + n; };
+  clock.querySelector(".lbl").textContent = "de presale opent over";
   var fase = "";
   (function tick() {
-    var f = Date.now() + offset < OPEN ? "voor" : "tijdens";
+    var now = Date.now() + offset, f = now < OPEN ? "voor" : "tijdens";
     if (f !== fase) { fase = f; root.querySelectorAll("[data-fase]").forEach(function (el) { el.hidden = el.getAttribute("data-fase").split(" ").indexOf(f) < 0; }); }
-    if (f === "voor") setTimeout(tick, 15000);
+    if (f !== "voor") return;
+    var s = Math.max(0, Math.floor((OPEN - now) / 1000)), dd = Math.floor(s / 86400);
+    q("dd").hidden = dd === 0; q("d").textContent = dd; q("du").textContent = dd === 1 ? "dag" : "dagen";
+    q("h").textContent = pad(Math.floor(s % 86400 / 3600)); q("m").textContent = pad(Math.floor(s % 3600 / 60)); q("s").textContent = pad(s % 60);
+    setTimeout(tick, 1000);
   })();
 })();
 
