@@ -1114,6 +1114,38 @@ body.waves .wv .pic img { box-shadow: 0 30px 60px -36px rgba(48,93,106,.5); }
   .j-labels b { font-size: 21px; }
   .j-labels span { font-size: 13.5px; }
 }
+/* verzending v2: rustiger, één kolom met inhoudsnavigatie */
+.journey .jh .lift { transform: translateY(-28px); }
+.journey .confetti { pointer-events: none; }
+.vr-hero { padding-bottom: clamp(28px, 4vw, 48px); }
+.vr-body { display: grid; grid-template-columns: 200px minmax(0, 760px); gap: clamp(32px, 6vw, 96px); padding-top: clamp(24px, 3vw, 40px); padding-bottom: clamp(56px, 7vw, 96px); }
+.vr-nav { position: sticky; top: 100px; align-self: start; display: grid; gap: 2px; padding-top: 14px; }
+.vr-nav a { padding: 6px 0; color: var(--ink-text) !important; text-decoration: none; font-size: 14.5px; }
+.vr-nav a:hover, .vr-nav a.on { color: var(--ink) !important; text-decoration: underline; text-underline-offset: 5px; }
+.vr-main > section { padding: 14px 0 clamp(48px, 6vw, 72px); scroll-margin-top: 90px; }
+.vr-main h2 { font-size: clamp(32px, 3.6vw, 46px); line-height: 1.05; margin-bottom: 18px; }
+.vr-rows { margin: 0; border-top: 1px solid var(--hair); }
+.vr-rows div { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 4px 24px; padding: 16px 0; border-bottom: 1px solid var(--hair); }
+.vr-rows dt { font: 400 18px/1.35 var(--serif); color: var(--ink); }
+.vr-rows dd { margin: 0; font-size: 15.5px; }
+.vr-intro { font-size: 17px; color: var(--ink); margin-bottom: 8px; }
+.vr .vr-steps { margin: 0; padding: 0; list-style: none; counter-reset: s; border-top: 0; }
+.vr .vr-steps li { display: block; position: relative; padding: 14px 0 14px 46px; border-bottom: 1px solid var(--hair); font-size: 15.5px; }
+.vr .vr-steps li::before { content: counter(s); position: absolute; left: 0; top: 13px; width: 30px; height: 30px; border-radius: 50%; background: var(--ink); color: var(--cream); display: grid; place-items: center; font: 700 13px var(--sans); }
+.vr .vr-steps b { font: inherit; font-weight: 700; color: var(--ink); }
+.vr-small { margin-top: 14px; font-size: 14.5px; }
+.vr-faq h3 { font-size: 21px; margin: 26px 0 6px; }
+.vr-faq h3:first-child { margin-top: 0; }
+.vr-end { padding-top: 22px; border-top: 1px solid var(--hair); font-size: 15.5px; }
+@media (max-width: 860px) {
+  .vr-body { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .vr-nav { position: static; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin-inline: calc(-1 * var(--gut)); padding: 0 var(--gut) 6px; }
+  .vr-nav::-webkit-scrollbar { display: none; }
+  .vr-nav a { flex: none; padding: 8px 14px; border: 1px solid var(--hair); border-radius: 40px; font-size: 14px; }
+  .vr-rows div { grid-template-columns: 1fr; padding: 14px 0; }
+  .vr-rows dt { font-size: 17px; }
+}
+.vr .vr-faq { display: block; }
 /* Sale-pagina: merk van houseofwaves.nl, eigen UX. Zie DESIGN.md */
 .sx { --sand: #F5ECDD; --teal: #305D6A; --text: rgba(48,93,106,.8); --sale: #E8573A; --hair: rgba(48,93,106,.2); --white: #fff;
   background: var(--sand); color: var(--text); font: 400 16px/1.6 Helvetica, Arial, sans-serif; }
