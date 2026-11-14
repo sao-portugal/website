@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>De december-kalender — House of Waves</title>
+<title>Elke dag een cadeau — House of Waves</title>
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta name="theme-color" content="#102C44">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,172 +11,241 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Allura&family=Gloock&display=swap">
 <link rel="stylesheet" href="brand.css">
 <style>
-/* december-kalender */
-.ak { --glow: radial-gradient(120% 140% at 15% 0%, #FFE1D2 0%, #FBB7AE 32%, rgba(197,174,224,.75) 62%, rgba(169,216,227,.6) 100%); padding-bottom: 96px; }
+/* ===== december: elke dag een cadeau ===== */
+.ak, .ak-u { --paper: radial-gradient(circle at 50% 56%, #FFE6D6 0%, #FFC3B0 14%, #F27C86 27%, #C25B9E 39%, #8F6BC2 52%, #6FA6CF 70%, #A9D8E3 88%, #C6E6EA 100%);
+  --glow: radial-gradient(60% 70% at 30% 20%, rgba(255,225,210,.95) 0%, rgba(251,183,174,.7) 35%, rgba(197,174,224,.45) 65%, rgba(169,216,227,0) 100%);
+  --rib: #FBF6EC; }
+.ak { padding-bottom: 110px; }
 .ak h1, .ak h2, .ak h3 { font-family: var(--serif); font-weight: 400; color: var(--ink); text-transform: lowercase; margin: 0; }
-.ak h2 { font-size: clamp(28px, 4vw, 44px); line-height: 1.08; }
-.ak-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 24px; border-radius: 40px; border: 1px solid var(--ink); background: transparent; color: var(--ink); font: 700 15px var(--sans); text-decoration: none; cursor: pointer; }
+.ak h2 { font-size: clamp(28px, 4vw, 46px); line-height: 1.06; }
+.ak-kick { margin: 0 0 12px; font: 700 13px var(--sans); letter-spacing: .08em; color: var(--dim); }
+.ak-kick .hot { color: var(--sale); }
+.ak-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 26px; border-radius: 40px; border: 1px solid var(--ink); background: transparent; color: var(--ink); font: 700 15.5px var(--sans); text-decoration: none; cursor: pointer; transition: transform .15s ease, opacity .15s ease; }
 .ak-btn.solid { background: var(--ink); color: var(--cream); }
-.ak-btn:hover { opacity: .88; }
-.ak-btn:focus-visible, .ak-door-cell:focus-visible, .ak-pill:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
-.ak-btn[disabled] { opacity: .45; cursor: not-allowed; }
+.ak-btn:hover { transform: translateY(-1px); }
+.ak-btn[disabled] { opacity: .5; cursor: not-allowed; transform: none; }
+.ak-btn:focus-visible, .ak-pill:focus-visible, .ak-mini:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 
-/* hero */
-.ak-hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(28px, 5vw, 72px); align-items: center; padding-top: clamp(24px, 4vw, 56px); }
-.ak-kick { margin: 18px 0 10px; font: 700 13px var(--sans); letter-spacing: .08em; color: var(--sale); }
-.ak-hero h1 { font-size: clamp(46px, 7.4vw, 104px); line-height: .98; letter-spacing: -.01em; }
-.ak-sub { margin: 18px 0 0; max-width: 34em; font-size: 17px; line-height: 1.6; color: var(--text); }
-.ak-status { margin: 22px 0 0; font: 700 15px var(--sans); color: var(--ink); display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 10px; }
-.ak-status .clock { font: 400 26px/1 var(--serif); font-variant-numeric: tabular-nums; }
-.ak-cta { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0 0; }
-.ak-hero-pic { margin: 0; position: relative; }
-.ak .ak-hero-pic img { display: block; width: 100%; height: min(72vh, 680px); max-height: none; aspect-ratio: auto; object-fit: cover; object-position: 50% 30%; border-radius: 14px; }
-.ak-hero-pic::after { content: ""; position: absolute; inset: auto -18px -18px auto; width: 46%; aspect-ratio: 1; border-radius: 50%; background: var(--glow); filter: blur(28px); opacity: .8; z-index: -1; }
+/* ---------- het uitpakken ---------- */
+.ak-u { position: fixed; inset: 0; z-index: 200; display: grid; justify-items: center; grid-template-rows: 1fr auto 1fr; background: var(--sand); overflow: hidden; transition: opacity .7s ease, visibility .7s; cursor: pointer; }
+.ak-u[hidden] { display: none; }
+.ak-u.out { opacity: 0; visibility: hidden; }
+.ak-u-glow { position: absolute; inset: -20%; background: radial-gradient(40% 40% at 50% 50%, rgba(255,214,200,.9), rgba(251,183,174,.45) 45%, rgba(197,174,224,.25) 70%, rgba(245,236,221,0) 100%); animation: akBreath 4s ease-in-out infinite; }
+.ak-u::after { content: ""; position: absolute; inset: 0; opacity: .05; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+@keyframes akBreath { 50% { transform: scale(1.06); } }
+.ak-u-top { position: relative; align-self: end; margin: 0 0 30px; padding: 0 20px; font: 700 13px var(--sans); letter-spacing: .1em; color: var(--ink); text-align: center; }
+.ak-u-top b { display: block; margin-top: 8px; font: 400 clamp(28px, 4.4vw, 42px)/1.05 var(--serif); letter-spacing: 0; text-transform: lowercase; }
+.ak-u-stage { position: relative; width: min(64vw, 330px); aspect-ratio: 1; }
+.ak-u-gift { position: absolute; inset: 0; border-radius: 16px; animation: akFloat 3.2s ease-in-out infinite; transform-origin: 50% 90%; }
+@keyframes akFloat { 50% { transform: translateY(-8px) rotate(-.6deg); } }
+.ak-u.go1 .ak-u-gift { animation: akShake .45s ease-in-out; }
+@keyframes akShake { 20% { transform: rotate(-2.5deg) scale(1.02); } 45% { transform: rotate(2.5deg) scale(1.02); } 70% { transform: rotate(-1.2deg); } }
+.ak-u-inside { position: absolute; inset: 0; border-radius: 16px; background: radial-gradient(80% 80% at 50% 40%, #FFF9F0, #F1E4CF); box-shadow: inset 0 18px 40px -20px rgba(48,93,106,.35); }
+.ak-u-paper { position: absolute; width: 50.4%; height: 50.4%; background: var(--paper); background-size: 200% 200%; transition: transform 1s cubic-bezier(.2,.8,.2,1), opacity .9s ease; overflow: hidden; }
+.ak-u-paper::after { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, rgba(255,255,255,0) 30%, rgba(255,255,255,.35) 46%, rgba(255,255,255,0) 60%); background-size: 300% 100%; animation: akSheen 3.6s ease-in-out infinite; }
+@keyframes akSheen { 0% { background-position: 120% 0; } 60%, 100% { background-position: -40% 0; } }
+.ak-u-paper.q1 { left: 0; top: 0; background-position: 0 0; border-radius: 16px 0 0 0; }
+.ak-u-paper.q2 { right: 0; top: 0; background-position: 100% 0; border-radius: 0 16px 0 0; }
+.ak-u-paper.q3 { left: 0; bottom: 0; background-position: 0 100%; border-radius: 0 0 0 16px; }
+.ak-u-paper.q4 { right: 0; bottom: 0; background-position: 100% 100%; border-radius: 0 0 16px 0; }
+.ak-u.go3 .ak-u-paper.q1 { transform: translate(-40%, -36%) rotate(-24deg); opacity: 0; }
+.ak-u.go3 .ak-u-paper.q2 { transform: translate(40%, -36%) rotate(24deg); opacity: 0; }
+.ak-u.go3 .ak-u-paper.q3 { transform: translate(-40%, 36%) rotate(18deg); opacity: 0; }
+.ak-u.go3 .ak-u-paper.q4 { transform: translate(40%, 36%) rotate(-18deg); opacity: 0; }
+.ak-u-rib { position: absolute; background: var(--rib); box-shadow: 0 1px 6px rgba(48,93,106,.18); transition: transform .7s cubic-bezier(.6,0,.3,1), opacity .5s .2s; }
+.ak-u-rib.v { left: 50%; top: -1px; bottom: -1px; width: 12%; transform: translateX(-50%); }
+.ak-u-rib.h { top: 50%; left: -1px; right: -1px; height: 12%; transform: translateY(-50%); }
+.ak-u.go2 .ak-u-rib.v { transform: translate(-50%, -110%) scaleY(.6); opacity: 0; }
+.ak-u.go2 .ak-u-rib.h { transform: translate(110%, -50%) scaleX(.6); opacity: 0; }
+.ak-u-bow { position: absolute; left: 50%; top: 50%; width: 46%; height: 26%; transform: translate(-50%, -78%); transition: transform .55s cubic-bezier(.5,-.4,.3,1.4), opacity .4s .15s; }
+.ak-u-bow i { position: absolute; top: 0; width: 50%; height: 100%; border: 10px solid var(--rib); border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; box-shadow: 0 4px 10px rgba(48,93,106,.18); }
+.ak-u-bow .l { left: 0; transform: rotate(-16deg); }
+.ak-u-bow .r { right: 0; transform: rotate(16deg); }
+.ak-u-bow b { position: absolute; left: 50%; bottom: 4%; width: 20%; height: 40%; transform: translateX(-50%); border-radius: 30%; background: var(--rib); box-shadow: 0 2px 6px rgba(48,93,106,.2); }
+.ak-u.go1 .ak-u-bow { transform: translate(-50%, -230%) scale(.6) rotate(-14deg); opacity: 0; }
+.ak-u-tag { position: absolute; right: -7%; top: -9%; width: 30%; aspect-ratio: 1; border-radius: 50%; background: var(--cream); box-shadow: 0 10px 24px -10px rgba(48,93,106,.5); display: grid; place-content: center; text-align: center; color: var(--ink); transform: rotate(10deg); transition: transform .6s cubic-bezier(.5,-.3,.3,1.3), opacity .4s; }
+.ak-u-tag b { display: block; font: 400 clamp(28px, 6vw, 42px)/.9 var(--serif); }
+.ak-u-tag span { font: 700 10px var(--sans); letter-spacing: .1em; }
+.ak-u-tag.feest { background: var(--ink); color: var(--cream); }
+.ak-u.go1 .ak-u-tag { transform: translate(40%, -60%) rotate(40deg) scale(.7); opacity: 0; }
+.ak-u-card { position: absolute; left: 9%; right: 9%; top: 6%; bottom: 6%; border-radius: 12px; background: #fff; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 30px 50px -28px rgba(48,93,106,.6); transform: translateY(16%) scale(.86); opacity: 0; transition: transform 1s cubic-bezier(.2,1.2,.3,1), opacity .5s; }
+.ak-u-card img { flex: 1; min-height: 0; width: 100%; object-fit: cover; }
+.ak-u-card p { margin: 0; padding: 10px 12px 12px; text-align: center; font: 400 clamp(26px, 5vw, 36px)/1 var(--serif); color: var(--sale); }
+.ak-u-card p small { display: block; margin-top: 5px; font: 700 11px var(--sans); letter-spacing: .06em; color: var(--ink); }
+.ak-u.go4 .ak-u-card { transform: translateY(-10%) scale(1.06); opacity: 1; }
+.ak-u-burst { position: absolute; inset: -45%; border-radius: 50%; background: radial-gradient(circle, rgba(255,250,240,.95) 0%, rgba(255,214,200,.6) 30%, rgba(255,214,200,0) 62%); transform: scale(0); opacity: 0; pointer-events: none; }
+.ak-u.go4 .ak-u-burst { animation: akBurst 1.2s ease-out forwards; }
+@keyframes akBurst { 0% { transform: scale(.2); opacity: 0; } 30% { opacity: 1; } 100% { transform: scale(1.3); opacity: 0; } }
+.ak-u-sparks { position: absolute; inset: 0; pointer-events: none; }
+.ak-u-sparks i { position: absolute; left: 50%; top: 50%; width: 14px; height: 14px; margin: -7px; opacity: 0; background: var(--c, #fff); clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%); }
+.ak-u.go4 .ak-u-sparks i { animation: akSpark 1.5s cubic-bezier(.2,.8,.3,1) forwards; animation-delay: var(--dl, 0s); }
+@keyframes akSpark { 0% { opacity: 0; transform: translate(0, 0) scale(.3) rotate(0); } 20% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--x), var(--y)) scale(var(--s, 1)) rotate(90deg); } }
+.ak-u-hint { position: relative; align-self: start; margin: 34px 0 0; font: 700 13px var(--sans); letter-spacing: .08em; color: var(--dim); transition: opacity .3s; animation: akBlink 1.8s ease-in-out infinite; }
+@keyframes akBlink { 50% { opacity: .45; } }
+.ak-u.go1 .ak-u-hint { opacity: 0; animation: none; }
+.ak-u-skip { position: absolute; z-index: 2; right: var(--gut-r); top: max(18px, env(safe-area-inset-top)); border: 0; background: none; color: var(--ink); font: 700 13px var(--sans); text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
+.ak-u.feest .ak-u-glow { background: radial-gradient(42% 42% at 50% 50%, rgba(255,200,180,1), rgba(242,124,134,.55) 40%, rgba(150,80,180,.3) 68%, rgba(245,236,221,0) 100%); }
+.ak-u.feest .ak-u-stage { width: min(72vw, 390px); }
 
-/* feestdagen */
-.ak-feest { margin-top: clamp(56px, 7vw, 96px); }
-.ak-feest-in { background: var(--glow); border-radius: 18px; padding: clamp(24px, 4vw, 44px); }
-.ak-feest-in > p { margin: 10px 0 0; max-width: 40em; color: var(--ink); }
-.ak-feest ul { list-style: none; margin: 22px 0 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
-.ak-feest li { background: rgba(255,255,255,.72); border-radius: 12px; padding: 14px 14px 16px; color: var(--ink); }
-.ak-feest li b { display: block; font: 400 28px/1 var(--serif); }
-.ak-feest li span { display: block; margin-top: 6px; font: 700 13px var(--sans); }
-.ak-feest li em { display: block; margin-top: 2px; font-style: normal; font-size: 13px; color: var(--text); }
+/* ---------- het cadeau van vandaag ---------- */
+.ak-today { position: relative; padding: clamp(18px, 3vw, 44px) 0 clamp(40px, 5vw, 64px); }
+.ak-today-glow { position: absolute; inset: -80px 0 0 0; background: var(--glow); z-index: -1; pointer-events: none; }
+.ak-today-in { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(32px, 5vw, 76px); align-items: center; }
+.ak-today-in.reveal > * { animation: akRise .9s cubic-bezier(.2,.8,.2,1) both; }
+.ak-today-in.reveal > :nth-child(2) { animation-delay: .12s; }
+@keyframes akRise { from { opacity: 0; transform: translateY(24px); } }
+.ak-media { position: relative; }
+.ak-media .m1 { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 16px; box-shadow: 0 40px 70px -46px rgba(48,93,106,.7); }
+.ak-media .m2 { position: absolute; left: -5%; bottom: -6%; width: 36%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 12px; border: 5px solid var(--cream); box-shadow: 0 24px 40px -24px rgba(48,93,106,.6); }
+.ak-media.duo { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding-bottom: 8%; }
+.ak-media.duo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 14px; box-shadow: 0 30px 50px -36px rgba(48,93,106,.7); }
+.ak-media.duo img:nth-child(2) { transform: translateY(12%); }
+.ak-media.trio { display: grid; grid-template-columns: 1.25fr 1fr; grid-template-rows: 1fr 1fr; gap: 12px; aspect-ratio: 1.05; }
+.ak-media.trio img { width: 100%; height: 100%; min-height: 0; object-fit: cover; border-radius: 14px; }
+.ak-media.trio img:first-child { grid-row: 1 / -1; }
+.ak-stamp { position: absolute; right: -3%; top: -4%; z-index: 2; width: clamp(96px, 11vw, 128px); aspect-ratio: 1; border-radius: 50%; background: var(--sale); color: #fff; display: grid; place-content: center; text-align: center; transform: rotate(8deg); box-shadow: 0 18px 30px -16px rgba(232,87,58,.7); }
+.ak-stamp b { font: 400 clamp(30px, 3.6vw, 42px)/.9 var(--serif); }
+.ak-stamp span { font: 700 10.5px var(--sans); letter-spacing: .08em; margin-top: 4px; }
+.ak-stamp.feest::before { content: ""; position: absolute; inset: -7px; border-radius: 50%; border: 1.5px dashed var(--sale); animation: akSpin 14s linear infinite; }
+@keyframes akSpin { to { transform: rotate(360deg); } }
+.ak-plus { position: absolute; left: 50%; top: 50%; z-index: 1; transform: translate(-50%, -50%); width: 46px; height: 46px; border-radius: 50%; background: var(--cream); display: grid; place-items: center; font: 400 26px/1 var(--serif); color: var(--ink); box-shadow: 0 10px 20px -10px rgba(48,93,106,.5); }
 
-/* kalender */
-.ak-cal { margin-top: clamp(56px, 7vw, 96px); }
-.ak-cal-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; margin-bottom: 18px; }
-.ak-legend { display: flex; gap: 14px; margin: 0; font-size: 13px; color: var(--text); }
-.ak-legend .lg::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
-.ak-legend .today::before { background: var(--ink); }
-.ak-legend .feest::before { background: linear-gradient(135deg, #FFE1D2, #FBB7AE, #C5AEE0); }
-.ak-legend .past::before { background: var(--hair); }
-.ak-days, .ak-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: clamp(6px, 1vw, 12px); }
-.ak-days { margin-bottom: 8px; font: 700 12px var(--sans); letter-spacing: .06em; color: var(--dim); text-align: center; }
-.ak-grid { list-style: none; margin: 0; padding: 0; }
-.ak-grid li { min-width: 0; }
-.ak-door-cell { position: relative; display: flex; flex-direction: column; justify-content: space-between; width: 100%; aspect-ratio: 1 / 1.08; padding: clamp(6px, 1vw, 14px); border: 1px solid var(--hair); border-radius: 10px; background: var(--cream); color: var(--ink); text-align: left; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease; font: inherit; }
-.ak-door-cell:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -22px rgba(48,93,106,.6); }
-.ak-door-cell .n { font: 400 clamp(20px, 3.4vw, 44px)/1 var(--serif); }
-.ak-door-cell .s { font: 700 clamp(9px, 1vw, 12px)/1.2 var(--sans); letter-spacing: .02em; color: var(--dim); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.ak-door-cell.feest { background: linear-gradient(140deg, #FFE1D2 0%, #FBB7AE 55%, #C5AEE0 100%); border-color: transparent; }
-.ak-door-cell.feest .s { color: var(--ink); }
-.ak-door-cell.feest::after { content: "★"; position: absolute; top: clamp(5px, .8vw, 10px); right: clamp(6px, .9vw, 12px); font-size: clamp(10px, 1.2vw, 15px); color: var(--ink); }
-.ak-door-cell.past { background: transparent; color: var(--dim); }
-.ak-door-cell.past.feest { background: transparent; border-color: var(--hair); }
-.ak-door-cell.past .n { text-decoration: line-through; text-decoration-thickness: 1px; }
-.ak-door-cell.today { background: var(--ink); color: var(--cream); border-color: var(--ink); box-shadow: 0 0 0 4px rgba(48,93,106,.14); }
-.ak-door-cell.today .s { color: var(--cream); }
-.ak-door-cell.today.feest { background: linear-gradient(140deg, #305D6A 0%, #305D6A 45%, #9C6F8E 100%); }
-.ak-door-cell.today.feest::after { color: var(--cream); }
-.ak-door-cell[aria-current="true"] { outline: 2px solid var(--sale); outline-offset: 2px; }
-.ak-door-cell.today::before { content: ""; position: absolute; inset: -4px; border-radius: 13px; border: 2px solid var(--ink); opacity: 0; animation: akPulse 2.4s ease-out infinite; }
-@keyframes akPulse { 0% { opacity: .5; transform: scale(.97); } 100% { opacity: 0; transform: scale(1.08); } }
-@media (prefers-reduced-motion: reduce) { .ak-door-cell.today::before { animation: none; } .ak-door-cell { transition: none; } }
-
-/* het geopende deurtje */
-.ak-door { margin-top: clamp(28px, 4vw, 48px); scroll-margin-top: 90px; }
-.ak-door-in { background: #fff; border-radius: 18px; padding: clamp(22px, 4vw, 48px); box-shadow: 0 30px 60px -44px rgba(48,93,106,.55); }
-.ak-dk { margin: 0 0 8px; font: 700 13px var(--sans); letter-spacing: .06em; color: var(--dim); }
-.ak-dk .only { color: var(--sale); }
-.ak-door-in h2 { font-size: clamp(30px, 4.6vw, 56px); }
-.ak-door-in .lead { margin: 12px 0 0; max-width: 40em; font-size: 16.5px; color: var(--text); }
-.ak-meta { display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: center; margin: 20px 0 0; font-size: 14px; color: var(--ink); }
-.ak-meta .clock { font: 400 24px/1 var(--serif); font-variant-numeric: tabular-nums; }
-.ak-code { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border: 1px dashed var(--ink); border-radius: 40px; font: 700 13px var(--sans); letter-spacing: .05em; }
-.ak-items { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: clamp(14px, 2vw, 24px); margin-top: 28px; }
-.ak-item { display: flex; flex-direction: column; }
-.ak-item .ph { position: relative; display: block; }
-.ak-item img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 6px; background: var(--sand-2); }
-.ak-badge { position: absolute; top: 10px; left: 10px; padding: 5px 10px; border-radius: 40px; background: var(--sale); color: #fff; font: 700 13px var(--sans); }
-.ak-item h3 { margin-top: 12px; font-size: 17px; line-height: 1.25; text-transform: none; }
-.ak-item h3 a { color: inherit; text-decoration: none; }
-.ak-price { margin: 6px 0 0; font: 700 16px var(--sans); color: var(--sale); }
-.ak-price s { margin-right: 8px; font-weight: 400; color: var(--dim); }
-.ak-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
-.ak-pills p { flex-basis: 100%; margin: 0 0 2px; font-size: 12.5px; color: var(--dim); }
-.ak-pill { min-width: 44px; height: 36px; padding: 0 12px; border: 1px solid var(--hair); border-radius: 40px; background: none; color: var(--ink); font: 700 13px var(--sans); cursor: pointer; }
+.ak-buy h1 { font-size: clamp(38px, 5vw, 70px); line-height: 1; letter-spacing: -.01em; }
+.ak-buy .lead { margin: 14px 0 0; max-width: 32em; font-size: 17px; line-height: 1.55; color: var(--text); }
+.ak-pricebig { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 14px; margin: 22px 0 0; }
+.ak-pricebig b { font: 400 clamp(44px, 5vw, 60px)/1 var(--serif); color: var(--sale); }
+.ak-pricebig s { font: 400 20px var(--sans); color: var(--dim); }
+.ak-pricebig em { font-style: normal; padding: 5px 12px; border-radius: 40px; background: rgba(232,87,58,.12); color: var(--sale); font: 700 13px var(--sans); }
+.ak-clock { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin: 20px 0 0; font: 700 13px var(--sans); letter-spacing: .04em; color: var(--ink); }
+.ak-clock .t { display: flex; gap: 5px; }
+.ak-clock .t span { min-width: 48px; padding: 7px 0 6px; border-radius: 10px; background: rgba(255,255,255,.75); text-align: center; font: 400 24px/1 var(--serif); font-variant-numeric: tabular-nums; }
+.ak-clock .t span small { display: block; margin-top: 3px; font: 700 9px var(--sans); letter-spacing: .08em; color: var(--dim); }
+.ak-part { margin-top: 18px; }
+.ak-part + .ak-part { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--hair); }
+.ak-part-name { display: flex; justify-content: space-between; gap: 10px; font: 700 14.5px var(--sans); color: var(--ink); }
+.ak-part-name s { font-weight: 400; color: var(--dim); margin-right: 6px; }
+.ak-part-name span { color: var(--sale); white-space: nowrap; }
+.ak-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; align-items: center; }
+.ak-pill { min-width: 52px; height: 42px; padding: 0 14px; border: 1px solid rgba(48,93,106,.3); border-radius: 40px; background: rgba(255,255,255,.7); color: var(--ink); font: 700 14px var(--sans); cursor: pointer; transition: background .15s, color .15s; }
 .ak-pill[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--cream); }
-.ak-pill:disabled { opacity: .4; text-decoration: line-through; cursor: not-allowed; }
-.ak-item .ak-btn { margin-top: auto; }
-.ak-item .ak-pills + .ak-btn, .ak-item .ak-price + .ak-btn { margin-top: 14px; }
-.ak-hint { min-height: 1.2em; margin: 8px 0 0; font-size: 13px; color: var(--dim); }
+.ak-pill:disabled { opacity: .35; text-decoration: line-through; cursor: not-allowed; }
+.ak-stock { margin: 8px 0 0; font: 700 13px var(--sans); color: var(--sale); }
+.ak-buy .ak-btn.wide { width: 100%; margin-top: 22px; min-height: 58px; font-size: 16.5px; }
+.ak-fine { margin: 10px 0 0; font-size: 13px; color: var(--dim); text-align: center; }
+.ak-added { min-height: 1.3em; margin: 8px 0 0; font: 700 13.5px var(--sans); color: var(--ink); text-align: center; }
+.ak-replay { display: block; margin: 12px auto 0; border: 0; background: none; padding: 0; color: var(--dim); font: 700 13px var(--sans); text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
 
-/* combi */
-.ak-combo { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(20px, 3vw, 40px); margin-top: 28px; align-items: start; }
-.ak-combo-pics { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; position: relative; }
-.ak-combo-pics img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 6px; }
-.ak-combo-pics .plus { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; border-radius: 50%; background: #fff; display: grid; place-items: center; font: 400 24px/1 var(--serif); color: var(--ink); }
-.ak-combo-body .part { padding: 14px 0; border-bottom: 1px solid var(--hair); }
-.ak-combo-body .part h3 { font-size: 18px; text-transform: none; }
-.ak-combo-body .part .ak-pills { margin-top: 8px; }
-.ak-combo-total { margin: 18px 0 14px; font: 700 15px var(--sans); color: var(--ink); }
-.ak-combo-total b { font: 400 34px/1 var(--serif); color: var(--sale); margin-left: 6px; }
-.ak-combo-total s { margin-left: 8px; color: var(--dim); font-weight: 400; }
+.ak-wait { text-align: center; max-width: 660px; margin: 0 auto; grid-column: 1 / -1; padding: clamp(10px, 3vw, 30px) 0; }
+.ak-wait .ak-mini.big { margin: 0 auto 28px; }
+.ak-wait h1 { font-size: clamp(42px, 6vw, 82px); line-height: 1; }
+.ak-wait p { margin: 14px auto 0; max-width: 30em; color: var(--text); font-size: 17px; }
+.ak-wait .ak-clock { justify-content: center; }
+.ak-wait .ak-btn { margin-top: 26px; }
 
-/* dicht of voorbij */
-.ak-closed { display: grid; grid-template-columns: auto 1fr; gap: clamp(18px, 3vw, 36px); align-items: center; }
-.ak-gift { width: clamp(92px, 14vw, 150px); aspect-ratio: 1; border-radius: 16px; background: var(--glow); display: grid; place-items: center; font: 400 clamp(40px, 6vw, 64px)/1 var(--serif); color: var(--ink); position: relative; overflow: hidden; }
-.ak-gift::before, .ak-gift::after { content: ""; position: absolute; background: rgba(255,255,255,.75); }
-.ak-gift::before { left: 50%; top: 0; bottom: 0; width: 10px; transform: translateX(-50%); }
-.ak-gift::after { top: 50%; left: 0; right: 0; height: 10px; transform: translateY(-50%); }
-.ak-gift span { position: relative; z-index: 1; background: rgba(255,255,255,.9); border-radius: 50%; width: 1.4em; height: 1.4em; display: grid; place-items: center; font-size: .6em; }
-.ak-closed .ak-btn { margin-top: 18px; }
-.ak-gone { color: var(--dim); }
+.ak-trust { list-style: none; margin: 0 auto; padding-top: 4px; padding-bottom: 4px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.ak-trust li { padding: 14px 0 0; border-top: 1px solid var(--hair); font-size: 14px; color: var(--text); }
+.ak-trust b { display: block; color: var(--ink); font-size: 15px; margin-bottom: 2px; }
 
-/* zo werkt het */
-.ak-how { margin-top: clamp(56px, 7vw, 96px); }
-.ak-how ol { list-style: none; counter-reset: s; margin: 20px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(14px, 2vw, 28px); }
-.ak-how li { counter-increment: s; padding-top: 16px; border-top: 1px solid var(--hair); color: var(--text); font-size: 15px; line-height: 1.55; }
-.ak-how li::before { content: counter(s); display: block; font: 400 34px/1 var(--serif); color: var(--ink); margin-bottom: 10px; }
-.ak-how li b { display: block; margin-bottom: 4px; color: var(--ink); }
+.ak-more { margin-top: clamp(40px, 5vw, 64px); }
+.ak-more[hidden] { display: none; }
+.ak-items { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: clamp(16px, 2vw, 26px); }
+.ak-item { display: flex; flex-direction: column; background: rgba(255,255,255,.6); border-radius: 14px; padding: 10px 10px 16px; }
+.ak-item .ph { position: relative; display: block; }
+.ak-item img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 10px; }
+.ak-badge { position: absolute; top: 10px; left: 10px; padding: 5px 11px; border-radius: 40px; background: var(--sale); color: #fff; font: 700 13px var(--sans); }
+.ak-item h3 { margin: 12px 4px 0; font-size: 17px; line-height: 1.25; text-transform: none; }
+.ak-item h3 a { color: inherit; text-decoration: none; }
+.ak-item .ak-price { margin: 4px 4px 0; font: 700 16px var(--sans); color: var(--sale); }
+.ak-item .ak-price s { margin-right: 8px; font-weight: 400; color: var(--dim); }
+.ak-item .ak-pills { margin: 10px 4px 0; }
+.ak-item .ak-pill { min-width: 42px; height: 36px; padding: 0 10px; font-size: 13px; }
+.ak-item .ak-btn { margin: auto 4px 0; min-height: 46px; }
+.ak-item .ak-pills + .ak-btn, .ak-item .ak-price + .ak-btn, .ak-item .ak-stock + .ak-btn { margin-top: 14px; }
+.ak-item .ak-stock { margin: 6px 4px 0; font-size: 12px; }
+.ak-item .ak-added { text-align: left; margin-left: 4px; font-size: 12.5px; }
 
-/* mail */
-.ak-mail { margin-top: clamp(56px, 7vw, 96px); }
-.ak-mail-in { background: var(--ink); color: var(--cream); border-radius: 18px; padding: clamp(26px, 5vw, 56px); display: grid; grid-template-columns: 1fr 1fr; gap: 12px 40px; align-items: center; }
-.ak-mail-in h2 { color: var(--cream); }
-.ak-mail-in > p { margin: 0; grid-column: 1; color: rgba(251,246,236,.85); }
-.ak-mail-in h2 { grid-column: 1; }
-.ak-form { grid-column: 2; grid-row: 1 / span 2; display: flex; gap: 10px; flex-wrap: wrap; }
-.ak-form input[type=email] { flex: 1 1 220px; min-height: 48px; padding: 0 18px; border-radius: 40px; border: 1px solid rgba(251,246,236,.5); background: transparent; color: var(--cream); font: 16px var(--sans); }
-.ak-form input::placeholder { color: rgba(251,246,236,.65); }
+.ak-next { margin-top: clamp(56px, 7vw, 100px); }
+.ak-next-in { display: grid; grid-template-columns: auto 1fr; gap: clamp(24px, 5vw, 64px); align-items: center; background: var(--ink); color: var(--cream); border-radius: 22px; padding: clamp(28px, 5vw, 60px); position: relative; overflow: hidden; }
+.ak-next-in::before { content: ""; position: absolute; right: -10%; top: -40%; width: 60%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(242,124,134,.35), rgba(143,107,194,.2) 45%, rgba(48,93,106,0) 70%); }
+.ak-next-copy { position: relative; }
+.ak-next .ak-kick { color: rgba(251,246,236,.7); }
+.ak-next h2 { color: var(--cream); }
+.ak-next-copy > p:not(.ak-kick):not(.ak-ok) { margin: 12px 0 0; max-width: 34em; color: rgba(251,246,236,.85); }
+.ak-form { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; max-width: 560px; }
+.ak-form input[type=email] { flex: 1 1 220px; min-height: 52px; padding: 0 20px; border-radius: 40px; border: 1px solid rgba(251,246,236,.45); background: rgba(251,246,236,.06); color: var(--cream); font: 16px var(--sans); }
+.ak-form input::placeholder { color: rgba(251,246,236,.6); }
 .ak-form .ak-btn.solid { background: var(--cream); color: var(--ink); border-color: var(--cream); }
-.ak-ok { grid-column: 2; margin: 0; font-weight: 700; }
+.ak-ok { margin: 24px 0 0; font-weight: 700; }
+.ak-small { display: block; margin-top: 12px; font-size: 12.5px; color: rgba(251,246,236,.6); }
 
-/* vragen */
-.ak-faq { margin-top: clamp(56px, 7vw, 96px); }
+.ak-mini { position: relative; display: block; width: 74px; aspect-ratio: 1 / 1.08; border-radius: 12px; background: var(--paper); background-size: 160% 160%; background-position: 50% 50%; border: 0; padding: 0; cursor: pointer; overflow: visible; box-shadow: 0 14px 24px -18px rgba(48,93,106,.8); transition: transform .2s ease; font: inherit; }
+.ak-mini::before, .ak-mini::after { content: ""; position: absolute; background: var(--rib); }
+.ak-mini::before { left: 50%; top: 0; bottom: 0; width: 12%; transform: translateX(-50%); }
+.ak-mini::after { top: 50%; left: 0; right: 0; height: 12%; transform: translateY(-50%); }
+.ak-mini .n { position: absolute; z-index: 1; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 52%; aspect-ratio: 1; border-radius: 50%; background: var(--cream); display: grid; place-items: center; font: 400 20px/1 var(--serif); color: var(--ink); box-shadow: 0 4px 10px -4px rgba(48,93,106,.5); }
+.ak-mini.feest .n { background: var(--ink); color: var(--cream); }
+.ak-mini.feest .st { position: absolute; z-index: 2; top: -7px; right: -7px; width: 22px; height: 22px; border-radius: 50%; background: var(--cream); color: var(--sale); display: grid; place-items: center; font-size: 12px; box-shadow: 0 4px 8px -4px rgba(48,93,106,.6); }
+.ak-mini.past { background: var(--sand-2); box-shadow: none; }
+.ak-mini.past::before, .ak-mini.past::after { display: none; }
+.ak-mini.past .n { background: transparent; box-shadow: none; color: var(--dim); text-decoration: line-through; text-decoration-thickness: 1px; }
+.ak-mini.today { background: radial-gradient(80% 80% at 50% 40%, #FFF9F0, #F1E4CF); box-shadow: 0 0 0 2px var(--ink), 0 16px 26px -16px rgba(48,93,106,.8); }
+.ak-mini.today::before, .ak-mini.today::after { display: none; }
+.ak-mini.today .n { background: var(--sale); color: #fff; }
+.ak-mini:hover { transform: translateY(-3px); }
+.ak-mini.big { width: clamp(120px, 17vw, 180px); border-radius: 20px; cursor: default; animation: akFloat 3.2s ease-in-out infinite; }
+.ak-mini.big .n { font-size: clamp(34px, 5vw, 52px); }
+.ak-mini.big .st { width: 34px; height: 34px; font-size: 17px; top: -10px; right: -10px; }
+.ak-mini.big:hover { transform: none; }
+
+.ak-month { margin-top: clamp(56px, 7vw, 100px); }
+.ak-month-head { display: flex; justify-content: space-between; align-items: end; gap: 10px 30px; flex-wrap: wrap; }
+.ak-month-head p { margin: 0; max-width: 30em; color: var(--text); }
+.ak-row { list-style: none; margin: 22px calc(var(--gut) * -1) 0; padding: 12px var(--gut) 18px; display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: thin; }
+.ak-row li { flex: 0 0 auto; scroll-snap-align: start; text-align: center; }
+.ak-row li small { display: block; margin-top: 8px; font: 700 11px var(--sans); color: var(--dim); }
+.ak-row li.is-today small { color: var(--sale); }
+.ak-row-msg { min-height: 1.4em; margin: 4px 0 0; font: 700 14px var(--sans); color: var(--ink); }
+
+.ak-faq { margin-top: clamp(56px, 7vw, 100px); }
 .ak-faq .acc { margin-top: 16px; max-width: 860px; }
 
-/* concept-balk */
-.ak-preview { position: fixed; left: 50%; bottom: max(14px, env(safe-area-inset-bottom)); transform: translateX(-50%); z-index: 40; display: flex; align-items: center; gap: 8px; padding: 6px 8px 6px 14px; border-radius: 40px; background: rgba(16,44,68,.92); color: var(--cream); font: 13px var(--sans); box-shadow: 0 14px 30px -14px rgba(0,0,0,.45); white-space: nowrap; }
-.ak-preview b { min-width: 9.5em; text-align: center; }
+.ak-preview { position: fixed; left: 50%; bottom: max(14px, env(safe-area-inset-bottom)); transform: translateX(-50%); z-index: 210; display: flex; align-items: center; gap: 6px; padding: 6px 8px 6px 14px; border-radius: 40px; background: rgba(16,44,68,.92); color: var(--cream); font: 13px var(--sans); box-shadow: 0 14px 30px -14px rgba(0,0,0,.45); white-space: nowrap; }
+.ak-preview b { min-width: 7.5em; text-align: center; }
 .ak-preview button { min-width: 32px; height: 32px; border-radius: 40px; border: 1px solid rgba(251,246,236,.35); background: none; color: inherit; font: 700 15px var(--sans); cursor: pointer; }
-.ak-preview .ak-pv-now { padding: 0 10px; font-size: 12px; }
+.ak-preview .ak-pv-txt { padding: 0 10px; font-size: 12px; }
 .ak-pv-lbl { opacity: .7; }
 
-@media (max-width: 900px) {
-  .ak-feest ul { grid-template-columns: repeat(3, 1fr); }
-  .ak-mail-in { grid-template-columns: 1fr; }
-  .ak-mail-in > p, .ak-mail-in h2, .ak-form, .ak-ok { grid-column: 1; grid-row: auto; }
+@media (max-width: 860px) {
+  .ak-today-in { grid-template-columns: 1fr; }
+  .ak-media { max-width: 520px; margin: 0 auto; width: 100%; }
+  .ak-trust { grid-template-columns: 1fr; gap: 0; }
+  .ak-trust li { padding: 12px 0; }
+  .ak-next-in { grid-template-columns: 1fr; }
+  .ak-next .ak-mini.big { width: 110px; }
 }
 @media (max-width: 760px) {
-  .ak-hero { grid-template-columns: 1fr; }
-  .ak-hero-pic { order: -1; }
-  .ak .ak-hero-pic img { height: 46vh; min-height: 260px; object-position: 50% 25%; }
-  .ak-feest ul { grid-template-columns: repeat(2, 1fr); }
-  .ak-feest li:last-child { grid-column: 1 / -1; }
-  .ak-door-cell { border-radius: 8px; aspect-ratio: 1 / 1.15; }
-  .ak-door-cell .s { display: none; }
-  .ak-door-cell.feest::after { top: 3px; right: 4px; }
-  .ak-legend { width: 100%; }
-  .ak-combo { grid-template-columns: 1fr; }
-  .ak-items { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .ak-media .m1 { aspect-ratio: 1 / 1; border-radius: 14px; }
+  .ak-media .m2 { width: 30%; left: -2%; bottom: -5%; border-width: 4px; }
+  .ak-media.trio { aspect-ratio: 1.45; gap: 8px; }
+  .ak-media.duo { gap: 8px; }
+  .ak-stamp { width: 88px; }
+  .ak-buy h1 { font-size: clamp(34px, 9vw, 44px); }
+  .ak-pricebig { margin-top: 16px; }
+  .ak-pricebig b { font-size: 44px; }
+  .ak-stamp { right: 0; top: -3%; }
+  .ak-items { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .ak-item { padding: 6px 6px 12px; }
   .ak-item h3 { font-size: 15px; }
-  .ak-pill { min-width: 38px; padding: 0 9px; }
-  .ak-closed { grid-template-columns: 1fr; }
-  .ak-how ol { grid-template-columns: 1fr; }
+  .ak-item .ak-pill { min-width: 36px; padding: 0 8px; }
+  .ak-mini { width: 62px; }
   .ak-pv-lbl { display: none; }
-  .ak-preview b { min-width: 8em; }
+  .ak-preview { gap: 4px; padding: 5px 6px; }
+  .ak-preview b { min-width: 5.5em; font-size: 12px; }
+  .ak-preview .ak-pv-txt { padding: 0 7px; font-size: 11px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ak-u-glow, .ak-u-gift, .ak-u-paper::after, .ak-mini.big, .ak-stamp.feest::before, .ak-u-hint { animation: none !important; }
+  .ak-today-in.reveal > * { animation: none; }
 }
 </style>
 </head>
@@ -196,82 +265,91 @@
 </header>
 <nav class="mobile-nav" id="mobileNav" hidden aria-label="Menu"><button type="button" class="close" id="menuClose">sluiten</button><a href="index.html">home</a><a href="journal-essentials.html">journal essentials</a><a href="shop.html">shop alles</a><a href="waves.html">waves</a><a href="verhaal.html">over Eva</a><a href="contact.html">contact</a><a href="sale.html">sale</a></nav>
 
+<div class="ak-u" id="akU" hidden aria-hidden="true">
+  <div class="ak-u-glow"></div>
+  <p class="ak-u-top" id="akUTop"></p>
+  <div class="ak-u-stage">
+    <div class="ak-u-gift" id="akUGift">
+      <div class="ak-u-inside">
+        <div class="ak-u-card" id="akUCard"></div>
+      </div>
+      <div class="ak-u-paper q1"></div><div class="ak-u-paper q2"></div><div class="ak-u-paper q3"></div><div class="ak-u-paper q4"></div>
+      <div class="ak-u-rib v"></div><div class="ak-u-rib h"></div>
+      <div class="ak-u-bow"><i class="l"></i><i class="r"></i><b></b></div>
+      <div class="ak-u-tag" id="akUTag"></div>
+    </div>
+    <div class="ak-u-burst"></div>
+    <div class="ak-u-sparks" id="akUSparks"></div>
+  </div>
+  <p class="ak-u-hint" id="akUHint">tik om uit te pakken</p>
+  <button type="button" class="ak-u-skip" id="akUSkip">overslaan</button>
+</div>
+
 <main id="main" class="ak">
 
-  <section class="ak-hero wrap">
-    <div class="ak-hero-copy">
-      <p class="crumbs"><a href="index.html">home</a> / december-kalender</p>
-      <p class="ak-kick">31 dagen, 31 deurtjes</p>
-      <h1>de december&shy;kalender</h1>
-      <p class="ak-sub">Elke dag in december gaat er één deurtje open met een eigen deal, alleen die dag geldig. Op de feestdagen pakken we groot uit. We maken ruimte voor nieuwe waves, dus op = op.</p>
-      <p class="ak-status" id="akStatus" aria-live="polite"></p>
-      <p class="ak-cta"><a class="ak-btn solid" href="#deur" id="akHeroBtn">open het deurtje van vandaag</a><a class="ak-btn" href="#mail">elke ochtend in je mail</a></p>
+  <section class="ak-today" id="vandaag" aria-live="polite">
+    <div class="ak-today-glow" aria-hidden="true"></div>
+    <div class="wrap ak-today-in" id="akToday"></div>
+  </section>
+
+  <ul class="ak-trust wrap" aria-label="Goed om te weten">
+    <li><b>alleen vandaag</b>tot 23:59, daarna gaat het volgende cadeau open</li>
+    <li><b>op = op</b>de laatste voorraad, je maat komt niet terug</li>
+    <li><b>verstuurd binnen 3 werkdagen</b>gratis vanaf €100, 14 dagen retour</li>
+  </ul>
+
+  <section class="ak-more wrap" id="akMore" hidden aria-label="Alle producten van vandaag">
+    <div class="ak-items" id="akItems"></div>
+  </section>
+
+  <section class="ak-next wrap" aria-labelledby="akNextH">
+    <div class="ak-next-in">
+      <div class="ak-mini big" id="akNextBox" aria-hidden="true"></div>
+      <div class="ak-next-copy">
+        <p class="ak-kick" id="akNextKick"></p>
+        <h2 id="akNextH"></h2>
+        <p id="akNextText"></p>
+        <form class="ak-form" name="december" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <input type="hidden" name="form-name" value="december">
+          <p hidden><label>Niet invullen <input name="bot-field"></label></p>
+          <label class="sr" for="akEmail">Je e-mailadres</label>
+          <input id="akEmail" type="email" name="email" placeholder="je e-mailadres" autocomplete="email" required>
+          <button type="submit" class="ak-btn solid">stuur me elk cadeau</button>
+        </form>
+        <p class="ak-ok" id="akOk" hidden>Gelukt. Elke ochtend om 7:00 zit het cadeau van de dag in je mail 🌊</p>
+        <small class="ak-small">Elke ochtend om 7:00, tot en met 31 december. Daarna stoppen deze mails vanzelf.</small>
+      </div>
     </div>
-    <figure class="ak-hero-pic"><img src="img/sale/hero-hoodie.jpg" alt="Iemand in de crèmekleurige Waves of Energy hoodie bij zonsondergang aan zee" fetchpriority="high" width="1400" height="2100"></figure>
   </section>
 
-  <section class="ak-feest wrap" aria-labelledby="akFeestH">
-    <div class="ak-feest-in">
-      <h2 id="akFeestH">zet deze dagen in je agenda</h2>
-      <p>Op de feestdagen is het deurtje extra groot. Wat erachter zit, zie je pas op de dag zelf.</p>
-      <ul id="akFeestList"></ul>
+  <section class="ak-month wrap" aria-labelledby="akMonthH">
+    <div class="ak-month-head">
+      <h2 id="akMonthH">31 cadeaus in december</h2>
+      <p>Elke dag één, op de feestdagen een grote. Wat erin zit, zie je pas op de dag zelf.</p>
     </div>
-  </section>
-
-  <section class="ak-cal wrap" aria-labelledby="akCalH">
-    <div class="ak-cal-head">
-      <h2 id="akCalH">de kalender</h2>
-      <p class="ak-legend"><span class="lg today">vandaag</span><span class="lg feest">feestdag</span><span class="lg past">voorbij</span></p>
-    </div>
-    <div class="ak-days" aria-hidden="true"><span>ma</span><span>di</span><span>wo</span><span>do</span><span>vr</span><span>za</span><span>zo</span></div>
-    <ol class="ak-grid" id="akGrid"></ol>
-  </section>
-
-  <section class="ak-door wrap" id="deur" aria-live="polite">
-    <div class="ak-door-in" id="akDoor"></div>
-  </section>
-
-  <section class="ak-how wrap" aria-labelledby="akHowH">
-    <h2 id="akHowH">zo werkt het</h2>
-    <ol>
-      <li><b>elke dag één deurtje</b>Om 00:00 gaat het deurtje van die dag open. Tot 23:59 is de deal geldig.</li>
-      <li><b>korting gaat er vanzelf af</b>Leg de deal van vandaag in je mandje, de korting zie je bij het afrekenen.</li>
-      <li><b>op = op</b>Het is de laatste voorraad van deze kleding en elk deurtje is beter dan de presale. Is je maat weg, dan komt hij niet meer terug.</li>
-    </ol>
-  </section>
-
-  <section class="ak-mail wrap" id="mail" aria-labelledby="akMailH">
-    <div class="ak-mail-in">
-      <h2 id="akMailH">het deurtje van vandaag in je mail</h2>
-      <p>Elke ochtend om 7:00 de deal van de dag. Op de feestdagen weet je het als eerste. Na 31 december stoppen deze mails vanzelf.</p>
-      <form class="ak-form" name="december" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
-        <input type="hidden" name="form-name" value="december">
-        <p hidden><label>Niet invullen <input name="bot-field"></label></p>
-        <label class="sr" for="akEmail">Je e-mailadres</label>
-        <input id="akEmail" type="email" name="email" placeholder="je e-mailadres" autocomplete="email" required>
-        <button type="submit" class="ak-btn solid">zet me op de lijst</button>
-      </form>
-      <p class="ak-ok" id="akOk" hidden>Gelukt. Morgenochtend om 7:00 zit het eerste deurtje in je mail 🌊</p>
-    </div>
+    <ol class="ak-row" id="akRow"></ol>
+    <p class="ak-row-msg" id="akRowMsg" aria-live="polite"></p>
   </section>
 
   <section class="ak-faq wrap" aria-labelledby="akFaqH">
     <h2 id="akFaqH">goed om te weten</h2>
     <div class="acc">
-      <details><summary>Tot hoe laat geldt een deal?</summary><div class="in"><p>Van 00:00 tot 23:59 op de dag zelf. Daarna gaat het volgende deurtje open.</p></div></details>
-      <details><summary>Kan ik deals van verschillende dagen combineren?</summary><div class="in"><p>Nee, je krijgt de deal van de dag waarop je bestelt. Wel kun je zoveel van de deal van vandaag bestellen als je wilt, zolang de voorraad strekt.</p></div></details>
-      <details><summary>Kan ik een deal-product ruilen of retourneren?</summary><div class="in"><p>Ja, je hebt gewoon 14 dagen bedenktijd. Ruilen voor een andere maat kan zolang die er nog is. De retourkosten zijn voor jou.</p></div></details>
-      <details><summary>Komt mijn bestelling op tijd voor de feestdagen?</summary><div class="in"><p>We versturen binnen 3 werkdagen met PostNL. Bestel voor sinterklaas uiterlijk 1 december en voor kerst uiterlijk 19 december.</p></div></details>
+      <details><summary>Tot hoe laat geldt het cadeau van vandaag?</summary><div class="in"><p>Van 00:00 tot 23:59 op de dag zelf. Daarna gaat het volgende open.</p></div></details>
+      <details><summary>Moet ik een code invullen?</summary><div class="in"><p>Nee, de korting gaat er bij het afrekenen vanzelf af.</p></div></details>
+      <details><summary>Kan ik cadeaus van verschillende dagen combineren?</summary><div class="in"><p>Nee, je krijgt het cadeau van de dag waarop je bestelt. Van dat cadeau kun je wel zoveel bestellen als je wilt, zolang de voorraad strekt.</p></div></details>
+      <details><summary>Kan ik ruilen of retourneren?</summary><div class="in"><p>Ja, je hebt 14 dagen bedenktijd. Ruilen voor een andere maat kan zolang die er nog is. De retourkosten zijn voor jou.</p></div></details>
+      <details><summary>Komt mijn bestelling op tijd voor de feestdagen?</summary><div class="in"><p>We versturen binnen 3 werkdagen met PostNL. Bestel voor pakjesavond uiterlijk 1 december en voor kerst uiterlijk 19 december.</p></div></details>
     </div>
   </section>
 </main>
 
 <div class="ak-preview" id="akPreview" role="region" aria-label="Concept: bekijk een andere dag">
-  <span class="ak-pv-lbl">concept · bekijk als</span>
+  <span class="ak-pv-lbl">concept</span>
   <button type="button" data-pv="-1" aria-label="Vorige dag">‹</button>
   <b id="akPvDay"></b>
   <button type="button" data-pv="1" aria-label="Volgende dag">›</button>
-  <button type="button" data-pv="0" class="ak-pv-now">echte datum</button>
+  <button type="button" data-pv="r" class="ak-pv-txt">opnieuw uitpakken</button>
+  <button type="button" data-pv="0" class="ak-pv-txt">echte datum</button>
 </div>
 
 
@@ -360,15 +438,17 @@
     { d: 30, t: "55% op tassen, bucket hat en armband", items: ["totebag-green-eye", "shopping-bag-create-a-new-era", "bucket-hat-house-of-waves", "armband-ocean-gemstones"], pct: 55, lead: "Voor je goede voornemens van morgen." },
     { d: 31, feest: "oudjaarsdag", t: "70% op alle kleding", items: KLEDING, pct: 70, lead: "De laatste wave van 2026. Alles wat er nog is, voor 70% minder. Daarna is het echt op." }
   ];
+
   const FEEST = { 5: "pakjesavond", 24: "kerstavond", 25: "eerste kerstdag", 26: "tweede kerstdag", 31: "oudjaarsdag" };
   const DAG = ["zondag", "maandag", "dinsdag", "woensdag", "donderdag", "vrijdag", "zaterdag"];
   const pad = n => String(n).padStart(2, "0");
   const dateOf = d => new Date(Date.UTC(2026, 11, d) - 3600e3); // 00:00 Amsterdamse tijd
   const dayName = d => DAG[new Date(Date.UTC(2026, 11, d)).getUTCDay()];
   const label = d => dayName(d) + " " + d + " december";
-  const code = d => "DEC" + pad(d);
+  const lower = s => s.charAt(0).toLowerCase() + s.slice(1);
+  const REDUCE = H.reduce;
 
-  /* ---------- Tijd: echte datum, of in het concept een gekozen dag (?dag=7) ---------- */
+  /* ---------- tijd: echte datum, of in het concept een gekozen dag (?dag=7) ---------- */
   let offset = 0;
   const now = () => Date.now() + offset;
   function setDay(d) {
@@ -380,142 +460,223 @@
   const qd = +(new URLSearchParams(location.search).get("dag") || 0);
   if (qd >= 1 && qd <= 31) setDay(qd);
 
+  /* ---------- prijzen en voorraad ---------- */
   const base = h => { const v = byH[h].v[0]; return v.was || v.p; };
   const dealPrice = (h, pct) => Math.round(base(h) * (100 - pct)) / 100;
   const sized = h => byH[h].v.length > 1;
   const avail = h => byH[h].v.some(v => v.a);
-
-  /* ---------- Kalender ---------- */
-  const grid = document.getElementById("akGrid"), door = document.getElementById("akDoor");
-  let sel = 0;
-  function renderGrid() {
-    const t = today();
-    let html = '<li aria-hidden="true"></li>'; // 1 december is een dinsdag
-    for (let d = 1; d <= 31; d++) {
-      const f = FEEST[d], cls = ["ak-door-cell", f ? "feest" : "", d < t ? "past" : "", d === t ? "today" : ""].join(" ");
-      const s = d === t ? "vandaag" : d < t ? "voorbij" : f ? f : "";
-      html += '<li><button type="button" class="' + cls + '" data-d="' + d + '"' + (d === sel ? ' aria-current="true"' : "") +
-        ' aria-label="' + label(d) + (f ? ", " + f : "") + (d === t ? ", vandaag open" : d < t ? ", voorbij" : ", nog dicht") + '"><span class="n">' + d + '</span><span class="s">' + s + '</span></button></li>';
-    }
-    grid.innerHTML = html;
+  const short = t => t.split(" - ")[0];
+  function stock(h) {
+    if (!sized(h)) return "";
+    const v = byH[h].v, ok = v.filter(x => x.a).map(x => x.t.charAt(0));
+    if (!ok.length) return "uitverkocht";
+    if (ok.length < v.length) return ok.length === 1 ? "alleen nog maat " + ok[0] : "alleen nog " + ok.slice(0, -1).join(", ") + " en " + ok.slice(-1);
+    return "";
   }
-  grid.addEventListener("click", e => {
-    const b = e.target.closest("[data-d]"); if (!b) return;
-    sel = +b.dataset.d; renderGrid(); renderDoor();
-    document.getElementById("deur").scrollIntoView({ behavior: H.reduce ? "auto" : "smooth", block: "start" });
-  });
+  const pills = (h, key) => '<div class="ak-pills" role="group" aria-label="Maat ' + byH[h].t + '">' +
+    byH[h].v.map(v => '<button type="button" class="ak-pill" data-k="' + key + '" data-h="' + h + '" data-id="' + v.id + '" aria-pressed="false"' + (v.a ? "" : " disabled") + '>' + v.t.charAt(0) + '</button>').join("") + '</div>';
 
-  /* ---------- Feestdagen ---------- */
-  document.getElementById("akFeestList").innerHTML = Object.entries(FEEST).map(([d, f]) =>
-    '<li><b>' + d + ' dec</b><span>' + f + '</span><em>' + (today() >= +d ? "nu bekend" : "iets groots") + '</em></li>').join("");
-
-  /* ---------- Het deurtje ---------- */
-  const pills = (h, key) => '<div class="ak-pills" role="group" aria-label="Maat ' + byH[h].t + '"><p>maat</p>' +
-    byH[h].v.map(v => '<button type="button" class="ak-pill" data-k="' + key + '" data-id="' + v.id + '" aria-pressed="false"' + (v.a ? "" : " disabled") + '>' + v.t.charAt(0) + '</button>').join("") + '</div>';
-  const card = (h, pct) => {
-    const p = byH[h], out = !avail(h);
-    return '<article class="ak-item" data-h="' + h + '"><a class="ph" href="product.html?p=' + h + '"><span class="ak-badge">−' + pct + '%</span><img src="' + p.img[0] + '" alt="' + p.t + '" loading="lazy"></a>' +
-      '<h3><a href="product.html?p=' + h + '">' + p.t + '</a></h3><p class="ak-price"><s>' + E(base(h)) + '</s>' + E(dealPrice(h, pct)) + '</p>' +
-      (out ? '<p class="ak-hint">uitverkocht</p>' : (sized(h) ? pills(h, h) : "") +
-      '<button type="button" class="ak-btn solid" data-buy="' + h + '"' + (sized(h) ? " disabled" : "") + '>' + (sized(h) ? "kies je maat" : "in mijn mandje") + '</button><p class="ak-hint" aria-live="polite"></p>') + '</article>';
-  };
-  const combo = (items, pct, key) => {
-    const was = items.reduce((s, h) => s + base(h), 0), now_ = items.reduce((s, h) => s + dealPrice(h, pct), 0), anySized = items.some(sized);
-    return '<div class="ak-combo" data-combo="' + items.join(",") + '"><div class="ak-combo-pics">' + items.map(h => '<img src="' + byH[h].img[0] + '" alt="' + byH[h].t + '" loading="lazy">').join("") + '<span class="plus" aria-hidden="true">+</span></div>' +
-      '<div class="ak-combo-body">' + items.map(h => '<div class="part"><h3>' + byH[h].t + '</h3><p class="ak-price"><s>' + E(base(h)) + '</s>' + E(dealPrice(h, pct)) + '</p>' + (sized(h) ? pills(h, key + h) : "") + '</div>').join("") +
-      '<p class="ak-combo-total">samen<b>' + E(now_) + '</b><s>' + E(was) + '</s></p><button type="button" class="ak-btn solid" data-buycombo' + (anySized ? " disabled" : "") + '>' + (anySized ? "kies je maten" : "allebei in mijn mandje") + '</button><p class="ak-hint" aria-live="polite"></p></div></div>';
-  };
-  let tick = null;
-  function clock(el, until) {
+  /* ---------- klok ---------- */
+  const timers = [];
+  function clock(el, until, small) {
     const run = () => {
       let s = Math.max(0, Math.floor((until - now()) / 1000));
       const d = Math.floor(s / 86400); s -= d * 86400;
       const h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60), x = s % 60;
-      el.textContent = (d ? d + "d " : "") + pad(h) + ":" + pad(m) + ":" + pad(x);
+      el.innerHTML = small ? (d ? d + "d " : "") + pad(h) + ":" + pad(m) + ":" + pad(x) :
+        (d ? '<span>' + d + '<small>dagen</small></span>' : "") + '<span>' + pad(h) + '<small>uur</small></span><span>' + pad(m) + '<small>min</small></span><span>' + pad(x) + '<small>sec</small></span>';
     };
-    run(); return setInterval(run, 1000);
+    run(); timers.push(setInterval(run, 1000));
   }
-  function renderDoor() {
-    clearInterval(tick);
-    const t = today(), d = sel, deal = DEALS[d - 1], f = FEEST[d];
-    if (d === t) {
-      const head = '<p class="ak-dk">deurtje ' + d + ' · ' + label(d) + (f ? " · " + f : "") + ' · <span class="only">alleen vandaag</span></p><h2>' + deal.t + '</h2><p class="lead">' + deal.lead + '</p>' +
-        '<p class="ak-meta"><span>nog geldig <span class="clock" data-clock></span></span><span class="ak-code">code ' + code(d) + '</span><span>de korting gaat er bij het afrekenen af</span></p>';
-      let body;
-      if (deal.type === "combi") body = combo(deal.items, deal.pct, "c");
-      else if (deal.type === "sets") body = combo(deal.items.slice(0, 2), deal.pct, "a") + combo(deal.items.slice(2), deal.pct, "b");
-      else body = '<div class="ak-items">' + deal.items.filter(h => byH[h]).map(h => card(h, deal.pct)).join("") + '</div>';
-      door.innerHTML = head + body;
-      tick = clock(door.querySelector("[data-clock]"), dateOf(d + 1).getTime());
-    } else if (d > t) {
-      door.innerHTML = '<div class="ak-closed"><div class="ak-gift" aria-hidden="true"><span>' + d + '</span></div><div>' +
-        '<p class="ak-dk">deurtje ' + d + ' · ' + label(d) + (f ? " · " + f : "") + '</p><h2>' + (f ? "iets groots. meer zeggen we nog niet." : "dit deurtje is nog dicht") + '</h2>' +
-        '<p class="lead">Het gaat open op ' + label(d) + ' om 00:00. Nog <b data-clock></b>.</p><a class="ak-btn solid" href="#mail">mail mij als het opengaat</a></div></div>';
-      tick = clock(door.querySelector("[data-clock]"), dateOf(d).getTime());
-    } else {
-      door.innerHTML = '<div class="ak-closed"><div class="ak-gift" aria-hidden="true" style="filter:grayscale(1);opacity:.55"><span>' + d + '</span></div><div>' +
-        '<p class="ak-dk">deurtje ' + d + ' · ' + label(d) + '</p><h2 class="ak-gone">deze deal is voorbij</h2><p class="lead">Het was: ' + deal.t.charAt(0).toLowerCase() + deal.t.slice(1) + '.</p>' +
-        (t <= 31 ? '<button type="button" class="ak-btn solid" data-goto="' + t + '">naar het deurtje van vandaag</button>' : "") + '</div></div>';
+  const stopClocks = () => { while (timers.length) clearInterval(timers.pop()); };
+
+  /* ---------- het cadeau van vandaag ---------- */
+  const todayEl = document.getElementById("akToday"), moreEl = document.getElementById("akMore"), itemsEl = document.getElementById("akItems");
+  function giftBox(d, big) { return '<div class="ak-mini' + (big ? " big" : "") + (FEEST[d] ? " feest" : "") + '"><span class="n">' + d + '</span>' + (FEEST[d] ? '<span class="st">★</span>' : "") + '</div>'; }
+  function itemCard(h, pct) {
+    const p = byH[h], st = stock(h), out = !avail(h);
+    return '<article class="ak-item"><a class="ph" href="product.html?p=' + h + '"><span class="ak-badge">−' + pct + '%</span><img src="' + p.img[0] + '" alt="' + p.t + '" loading="lazy"></a>' +
+      '<h3><a href="product.html?p=' + h + '">' + p.t + '</a></h3><p class="ak-price"><s>' + E(base(h)) + '</s>' + E(dealPrice(h, pct)) + '</p>' +
+      (out ? '<p class="ak-stock">uitverkocht</p>' : (sized(h) ? pills(h, "i" + h) : "") + (st ? '<p class="ak-stock">' + st + '</p>' : "") +
+      '<button type="button" class="ak-btn solid" data-buy="' + h + '"' + (sized(h) ? " disabled" : "") + '>' + (sized(h) ? "kies je maat" : "in mijn mandje") + '</button><p class="ak-added" aria-live="polite"></p>') + '</article>';
+  }
+  function setCard(items, pct) {
+    const was = items.reduce((s, h) => s + base(h), 0), now_ = items.reduce((s, h) => s + dealPrice(h, pct), 0), name = byH[items[0]].t.split(" - ")[1];
+    return '<article class="ak-item" data-group="' + items.join(",") + '"><a class="ph" href="product.html?p=' + items[0] + '"><span class="ak-badge">−' + pct + '%</span><img src="' + byH[items[0]].img[0] + '" alt="' + name + ' set" loading="lazy"></a>' +
+      '<h3>Sportset ' + name + '</h3><p class="ak-price"><s>' + E(was) + '</s>' + E(now_) + ' samen</p>' +
+      items.map(h => '<p class="ak-price" style="color:var(--ink);font-size:13px;margin-top:10px">' + short(byH[h].t) + '</p>' + pills(h, "s" + h)).join("") +
+      '<button type="button" class="ak-btn solid" data-buygroup disabled>kies je maten</button><p class="ak-added" aria-live="polite"></p></article>';
+  }
+  function renderToday() {
+    stopClocks();
+    const t = today();
+    moreEl.hidden = true; itemsEl.innerHTML = "";
+    if (t === 0 || t > 31) {
+      todayEl.innerHTML = '<div class="ak-wait">' + giftBox(t === 0 ? 1 : 31, true) +
+        (t === 0 ? '<p class="ak-kick">december bij House of Waves</p><h1>elke dag een cadeau</h1><p>Vanaf 1 december gaat hier elke ochtend een nieuw cadeau open: een eigen deal die alleen die dag geldt. Op de feestdagen pakken we groot uit.</p><div class="ak-clock"><span>het eerste cadeau over</span><span class="t" data-clock></span></div><a class="ak-btn solid" href="#akNextH">stuur me elk cadeau</a>'
+          : '<p class="ak-kick">december is voorbij</p><h1>tot volgend jaar</h1><p>Alle 31 cadeaus zijn uitgepakt. Dank je wel dat je erbij was 🌊</p><a class="ak-btn solid" href="shop.html">bekijk de shop</a>') + '</div>';
+      if (t === 0) clock(todayEl.querySelector("[data-clock]"), dateOf(1).getTime());
+      return;
     }
+    const deal = DEALS[t - 1], f = FEEST[t], items = deal.items.filter(h => byH[h]);
+    const kick = '<p class="ak-kick">cadeau ' + t + ' · ' + label(t) + (f ? " · " + f : "") + ' · <span class="hot">alleen vandaag</span></p>';
+    const stamp = '<div class="ak-stamp' + (f ? " feest" : "") + '"><b>−' + deal.pct + '%</b><span>' + (f ? "feestdag" : "alleen vandaag") + '</span></div>';
+    const clockRow = '<div class="ak-clock"><span>nog geldig</span><span class="t" data-clock></span></div>';
+    const tail = '<p class="ak-added" aria-live="polite"></p><p class="ak-fine">De korting gaat er bij het afrekenen vanzelf af.</p><button type="button" class="ak-replay" data-replay>pak het cadeau opnieuw uit</button>';
+    let media, buy;
+    if (items.length === 1) {
+      const h = items[0], p = byH[h], st = stock(h);
+      media = '<div class="ak-media">' + stamp + '<img class="m1" src="' + p.img[0] + '" alt="' + p.t + '">' + (p.img[1] ? '<img class="m2" src="' + p.img[1] + '" alt="">' : "") + '</div>';
+      buy = kick + '<h1>' + deal.t + '</h1><p class="lead">' + deal.lead + '</p>' +
+        '<p class="ak-pricebig"><b>' + E(dealPrice(h, deal.pct)) + '</b><s>' + E(base(h)) + '</s><em>je bespaart ' + E(base(h) - dealPrice(h, deal.pct)) + '</em></p>' + clockRow +
+        (sized(h) ? '<div class="ak-part">' + pills(h, "m" + h) + (st ? '<p class="ak-stock">' + st + '</p>' : "") + '</div>' : "") +
+        '<button type="button" class="ak-btn solid wide" data-buygroup data-items="' + h + '"' + (sized(h) ? " disabled" : "") + '>' + (sized(h) ? "kies je maat" : "in mijn mandje · " + E(dealPrice(h, deal.pct))) + '</button>' + tail;
+    } else if (items.length === 2 && deal.type === "combi") {
+      const was = items.reduce((s, h) => s + base(h), 0), tot = items.reduce((s, h) => s + dealPrice(h, deal.pct), 0), anySized = items.some(sized);
+      media = '<div class="ak-media duo">' + stamp + items.map(h => '<img src="' + byH[h].img[0] + '" alt="' + byH[h].t + '">').join("") + '<span class="ak-plus" aria-hidden="true">+</span></div>';
+      buy = kick + '<h1>' + deal.t + '</h1><p class="lead">' + deal.lead + '</p>' +
+        '<p class="ak-pricebig"><b>' + E(tot) + '</b><s>' + E(was) + '</s><em>je bespaart ' + E(was - tot) + '</em></p>' + clockRow +
+        items.map(h => { const st = stock(h); return '<div class="ak-part"><p class="ak-part-name"><span style="color:var(--ink)">' + byH[h].t + '</span><span><s>' + E(base(h)) + '</s>' + E(dealPrice(h, deal.pct)) + '</span></p>' + (sized(h) ? pills(h, "m" + h) : "") + (st ? '<p class="ak-stock">' + st + '</p>' : "") + '</div>'; }).join("") +
+        '<button type="button" class="ak-btn solid wide" data-buygroup data-items="' + items.join(",") + '"' + (anySized ? " disabled" : "") + '>' + (anySized ? "kies je maten" : "allebei in mijn mandje · " + E(tot)) + '</button>' + tail;
+    } else {
+      const imgs = (deal.type === "sets" ? [items[1], items[0], items[3]] : items).filter(avail).slice(0, 3);
+      const from = Math.min(...items.filter(avail).map(h => dealPrice(h, deal.pct)));
+      media = '<div class="ak-media trio">' + stamp + imgs.map(h => '<img src="' + byH[h].img[0] + '" alt="' + byH[h].t + '">').join("") + '</div>';
+      buy = kick + '<h1>' + deal.t + '</h1><p class="lead">' + deal.lead + '</p>' +
+        '<p class="ak-pricebig"><b>' + (deal.type === "sets" ? E(items.slice(0, 2).reduce((s, h) => s + dealPrice(h, deal.pct), 0)) : "vanaf " + E(from)) + '</b>' + (deal.type === "sets" ? '<s>' + E(items.slice(0, 2).reduce((s, h) => s + base(h), 0)) + '</s><em>per set</em>' : '<em>' + items.filter(avail).length + ' producten</em>') + '</p>' + clockRow +
+        '<a class="ak-btn solid wide" href="#akMore">' + (deal.type === "sets" ? "kies je set" : "bekijk alle " + items.filter(avail).length) + '</a>' + tail.replace('<p class="ak-added" aria-live="polite"></p>', "");
+      itemsEl.innerHTML = deal.type === "sets" ? setCard(items.slice(0, 2), deal.pct) + setCard(items.slice(2), deal.pct) : items.filter(avail).map(h => itemCard(h, deal.pct)).join("");
+      moreEl.hidden = false;
+    }
+    todayEl.innerHTML = media + '<div class="ak-buy">' + buy + '</div>';
+    clock(todayEl.querySelector("[data-clock]"), dateOf(t + 1).getTime());
   }
-  door.addEventListener("click", e => {
-    const g = e.target.closest("[data-goto]"); if (g) { sel = +g.dataset.goto; renderGrid(); renderDoor(); return; }
+
+  /* kiezen en kopen */
+  function groupReady(box) {
+    const btn = box.querySelector("[data-buygroup], [data-buy]"); if (!btn) return;
+    const need = box.querySelectorAll(".ak-pills").length, got = box.querySelectorAll('.ak-pill[aria-pressed="true"]').length;
+    btn.disabled = got < need;
+    if (got < need) { btn.textContent = need > 1 ? "kies je maten" : "kies je maat"; return; }
+    const t = today(), deal = DEALS[t - 1];
+    const hs = btn.dataset.items ? btn.dataset.items.split(",") : btn.dataset.buy ? [btn.dataset.buy] : box.dataset.group.split(",");
+    const sum = hs.reduce((s, h) => s + dealPrice(h, deal.pct), 0);
+    btn.textContent = (hs.length === 2 ? "allebei in mijn mandje · " : "in mijn mandje · ") + E(sum);
+  }
+  document.querySelector(".ak").addEventListener("click", e => {
     const pl = e.target.closest(".ak-pill");
     if (pl) {
       pl.parentElement.querySelectorAll(".ak-pill").forEach(x => x.setAttribute("aria-pressed", String(x === pl)));
-      const it = pl.closest(".ak-item");
-      if (it) { const b = it.querySelector("[data-buy]"); b.disabled = false; b.textContent = "in mijn mandje"; }
-      const cb = pl.closest(".ak-combo");
-      if (cb) { const need = cb.querySelectorAll(".ak-pills").length, got = cb.querySelectorAll('.ak-pill[aria-pressed="true"]').length, b = cb.querySelector("[data-buycombo]"); b.disabled = got < need; b.textContent = got < need ? "kies je maten" : (cb.dataset.combo.split(",").length === 2 ? "allebei in mijn mandje" : "in mijn mandje"); }
+      groupReady(pl.closest(".ak-item") || pl.closest(".ak-buy"));
       return;
     }
-    const b = e.target.closest("[data-buy]");
-    if (b) {
-      const h = b.dataset.buy, p = byH[h], it = b.closest(".ak-item"), chosen = it.querySelector('.ak-pill[aria-pressed="true"]');
-      const id = chosen ? +chosen.dataset.id : p.v[0].id;
-      H.add(h, id, 1); it.querySelector(".ak-hint").textContent = "in je mandje, code " + code(sel) + " gaat er bij afrekenen af";
-      return;
-    }
-    const c = e.target.closest("[data-buycombo]");
-    if (c) {
-      const cb = c.closest(".ak-combo"), items = cb.dataset.combo.split(",");
-      items.forEach((h, i) => {
-        const pl2 = cb.querySelector('.ak-pill[data-k$="' + h + '"][aria-pressed="true"]'), id = pl2 ? +pl2.dataset.id : byH[h].v[0].id;
-        H.add(h, id, 1, i < items.length - 1);
+    const b = e.target.closest("[data-buygroup], [data-buy]");
+    if (b && !b.disabled) {
+      const box = b.closest(".ak-item") || b.closest(".ak-buy");
+      const hs = b.dataset.items ? b.dataset.items.split(",") : b.dataset.buy ? [b.dataset.buy] : box.dataset.group.split(",");
+      hs.forEach((h, i) => {
+        const chosen = box.querySelector('.ak-pill[data-h="' + h + '"][aria-pressed="true"]');
+        H.add(h, chosen ? +chosen.dataset.id : byH[h].v[0].id, 1, i < hs.length - 1);
       });
-      cb.querySelector(".ak-hint").textContent = "in je mandje, code " + code(sel) + " gaat er bij afrekenen af";
+      const msg = box.querySelector(".ak-added"); if (msg) msg.textContent = "✓ in je mandje, met de korting van vandaag";
+      return;
     }
+    if (e.target.closest("[data-replay]")) unwrap(true);
   });
 
-  /* ---------- Status in de hero ---------- */
-  const status = document.getElementById("akStatus"), heroBtn = document.getElementById("akHeroBtn");
-  let htick = null;
-  function renderStatus() {
-    clearInterval(htick);
-    const t = today();
-    if (t === 0) { status.innerHTML = 'het eerste deurtje gaat open over <span class="clock" data-c></span>'; heroBtn.textContent = "bekijk de kalender"; htick = clock(status.querySelector("[data-c]"), dateOf(1).getTime()); }
-    else if (t <= 31) { status.innerHTML = 'vandaag open: deurtje ' + t + (FEEST[t] ? " (" + FEEST[t] + ")" : "") + ' · nog <span class="clock" data-c></span>'; heroBtn.textContent = "open het deurtje van vandaag"; htick = clock(status.querySelector("[data-c]"), dateOf(t + 1).getTime()); }
-    else { status.textContent = "De kalender van 2026 is voorbij. Tot volgend jaar 🌊"; heroBtn.textContent = "bekijk de kalender"; }
+  /* ---------- het cadeau van morgen ---------- */
+  function renderNext() {
+    const t = today(), n = t === 0 ? 2 : t + 1, sec = document.querySelector(".ak-next");
+    if (t >= 31) { sec.hidden = true; return; } sec.hidden = false;
+    document.getElementById("akNextBox").outerHTML = '<div id="akNextBox" aria-hidden="true">' + giftBox(n, true) + '</div>';
+    document.getElementById("akNextKick").innerHTML = (t === 0 ? "en daarna" : "morgen, " + label(n)) + (FEEST[n] ? " · " + FEEST[n] : "");
+    document.getElementById("akNextH").textContent = FEEST[n] ? "morgen pakken we groot uit" : t === 0 ? "elke ochtend een nieuw cadeau" : "morgen gaat cadeau " + n + " open";
+    document.getElementById("akNextText").innerHTML = (t === 0 ? "31 cadeaus, elke dag een ander. " : "Wat erin zit, zie je pas morgen om 00:00. ") + "Mis er geen een: we sturen je elk cadeau om 7:00 in je mail.";
   }
 
-  /* ---------- Concept: andere dag bekijken ---------- */
+  /* ---------- de maand ---------- */
+  const row = document.getElementById("akRow"), rowMsg = document.getElementById("akRowMsg");
+  function renderRow() {
+    const t = today();
+    let html = "";
+    for (let d = 1; d <= 31; d++) {
+      const cls = ["ak-mini", FEEST[d] ? "feest" : "", d < t ? "past" : "", d === t ? "today" : ""].join(" ");
+      html += '<li' + (d === t ? ' class="is-today"' : "") + '><button type="button" class="' + cls + '" data-d="' + d + '" aria-label="Cadeau ' + d + ", " + label(d) + (FEEST[d] ? ", " + FEEST[d] : "") + '"><span class="n">' + d + '</span>' + (FEEST[d] ? '<span class="st" aria-hidden="true">★</span>' : "") + '</button><small>' + (d === t ? "vandaag" : dayName(d).slice(0, 2)) + '</small></li>';
+    }
+    row.innerHTML = html; rowMsg.textContent = "";
+    const cur = row.querySelector(".is-today"); if (cur) row.scrollLeft = Math.max(0, cur.offsetLeft - row.clientWidth / 2 + 37);
+  }
+  row.addEventListener("click", e => {
+    const b = e.target.closest("[data-d]"); if (!b) return;
+    const d = +b.dataset.d, t = today(), f = FEEST[d];
+    if (d === t) { scrollTo({ top: 0, behavior: REDUCE ? "auto" : "smooth" }); return; }
+    rowMsg.textContent = d < t ? "Cadeau " + d + " is al uitgepakt: " + lower(DEALS[d - 1].t) + "." :
+      f ? "★ " + label(d) + ", " + f + ": iets groots. Meer zeggen we nog niet." : "Cadeau " + d + " gaat open op " + label(d) + " om 00:00.";
+  });
+
+  /* ---------- het uitpakken ---------- */
+  const U = document.getElementById("akU");
+  let uTimers = [], playing = false;
+  const later = (fn, ms) => uTimers.push(setTimeout(fn, ms));
+  function finish() {
+    uTimers.forEach(clearTimeout); uTimers = [];
+    U.classList.add("out"); document.documentElement.style.overflow = "";
+    later(() => { U.hidden = true; U.className = "ak-u"; playing = false; }, 700);
+    const ti = todayEl; ti.classList.remove("reveal"); void ti.offsetWidth; ti.classList.add("reveal");
+  }
+  function open() {
+    if (U.classList.contains("go1")) return;
+    U.classList.add("go1");
+    later(() => U.classList.add("go2"), 380);
+    later(() => U.classList.add("go3"), 760);
+    later(() => U.classList.add("go4"), 1180);
+    later(finish, 3400);
+  }
+  function unwrap(force) {
+    const t = today();
+    if (t < 1 || t > 31 || REDUCE) return;
+    const key = "how-cadeau-" + t;
+    let seen = false; try { seen = localStorage.getItem(key) === "1"; } catch (e) {}
+    if (seen && !force) return;
+    try { localStorage.setItem(key, "1"); } catch (e) {}
+    const deal = DEALS[t - 1], f = FEEST[t], h = deal.items.filter(x => byH[x] && avail(x))[0] || deal.items[0];
+    uTimers.forEach(clearTimeout); uTimers = [];
+    U.className = "ak-u" + (f ? " feest" : ""); U.hidden = false; playing = true;
+    document.documentElement.style.overflow = "hidden";
+    document.getElementById("akUTop").innerHTML = (f ? "★ " + f + " ★" : "cadeau " + t + " van 31") + "<b>" + label(t) + "</b>";
+    const tag = document.getElementById("akUTag"); tag.className = "ak-u-tag" + (f ? " feest" : ""); tag.innerHTML = "<b>" + t + "</b><span>DEC</span>";
+    document.getElementById("akUCard").innerHTML = '<img src="' + byH[h].img[0] + '" alt="">' + '<p>−' + deal.pct + '%<small>alleen vandaag</small></p>';
+    const cols = ["#FFF9F0", "#FFD9C8", "#FBB7AE", "#C5AEE0", "#F27C86"], n = f ? 26 : 16;
+    document.getElementById("akUSparks").innerHTML = Array.from({ length: n }, (_, i) => {
+      const a = (i / n) * Math.PI * 2 + Math.random() * .4, r = 140 + Math.random() * (f ? 200 : 130);
+      return '<i style="--x:' + Math.round(Math.cos(a) * r) + 'px;--y:' + Math.round(Math.sin(a) * r) + 'px;--s:' + (.6 + Math.random() * .9).toFixed(2) + ';--dl:' + (Math.random() * .25).toFixed(2) + 's;--c:' + cols[i % cols.length] + '"></i>';
+    }).join("");
+    document.getElementById("akUHint").textContent = "tik om uit te pakken";
+    later(open, 1400);
+  }
+  U.addEventListener("click", e => { if (e.target.closest("#akUSkip")) { finish(); return; } open(); });
+  addEventListener("keydown", e => { if (playing && (e.key === "Escape")) finish(); if (playing && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); open(); } });
+
+  /* ---------- concept: andere dag ---------- */
   const pvDay = document.getElementById("akPvDay");
-  function all() {
-    const t = today(); sel = t >= 1 && t <= 31 ? t : 1;
-    pvDay.textContent = t === 0 ? "voor 1 december" : t > 31 ? "na 31 december" : dayName(t).slice(0, 2) + " " + t + " dec";
-    renderStatus(); renderGrid(); renderDoor();
-    document.querySelectorAll("#akFeestList em").forEach((em, i) => { em.textContent = t >= +Object.keys(FEEST)[i] ? "nu bekend" : "iets groots"; });
+  function all(play) {
+    const t = today();
+    pvDay.textContent = t === 0 ? "voor 1 dec" : t > 31 ? "na 31 dec" : dayName(t).slice(0, 2) + " " + t + " dec";
+    renderToday(); renderNext(); renderRow();
+    if (play) unwrap(true);
   }
   document.getElementById("akPreview").addEventListener("click", e => {
     const b = e.target.closest("[data-pv]"); if (!b) return;
-    const v = +b.dataset.pv, t = today();
-    if (v === 0) { setDay(0); history.replaceState(null, "", location.pathname + location.hash); }
-    else { const n = Math.min(31, Math.max(1, (t === 0 ? 0 : t > 31 ? 32 : t) + v)); setDay(n); history.replaceState(null, "", "?dag=" + n + location.hash); }
-    all();
+    const v = b.dataset.pv, t = today();
+    if (v === "r") { unwrap(true); return; }
+    if (v === "0") { setDay(0); history.replaceState(null, "", location.pathname); }
+    else { const n = Math.min(31, Math.max(1, (t === 0 ? 0 : t > 31 ? 32 : t) + +v)); setDay(n); history.replaceState(null, "", "?dag=" + n); }
+    scrollTo(0, 0); all(true);
   });
-  all();
+  all(false);
+  unwrap(false);
 
-  /* ---------- Mail ---------- */
+  /* ---------- mail ---------- */
   const form = document.querySelector(".ak-form");
   form.addEventListener("submit", e => {
     e.preventDefault();
