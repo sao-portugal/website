@@ -236,7 +236,7 @@
     <ol>
       <li><b>elke dag één deurtje</b>Om 00:00 gaat het deurtje van die dag open. Tot 23:59 is de deal geldig.</li>
       <li><b>korting gaat er vanzelf af</b>Leg de deal van vandaag in je mandje, de korting zie je bij het afrekenen.</li>
-      <li><b>op = op</b>Het is de laatste voorraad van deze kleding. Is je maat weg, dan komt hij niet meer terug.</li>
+      <li><b>op = op</b>Het is de laatste voorraad van deze kleding en elk deurtje is beter dan de presale. Is je maat weg, dan komt hij niet meer terug.</li>
     </ol>
   </section>
 
@@ -324,41 +324,41 @@
 <script>
 (function () {
   const H = window.HOW, E = H.euro, byH = H.byH;
-  const KLEDING = ["hoodie-blue-sunset", "hoodie-green-eye", "sweater-stargazer", "zip-jacket-flowy-green", "t-shirt-sunset-aura", "t-shirt-ocean-aura", "sport-top-ocean-blue", "shorts-ocean-blue", "sport-top-flowy-green", "shorts-flowy-green", "bucket-hat-house-of-waves"];
+  const KLEDING = ["zip-jacket-flowy-green", "t-shirt-sunset-aura", "t-shirt-ocean-aura", "sport-top-ocean-blue", "shorts-ocean-blue", "sport-top-flowy-green", "shorts-flowy-green", "bucket-hat-house-of-waves"];
 
-  /* ---------- De 31 deurtjes. type: "los" (losse producten), "combi" (samen in één keer), feest: naam van de feestdag ---------- */
+  /* ---------- De 31 deurtjes. Altijd beter dan de presale (kleding 40%). type: "combi" (samen in één keer), "sets" (twee combi's), feest: feestdag ---------- */
   const DEALS = [
-    { d: 1, t: "30% op het T-shirt Sunset Aura", items: ["t-shirt-sunset-aura"], pct: 30, lead: "We trappen af met de zon erin." },
-    { d: 2, t: "30% op de Bucket Hat", items: ["bucket-hat-house-of-waves"], pct: 30, lead: "Voor de winterzon op het strand." },
-    { d: 3, t: "35% op de Shorts Ocean Blue", items: ["shorts-ocean-blue"], pct: 35, lead: "Voor je yoga, je run of de gym." },
-    { d: 4, t: "30% op de Hoodie Blue Sunset", items: ["hoodie-blue-sunset"], pct: 30, lead: "Morgen is het pakjesavond, warm je alvast op." },
-    { d: 5, feest: "sinterklaas", t: "50% op alle hoodies en sweaters", items: ["hoodie-blue-sunset", "hoodie-green-eye", "sweater-stargazer"], pct: 50, lead: "Pakjesavond: elke hoodie en sweater voor de helft. Voor jezelf of in iemands schoen." },
-    { d: 6, type: "combi", t: "Journal + T-shirt Ocean Aura", items: ["journal-waves-of-creation", "t-shirt-ocean-aura"], pct: 30, lead: "Schrijf je nieuwe era, in het shirt dat erbij hoort. Samen 30% goedkoper." },
-    { d: 7, t: "35% op de Sport Top Flowy Green", items: ["sport-top-flowy-green"], pct: 35, lead: "Maandagochtend, matje uit." },
-    { d: 8, t: "40% op de Shopping Bag", items: ["shopping-bag-create-a-new-era"], pct: 40, lead: "Voor alle cadeautjes die je deze maand haalt." },
-    { d: 9, t: "30% op de Zip Jacket Flowy Green", items: ["zip-jacket-flowy-green"], pct: 30, lead: "Over je sportset heen, op weg naar de les." },
-    { d: 10, t: "35% op de Sweater Stargazer", items: ["sweater-stargazer"], pct: 35, lead: "Voor de lange donkere avonden." },
-    { d: 11, type: "combi", t: "Sportset Ocean Blue: top + shorts", items: ["sport-top-ocean-blue", "shorts-ocean-blue"], pct: 40, lead: "De complete set, 40% goedkoper. Kies voor allebei je eigen maat." },
-    { d: 12, t: "35% op beide T-shirts", items: ["t-shirt-sunset-aura", "t-shirt-ocean-aura"], pct: 35, lead: "Sunset of ocean? Vandaag hoef je niet te kiezen." },
-    { d: 13, t: "30% op de Armband Ocean Gemstones", items: ["armband-ocean-gemstones"], pct: 30, lead: "Een klein cadeautje met een grote betekenis." },
-    { d: 14, t: "35% op de Hoodie Green Eye", items: ["hoodie-green-eye"], pct: 35, lead: "Waves of energy, op je rug." },
-    { d: 15, t: "40% op de Totebag Blue Sunset", items: ["totebag-blue-sunset"], pct: 40, lead: "Je journal, je matje en alles erbij." },
-    { d: 16, t: "35% op de Sport Top Ocean Blue", items: ["sport-top-ocean-blue"], pct: 35, lead: "Voor de laatste trainingen van het jaar." },
-    { d: 17, type: "combi", t: "Hoodie Green Eye + Bucket Hat", items: ["hoodie-green-eye", "bucket-hat-house-of-waves"], pct: 35, lead: "De wintercombi, samen 35% goedkoper." },
-    { d: 18, type: "combi", t: "Sportset Flowy Green: top + shorts", items: ["sport-top-flowy-green", "shorts-flowy-green"], pct: 40, lead: "De complete set, 40% goedkoper. Kies voor allebei je eigen maat." },
-    { d: 19, t: "35% op het T-shirt Ocean Aura", items: ["t-shirt-ocean-aura"], pct: 35, lead: "Laatste dag om op tijd binnen te zijn voor kerst." },
-    { d: 20, type: "combi", t: "Zip Jacket + Shorts Flowy Green", items: ["zip-jacket-flowy-green", "shorts-flowy-green"], pct: 40, lead: "Van de mat naar de koffie, samen 40% goedkoper." },
-    { d: 21, type: "combi", t: "de langste nacht: Sweater + Journal", items: ["sweater-stargazer", "journal-waves-of-creation"], pct: 35, lead: "De donkerste avond van het jaar. Kruip in je sweater en schrijf. Samen 35% goedkoper." },
-    { d: 22, t: "40% op alle tassen", items: ["totebag-green-eye", "totebag-blue-sunset", "shopping-bag-create-a-new-era"], pct: 40, lead: "Totebags en de shopping bag, voor de laatste boodschappen voor kerst." },
-    { d: 23, t: "40% op de Hoodie Blue Sunset", items: ["hoodie-blue-sunset"], pct: 40, lead: "Nog één nachtje slapen." },
-    { d: 24, feest: "kerstavond", t: "50% op alle T-shirts en sport tops", items: ["t-shirt-sunset-aura", "t-shirt-ocean-aura", "sport-top-ocean-blue", "sport-top-flowy-green"], pct: 50, lead: "Kerstavond: de helft eraf. Voor het nieuwe jaar, in beweging." },
-    { d: 25, feest: "eerste kerstdag", type: "sets", t: "60% op de complete sportsets", items: ["sport-top-ocean-blue", "shorts-ocean-blue", "sport-top-flowy-green", "shorts-flowy-green"], pct: 60, lead: "Ons grootste cadeau: top en shorts samen voor 60% minder. Kies voor allebei je eigen maat." },
-    { d: 26, feest: "tweede kerstdag", t: "55% op hoodies, sweater en zip jacket", items: ["hoodie-blue-sunset", "hoodie-green-eye", "sweater-stargazer", "zip-jacket-flowy-green"], pct: 55, lead: "Tweede kerstdag is bankdag. Doe het in iets zachts." },
-    { d: 27, t: "45% op alle shorts", items: ["shorts-ocean-blue", "shorts-flowy-green"], pct: 45, lead: "De laatste maten, dus op = op." },
-    { d: 28, t: "45% op de Zip Jacket", items: ["zip-jacket-flowy-green"], pct: 45, lead: "Nog drie dagen tot een nieuw jaar." },
-    { d: 29, t: "45% op de Sweater Stargazer", items: ["sweater-stargazer"], pct: 45, lead: "Terugkijken op je jaar, met een journal op schoot." },
-    { d: 30, t: "45% op alle sport tops", items: ["sport-top-ocean-blue", "sport-top-flowy-green"], pct: 45, lead: "Voor je goede voornemens van morgen." },
-    { d: 31, feest: "oudjaarsdag", t: "60% op alle kleding", items: KLEDING, pct: 60, lead: "De laatste wave van 2026. Alles wat er nog is, voor 60% minder. Daarna is het echt op." }
+    { d: 1, t: "45% op het T-shirt Sunset Aura", items: ["t-shirt-sunset-aura"], pct: 45, lead: "We trappen af met de zon erin." },
+    { d: 2, t: "45% op de Bucket Hat", items: ["bucket-hat-house-of-waves"], pct: 45, lead: "Voor de winterzon op het strand." },
+    { d: 3, t: "45% op de Shorts Ocean Blue", items: ["shorts-ocean-blue"], pct: 45, lead: "Voor je yoga, je run of de gym." },
+    { d: 4, t: "45% op de Zip Jacket Flowy Green", items: ["zip-jacket-flowy-green"], pct: 45, lead: "Morgen is het pakjesavond, warm je alvast op." },
+    { d: 5, feest: "pakjesavond", t: "60% op alle sport tops, shorts en de zip jacket", items: ["sport-top-ocean-blue", "shorts-ocean-blue", "sport-top-flowy-green", "shorts-flowy-green", "zip-jacket-flowy-green"], pct: 60, lead: "Pakjesavond: de hele sportcollectie voor 60% minder. Voor jezelf of in iemands schoen." },
+    { d: 6, type: "combi", t: "Journal + T-shirt Sunset Aura", items: ["journal-waves-of-creation", "t-shirt-sunset-aura"], pct: 45, lead: "Schrijf je nieuwe era, in het shirt dat erbij hoort. Samen 45% goedkoper." },
+    { d: 7, t: "45% op de Sport Top Flowy Green", items: ["sport-top-flowy-green"], pct: 45, lead: "Maandagochtend, matje uit." },
+    { d: 8, t: "50% op de Shopping Bag", items: ["shopping-bag-create-a-new-era"], pct: 50, lead: "Voor alle cadeautjes die je deze maand haalt." },
+    { d: 9, t: "45% op de Armband Ocean Gemstones", items: ["armband-ocean-gemstones"], pct: 45, lead: "Een klein cadeautje met een grote betekenis." },
+    { d: 10, t: "50% op de Totebag Green Eye", items: ["totebag-green-eye"], pct: 50, lead: "Je journal, je matje en alles erbij." },
+    { d: 11, type: "combi", t: "Sportset Ocean Blue: top + shorts", items: ["sport-top-ocean-blue", "shorts-ocean-blue"], pct: 50, lead: "De complete set voor de helft. Kies voor allebei je eigen maat." },
+    { d: 12, t: "50% op beide T-shirts", items: ["t-shirt-sunset-aura", "t-shirt-ocean-aura"], pct: 50, lead: "Sunset of ocean? Vandaag hoef je niet te kiezen." },
+    { d: 13, type: "combi", t: "Zip Jacket + Shorts Flowy Green", items: ["zip-jacket-flowy-green", "shorts-flowy-green"], pct: 50, lead: "Van de mat naar de koffie, samen voor de helft." },
+    { d: 14, t: "45% op de Sport Top Ocean Blue", items: ["sport-top-ocean-blue"], pct: 45, lead: "Voor de laatste trainingen van het jaar." },
+    { d: 15, type: "combi", t: "Bucket Hat + Totebag Green Eye", items: ["bucket-hat-house-of-waves", "totebag-green-eye"], pct: 50, lead: "Samen voor de helft. Eentje voor jou, eentje om weg te geven?" },
+    { d: 16, t: "45% op de Shorts Flowy Green", items: ["shorts-flowy-green"], pct: 45, lead: "De laatste maten, dus op = op." },
+    { d: 17, type: "combi", t: "Armband + Journal", items: ["armband-ocean-gemstones", "journal-waves-of-creation"], pct: 40, lead: "Het cadeau voor iemand die een nieuw hoofdstuk begint. Samen 40% goedkoper." },
+    { d: 18, type: "combi", t: "Sportset Flowy Green: top + shorts", items: ["sport-top-flowy-green", "shorts-flowy-green"], pct: 50, lead: "De complete set voor de helft. Kies voor allebei je eigen maat." },
+    { d: 19, t: "50% op het T-shirt Ocean Aura", items: ["t-shirt-ocean-aura"], pct: 50, lead: "Laatste dag om op tijd binnen te zijn voor kerst." },
+    { d: 20, t: "50% op alle tassen", items: ["totebag-green-eye", "shopping-bag-create-a-new-era"], pct: 50, lead: "Voor de laatste boodschappen voor kerst." },
+    { d: 21, type: "combi", t: "de langste nacht: Zip Jacket + Journal", items: ["zip-jacket-flowy-green", "journal-waves-of-creation"], pct: 45, lead: "De donkerste avond van het jaar. Kruip in je jacket en schrijf. Samen 45% goedkoper." },
+    { d: 22, t: "50% op alle shorts", items: ["shorts-ocean-blue", "shorts-flowy-green"], pct: 50, lead: "Ocean blue of flowy green, allebei voor de helft." },
+    { d: 23, t: "50% op alle sport tops", items: ["sport-top-ocean-blue", "sport-top-flowy-green"], pct: 50, lead: "Nog één nachtje slapen." },
+    { d: 24, feest: "kerstavond", t: "60% op T-shirts, tassen en de bucket hat", items: ["t-shirt-sunset-aura", "t-shirt-ocean-aura", "totebag-green-eye", "shopping-bag-create-a-new-era", "bucket-hat-house-of-waves"], pct: 60, lead: "Kerstavond: alles wat je nog onder de boom wilt, voor 60% minder." },
+    { d: 25, feest: "eerste kerstdag", type: "sets", t: "65% op de complete sportsets", items: ["sport-top-ocean-blue", "shorts-ocean-blue", "sport-top-flowy-green", "shorts-flowy-green"], pct: 65, lead: "Ons grootste cadeau: top en shorts samen voor 65% minder. Kies voor allebei je eigen maat." },
+    { d: 26, feest: "tweede kerstdag", t: "60% op de zip jacket en alle shorts", items: ["zip-jacket-flowy-green", "shorts-ocean-blue", "shorts-flowy-green"], pct: 60, lead: "Tweede kerstdag is bankdag. Morgen weer bewegen." },
+    { d: 27, t: "55% op de Zip Jacket", items: ["zip-jacket-flowy-green"], pct: 55, lead: "Nog vier dagen tot een nieuw jaar." },
+    { d: 28, t: "55% op beide T-shirts", items: ["t-shirt-sunset-aura", "t-shirt-ocean-aura"], pct: 55, lead: "De laatste maten, dus op = op." },
+    { d: 29, t: "55% op alle sport tops", items: ["sport-top-ocean-blue", "sport-top-flowy-green"], pct: 55, lead: "Terugkijken op je jaar, vooruitkijken in beweging." },
+    { d: 30, t: "55% op tassen, bucket hat en armband", items: ["totebag-green-eye", "shopping-bag-create-a-new-era", "bucket-hat-house-of-waves", "armband-ocean-gemstones"], pct: 55, lead: "Voor je goede voornemens van morgen." },
+    { d: 31, feest: "oudjaarsdag", t: "70% op alle kleding", items: KLEDING, pct: 70, lead: "De laatste wave van 2026. Alles wat er nog is, voor 70% minder. Daarna is het echt op." }
   ];
   const FEEST = { 5: "pakjesavond", 24: "kerstavond", 25: "eerste kerstdag", 26: "tweede kerstdag", 31: "oudjaarsdag" };
   const DAG = ["zondag", "maandag", "dinsdag", "woensdag", "donderdag", "vrijdag", "zaterdag"];
